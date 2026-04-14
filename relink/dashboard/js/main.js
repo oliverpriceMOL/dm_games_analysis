@@ -16,7 +16,7 @@ import * as transitions from './transitions.js';
 import * as failures from './failures.js';
 import * as simulator from './simulator.js';
 
-const DATA_DIR = '/outputs/data';
+const DATA_DIR = '../outputs/data';
 
 const FILES = [
     'overview', 'crosstabs', 'heatmap', 'impostor-domain',
