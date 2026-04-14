@@ -168,30 +168,23 @@ th { background: #f8f9fa; font-weight: 600; position: sticky; top: 0; }
 
 <!-- VERTICAL INFERENCE -->
 <div class="section" id="vertical">
-<h2>Vertical Inference &amp; Theme Transparency</h2>
-<p style="color:var(--muted);margin-bottom:15px;">Which PDL features promote or inhibit vertical inference? Acceleration = ratio of last to first inter-correct interval (&lt;1 means players sped up). Transparency = % of players who got their 3rd row first-try after solving 2.</p>
+<h2>Vertical Inference</h2>
+<p style="color:var(--muted);margin-bottom:15px;">How do speed and accuracy change as players solve more rows? Both metrics use center of mass (CoM): where does the weight concentrate? Below 1.5 = front-loaded (faster/more errors early = stronger inference). Above 1.5 = back-loaded.</p>
 <div class="card" style="margin-bottom:20px;">
     <h3>Summary</h3>
     <div id="vi-summary"></div>
 </div>
 <div class="card" style="margin-bottom:20px;">
-    <h3>Acceleration by PDL Feature</h3>
+    <h3>Vertical Inference Curves by PDL Feature</h3>
     <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">
-        Mean acceleration factor per category. Lower = players sped up more (stronger vertical inference). The dashed line marks 1.0 (no change).
+        Each feature axis shows two panels: timing curve (median seconds between correct guesses) and error curve (mean wrong guesses per row). A downward curve = stronger vertical inference.
     </p>
-    <div id="vi-accel-charts"></div>
-</div>
-<div class="card" style="margin-bottom:20px;">
-    <h3>Transparency by PDL Feature</h3>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">
-        Mean theme transparency (% first-try on 3rd row after 2 correct) per category. Higher = theme is more deducible.
-    </p>
-    <div id="vi-transp-charts"></div>
+    <div id="vi-curve-charts"></div>
 </div>
 <div class="card">
     <h3>Per-Puzzle Detail</h3>
     <table id="vi-puzzle-table">
-        <thead><tr><th>Puzzle</th><th>Date</th><th>Acceleration</th><th>Transparency</th><th>Solve Rate</th></tr></thead>
+        <thead><tr><th>Puzzle</th><th>Date</th><th>Timing Curve</th><th>Timing CoM</th><th>Error Curve</th><th>Error CoM</th><th>Solve Rate</th></tr></thead>
         <tbody></tbody>
     </table>
 </div>
@@ -284,8 +277,7 @@ const heatmapValues = [[null, null, null, 64.7, null], [58.3, null, 72.3, 63.3, 
 const heatmapAnnotations = [["", "", "", "65% (n=3)", ""], ["58% (n=7)", "", "72% (n=1)", "63% (n=31)", ""], ["", "36% (n=5)", "", "56% (n=8)", "98% (n=1)"]];
 const scatterData = {"phase2TileCount": {"label": "Phase 2 Tile Count", "xs": [2, 3, 2, 2, 3, 3, 3, 2, 4, 2, 3, 2, 3, 2], "ys": [82.9, 54.4, 38.6, 66.7, 25.0, 35.0, 48.1, 71.8, 59.6, 21.2, 61.9, 61.2, 75.6, 17.4], "pearson_r": 0.046, "spearman_r": -0.095, "labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "decoyCount": {"label": "Decoy Count", "xs": [2, 3, 2, 2, 2, 2, 1, 3, 0, 2, 1, 1, 0, 0], "ys": [82.9, 54.4, 38.6, 66.7, 25.0, 35.0, 48.1, 71.8, 59.6, 21.2, 61.9, 61.2, 75.6, 17.4], "pearson_r": 0.034, "spearman_r": -0.125, "labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "manipulationComplexity": {"label": "Manipulation Complexity", "xs": [0, 1, 1, 0, 1, 2, 1, 0, 2, 2, 2, 0, 1, 1], "ys": [82.9, 54.4, 38.6, 66.7, 25.0, 35.0, 48.1, 71.8, 59.6, 21.2, 61.9, 61.2, 75.6, 17.4], "pearson_r": -0.49, "spearman_r": -0.495, "labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "abstractionComplexity": {"label": "Abstraction Complexity", "xs": [1, 0, 2, 1, 1, 1, 2, 0, 0, 1, 1, 3, 1, 3], "ys": [82.9, 54.4, 38.6, 66.7, 25.0, 35.0, 48.1, 71.8, 59.6, 21.2, 61.9, 61.2, 75.6, 17.4], "pearson_r": -0.361, "spearman_r": -0.358, "labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "knowledgeBreadth": {"label": "Knowledge Breadth", "xs": [2, 4, 3, 3, 3, 2, 3, 1, 4, 3, 4, 4, 2, 3], "ys": [82.9, 54.4, 38.6, 66.7, 25.0, 35.0, 48.1, 71.8, 59.6, 21.2, 61.9, 61.2, 75.6, 17.4], "pearson_r": -0.194, "spearman_r": -0.292, "labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "specialistGroupCount": {"label": "Specialist Group Count", "xs": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0], "ys": [82.9, 54.4, 38.6, 66.7, 25.0, 35.0, 48.1, 71.8, 59.6, 21.2, 61.9, 61.2, 75.6, 17.4], "pearson_r": 0.417, "spearman_r": 0.262, "labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}};
 const regressionData = {"puzzle": {"names": ["Intercept", "Manipulation Complexity", "Abstraction Complexity", "Phase2 Tile Count", "Player Count (covariate)"], "coefs": [0.2476, -0.258, -0.0575, 0.157, 0.0036], "r2": 0.653, "loo_mae": 13.2, "residuals": [18.3, -16.8, -3.9, 1.7, -26.9, 12.1, 1.6, -1.5, 1.5, -6.0, 9.6, -1.3, 17.5, -5.9], "puzzle_labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "row": {"names": ["Intercept", "manip:Hidden word", "manip:Homophone", "manip:None", "manip:Word split", "abstr:Direct membership", "abstr:Shared property", "know:General vocabulary", "know:Specialist cultural", "same_domain"], "coefs": [0.6635, -0.1473, 0.0851, -0.0122, 0.4705, -0.0252, -0.082, -0.0747, 0.1645, 0.0679], "r2": 0.267, "n": 56}, "pos_controlled": {"names": ["Intercept", "manip:Hidden word", "manip:Homophone", "manip:None", "manip:Word split", "abstr:Direct membership", "abstr:Shared property", "know:General vocabulary", "know:Specialist cultural", "same_domain", "mean_attempt_position"], "coefs": [0.6356, -0.1468, 0.0772, -0.0013, 0.4853, -0.0176, -0.0786, -0.0772, 0.1525, 0.0646, 0.0127], "r2": 0.268, "n": 56}};
-const viData = {"puzzles": [{"label": "Mar 31", "name": "Newspaper sections", "accel_factor": 0.818, "transparency": 93.3, "solve_rate": 82.9, "manipulationComplexity": 0, "abstractionComplexity": 1, "knowledgeBreadth": 2, "phase2TileCount": 2, "decoyCount": 2, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": true}, {"label": "Apr 1", "name": "London Underground stations", "accel_factor": 0.5, "transparency": 83.3, "solve_rate": 54.4, "manipulationComplexity": 1, "abstractionComplexity": 0, "knowledgeBreadth": 4, "phase2TileCount": 3, "decoyCount": 3, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 2", "name": "Royal flush", "accel_factor": 0.898, "transparency": 73.5, "solve_rate": 38.6, "manipulationComplexity": 1, "abstractionComplexity": 2, "knowledgeBreadth": 3, "phase2TileCount": 2, "decoyCount": 2, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 3", "name": "End in imperial units", "accel_factor": 0.836, "transparency": 66.7, "solve_rate": 66.7, "manipulationComplexity": 0, "abstractionComplexity": 1, "knowledgeBreadth": 3, "phase2TileCount": 2, "decoyCount": 2, "relink_manipulation": "Hidden word", "relink_abstraction": "Shared property", "hasSpecialist": false}, {"label": "Apr 4", "name": "Cleaning products", "accel_factor": 1.306, "transparency": 37.5, "solve_rate": 25.0, "manipulationComplexity": 1, "abstractionComplexity": 1, "knowledgeBreadth": 3, "phase2TileCount": 3, "decoyCount": 2, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 5", "name": "Collective animals nouns", "accel_factor": 1.454, "transparency": 64.3, "solve_rate": 35.0, "manipulationComplexity": 2, "abstractionComplexity": 1, "knowledgeBreadth": 2, "phase2TileCount": 3, "decoyCount": 2, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 6", "name": "Video game mascots", "accel_factor": 0.099, "transparency": 85.7, "solve_rate": 48.1, "manipulationComplexity": 1, "abstractionComplexity": 2, "knowledgeBreadth": 3, "phase2TileCount": 3, "decoyCount": 1, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 7", "name": "Strings section", "accel_factor": 0.544, "transparency": 81.2, "solve_rate": 71.8, "manipulationComplexity": 0, "abstractionComplexity": 0, "knowledgeBreadth": 1, "phase2TileCount": 2, "decoyCount": 3, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 8", "name": "Renewable energy", "accel_factor": 0.871, "transparency": 77.5, "solve_rate": 59.6, "manipulationComplexity": 2, "abstractionComplexity": 0, "knowledgeBreadth": 4, "phase2TileCount": 4, "decoyCount": 0, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 9", "name": "Generations", "accel_factor": 1.345, "transparency": 49.0, "solve_rate": 21.2, "manipulationComplexity": 2, "abstractionComplexity": 1, "knowledgeBreadth": 3, "phase2TileCount": 2, "decoyCount": 2, "relink_manipulation": "Word split", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 10", "name": "Nicknames for English Monarchs", "accel_factor": 0.72, "transparency": 63.0, "solve_rate": 61.9, "manipulationComplexity": 2, "abstractionComplexity": 1, "knowledgeBreadth": 4, "phase2TileCount": 3, "decoyCount": 1, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 11", "name": "Precious metals", "accel_factor": 0.343, "transparency": 75.9, "solve_rate": 61.2, "manipulationComplexity": 0, "abstractionComplexity": 3, "knowledgeBreadth": 4, "phase2TileCount": 2, "decoyCount": 1, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": true}, {"label": "Apr 12", "name": "PlayStation buttons", "accel_factor": 0.431, "transparency": 92.6, "solve_rate": 75.6, "manipulationComplexity": 1, "abstractionComplexity": 1, "knowledgeBreadth": 2, "phase2TileCount": 3, "decoyCount": 0, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 13", "name": "Dramatic pause", "accel_factor": 1.893, "transparency": 23.1, "solve_rate": 17.4, "manipulationComplexity": 1, "abstractionComplexity": 3, "knowledgeBreadth": 3, "phase2TileCount": 2, "decoyCount": 0, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": false}], "crosstabs": {"manipulationComplexity": {"label": "Manipulation Complexity", "categories": {"0": {"n": 4, "mean_accel": 0.635, "mean_transparency": 79.3, "mean_solve_rate": 70.7, "puzzles": ["Newspaper sections", "End in imperial units", "Strings section", "Precious metals"]}, "1": {"n": 6, "mean_accel": 0.854, "mean_transparency": 66.0, "mean_solve_rate": 43.2, "puzzles": ["London Underground stations", "Royal flush", "Cleaning products", "Video game mascots", "PlayStation buttons", "Dramatic pause"]}, "2": {"n": 4, "mean_accel": 1.097, "mean_transparency": 63.5, "mean_solve_rate": 44.4, "puzzles": ["Collective animals nouns", "Renewable energy", "Generations", "Nicknames for English Monarchs"]}}}, "abstractionComplexity": {"label": "Abstraction Complexity", "categories": {"0": {"n": 3, "mean_accel": 0.638, "mean_transparency": 80.7, "mean_solve_rate": 61.9, "puzzles": ["London Underground stations", "Strings section", "Renewable energy"]}, "1": {"n": 7, "mean_accel": 0.987, "mean_transparency": 66.6, "mean_solve_rate": 52.6, "puzzles": ["Newspaper sections", "End in imperial units", "Cleaning products", "Collective animals nouns", "Generations", "Nicknames for English Monarchs", "PlayStation buttons"]}, "2": {"n": 2, "mean_accel": 0.498, "mean_transparency": 79.6, "mean_solve_rate": 43.4, "puzzles": ["Royal flush", "Video game mascots"]}, "3": {"n": 2, "mean_accel": 1.118, "mean_transparency": 49.5, "mean_solve_rate": 39.3, "puzzles": ["Precious metals", "Dramatic pause"]}}}, "knowledgeBreadth": {"label": "Knowledge Breadth", "categories": {"1": {"n": 1, "mean_accel": 0.544, "mean_transparency": 81.2, "mean_solve_rate": 71.8, "puzzles": ["Strings section"]}, "2": {"n": 3, "mean_accel": 0.901, "mean_transparency": 83.4, "mean_solve_rate": 64.5, "puzzles": ["Newspaper sections", "Collective animals nouns", "PlayStation buttons"]}, "3": {"n": 6, "mean_accel": 1.063, "mean_transparency": 55.9, "mean_solve_rate": 36.2, "puzzles": ["Royal flush", "End in imperial units", "Cleaning products", "Video game mascots", "Generations", "Dramatic pause"]}, "4": {"n": 4, "mean_accel": 0.609, "mean_transparency": 74.9, "mean_solve_rate": 59.3, "puzzles": ["London Underground stations", "Renewable energy", "Nicknames for English Monarchs", "Precious metals"]}}}, "phase2TileCount": {"label": "Phase 2 Tile Count", "categories": {"2": {"n": 7, "mean_accel": 0.954, "mean_transparency": 66.1, "mean_solve_rate": 51.4, "puzzles": ["Newspaper sections", "Royal flush", "End in imperial units", "Strings section", "Generations", "Precious metals", "Dramatic pause"]}, "3": {"n": 6, "mean_accel": 0.752, "mean_transparency": 71.1, "mean_solve_rate": 50.0, "puzzles": ["London Underground stations", "Cleaning products", "Collective animals nouns", "Video game mascots", "Nicknames for English Monarchs", "PlayStation buttons"]}, "4": {"n": 1, "mean_accel": 0.871, "mean_transparency": 77.5, "mean_solve_rate": 59.6, "puzzles": ["Renewable energy"]}}}, "decoyCount": {"label": "Decoy Count", "categories": {"0": {"n": 3, "mean_accel": 1.065, "mean_transparency": 64.4, "mean_solve_rate": 50.9, "puzzles": ["Renewable energy", "PlayStation buttons", "Dramatic pause"]}, "1": {"n": 3, "mean_accel": 0.387, "mean_transparency": 74.9, "mean_solve_rate": 57.1, "puzzles": ["Video game mascots", "Nicknames for English Monarchs", "Precious metals"]}, "2": {"n": 6, "mean_accel": 1.109, "mean_transparency": 64.0, "mean_solve_rate": 44.9, "puzzles": ["Newspaper sections", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Generations"]}, "3": {"n": 2, "mean_accel": 0.522, "mean_transparency": 82.2, "mean_solve_rate": 63.1, "puzzles": ["London Underground stations", "Strings section"]}}}, "relink_manipulation": {"label": "Relink Manipulation", "categories": {"Compound": {"n": 6, "mean_accel": 1.022, "mean_transparency": 63.5, "mean_solve_rate": 47.4, "puzzles": ["Newspaper sections", "Royal flush", "Cleaning products", "Renewable energy", "Precious metals", "Dramatic pause"]}, "Hidden word": {"n": 1, "mean_accel": 0.836, "mean_transparency": 66.7, "mean_solve_rate": 66.7, "puzzles": ["End in imperial units"]}, "None": {"n": 6, "mean_accel": 0.625, "mean_transparency": 78.4, "mean_solve_rate": 57.8, "puzzles": ["London Underground stations", "Collective animals nouns", "Video game mascots", "Strings section", "Nicknames for English Monarchs", "PlayStation buttons"]}, "Word split": {"n": 1, "mean_accel": 1.345, "mean_transparency": 49.0, "mean_solve_rate": 21.2, "puzzles": ["Generations"]}}}, "relink_abstraction": {"label": "Relink Abstraction", "categories": {"Direct membership": {"n": 13, "mean_accel": 0.863, "mean_transparency": 69.2, "mean_solve_rate": 50.2, "puzzles": ["Newspaper sections", "London Underground stations", "Royal flush", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "Shared property": {"n": 1, "mean_accel": 0.836, "mean_transparency": 66.7, "mean_solve_rate": 66.7, "puzzles": ["End in imperial units"]}}}, "hasSpecialist": {"label": "Has Specialist Knowledge", "categories": {"No": {"n": 12, "mean_accel": 0.908, "mean_transparency": 66.5, "mean_solve_rate": 47.9, "puzzles": ["London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "PlayStation buttons", "Dramatic pause"]}, "Yes": {"n": 2, "mean_accel": 0.581, "mean_transparency": 84.6, "mean_solve_rate": 72.1, "puzzles": ["Newspaper sections", "Precious metals"]}}}}, "summary": {"median_intervals": [14.0, 11.7, 10.6], "interval_ns": [482, 418, 338], "mean_accel": 0.861, "n_accelerated": 10, "n_total": 14, "mean_transparency": 69.0}};
-const transparencyData = [{"label": "Mar 31", "name": "Newspaper sections", "score": 93.3, "n": 30, "relink_manip": "Compound", "solve_rate": 82.9}, {"label": "Apr 1", "name": "London Underground stations", "score": 83.3, "n": 42, "relink_manip": "None", "solve_rate": 54.4}, {"label": "Apr 2", "name": "Royal flush", "score": 73.5, "n": 34, "relink_manip": "Compound", "solve_rate": 38.6}, {"label": "Apr 3", "name": "End in imperial units", "score": 66.7, "n": 30, "relink_manip": "Hidden word", "solve_rate": 66.7}, {"label": "Apr 4", "name": "Cleaning products", "score": 37.5, "n": 16, "relink_manip": "Compound", "solve_rate": 25.0}, {"label": "Apr 5", "name": "Collective animals nouns", "score": 64.3, "n": 14, "relink_manip": "None", "solve_rate": 35.0}, {"label": "Apr 6", "name": "Video game mascots", "score": 85.7, "n": 14, "relink_manip": "None", "solve_rate": 48.1}, {"label": "Apr 7", "name": "Strings section", "score": 81.2, "n": 32, "relink_manip": "None", "solve_rate": 71.8}, {"label": "Apr 8", "name": "Renewable energy", "score": 77.5, "n": 40, "relink_manip": "Compound", "solve_rate": 59.6}, {"label": "Apr 9", "name": "Generations", "score": 49.0, "n": 51, "relink_manip": "Word split", "solve_rate": 21.2}, {"label": "Apr 10", "name": "Nicknames for English Monarchs", "score": 63.0, "n": 46, "relink_manip": "None", "solve_rate": 61.9}, {"label": "Apr 11", "name": "Precious metals", "score": 75.9, "n": 29, "relink_manip": "Compound", "solve_rate": 61.2}, {"label": "Apr 12", "name": "PlayStation buttons", "score": 92.6, "n": 27, "relink_manip": "None", "solve_rate": 75.6}, {"label": "Apr 13", "name": "Dramatic pause", "score": 23.1, "n": 13, "relink_manip": "Compound", "solve_rate": 17.4}];
+const viData = {"puzzles": [{"label": "Mar 31", "name": "Newspaper sections", "timing_curve": [16.56, 15.32, 20.23, 12.52], "timing_auc": 1.444, "error_curve": [0.088, 0.758, 0.067, 0.808], "error_auc": 1.927, "solve_rate": 82.9, "manipulationComplexity": 0, "abstractionComplexity": 1, "knowledgeBreadth": 2, "phase2TileCount": 2, "decoyCount": 2, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": true}, {"label": "Apr 1", "name": "London Underground stations", "timing_curve": [16.17, 13.89, 7.36, 6.95], "timing_auc": 1.115, "error_curve": [0.556, 0.714, 0.286, 0.568], "error_auc": 1.408, "solve_rate": 54.4, "manipulationComplexity": 1, "abstractionComplexity": 0, "knowledgeBreadth": 4, "phase2TileCount": 3, "decoyCount": 3, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 2", "name": "Royal flush", "timing_curve": [32.9, 16.04, 12.62, 14.41], "timing_auc": 1.112, "error_curve": [0.388, 0.421, 0.412, 0.778], "error_auc": 1.79, "solve_rate": 38.6, "manipulationComplexity": 1, "abstractionComplexity": 2, "knowledgeBreadth": 3, "phase2TileCount": 2, "decoyCount": 2, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 3", "name": "End in imperial units", "timing_curve": [8.35, 12.73, 15.33, 10.64], "timing_auc": 1.601, "error_curve": [0.171, 0.188, 0.567, 0.56], "error_auc": 2.02, "solve_rate": 66.7, "manipulationComplexity": 0, "abstractionComplexity": 1, "knowledgeBreadth": 3, "phase2TileCount": 2, "decoyCount": 2, "relink_manipulation": "Hidden word", "relink_abstraction": "Shared property", "hasSpecialist": false}, {"label": "Apr 4", "name": "Cleaning products", "timing_curve": [7.25, 11.71, 23.01, 15.29], "timing_auc": 1.809, "error_curve": [0.308, 0.435, 1.562, 0.429], "error_auc": 1.773, "solve_rate": 25.0, "manipulationComplexity": 1, "abstractionComplexity": 1, "knowledgeBreadth": 3, "phase2TileCount": 3, "decoyCount": 2, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 5", "name": "Collective animals nouns", "timing_curve": [22.43, 11.39, 19.16, 16.57], "timing_auc": 1.429, "error_curve": [0.412, 0.2, 0.571, 0.818], "error_auc": 1.897, "solve_rate": 35.0, "manipulationComplexity": 2, "abstractionComplexity": 1, "knowledgeBreadth": 2, "phase2TileCount": 3, "decoyCount": 2, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 6", "name": "Video game mascots", "timing_curve": [42.32, 34.3, 12.82, 3.39], "timing_auc": 0.755, "error_curve": [0.769, 0.941, 0.286, 0.538], "error_auc": 1.234, "solve_rate": 48.1, "manipulationComplexity": 1, "abstractionComplexity": 2, "knowledgeBreadth": 3, "phase2TileCount": 3, "decoyCount": 1, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 7", "name": "Strings section", "timing_curve": [15.75, 8.24, 6.34, 4.48], "timing_auc": 0.987, "error_curve": [0.583, 0.412, 0.281, 0.323], "error_auc": 1.215, "solve_rate": 71.8, "manipulationComplexity": 0, "abstractionComplexity": 0, "knowledgeBreadth": 1, "phase2TileCount": 2, "decoyCount": 3, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 8", "name": "Renewable energy", "timing_curve": [16.86, 15.08, 18.4, 13.14], "timing_auc": 1.438, "error_curve": [0.306, 0.979, 0.375, 0.235], "error_auc": 1.285, "solve_rate": 59.6, "manipulationComplexity": 2, "abstractionComplexity": 0, "knowledgeBreadth": 4, "phase2TileCount": 4, "decoyCount": 0, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 9", "name": "Generations", "timing_curve": [14.19, 18.12, 13.66, 24.37], "timing_auc": 1.685, "error_curve": [0.295, 0.298, 1.255, 0.594], "error_auc": 1.879, "solve_rate": 21.2, "manipulationComplexity": 2, "abstractionComplexity": 1, "knowledgeBreadth": 3, "phase2TileCount": 2, "decoyCount": 2, "relink_manipulation": "Word split", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 10", "name": "Nicknames for English Monarchs", "timing_curve": [12.8, 20.0, 13.25, 14.39], "timing_auc": 1.484, "error_curve": [0.778, 0.439, 0.391, 0.944], "error_auc": 1.589, "solve_rate": 61.9, "manipulationComplexity": 2, "abstractionComplexity": 1, "knowledgeBreadth": 4, "phase2TileCount": 3, "decoyCount": 1, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 11", "name": "Precious metals", "timing_curve": [16.16, 8.67, 2.8, 2.97], "timing_auc": 0.758, "error_curve": [0.429, 0.559, 0.31, 0.12], "error_auc": 1.086, "solve_rate": 61.2, "manipulationComplexity": 0, "abstractionComplexity": 3, "knowledgeBreadth": 4, "phase2TileCount": 2, "decoyCount": 1, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": true}, {"label": "Apr 12", "name": "PlayStation buttons", "timing_curve": [16.66, 16.05, 5.72, 6.92], "timing_auc": 1.064, "error_curve": [0.094, 0.3, 0.148, 0.125], "error_auc": 1.456, "solve_rate": 75.6, "manipulationComplexity": 1, "abstractionComplexity": 1, "knowledgeBreadth": 2, "phase2TileCount": 3, "decoyCount": 0, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 13", "name": "Dramatic pause", "timing_curve": [22.23, 28.46, 26.25, 53.89], "timing_auc": 1.855, "error_curve": [1.1, 0.875, 1.385, 2.2], "error_auc": 1.843, "solve_rate": 17.4, "manipulationComplexity": 1, "abstractionComplexity": 3, "knowledgeBreadth": 3, "phase2TileCount": 2, "decoyCount": 0, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": false}], "crosstabs": {"manipulationComplexity": {"label": "Manipulation Complexity", "categories": {"0": {"n": 4, "timing_curve": [14.21, 11.24, 11.18, 7.65], "error_curve": [0.318, 0.479, 0.306, 0.453], "mean_solve_rate": 70.7, "puzzles": ["Newspaper sections", "End in imperial units", "Strings section", "Precious metals"]}, "1": {"n": 6, "timing_curve": [22.92, 20.07, 14.63, 16.81], "error_curve": [0.536, 0.614, 0.68, 0.773], "mean_solve_rate": 43.2, "puzzles": ["London Underground stations", "Royal flush", "Cleaning products", "Video game mascots", "PlayStation buttons", "Dramatic pause"]}, "2": {"n": 4, "timing_curve": [16.57, 16.15, 16.12, 17.12], "error_curve": [0.448, 0.479, 0.648, 0.648], "mean_solve_rate": 44.4, "puzzles": ["Collective animals nouns", "Renewable energy", "Generations", "Nicknames for English Monarchs"]}}}, "abstractionComplexity": {"label": "Abstraction Complexity", "categories": {"0": {"n": 3, "timing_curve": [16.26, 12.4, 10.7, 8.19], "error_curve": [0.482, 0.702, 0.314, 0.375], "mean_solve_rate": 61.9, "puzzles": ["London Underground stations", "Strings section", "Renewable energy"]}, "1": {"n": 7, "timing_curve": [14.03, 15.05, 15.77, 14.39], "error_curve": [0.307, 0.374, 0.652, 0.611], "mean_solve_rate": 52.6, "puzzles": ["Newspaper sections", "End in imperial units", "Cleaning products", "Collective animals nouns", "Generations", "Nicknames for English Monarchs", "PlayStation buttons"]}, "2": {"n": 2, "timing_curve": [37.61, 25.17, 12.72, 8.9], "error_curve": [0.579, 0.681, 0.349, 0.658], "mean_solve_rate": 43.4, "puzzles": ["Royal flush", "Video game mascots"]}, "3": {"n": 2, "timing_curve": [19.2, 18.57, 14.53, 28.43], "error_curve": [0.765, 0.717, 0.848, 1.16], "mean_solve_rate": 39.3, "puzzles": ["Precious metals", "Dramatic pause"]}}}, "knowledgeBreadth": {"label": "Knowledge Breadth", "categories": {"1": {"n": 1, "timing_curve": [15.75, 8.24, 6.34, 4.48], "error_curve": [0.583, 0.412, 0.281, 0.323], "mean_solve_rate": 71.8, "puzzles": ["Strings section"]}, "2": {"n": 3, "timing_curve": [18.55, 14.25, 15.04, 12.0], "error_curve": [0.198, 0.419, 0.262, 0.584], "mean_solve_rate": 64.5, "puzzles": ["Newspaper sections", "Collective animals nouns", "PlayStation buttons"]}, "3": {"n": 6, "timing_curve": [21.21, 20.23, 17.28, 20.33], "error_curve": [0.505, 0.526, 0.911, 0.85], "mean_solve_rate": 36.2, "puzzles": ["Royal flush", "End in imperial units", "Cleaning products", "Video game mascots", "Generations", "Dramatic pause"]}, "4": {"n": 4, "timing_curve": [15.5, 14.41, 10.45, 9.36], "error_curve": [0.517, 0.673, 0.341, 0.467], "mean_solve_rate": 59.3, "puzzles": ["London Underground stations", "Renewable energy", "Nicknames for English Monarchs", "Precious metals"]}}}, "phase2TileCount": {"label": "Phase 2 Tile Count", "categories": {"2": {"n": 7, "timing_curve": [18.02, 15.37, 13.89, 17.61], "error_curve": [0.436, 0.502, 0.611, 0.769], "mean_solve_rate": 51.4, "puzzles": ["Newspaper sections", "Royal flush", "End in imperial units", "Strings section", "Generations", "Precious metals", "Dramatic pause"]}, "3": {"n": 6, "timing_curve": [19.61, 17.89, 13.55, 10.58], "error_curve": [0.486, 0.505, 0.541, 0.57], "mean_solve_rate": 50.0, "puzzles": ["London Underground stations", "Cleaning products", "Collective animals nouns", "Video game mascots", "Nicknames for English Monarchs", "PlayStation buttons"]}, "4": {"n": 1, "timing_curve": [16.86, 15.08, 18.4, 13.14], "error_curve": [0.306, 0.979, 0.375, 0.235], "mean_solve_rate": 59.6, "puzzles": ["Renewable energy"]}}}, "decoyCount": {"label": "Decoy Count", "categories": {"0": {"n": 3, "timing_curve": [18.58, 19.86, 16.79, 24.65], "error_curve": [0.5, 0.718, 0.636, 0.853], "mean_solve_rate": 50.9, "puzzles": ["Renewable energy", "PlayStation buttons", "Dramatic pause"]}, "1": {"n": 3, "timing_curve": [23.76, 20.99, 9.62, 6.92], "error_curve": [0.659, 0.646, 0.329, 0.534], "mean_solve_rate": 57.1, "puzzles": ["Video game mascots", "Nicknames for English Monarchs", "Precious metals"]}, "2": {"n": 6, "timing_curve": [16.95, 14.22, 17.34, 15.63], "error_curve": [0.277, 0.383, 0.739, 0.664], "mean_solve_rate": 44.9, "puzzles": ["Newspaper sections", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Generations"]}, "3": {"n": 2, "timing_curve": [15.96, 11.07, 6.85, 5.71], "error_curve": [0.57, 0.563, 0.283, 0.446], "mean_solve_rate": 63.1, "puzzles": ["London Underground stations", "Strings section"]}}}, "relink_manipulation": {"label": "Relink Manipulation", "categories": {"Compound": {"n": 6, "timing_curve": [18.66, 15.88, 17.22, 18.7], "error_curve": [0.437, 0.671, 0.685, 0.762], "mean_solve_rate": 47.4, "puzzles": ["Newspaper sections", "Royal flush", "Cleaning products", "Renewable energy", "Precious metals", "Dramatic pause"]}, "Hidden word": {"n": 1, "timing_curve": [8.35, 12.73, 15.33, 10.64], "error_curve": [0.171, 0.188, 0.567, 0.56], "mean_solve_rate": 66.7, "puzzles": ["End in imperial units"]}, "None": {"n": 6, "timing_curve": [21.02, 17.31, 10.78, 8.78], "error_curve": [0.532, 0.501, 0.327, 0.553], "mean_solve_rate": 57.8, "puzzles": ["London Underground stations", "Collective animals nouns", "Video game mascots", "Strings section", "Nicknames for English Monarchs", "PlayStation buttons"]}, "Word split": {"n": 1, "timing_curve": [14.19, 18.12, 13.66, 24.37], "error_curve": [0.295, 0.298, 1.255, 0.594], "mean_solve_rate": 21.2, "puzzles": ["Generations"]}}}, "relink_abstraction": {"label": "Relink Abstraction", "categories": {"Direct membership": {"n": 13, "timing_curve": [19.41, 16.71, 13.97, 14.56], "error_curve": [0.47, 0.564, 0.564, 0.652], "mean_solve_rate": 50.2, "puzzles": ["Newspaper sections", "London Underground stations", "Royal flush", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "Shared property": {"n": 1, "timing_curve": [8.35, 12.73, 15.33, 10.64], "error_curve": [0.171, 0.188, 0.567, 0.56], "mean_solve_rate": 66.7, "puzzles": ["End in imperial units"]}}}, "hasSpecialist": {"label": "Has Specialist Knowledge", "categories": {"No": {"n": 12, "timing_curve": [18.99, 17.17, 14.49, 15.37], "error_curve": [0.48, 0.517, 0.627, 0.676], "mean_solve_rate": 47.9, "puzzles": ["London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "PlayStation buttons", "Dramatic pause"]}, "Yes": {"n": 2, "timing_curve": [16.36, 12.0, 11.52, 7.75], "error_curve": [0.259, 0.659, 0.189, 0.464], "mean_solve_rate": 72.1, "puzzles": ["Newspaper sections", "Precious metals"]}}}}, "summary": {"timing_curve": [16.6, 14.0, 11.7, 10.6], "timing_ns": [528, 482, 418, 338], "mean_timing_auc": 1.324, "n_sped_up": 10, "error_curve": [0.448, 0.537, 0.564, 0.646], "error_ns": [14, 14, 14, 14], "mean_error_auc": 1.6, "n_more_accurate": 6, "n_total": 14}};
 const decoyData = {"no_decoys": {"n": 3, "mean_solve_rate": 0.5087214835359056, "mean_avg_wrong": 1.0656731037465108}, "has_decoys": {"n": 11, "mean_solve_rate": 0.5152642350181653, "mean_avg_wrong": 0.8115491302316663}, "hit_analysis": [{"date": "2026-03-31", "label": "Mar 31", "name": "Newspaper sections", "decoy_count": 2, "total_wrong": 102, "decoy_wrong": 23, "hit_rate": 0.22549019607843138, "descriptions": ["Newspaper layout terms - makes you think newspaper structure and Chapters is the impostor", "Science is a newspaper section - fits the impostor theme, player may pick Science instead of News"]}, {"date": "2026-04-01", "label": "Apr 1", "name": "London Underground stations", "decoy_count": 3, "total_wrong": 206, "decoy_wrong": 74, "hit_rate": 0.3592233009708738, "descriptions": ["London landmarks - makes you think the row is London landmarks and London is the impostor", "All also tube station names - makes you think tube stations is the row theme", "Tower Hill is also a tube station - player may pick Tower as impostor instead of Monument"]}, {"date": "2026-04-02", "label": "Apr 2", "name": "Royal flush", "decoy_count": 2, "total_wrong": 178, "decoy_wrong": 32, "hit_rate": 0.1797752808988764, "descriptions": ["Poker terms - makes you think the row is about poker not reactions to embarrassment", "Cards/poker - makes you think the row is about cards not seals"]}, {"date": "2026-04-03", "label": "Apr 3", "name": "End in imperial units", "decoy_count": 2, "total_wrong": 83, "decoy_wrong": 20, "hit_rate": 0.24096385542168675, "descriptions": ["Types of tea - makes you think the row is teas and Coke/Red Bull is the impostor", "All sound military - hard to spot that Compounds is not a group/unit structure"]}, {"date": "2026-04-04", "label": "Apr 4", "name": "Cleaning products", "decoy_count": 2, "total_wrong": 87, "decoy_wrong": 31, "hit_rate": 0.3563218390804598, "descriptions": ["Cleaning - makes you think the row is about cleaning not Spring ___", "Baby products - makes you think the row is about baby care and Bananas is the impostor"]}, {"date": "2026-04-05", "label": "Apr 5", "name": "Collective animals nouns", "decoy_count": 2, "total_wrong": 48, "decoy_wrong": 0, "hit_rate": 0.0, "descriptions": ["Textiles/wool - makes you think the row is about fabric and Tale is the impostor", "Crime/killing - makes you think the row is about crime"]}, {"date": "2026-04-06", "label": "Apr 6", "name": "Video game mascots", "decoy_count": 1, "total_wrong": 96, "decoy_wrong": 15, "hit_rate": 0.15625, "descriptions": ["Loud noises/explosions - makes you think the row is about loud sounds and USB is the impostor"]}, {"date": "2026-04-07", "label": "Apr 7", "name": "Strings section", "decoy_count": 3, "total_wrong": 135, "decoy_wrong": 54, "hit_rate": 0.4, "descriptions": ["String instrument parts - makes you think the row is orchestral and Head is the impostor", "Orchestral performance - makes you think the row is about orchestra and Section is the impostor", "Musical terms - all four are musical making it hard to spot that only 3 are notation"]}, {"date": "2026-04-09", "label": "Apr 9", "name": "Generations", "decoy_count": 2, "total_wrong": 296, "decoy_wrong": 130, "hit_rate": 0.4391891891891892, "descriptions": ["Greek letters - one per row creates a full false vertical answer. Only Alpha is the real impostor", "Gen X fits the Generations impostor theme - player may pick X instead of Z as impostor in row 3"]}, {"date": "2026-04-10", "label": "Apr 10", "name": "Nicknames for English Monarchs", "decoy_count": 1, "total_wrong": 271, "decoy_wrong": 41, "hit_rate": 0.15129151291512916, "descriptions": ["William the Conqueror is a monarch nickname - player may pick Conqueror instead of Unready"]}, {"date": "2026-04-11", "label": "Apr 11", "name": "Precious metals", "decoy_count": 1, "total_wrong": 111, "decoy_wrong": 10, "hit_rate": 0.09009009009009009, "descriptions": ["Precious metals - makes you think the row is about valuable metals not Saurons Ring"]}]};
 const confusionData = {"Mar 31": {"name": "Newspaper sections", "matrix": [[4, 0, 0, 0], [0, 58, 0, 0], [0, 0, 8, 0], [0, 0, 0, 30]]}, "Apr 1": {"name": "London Underground stations", "matrix": [[62, 0, 0, 0], [0, 93, 0, 0], [0, 0, 7, 0], [0, 0, 0, 44]]}, "Apr 2": {"name": "Royal flush", "matrix": [[58, 0, 0, 0], [0, 60, 0, 0], [0, 0, 3, 0], [0, 0, 0, 57]]}, "Apr 3": {"name": "End in imperial units", "matrix": [[15, 0, 0, 0], [0, 22, 0, 0], [0, 0, 15, 0], [0, 0, 0, 23]]}, "Apr 4": {"name": "Cleaning products", "matrix": [[2, 0, 0, 0], [0, 5, 0, 0], [0, 0, 31, 0], [0, 0, 0, 26]]}, "Apr 5": {"name": "Collective animals nouns", "matrix": [[11, 0, 0, 0], [0, 8, 0, 0], [0, 0, 6, 0], [0, 0, 0, 19]]}, "Apr 6": {"name": "Video game mascots", "matrix": [[23, 0, 0, 0], [0, 37, 0, 0], [0, 0, 16, 0], [0, 0, 0, 10]]}, "Apr 7": {"name": "Strings section", "matrix": [[49, 0, 0, 0], [0, 0, 21, 0], [0, 13, 0, 0], [0, 0, 0, 16]]}, "Apr 8": {"name": "Renewable energy", "matrix": [[33, 0, 0, 0], [0, 87, 0, 0], [0, 0, 41, 0], [0, 0, 0, 19]]}, "Apr 9": {"name": "Generations", "matrix": [[51, 0, 0, 0], [0, 17, 0, 0], [0, 0, 117, 0], [0, 0, 0, 95]]}, "Apr 10": {"name": "Nicknames for English Monarchs", "matrix": [[101, 0, 0, 0], [0, 52, 0, 0], [0, 0, 32, 0], [0, 0, 0, 84]]}, "Apr 11": {"name": "Precious metals", "matrix": [[58, 0, 0, 0], [0, 30, 0, 0], [0, 0, 15, 0], [0, 0, 0, 8]]}, "Apr 12": {"name": "PlayStation buttons", "matrix": [[7, 0, 0, 0], [0, 23, 0, 0], [0, 0, 7, 0], [0, 0, 0, 1]]}, "Apr 13": {"name": "Dramatic pause", "matrix": [[0, 0, 60, 0], [35, 0, 0, 0], [0, 27, 0, 0], [0, 0, 0, 40]]}};
 const relinkData = {"by_manip": {"Compound": {"n": 6, "mean_first_try": 0.8452380952380952, "mean_attempts": 1.3778659611992945}, "Hidden word": {"n": 1, "mean_first_try": 0.8064516129032258, "mean_attempts": 1.1612903225806452}, "None": {"n": 6, "mean_first_try": 0.8671303753363743, "mean_attempts": 1.4765166869015198}, "Word split": {"n": 1, "mean_first_try": 0.5142857142857142, "mean_attempts": 3.342857142857143}}, "by_tiles": {"2": {"n": 7, "mean_first_try": 0.794206714944042, "mean_attempts": 1.8564723380391581, "mean_solve_rate": 0.5139186970037388}, "3": {"n": 6, "mean_first_try": 0.8440120957664817, "mean_attempts": 1.19157045034238, "mean_solve_rate": 0.500081051771253}, "4": {"n": 1, "mean_first_try": 0.9714285714285714, "mean_attempts": 1.4857142857142858, "mean_solve_rate": 0.5961538461538461}}};
@@ -578,109 +570,162 @@ if (regressionData.pos_controlled.coefs.length > 0) makeRegTable('reg-intrinsic-
 (function() {
     const ct = viData.crosstabs;
     const summ = viData.summary;
+    const curveColors = ['#6c5ce7', '#00b894', '#d63031', '#fdcb6e', '#0984e3', '#e17055', '#00cec9', '#636e72'];
 
-    // Summary
+    // Summary cards
     const summDiv = document.getElementById('vi-summary');
-    const meds = summ.median_intervals;
-    const drop = meds[0] > 0 ? ((meds[0] - meds[2]) / meds[0] * 100).toFixed(0) : '?';
+    const tc = summ.timing_curve || [];
+    const ec = summ.error_curve || [];
+    const tDrop = tc[0] > 0 ? ((tc[0] - tc[3]) / tc[0] * 100).toFixed(0) : '?';
+    const eDrop = (ec[0] && ec[0] > 0 && ec[3] != null) ? ((ec[0] - ec[3]) / ec[0] * 100).toFixed(0) : '?';
     let sh = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;">`;
-    sh += `<div class="stat-card"><div class="value">${meds[0]}s → ${meds[2]}s</div><div class="label">Median interval: 1st→2nd → 3rd→4th</div></div>`;
-    sh += `<div class="stat-card"><div class="value">${drop}%</div><div class="label">Median time drop</div></div>`;
-    sh += `<div class="stat-card"><div class="value">${summ.mean_accel}x</div><div class="label">Mean acceleration factor</div></div>`;
-    sh += `<div class="stat-card"><div class="value">${summ.n_accelerated}/${summ.n_total}</div><div class="label">Puzzles that accelerated (&lt;1x)</div></div>`;
-    sh += `<div class="stat-card"><div class="value">${summ.mean_transparency}%</div><div class="label">Mean theme transparency</div></div>`;
+    sh += `<div class="stat-card"><div class="value">${tc[0]}s → ${tc[3]}s</div><div class="label">Timing: start→1st correct → 3rd→4th correct</div></div>`;
+    sh += `<div class="stat-card"><div class="value">${tDrop}%</div><div class="label">Timing drop</div></div>`;
+    sh += `<div class="stat-card"><div class="value">${summ.mean_timing_auc}</div><div class="label">Mean timing CoM (1.5=flat)</div></div>`;
+    sh += `<div class="stat-card"><div class="value">${summ.n_sped_up}/${summ.n_total}</div><div class="label">Puzzles that sped up (&lt;1.5)</div></div>`;
+    sh += `<div class="stat-card"><div class="value">${ec[0]} → ${ec[3]}</div><div class="label">Errors: 1st → 4th row solved</div></div>`;
+    sh += `<div class="stat-card"><div class="value">${eDrop}%</div><div class="label">Error drop</div></div>`;
+    sh += `<div class="stat-card"><div class="value">${summ.mean_error_auc}</div><div class="label">Mean error CoM (1.5=flat)</div></div>`;
+    sh += `<div class="stat-card"><div class="value">${summ.n_more_accurate}/${summ.n_total}</div><div class="label">Errors front-loaded (&lt;1.5)</div></div>`;
     sh += `</div>`;
     summDiv.innerHTML = sh;
 
-    // Helper: create a grouped bar chart for a metric across all PDL feature axes
-    function makeViCrosstabs(containerId, metric, metricLabel, refLine) {
-        const container = document.getElementById(containerId);
-        const features = Object.keys(ct);
-        features.forEach((feat, fi) => {
-            const axis = ct[feat];
-            const cats = Object.keys(axis.categories);
-            const vals = cats.map(c => axis.categories[c]['mean_' + metric]);
-            const ns = cats.map(c => axis.categories[c].n);
+    // Two-panel curve charts per PDL feature axis
+    const container = document.getElementById('vi-curve-charts');
+    const features = Object.keys(ct);
+    const timingLabels = ['Start→1st', '1st→2nd', '2nd→3rd', '3rd→4th'];
+    const errorLabels = ['1st solved', '2nd solved', '3rd solved', '4th solved'];
 
-            // Skip if all null
-            if (vals.every(v => v === null)) return;
+    // Build DOM first
+    features.forEach((feat, fi) => {
+        const axis = ct[feat];
+        container.innerHTML += `<div style="margin-bottom:25px;">
+            <h4 style="color:var(--text);margin-bottom:8px;">${axis.label}</h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
+                <div class="chart-container" style="height:200px;"><canvas id="vi-tc-${fi}"></canvas></div>
+                <div class="chart-container" style="height:200px;"><canvas id="vi-ec-${fi}"></canvas></div>
+            </div>
+        </div>`;
+    });
 
-            const chartId = `vi-${metric}-${fi}`;
-            container.innerHTML += `<div style="margin-bottom:20px;">
-                <h4 style="color:var(--text);margin-bottom:8px;">${axis.label}</h4>
-                <div class="chart-container" style="height:200px;"><canvas id="${chartId}"></canvas></div>
-            </div>`;
-        });
+    // Render charts
+    features.forEach((feat, fi) => {
+        const axis = ct[feat];
+        const cats = Object.keys(axis.categories);
 
-        // Render charts after DOM update
-        features.forEach((feat, fi) => {
-            const axis = ct[feat];
-            const cats = Object.keys(axis.categories);
-            const vals = cats.map(c => axis.categories[c]['mean_' + metric]);
-            const ns = cats.map(c => axis.categories[c].n);
-            if (vals.every(v => v === null)) return;
-
-            const chartId = `vi-${metric}-${fi}`;
-            const el = document.getElementById(chartId);
-            if (!el) return;
-            const ctx = el.getContext('2d');
-
-            const barColors = vals.map(v => {
-                if (v === null) return '#dfe6e9';
-                if (metric === 'accel') return v < 1 ? hsla(150,60,45,0.7) : hsla(0,65,50,0.7);
-                return hsla(260,70,55,0.7);
+        // Timing curve chart
+        const tcEl = document.getElementById(`vi-tc-${fi}`);
+        if (tcEl) {
+            const datasets = cats.map((cat, ci) => {
+                const info = axis.categories[cat];
+                const curve = info.timing_curve || [null, null, null, null];
+                const color = curveColors[ci % curveColors.length];
+                return { label: `${cat} (n=${info.n})`, data: curve, borderColor: color,
+                          borderWidth: 2, pointRadius: 4, tension: 0.3, fill: false, spanGaps: true };
             });
-
-            const annotation = refLine !== null ? {
-                annotations: {
-                    refLine: { type: 'line', yMin: refLine, yMax: refLine,
-                               borderColor: '#636e72', borderDash: [4,4], borderWidth: 1 }
-                }
-            } : {};
-
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: cats.map((c, i) => `${c} (n=${ns[i]})`),
-                    datasets: [{ label: metricLabel, data: vals.map(v => v !== null ? v : 0),
-                                  backgroundColor: barColors, borderWidth: 0 }]
-                },
+            new Chart(tcEl.getContext('2d'), {
+                type: 'line',
+                data: { labels: timingLabels, datasets },
                 options: {
                     responsive: true, maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: false },
-                        annotation,
-                        tooltip: {
-                            callbacks: {
-                                afterBody: (items) => {
-                                    const i = items[0].dataIndex;
-                                    const cat = cats[i];
-                                    const info = axis.categories[cat];
-                                    return `Puzzles: ${info.puzzles.join(', ')}\nSolve rate: ${info.mean_solve_rate}%`;
-                                }
-                            }
-                        }
+                        title: { display: true, text: 'Timing (seconds)', color: '#636e72', font: { size: 12 } },
+                        legend: { display: true, position: 'top', labels: { boxWidth: 12, font: { size: 11 } } },
+                        tooltip: { callbacks: { afterBody: (items) => {
+                            const cat = cats[items[0].datasetIndex];
+                            const info = axis.categories[cat];
+                            return `Puzzles: ${info.puzzles.join(', ')}`;
+                        } } }
                     },
-                    scales: { y: { title: { display: true, text: metricLabel } } }
+                    scales: { y: { title: { display: true, text: 'Median seconds' }, beginAtZero: true } }
                 }
             });
+        }
+
+        // Error curve chart
+        const ecEl = document.getElementById(`vi-ec-${fi}`);
+        if (ecEl) {
+            const datasets = cats.map((cat, ci) => {
+                const info = axis.categories[cat];
+                const curve = info.error_curve || [null, null, null, null];
+                const color = curveColors[ci % curveColors.length];
+                return { label: `${cat} (n=${info.n})`, data: curve, borderColor: color,
+                          borderWidth: 2, pointRadius: 4, tension: 0.3, fill: false, spanGaps: true };
+            });
+            new Chart(ecEl.getContext('2d'), {
+                type: 'line',
+                data: { labels: errorLabels, datasets },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Errors (wrong guesses)', color: '#636e72', font: { size: 12 } },
+                        legend: { display: true, position: 'top', labels: { boxWidth: 12, font: { size: 11 } } },
+                        tooltip: { callbacks: { afterBody: (items) => {
+                            const cat = cats[items[0].datasetIndex];
+                            const info = axis.categories[cat];
+                            return `Puzzles: ${info.puzzles.join(', ')}`;
+                        } } }
+                    },
+                    scales: { y: { title: { display: true, text: 'Mean wrong guesses' }, beginAtZero: true } }
+                }
+            });
+        }
+    });
+
+    // Per-puzzle detail table with dual sparklines
+    function drawSparkline(canvasId, vals, nPoints, isDown) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas || vals.every(v => v === null)) return;
+        const ctx = canvas.getContext('2d');
+        const w = canvas.width, h = canvas.height, pad = 4;
+        const data = vals.map(v => v ?? 0);
+        const maxV = Math.max(...data, 0.01);
+        const lineColor = isDown ? '#00b894' : '#d63031';
+        const fillColor = isDown ? 'rgba(0,184,148,0.15)' : 'rgba(214,48,49,0.15)';
+        const step = (w - 2 * pad) / (nPoints - 1);
+
+        ctx.beginPath();
+        data.forEach((v, i) => {
+            const x = pad + i * step;
+            const y = h - pad - (v / maxV) * (h - 2 * pad);
+            if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.strokeStyle = lineColor; ctx.lineWidth = 2; ctx.stroke();
+        ctx.lineTo(pad + (nPoints - 1) * step, h - pad);
+        ctx.lineTo(pad, h - pad); ctx.closePath();
+        ctx.fillStyle = fillColor; ctx.fill();
+        data.forEach((v, i) => {
+            const x = pad + i * step;
+            const y = h - pad - (v / maxV) * (h - 2 * pad);
+            ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+            ctx.fillStyle = lineColor; ctx.fill();
         });
     }
 
-    makeViCrosstabs('vi-accel-charts', 'accel', 'Acceleration factor (< 1 = sped up)', 1.0);
-    makeViCrosstabs('vi-transp-charts', 'transparency', 'Theme transparency %', null);
-
-    // Per-puzzle detail table
     const tbody = document.querySelector('#vi-puzzle-table tbody');
-    const sorted = [...viData.puzzles].sort((a, b) => (a.accel_factor || 99) - (b.accel_factor || 99));
+    const sorted = [...viData.puzzles].sort((a, b) => (a.error_auc ?? 99) - (b.error_auc ?? 99));
+    let si = 0;
     sorted.forEach(p => {
-        const accelStr = p.accel_factor !== null ? p.accel_factor.toFixed(3) + 'x' : '—';
-        const accelColor = p.accel_factor !== null ? (p.accel_factor < 1 ? 'color:#00b894' : 'color:#d63031') : '';
+        const tauc = p.timing_auc !== null ? p.timing_auc.toFixed(2) : '—';
+        const tColor = p.timing_auc !== null ? (p.timing_auc < 1.5 ? 'color:#00b894' : 'color:#d63031') : '';
+        const eauc = p.error_auc !== null ? p.error_auc.toFixed(2) : '—';
+        const eColor = p.error_auc !== null ? (p.error_auc < 1.5 ? 'color:#00b894' : 'color:#d63031') : '';
+        const tsId = `sp-t-${si}`, esId = `sp-e-${si}`;
+        si++;
         tbody.innerHTML += `<tr>
             <td>${p.name}</td><td>${p.label}</td>
-            <td style="${accelColor};font-weight:600;">${accelStr}</td>
-            <td>${p.transparency}%</td>
+            <td><canvas id="${tsId}" width="120" height="32" style="vertical-align:middle;"></canvas></td>
+            <td style="${tColor};font-weight:600;">${tauc}</td>
+            <td><canvas id="${esId}" width="120" height="32" style="vertical-align:middle;"></canvas></td>
+            <td style="${eColor};font-weight:600;">${eauc}</td>
             <td>${p.solve_rate}%</td></tr>`;
+    });
+    // Render sparklines
+    si = 0;
+    sorted.forEach(p => {
+        drawSparkline(`sp-t-${si}`, p.timing_curve || [], 4, (p.timing_auc ?? 99) < 1.5);
+        drawSparkline(`sp-e-${si}`, p.error_curve || [], 4, (p.error_auc ?? 99) < 1.5);
+        si++;
     });
 })();
 

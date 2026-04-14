@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relink PDL Analysis</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="layout">
+<nav>
+    <h2>PDL Analysis</h2>
+    <a href="#findings">Key Findings</a>
+    <a href="#crosstabs">PDL Cross-tabs</a>
+    <a href="#heatmap">Difficulty Heatmap</a>
+    <a href="#impostor">Impostor Domain</a>
+    <a href="#correlations">Puzzle Correlations</a>
+    <a href="#regression">Regression Models</a>
+    <a href="#vertical">Vertical Inference</a>
+    <a href="#decoys">Decoy Analysis</a>
+    <a href="#relink">Relink Phase</a>
+    <a href="#clusters">Clustering</a>
+    <a href="#predictions">Predictions</a>
+</nav>
+<main>
+
+<div id="loading">Loading data…</div>
+
+<div id="content" style="display:none;">
+
+<h1>Relink PDL &times; Behaviour Analysis</h1>
+<p class="subtitle" id="subtitle"></p>
+
+<!-- KEY FINDINGS -->
+<div class="section" id="findings">
+<h2>Key Findings</h2>
+<div class="stats-grid" id="stats-grid"></div>
+</div>
+
+<!-- CROSS-TABS -->
+<div class="section" id="crosstabs">
+<h2>PDL Axis Breakdown</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Mean first-try correct % and average wrong guesses per row, grouped by each PDL axis.</p>
+<div class="two-col">
+    <div class="card"><h3>By Manipulation Type</h3><div class="chart-container"><canvas id="chart-manip"></canvas></div></div>
+    <div class="card"><h3>By Abstraction Type</h3><div class="chart-container"><canvas id="chart-abstr"></canvas></div></div>
+    <div class="card"><h3>By Knowledge Level</h3><div class="chart-container"><canvas id="chart-know"></canvas></div></div>
+    <div class="card"><h3>By Knowledge Domain</h3><div class="chart-container tall"><canvas id="chart-domain"></canvas></div></div>
+</div>
+</div>
+
+<!-- HEATMAP -->
+<div class="section" id="heatmap">
+<h2>Manipulation &times; Abstraction Heatmap</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Mean first-try correct % for each combination. Darker red = harder.</p>
+<div class="card" id="heatmap-container"></div>
+</div>
+
+<!-- IMPOSTOR DOMAIN -->
+<div class="section" id="impostor">
+<h2>Impostor Domain Analysis</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Do impostors from the same knowledge domain as the group fool players more?</p>
+<div class="two-col">
+    <div class="card"><h3>Same vs Different Domain</h3><div class="chart-container"><canvas id="chart-domain-dist"></canvas></div></div>
+    <div class="card"><h3>By Impostor Domain</h3><div class="chart-container"><canvas id="chart-imp-domain"></canvas></div></div>
+</div>
+</div>
+
+<!-- CORRELATIONS -->
+<div class="section" id="correlations">
+<h2>Puzzle-Level Correlations</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Board-level design parameters vs solve rate. Each point is one puzzle date.</p>
+<div class="two-col" id="scatter-container"></div>
+</div>
+
+<!-- REGRESSION -->
+<div class="section" id="regression">
+<h2>Regression Models</h2>
+<div class="two-col" id="regression-tables"></div>
+<div class="card" id="regression-pos" style="margin-top:20px;"></div>
+<div class="card" style="margin-top:20px;">
+    <h3>Regression Coefficients (Row-Level Forest Plot)</h3>
+    <div class="chart-container tall"><canvas id="chart-forest"></canvas></div>
+</div>
+</div>
+
+<!-- VERTICAL INFERENCE -->
+<div class="section" id="vertical">
+<h2>Vertical Inference</h2>
+<p style="color:var(--muted);margin-bottom:15px;">How do speed and accuracy change as players solve more rows? Both metrics use center of mass (CoM): where does the weight concentrate? Below 1.5 = front-loaded. Above 1.5 = back-loaded.</p>
+<div class="card" style="margin-bottom:20px;">
+    <h3>Summary</h3>
+    <div id="vi-summary"></div>
+</div>
+<div class="card" style="margin-bottom:20px;">
+    <h3>Vertical Inference Curves by PDL Feature</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">
+        Each feature axis shows two panels: timing curve (median seconds between correct guesses) and error curve (mean wrong guesses per row).
+    </p>
+    <div id="vi-curve-charts"></div>
+</div>
+<div class="card">
+    <h3>Per-Puzzle Detail</h3>
+    <table id="vi-puzzle-table">
+        <thead><tr><th>Puzzle</th><th>Date</th><th>Timing Curve</th><th>Timing CoM</th><th>Error Curve</th><th>Error CoM</th><th>Solve Rate</th></tr></thead>
+        <tbody></tbody>
+    </table>
+</div>
+</div>
+
+<!-- DECOYS -->
+<div class="section" id="decoys">
+<h2>Decoy Analysis</h2>
+<div class="two-col">
+    <div class="card">
+        <h3>Puzzles With vs Without Decoys</h3>
+        <div class="chart-container"><canvas id="chart-decoy-compare"></canvas></div>
+    </div>
+    <div class="card">
+        <h3>Decoy Hit Rate</h3>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">What fraction of wrong guesses match tiles from designed decoy groupings?</p>
+        <div class="chart-container"><canvas id="chart-decoy-hits"></canvas></div>
+    </div>
+</div>
+</div>
+
+<!-- RELINK PHASE -->
+<div class="section" id="relink">
+<h2>Relink Phase PDL</h2>
+<div class="two-col">
+    <div class="card">
+        <h3>By Meta-Connection Manipulation</h3>
+        <div class="chart-container"><canvas id="chart-relink-manip"></canvas></div>
+    </div>
+    <div class="card">
+        <h3>By Phase 2 Tile Count</h3>
+        <div class="chart-container"><canvas id="chart-relink-tiles"></canvas></div>
+    </div>
+</div>
+</div>
+
+<!-- CLUSTERING -->
+<div class="section" id="clusters">
+<h2>Puzzle &amp; Row Archetypes</h2>
+<div class="two-col">
+    <div class="card">
+        <h3>Puzzle Clusters (k=3)</h3>
+        <div class="chart-container"><canvas id="chart-puzzle-cluster"></canvas></div>
+        <div id="cluster-members" style="margin-top:15px;"></div>
+    </div>
+    <div class="card">
+        <h3>Row Archetypes (k=4)</h3>
+        <div class="chart-container"><canvas id="chart-row-cluster"></canvas></div>
+    </div>
+</div>
+</div>
+
+<!-- PREDICTIONS -->
+<div class="section" id="predictions">
+<h2>Difficulty Predictions</h2>
+<p class="subtitle" id="pred-subtitle" style="color:var(--muted);margin-bottom:15px;"></p>
+<div class="card" style="margin-bottom:20px;">
+    <h3>Predicted vs Actual (Dated Puzzles)</h3>
+    <div class="chart-container"><canvas id="chart-pred-scatter"></canvas></div>
+</div>
+<div class="card">
+    <h3>All Puzzles — Predicted Difficulty</h3>
+    <table id="pred-table">
+        <thead><tr><th>Puzzle</th><th>Date</th><th>Predicted</th><th>Actual</th><th>Delta</th>
+                   <th>Manip. Complexity</th><th>Cluster</th></tr></thead>
+        <tbody></tbody>
+    </table>
+</div>
+</div>
+
+</div><!-- /content -->
+</main>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
