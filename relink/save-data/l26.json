@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "id": "l26",
+  "date": "2026-04-08",
+  "name": "Renewable energy",
+  "rows": [
+    {
+      "id": "row-l26-101",
+      "position": 0,
+      "category": "Parts of an email",
+      "tiles": [
+        {
+          "id": "tile-l26-401",
+          "text": "Re",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l26-402",
+          "text": "HEP",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l26-403",
+          "text": "Signature",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l26-404",
+          "text": "CC",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Technology"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l26-102",
+      "position": 1,
+      "category": "E = mc\u00b2",
+      "tiles": [
+        {
+          "id": "tile-l26-405",
+          "text": "Solar",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l26-406",
+          "text": "Energy",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l26-407",
+          "text": "Mass",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l26-408",
+          "text": "Speed of light",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Science"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Science"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l26-103",
+      "position": 2,
+      "category": "_ _ _ Look",
+      "tiles": [
+        {
+          "id": "tile-l26-409",
+          "text": "Wind",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l26-410",
+          "text": "Out",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l26-411",
+          "text": "Over",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l26-412",
+          "text": "New",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Language"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l26-104",
+      "position": 3,
+      "category": "Homophones of biblical characters",
+      "tiles": [
+        {
+          "id": "tile-l26-413",
+          "text": "Eave",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l26-414",
+          "text": "Tidal",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l26-415",
+          "text": "Able",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l26-416",
+          "text": "Cane",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "Homophone"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Religion"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Re",
+        "source": "grid",
+        "sourceRowId": "row-l26-101"
+      },
+      {
+        "text": "New",
+        "source": "grid",
+        "sourceRowId": "row-l26-103"
+      },
+      {
+        "text": "Able",
+        "source": "grid",
+        "sourceRowId": "row-l26-104"
+      },
+      {
+        "text": "Energy",
+        "source": "grid",
+        "sourceRowId": "row-l26-102"
+      }
+    ],
+    "answer": "Renewable energy",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Science"
+        ]
+      }
+    }
+  },
+  "decoys": [],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 4,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

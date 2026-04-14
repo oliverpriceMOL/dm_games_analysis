@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "id": "l36",
+  "date": "",
+  "name": "Batman rogues gallery",
+  "rows": [
+    {
+      "id": "row-l36-141",
+      "position": 0,
+      "category": "Cheaters",
+      "tiles": [
+        {
+          "id": "tile-l36-561",
+          "text": "Crook",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l36-562",
+          "text": "Rogues",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l36-563",
+          "text": "Scoundrels",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l36-564",
+          "text": "Scarecrow",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l36-142",
+      "position": 1,
+      "category": "Baseball terminology",
+      "tiles": [
+        {
+          "id": "tile-l36-565",
+          "text": "Bat",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l36-566",
+          "text": "Bane",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l36-567",
+          "text": "Pitch",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l36-568",
+          "text": "Strike",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Sport"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l36-143",
+      "position": 2,
+      "category": "Male of the species",
+      "tiles": [
+        {
+          "id": "tile-l36-569",
+          "text": "Penguin",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l36-570",
+          "text": "Stag",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l36-571",
+          "text": "Man",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l36-572",
+          "text": "Gander",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l36-144",
+      "position": 3,
+      "category": "Types of boat plus a letter",
+      "tiles": [
+        {
+          "id": "tile-l36-573",
+          "text": "Gallery",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l36-574",
+          "text": "Joker",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l36-575",
+          "text": "Stanker",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l36-576",
+          "text": "Snail",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Letter add-delete"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Bat",
+        "source": "grid",
+        "sourceRowId": "row-l36-142"
+      },
+      {
+        "text": "Man",
+        "source": "grid",
+        "sourceRowId": "row-l36-143"
+      },
+      {
+        "text": "Rogues",
+        "source": "grid",
+        "sourceRowId": "row-l36-141"
+      },
+      {
+        "text": "Gallery",
+        "source": "grid",
+        "sourceRowId": "row-l36-144"
+      }
+    ],
+    "answer": "Batman rogues gallery",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Specialist cultural"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Film-TV"
+        ]
+      }
+    }
+  },
+  "decoys": [],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 4,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

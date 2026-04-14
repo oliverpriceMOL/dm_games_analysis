@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "id": "l7",
+  "date": "",
+  "name": "Comes in second",
+  "rows": [
+    {
+      "id": "row-l7-25",
+      "position": 0,
+      "category": "Doctor Who villains",
+      "tiles": [
+        {
+          "id": "tile-l7-97",
+          "text": "Omega",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l7-98",
+          "text": "Beta",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l7-99",
+          "text": "Dalek",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l7-100",
+          "text": "Master",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Film-TV"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l7-26",
+      "position": 1,
+      "category": "____ hand",
+      "tiles": [
+        {
+          "id": "tile-l7-101",
+          "text": "Back",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l7-102",
+          "text": "Understudy",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l7-103",
+          "text": "Second",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l7-104",
+          "text": "Hired",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l7-27",
+      "position": 2,
+      "category": "End in body parts",
+      "tiles": [
+        {
+          "id": "tile-l7-105",
+          "text": "Clip",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l7-106",
+          "text": "Farm",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l7-107",
+          "text": "Silver",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l7-108",
+          "text": "Ladyfinger",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l7-28",
+      "position": 3,
+      "category": "Glastonbury stages",
+      "tiles": [
+        {
+          "id": "tile-l7-109",
+          "text": "Other",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l7-110",
+          "text": "Pyramid",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l7-111",
+          "text": "Left Field",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l7-112",
+          "text": "Right hand",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Music"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Second",
+        "source": "grid",
+        "sourceRowId": "row-l7-26"
+      }
+    ],
+    "answer": "Comes in second",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-57",
+      "tileIds": [
+        "tile-l7-98",
+        "tile-l7-97"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "Greek letters - makes you think the row is Greek letters and Dalek/Master is the impostor"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 2,
+    "decoyCount": 0,
+    "phase2TileCount": 1,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

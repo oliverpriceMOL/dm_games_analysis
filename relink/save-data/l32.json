@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "id": "l32",
+  "date": "",
+  "name": "This puzzle is hard",
+  "rows": [
+    {
+      "id": "row-l32-125",
+      "position": 0,
+      "category": "___ Time",
+      "tiles": [
+        {
+          "id": "tile-l32-497",
+          "text": "This puzzle",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l32-498",
+          "text": "Outta",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l32-499",
+          "text": "Prime",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l32-500",
+          "text": "Hard",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l32-126",
+      "position": 1,
+      "category": "End in possessive pronouns",
+      "tiles": [
+        {
+          "id": "tile-l32-501",
+          "text": "This",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l32-502",
+          "text": "Ushers",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l32-503",
+          "text": "Nails",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l32-504",
+          "text": "Flours",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l32-127",
+      "position": 2,
+      "category": "Meta things",
+      "tiles": [
+        {
+          "id": "tile-l32-505",
+          "text": "This puzzle",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l32-506",
+          "text": "Facebook",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l32-507",
+          "text": "Diamond",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l32-508",
+          "text": "Fourth wall",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l32-128",
+      "position": 3,
+      "category": "Contain a 'z' sound",
+      "tiles": [
+        {
+          "id": "tile-l32-509",
+          "text": "Puzzle",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l32-510",
+          "text": "Booze",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l32-511",
+          "text": "Is",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l32-512",
+          "text": "Liquor",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "This",
+        "source": "grid",
+        "sourceRowId": "row-l32-126"
+      },
+      {
+        "text": "Puzzle",
+        "source": "grid",
+        "sourceRowId": "row-l32-128"
+      },
+      {
+        "text": "Is",
+        "source": "grid",
+        "sourceRowId": "row-l32-128"
+      },
+      {
+        "text": "Hard",
+        "source": "grid",
+        "sourceRowId": "row-l32-125"
+      }
+    ],
+    "answer": "This puzzle is hard",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Loose thematic"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-42",
+      "tileIds": [
+        "tile-l32-510"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Hard booze fits the relink connection - player may pick Booze instead of Liquor as impostor"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 4,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

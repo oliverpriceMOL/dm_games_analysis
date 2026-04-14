@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "id": "l29",
+  "date": "2026-04-11",
+  "name": "Precious metals",
+  "rows": [
+    {
+      "id": "row-l29-113",
+      "position": 0,
+      "category": "Purple things",
+      "tiles": [
+        {
+          "id": "tile-l29-449",
+          "text": "This",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l29-450",
+          "text": "Iodine",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l29-451",
+          "text": "Amethyst",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l29-452",
+          "text": "Platinum",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l29-114",
+      "position": 1,
+      "category": "Sauron's Ring",
+      "tiles": [
+        {
+          "id": "tile-l29-453",
+          "text": "Precious",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l29-454",
+          "text": "Silver",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l29-455",
+          "text": "Birthday present",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l29-456",
+          "text": "The One Ring",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "Literature"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l29-115",
+      "position": 2,
+      "category": "Sets of the periodic table",
+      "tiles": [
+        {
+          "id": "tile-l29-457",
+          "text": "Palladium",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l29-458",
+          "text": "Halogens",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l29-459",
+          "text": "Noble gases",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l29-460",
+          "text": "Metals",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Science"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Science"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l29-116",
+      "position": 3,
+      "category": "Identical singular and plural forms",
+      "tiles": [
+        {
+          "id": "tile-l29-461",
+          "text": "Gold",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l29-462",
+          "text": "Aircraft",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l29-463",
+          "text": "Sheep",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l29-464",
+          "text": "Fish",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Precious",
+        "source": "grid",
+        "sourceRowId": "row-l29-114"
+      },
+      {
+        "text": "Metals",
+        "source": "grid",
+        "sourceRowId": "row-l29-115"
+      }
+    ],
+    "answer": "Precious metals",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-39",
+      "tileIds": [
+        "tile-l29-454",
+        "tile-l29-453"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Precious metals - makes you think the row is about valuable metals not Saurons Ring"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 1,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

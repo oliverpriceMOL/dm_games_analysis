@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "id": "l31",
+  "date": "2026-04-12",
+  "name": "PlayStation buttons",
+  "rows": [
+    {
+      "id": "row-l31-121",
+      "position": 0,
+      "category": "Perceptive",
+      "tiles": [
+        {
+          "id": "tile-l31-481",
+          "text": "Shrewd",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l31-482",
+          "text": "Astute",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l31-483",
+          "text": "Cross",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l31-484",
+          "text": "Sharp",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l31-122",
+      "position": 1,
+      "category": "Social status",
+      "tiles": [
+        {
+          "id": "tile-l31-485",
+          "text": "Station",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l31-486",
+          "text": "Triangle",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l31-487",
+          "text": "Caste",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l31-488",
+          "text": "Class",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l31-123",
+      "position": 2,
+      "category": "Things used as eyes",
+      "tiles": [
+        {
+          "id": "tile-l31-489",
+          "text": "Buttons",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l31-490",
+          "text": "Coal",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l31-491",
+          "text": "Colon",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l31-492",
+          "text": "Square",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l31-124",
+      "position": 3,
+      "category": "___ Ground",
+      "tiles": [
+        {
+          "id": "tile-l31-493",
+          "text": "Fair",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l31-494",
+          "text": "Circle",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l31-495",
+          "text": "Play",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l31-496",
+          "text": "Under",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Play",
+        "source": "grid",
+        "sourceRowId": "row-l31-124"
+      },
+      {
+        "text": "Station",
+        "source": "grid",
+        "sourceRowId": "row-l31-122"
+      },
+      {
+        "text": "Buttons",
+        "source": "grid",
+        "sourceRowId": "row-l31-123"
+      }
+    ],
+    "answer": "PlayStation buttons",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Technology"
+        ]
+      }
+    }
+  },
+  "decoys": [],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 3,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

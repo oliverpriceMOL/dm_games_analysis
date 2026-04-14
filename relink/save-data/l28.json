@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 1,
+  "id": "l28",
+  "date": "2026-04-10",
+  "name": "Nicknames for English Monarchs",
+  "rows": [
+    {
+      "id": "row-l28-109",
+      "position": 0,
+      "category": "Species of butterfly",
+      "tiles": [
+        {
+          "id": "tile-l28-433",
+          "text": "Monarchs",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l28-434",
+          "text": "Red admirals",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l28-435",
+          "text": "Swallowtail",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l28-436",
+          "text": "Lionheart",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Science"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "History"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l28-110",
+      "position": 1,
+      "category": "Fictional Johnnys",
+      "tiles": [
+        {
+          "id": "tile-l28-437",
+          "text": "Confessor",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l28-438",
+          "text": "English",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l28-439",
+          "text": "Bravo",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l28-440",
+          "text": "Storm",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Film-TV",
+            "Literature"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "History"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l28-111",
+      "position": 2,
+      "category": "Sweet _ _ _",
+      "tiles": [
+        {
+          "id": "tile-l28-441",
+          "text": "Corn",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l28-442",
+          "text": "Pea",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l28-443",
+          "text": "Elder",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l28-444",
+          "text": "& Sour",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l28-112",
+      "position": 3,
+      "category": "Start with types of theft",
+      "tiles": [
+        {
+          "id": "tile-l28-445",
+          "text": "Robert",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l28-446",
+          "text": "Conqueror",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l28-447",
+          "text": "Unready",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l28-448",
+          "text": "Nicknames",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "History"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Nicknames",
+        "source": "grid",
+        "sourceRowId": "row-l28-112"
+      },
+      {
+        "text": "English",
+        "source": "grid",
+        "sourceRowId": "row-l28-110"
+      },
+      {
+        "text": "Monarchs",
+        "source": "grid",
+        "sourceRowId": "row-l28-109"
+      }
+    ],
+    "answer": "Nicknames for English Monarchs",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "History"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-38",
+      "tileIds": [
+        "tile-l28-446"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "William the Conqueror is a monarch nickname - player may pick Conqueror instead of Unready"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 3,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

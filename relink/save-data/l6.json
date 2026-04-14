@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "id": "l6",
+  "date": "",
+  "name": "Dictionaries",
+  "rows": [
+    {
+      "id": "row-l6-21",
+      "position": 0,
+      "category": "Queen members",
+      "tiles": [
+        {
+          "id": "tile-l6-81",
+          "text": "May",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l6-82",
+          "text": "Mercury",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l6-83",
+          "text": "Collins",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l6-84",
+          "text": "Taylor",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Music"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l6-22",
+      "position": 1,
+      "category": "Red things",
+      "tiles": [
+        {
+          "id": "tile-l6-85",
+          "text": "Cambridge",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l6-86",
+          "text": "Mario's hat",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l6-87",
+          "text": "Postbox",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l6-88",
+          "text": "Coca-Cola",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l6-23",
+      "position": 2,
+      "category": "Card games",
+      "tiles": [
+        {
+          "id": "tile-l6-89",
+          "text": "Rummy",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l6-90",
+          "text": "Go Fish",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l6-91",
+          "text": "Poker",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l6-92",
+          "text": "Scrabble",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l6-24",
+      "position": 3,
+      "category": "End in zodiac signs",
+      "tiles": [
+        {
+          "id": "tile-l6-93",
+          "text": "Paleo",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l6-94",
+          "text": "Dictionaries",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l6-95",
+          "text": "Tropic of Cancer",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l6-96",
+          "text": "Urban",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Dictionaries",
+        "source": "grid",
+        "sourceRowId": "row-l6-24"
+      }
+    ],
+    "answer": "Dictionaries",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "knowledgeDomain": [
+          "Language"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-56",
+      "tileIds": [
+        "tile-l6-92",
+        "tile-l6-89",
+        "tile-l6-90",
+        "tile-l6-91"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "All are games - player needs to notice the category is specifically card games to spot Scrabble"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 1,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

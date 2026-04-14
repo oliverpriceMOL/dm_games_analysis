@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "id": "l10",
+  "date": "",
+  "name": "Taylor Swift records",
+  "rows": [
+    {
+      "id": "row-l10-37",
+      "position": 0,
+      "category": "Filed documents",
+      "tiles": [
+        {
+          "id": "tile-l10-145",
+          "text": "Records",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l10-146",
+          "text": "Clean",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l10-147",
+          "text": "Log",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l10-148",
+          "text": "Index",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l10-38",
+      "position": 1,
+      "category": "Nato phonetic alphabet",
+      "tiles": [
+        {
+          "id": "tile-l10-149",
+          "text": "Lover",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l10-150",
+          "text": "Tango",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l10-151",
+          "text": "Romeo",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l10-152",
+          "text": "Juliett",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l10-39",
+      "position": 2,
+      "category": "Fast celebrity names",
+      "tiles": [
+        {
+          "id": "tile-l10-153",
+          "text": "Usain Bolt",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l10-154",
+          "text": "Taylor Swift",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l10-155",
+          "text": "Geoffrey Rush",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l10-156",
+          "text": "Elizabeth Taylor",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l10-40",
+      "position": 3,
+      "category": "Dollars in 'Man with No Name' trilogy titles",
+      "tiles": [
+        {
+          "id": "tile-l10-157",
+          "text": "Few More",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l10-158",
+          "text": "Fifteen",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l10-159",
+          "text": "Fistful",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l10-160",
+          "text": "Zero",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Film-TV"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Taylor Swift",
+        "source": "grid",
+        "sourceRowId": "row-l10-39"
+      },
+      {
+        "text": "Records",
+        "source": "grid",
+        "sourceRowId": "row-l10-37"
+      }
+    ],
+    "answer": "Taylor Swift records",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "knowledgeDomain": [
+          "Music",
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-1",
+      "tileIds": [
+        "tile-l10-149",
+        "tile-l10-151",
+        "tile-l10-152"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Romance/Shakespeare - makes you think the row is romance and Tango is the impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-2",
+      "tileIds": [
+        "tile-l10-156",
+        "tile-l10-154"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Shared property"
+        ],
+        "description": "Famous Taylors - makes you think the row groups people named Taylor"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 1,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

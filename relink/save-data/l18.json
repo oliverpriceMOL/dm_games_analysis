@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "id": "l18",
+  "date": "2026-04-06",
+  "name": "Video game mascots",
+  "rows": [
+    {
+      "id": "row-l18-69",
+      "position": 0,
+      "category": "Charisma",
+      "tiles": [
+        {
+          "id": "tile-l18-273",
+          "text": "Game",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l18-274",
+          "text": "Link",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l18-275",
+          "text": "Magnetism",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l18-276",
+          "text": "Charm",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l18-70",
+      "position": 1,
+      "category": "Types of microphone",
+      "tiles": [
+        {
+          "id": "tile-l18-277",
+          "text": "Shotgun",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l18-278",
+          "text": "Crash",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l18-279",
+          "text": "Boom",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l18-280",
+          "text": "USB",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Technology"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l18-71",
+      "position": 2,
+      "category": "Musical killers",
+      "tiles": [
+        {
+          "id": "tile-l18-281",
+          "text": "Queen",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l18-282",
+          "text": "Psycho",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l18-283",
+          "text": "Sonic",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l18-284",
+          "text": "Video",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l18-72",
+      "position": 3,
+      "category": "Ending in neckwear",
+      "tiles": [
+        {
+          "id": "tile-l18-285",
+          "text": "The Chain",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l18-286",
+          "text": "Mascots",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l18-287",
+          "text": "Banjo",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l18-288",
+          "text": "Besties",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Video",
+        "source": "grid",
+        "sourceRowId": "row-l18-71"
+      },
+      {
+        "text": "Game",
+        "source": "grid",
+        "sourceRowId": "row-l18-69"
+      },
+      {
+        "text": "Mascots",
+        "source": "grid",
+        "sourceRowId": "row-l18-72"
+      }
+    ],
+    "answer": "Video game mascots",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Technology"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-17",
+      "tileIds": [
+        "tile-l18-278",
+        "tile-l18-277",
+        "tile-l18-279"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Loud noises/explosions - makes you think the row is about loud sounds and USB is the impostor"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 3,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

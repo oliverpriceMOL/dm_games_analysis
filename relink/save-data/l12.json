@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "id": "l12",
+  "date": "2026-04-03",
+  "name": "End in imperial units",
+  "rows": [
+    {
+      "id": "row-l12-45",
+      "position": 0,
+      "category": "Mints",
+      "tiles": [
+        {
+          "id": "tile-l12-177",
+          "text": "Imperial",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l12-178",
+          "text": "Polo",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l12-179",
+          "text": "Humbug",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l12-180",
+          "text": "Courtyard",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Food"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l12-46",
+      "position": 1,
+      "category": "Caffeinated drinks",
+      "tiles": [
+        {
+          "id": "tile-l12-181",
+          "text": "English Breakfast",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l12-182",
+          "text": "Coke",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l12-183",
+          "text": "Chamomile",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l12-184",
+          "text": "Red Bull",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Food"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Food"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l12-47",
+      "position": 2,
+      "category": "Military group organisation",
+      "tiles": [
+        {
+          "id": "tile-l12-185",
+          "text": "Companies",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l12-186",
+          "text": "Platoons",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l12-187",
+          "text": "Compounds",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l12-188",
+          "text": "Units",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l12-48",
+      "position": 3,
+      "category": "Different spellings in UK and US English",
+      "tiles": [
+        {
+          "id": "tile-l12-189",
+          "text": "Litre",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l12-190",
+          "text": "Colour",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l12-191",
+          "text": "Grey",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l12-192",
+          "text": "Renounce",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Language"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Imperial",
+        "source": "grid",
+        "sourceRowId": "row-l12-45"
+      },
+      {
+        "text": "Units",
+        "source": "grid",
+        "sourceRowId": "row-l12-47"
+      }
+    ],
+    "answer": "End in imperial units",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Hidden word"
+        ],
+        "abstraction": [
+          "Shared property"
+        ],
+        "knowledgeDomain": [
+          "Science"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-5",
+      "tileIds": [
+        "tile-l12-183",
+        "tile-l12-181"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "Types of tea - makes you think the row is teas and Coke/Red Bull is the impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-6",
+      "tileIds": [
+        "tile-l12-187",
+        "tile-l12-185",
+        "tile-l12-186",
+        "tile-l12-188"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "All sound military - hard to spot that Compounds is not a group/unit structure"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

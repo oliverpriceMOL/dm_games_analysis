@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "id": "l39",
+  "date": "",
+  "name": "Evergreen trees",
+  "rows": [
+    {
+      "id": "row-l39-153",
+      "position": 0,
+      "category": "Where apples are found",
+      "tiles": [
+        {
+          "id": "tile-l39-609",
+          "text": "Orchard",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l39-610",
+          "text": "Cedar",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l39-611",
+          "text": "Trees",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l39-612",
+          "text": "Bushel",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l39-154",
+      "position": 1,
+      "category": "Stop! In the name of the law!",
+      "tiles": [
+        {
+          "id": "tile-l39-613",
+          "text": "Spruce",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l39-614",
+          "text": "Freeze",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l39-615",
+          "text": "Halt",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l39-616",
+          "text": "Hands up",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l39-155",
+      "position": 2,
+      "category": "Undying",
+      "tiles": [
+        {
+          "id": "tile-l39-617",
+          "text": "Evergreen",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l39-618",
+          "text": "Pine",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l39-619",
+          "text": "Immortal",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l39-620",
+          "text": "Eternal",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l39-156",
+      "position": 3,
+      "category": "Finger anatomy",
+      "tiles": [
+        {
+          "id": "tile-l39-621",
+          "text": "Nail",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l39-622",
+          "text": "Knuckle",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l39-623",
+          "text": "Palm",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l39-624",
+          "text": "Tip",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Evergreen",
+        "source": "grid",
+        "sourceRowId": "row-l39-155"
+      },
+      {
+        "text": "Trees",
+        "source": "grid",
+        "sourceRowId": "row-l39-153"
+      }
+    ],
+    "answer": "Evergreen trees",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-51",
+      "tileIds": [
+        "tile-l39-618",
+        "tile-l39-617"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Trees - makes you think the row is about trees not undying"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

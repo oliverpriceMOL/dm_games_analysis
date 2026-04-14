@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "id": "l16",
+  "date": "",
+  "name": "To con",
+  "rows": [
+    {
+      "id": "row-l16-61",
+      "position": 0,
+      "category": "Dozen",
+      "tiles": [
+        {
+          "id": "tile-l16-241",
+          "text": "Dime",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l16-242",
+          "text": "Cheaper",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l16-243",
+          "text": "Eggs",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l16-244",
+          "text": "Milk",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Food"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l16-62",
+      "position": 1,
+      "category": "Kinds of artist",
+      "tiles": [
+        {
+          "id": "tile-l16-245",
+          "text": "Con",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l16-246",
+          "text": "Disaster",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l16-247",
+          "text": "Cheat",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l16-248",
+          "text": "Tattoo",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l16-63",
+      "position": 2,
+      "category": "Unearned' idioms",
+      "tiles": [
+        {
+          "id": "tile-l16-249",
+          "text": "Meal ticket",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l16-250",
+          "text": "Stitch up",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l16-251",
+          "text": "Silver platter",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l16-252",
+          "text": "Coattails",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l16-64",
+      "position": 3,
+      "category": "Super _ _ _",
+      "tiles": [
+        {
+          "id": "tile-l16-253",
+          "text": "Computer",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l16-254",
+          "text": "Fleece",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l16-255",
+          "text": "Soaker",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l16-256",
+          "text": "Man",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Con",
+        "source": "grid",
+        "sourceRowId": "row-l16-62"
+      }
+    ],
+    "answer": "To con",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "knowledgeDomain": [
+          "Language"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-13",
+      "tileIds": [
+        "tile-l16-244",
+        "tile-l16-243"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "Dairy/breakfast items - makes you think the row is about food"
+      }
+    },
+    {
+      "id": "decoy-1776089211-14",
+      "tileIds": [
+        "tile-l16-247",
+        "tile-l16-245"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Shared property"
+        ],
+        "description": "Deception - makes you think the row is about cheating/fraud"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 1,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

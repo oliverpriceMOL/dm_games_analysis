@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "id": "l27",
+  "date": "2026-04-14",
+  "name": "Types of bean",
+  "rows": [
+    {
+      "id": "row-l27-105",
+      "position": 0,
+      "category": "Maritime leaders",
+      "tiles": [
+        {
+          "id": "tile-l27-417",
+          "text": "Skipper",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l27-418",
+          "text": "Master",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l27-419",
+          "text": "Navy",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l27-420",
+          "text": "Captain",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l27-106",
+      "position": 1,
+      "category": "Warm outerwear",
+      "tiles": [
+        {
+          "id": "tile-l27-421",
+          "text": "Jumper",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l27-422",
+          "text": "Jelly",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l27-423",
+          "text": "Puffer",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l27-424",
+          "text": "Mac",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Food"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l27-107",
+      "position": 2,
+      "category": "Types of container",
+      "tiles": [
+        {
+          "id": "tile-l27-425",
+          "text": "Hopper",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l27-426",
+          "text": "Broad",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l27-427",
+          "text": "Basket",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l27-428",
+          "text": "Bucket",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l27-108",
+      "position": 3,
+      "category": "Rowan Atkinson roles",
+      "tiles": [
+        {
+          "id": "tile-l27-429",
+          "text": "Runner",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l27-430",
+          "text": "Blackadder",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l27-431",
+          "text": "English",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l27-432",
+          "text": "Bean",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Film-TV"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Bean",
+        "source": "grid",
+        "sourceRowId": "row-l27-108"
+      }
+    ],
+    "answer": "Types of bean",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Food"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-35",
+      "tileIds": [
+        "tile-l27-419",
+        "tile-l27-417",
+        "tile-l27-420",
+        "tile-l27-418"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Naval/maritime - all four are maritime-adjacent making it very hard to spot Navy as the impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-36",
+      "tileIds": [
+        "tile-l27-422",
+        "tile-l27-423"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Fish (jellyfish, pufferfish) - makes you think the row is about fish"
+      }
+    },
+    {
+      "id": "decoy-1776089211-37",
+      "tileIds": [
+        "tile-l27-429",
+        "tile-l27-432"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Runner bean - a real type of bean linking these two tiles"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 1,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

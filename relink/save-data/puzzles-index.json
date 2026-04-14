@@ -1,0 +1,277 @@
+{
+  "puzzles": [
+    {
+      "id": "l24",
+      "date": "2026-04-16",
+      "name": "Preparing for battle",
+      "phase2TileCount": 1,
+      "pdlComplete": true
+    },
+    {
+      "id": "l1",
+      "date": "2026-04-15",
+      "name": "Something old, new, borrowed and blue",
+      "phase2TileCount": 4,
+      "pdlComplete": true
+    },
+    {
+      "id": "l27",
+      "date": "2026-04-14",
+      "name": "Types of bean",
+      "phase2TileCount": 1,
+      "pdlComplete": true
+    },
+    {
+      "id": "l30",
+      "date": "2026-04-13",
+      "name": "Dramatic pause",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l31",
+      "date": "2026-04-12",
+      "name": "PlayStation buttons",
+      "phase2TileCount": 3,
+      "pdlComplete": true
+    },
+    {
+      "id": "l29",
+      "date": "2026-04-11",
+      "name": "Precious metals",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l28",
+      "date": "2026-04-10",
+      "name": "Nicknames for English Monarchs",
+      "phase2TileCount": 3,
+      "pdlComplete": true
+    },
+    {
+      "id": "l17",
+      "date": "2026-04-09",
+      "name": "Generations",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l26",
+      "date": "2026-04-08",
+      "name": "Renewable energy",
+      "phase2TileCount": 4,
+      "pdlComplete": true
+    },
+    {
+      "id": "l23",
+      "date": "2026-04-07",
+      "name": "Strings section",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l18",
+      "date": "2026-04-06",
+      "name": "Video game mascots",
+      "phase2TileCount": 3,
+      "pdlComplete": true
+    },
+    {
+      "id": "l15",
+      "date": "2026-04-05",
+      "name": "Collective animals nouns",
+      "phase2TileCount": 3,
+      "pdlComplete": true
+    },
+    {
+      "id": "l20",
+      "date": "2026-04-04",
+      "name": "Cleaning products",
+      "phase2TileCount": 3,
+      "pdlComplete": true
+    },
+    {
+      "id": "l12",
+      "date": "2026-04-03",
+      "name": "End in imperial units",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l25",
+      "date": "2026-04-02",
+      "name": "Royal flush",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l2",
+      "date": "2026-04-01",
+      "name": "London Underground stations",
+      "phase2TileCount": 3,
+      "pdlComplete": true
+    },
+    {
+      "id": "l11",
+      "date": "2026-03-31",
+      "name": "Newspaper sections",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l6",
+      "date": "",
+      "name": "Dictionaries",
+      "phase2TileCount": 1,
+      "pdlComplete": true
+    },
+    {
+      "id": "l10",
+      "date": "",
+      "name": "Taylor Swift records",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l7",
+      "date": "",
+      "name": "Comes in second",
+      "phase2TileCount": 1,
+      "pdlComplete": true
+    },
+    {
+      "id": "l16",
+      "date": "",
+      "name": "To con",
+      "phase2TileCount": 1,
+      "pdlComplete": true
+    },
+    {
+      "id": "l36",
+      "date": "",
+      "name": "Batman rogues gallery",
+      "phase2TileCount": 4,
+      "pdlComplete": true
+    },
+    {
+      "id": "l37",
+      "date": "",
+      "name": "Chocolate bars",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l21",
+      "date": "",
+      "name": "Spaceships",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l38",
+      "date": "",
+      "name": "Songbirds",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l14",
+      "date": "",
+      "name": "Associated with volcanic eruptions",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l34",
+      "date": "",
+      "name": "21ˢᵗ Century Popes",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l22",
+      "date": "",
+      "name": "Named after US Presidents",
+      "phase2TileCount": 4,
+      "pdlComplete": true
+    },
+    {
+      "id": "l35",
+      "date": "",
+      "name": "Friends characters",
+      "phase2TileCount": 3,
+      "pdlComplete": true
+    },
+    {
+      "id": "l19",
+      "date": "",
+      "name": "Estate planning",
+      "phase2TileCount": 1,
+      "pdlComplete": true
+    },
+    {
+      "id": "l3",
+      "date": "",
+      "name": "Daily ____",
+      "phase2TileCount": 1,
+      "pdlComplete": true
+    },
+    {
+      "id": "l39",
+      "date": "",
+      "name": "Evergreen trees",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l32",
+      "date": "",
+      "name": "This puzzle is hard",
+      "phase2TileCount": 4,
+      "pdlComplete": true
+    },
+    {
+      "id": "l4",
+      "date": "",
+      "name": "Squid",
+      "phase2TileCount": 1,
+      "pdlComplete": true
+    },
+    {
+      "id": "l8",
+      "date": "",
+      "name": "____graph",
+      "phase2TileCount": 1,
+      "pdlComplete": true
+    },
+    {
+      "id": "l9",
+      "date": "",
+      "name": "Silent letter",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l13",
+      "date": "",
+      "name": "Start with shades of blue",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    },
+    {
+      "id": "l5",
+      "date": "",
+      "name": "Monopoly",
+      "phase2TileCount": 1,
+      "pdlComplete": true
+    },
+    {
+      "id": "l33",
+      "date": "",
+      "name": "The Beatles members",
+      "phase2TileCount": 2,
+      "pdlComplete": true
+    }
+  ]
+}

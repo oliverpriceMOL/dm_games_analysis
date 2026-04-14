@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "id": "l33",
+  "date": "",
+  "name": "The Beatles members",
+  "rows": [
+    {
+      "id": "row-l33-129",
+      "position": 0,
+      "category": "Part of the club",
+      "tiles": [
+        {
+          "id": "tile-l33-513",
+          "text": "John",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l33-514",
+          "text": "Pledge",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l33-515",
+          "text": "Members",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l33-516",
+          "text": "Comrade",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l33-130",
+      "position": 1,
+      "category": "Lions",
+      "tiles": [
+        {
+          "id": "tile-l33-517",
+          "text": "Paul",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l33-518",
+          "text": "Alex",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l33-519",
+          "text": "Aslan",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l33-520",
+          "text": "Cowardly",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l33-131",
+      "position": 2,
+      "category": "21ˢᵗ Century Popes",
+      "tiles": [
+        {
+          "id": "tile-l33-521",
+          "text": "Benedict",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l33-522",
+          "text": "George",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l33-523",
+          "text": "Francis",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l33-524",
+          "text": "Leo",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Religion"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l33-132",
+      "position": 3,
+      "category": "Insects with a letter changed",
+      "tiles": [
+        {
+          "id": "tile-l33-525",
+          "text": "Bep",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l33-526",
+          "text": "Wast",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l33-527",
+          "text": "Beatles",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l33-528",
+          "text": "Ringo",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Letter add-delete"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Music"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Beatles",
+        "source": "grid",
+        "sourceRowId": "row-l33-132"
+      },
+      {
+        "text": "Members",
+        "source": "grid",
+        "sourceRowId": "row-l33-129"
+      }
+    ],
+    "answer": "The Beatles members",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Music"
+        ]
+      }
+    }
+  },
+  "decoys": [],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

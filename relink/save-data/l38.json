@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 1,
+  "id": "l38",
+  "date": "",
+  "name": "Songbirds",
+  "rows": [
+    {
+      "id": "row-l38-149",
+      "position": 0,
+      "category": "Chess pieces",
+      "tiles": [
+        {
+          "id": "tile-l38-593",
+          "text": "Knight",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l38-594",
+          "text": "King",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l38-595",
+          "text": "Swallow",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l38-596",
+          "text": "Castle",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l38-150",
+      "position": 1,
+      "category": "Sidekicks",
+      "tiles": [
+        {
+          "id": "tile-l38-597",
+          "text": "Robin",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l38-598",
+          "text": "Goldfinch",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l38-599",
+          "text": "Watson",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l38-600",
+          "text": "Chewbacca",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Film-TV",
+            "Literature"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l38-151",
+      "position": 2,
+      "category": "Musical compositions",
+      "tiles": [
+        {
+          "id": "tile-l38-601",
+          "text": "Swift",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l38-602",
+          "text": "Song",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l38-603",
+          "text": "Tune",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l38-604",
+          "text": "Number",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l38-152",
+      "position": 3,
+      "category": "Love ___",
+      "tiles": [
+        {
+          "id": "tile-l38-605",
+          "text": "Island",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l38-606",
+          "text": "Birds",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l38-607",
+          "text": "Rook",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l38-608",
+          "text": "Actually",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Song",
+        "source": "grid",
+        "sourceRowId": "row-l38-151"
+      },
+      {
+        "text": "Birds",
+        "source": "grid",
+        "sourceRowId": "row-l38-152"
+      }
+    ],
+    "answer": "Songbirds",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-46",
+      "tileIds": [
+        "tile-l38-595",
+        "tile-l38-593",
+        "tile-l38-594",
+        "tile-l38-596"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Monty Python Holy Grail - all four evoke the film making it hard to spot Swallow as impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-47",
+      "tileIds": [
+        "tile-l38-598",
+        "tile-l38-597"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "Birds - Robin is more obviously a bird name, player picks Robin instead of Goldfinch"
+      }
+    },
+    {
+      "id": "decoy-1776089211-48",
+      "tileIds": [
+        "tile-l38-607",
+        "tile-l38-606"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Birds - makes you think the row is about birds not Love ___"
+      }
+    },
+    {
+      "id": "decoy-1776089211-49",
+      "tileIds": [
+        "tile-l38-595",
+        "tile-l38-597",
+        "tile-l38-601",
+        "tile-l38-607"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "Birds - one per row creates a full false vertical. Robin is not the impostor in R2 (Goldfinch is)"
+      }
+    },
+    {
+      "id": "decoy-1776089211-50",
+      "tileIds": [
+        "tile-l38-597"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Robin is a bird/songbird - fits the impostor theme, player picks Robin instead of Goldfinch"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "id": "l35",
+  "date": "",
+  "name": "Friends characters",
+  "rows": [
+    {
+      "id": "row-l35-137",
+      "position": 0,
+      "category": "Days of the week",
+      "tiles": [
+        {
+          "id": "tile-l35-545",
+          "text": "Ross",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l35-546",
+          "text": "Tues",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l35-547",
+          "text": "Thurs",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l35-548",
+          "text": "Fri",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l35-138",
+      "position": 1,
+      "category": "Territory",
+      "tiles": [
+        {
+          "id": "tile-l35-549",
+          "text": "Chick",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l35-550",
+          "text": "Turf",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l35-551",
+          "text": "Ends",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l35-552",
+          "text": "Hood",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l35-139",
+      "position": 2,
+      "category": "Baby animals",
+      "tiles": [
+        {
+          "id": "tile-l35-553",
+          "text": "Joey",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l35-554",
+          "text": "Foals",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l35-555",
+          "text": "Rachel",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l35-556",
+          "text": "Gosling",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l35-140",
+      "position": 3,
+      "category": "Start with the result of fire",
+      "tiles": [
+        {
+          "id": "tile-l35-557",
+          "text": "Characters",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l35-558",
+          "text": "Ashley",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l35-559",
+          "text": "Cinderella",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l35-560",
+          "text": "Gunther",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Fri",
+        "source": "grid",
+        "sourceRowId": "row-l35-137"
+      },
+      {
+        "text": "Ends",
+        "source": "grid",
+        "sourceRowId": "row-l35-138"
+      },
+      {
+        "text": "Characters",
+        "source": "grid",
+        "sourceRowId": "row-l35-140"
+      }
+    ],
+    "answer": "Friends characters",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "Hidden word"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Film-TV"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-43",
+      "tileIds": [
+        "tile-l35-555",
+        "tile-l35-553"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "Friends characters - both are main Friends characters making you think the row is about Friends"
+      }
+    },
+    {
+      "id": "decoy-1776089211-44",
+      "tileIds": [
+        "tile-l35-553"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Joey is a Friends character - fits the impostor theme, player may pick Joey instead of Rachel"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 3,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

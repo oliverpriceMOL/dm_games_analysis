@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "id": "l37",
+  "date": "",
+  "name": "Chocolate bars",
+  "rows": [
+    {
+      "id": "row-l37-145",
+      "position": 0,
+      "category": "Apples",
+      "tiles": [
+        {
+          "id": "tile-l37-577",
+          "text": "Pink Lady",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-578",
+          "text": "The Beatles' label",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-579",
+          "text": "Mars",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-580",
+          "text": "Mac",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Food"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l37-146",
+      "position": 1,
+      "category": "Things you spit",
+      "tiles": [
+        {
+          "id": "tile-l37-581",
+          "text": "Kinder",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-582",
+          "text": "Watermelon seeds",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-583",
+          "text": "Bars",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l37-584",
+          "text": "Tacks",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Food"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l37-147",
+      "position": 2,
+      "category": "Ending in words for unpunctuality",
+      "tiles": [
+        {
+          "id": "tile-l37-585",
+          "text": "Bounty",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-586",
+          "text": "Mustardy",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-587",
+          "text": "Leave behind",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-588",
+          "text": "Chocolate",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Food"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l37-148",
+      "position": 3,
+      "category": "First syllable of UK Prime Ministers' surnames",
+      "tiles": [
+        {
+          "id": "tile-l37-589",
+          "text": "Galaxy",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-590",
+          "text": "Church",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-591",
+          "text": "Star",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-592",
+          "text": "Thatch",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "History"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Food"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Chocolate",
+        "source": "grid",
+        "sourceRowId": "row-l37-147"
+      },
+      {
+        "text": "Bars",
+        "source": "grid",
+        "sourceRowId": "row-l37-146"
+      }
+    ],
+    "answer": "Chocolate bars",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Food"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-45",
+      "tileIds": [
+        "tile-l37-591"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Starbar is a chocolate bar - fits the impostor theme, player may pick Star instead of Galaxy"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

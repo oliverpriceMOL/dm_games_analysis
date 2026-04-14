@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "id": "l8",
+  "date": "",
+  "name": "____graph",
+  "rows": [
+    {
+      "id": "row-l8-29",
+      "position": 0,
+      "category": "Suffixes",
+      "tiles": [
+        {
+          "id": "tile-l8-113",
+          "text": "Auto",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l8-114",
+          "text": "Graph",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l8-115",
+          "text": "Less",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l8-116",
+          "text": "Ness",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Language"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l8-30",
+      "position": 1,
+      "category": "Paris landmarks",
+      "tiles": [
+        {
+          "id": "tile-l8-117",
+          "text": "Tower",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l8-118",
+          "text": "Arc",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l8-119",
+          "text": "Poly",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l8-120",
+          "text": "Cathedral",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Geography"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l8-31",
+      "position": 2,
+      "category": "To blame",
+      "tiles": [
+        {
+          "id": "tile-l8-121",
+          "text": "Finger",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l8-122",
+          "text": "Frame",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l8-123",
+          "text": "Accuse",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l8-124",
+          "text": "Photo",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l8-32",
+      "position": 3,
+      "category": "Animals with an added letter",
+      "tiles": [
+        {
+          "id": "tile-l8-125",
+          "text": "Heel",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l8-126",
+          "text": "Share",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l8-127",
+          "text": "Tele",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l8-128",
+          "text": "Drat",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Letter add-delete"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Graph",
+        "source": "grid",
+        "sourceRowId": "row-l8-29"
+      }
+    ],
+    "answer": "____graph",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Language"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-58",
+      "tileIds": [
+        "tile-l8-113",
+        "tile-l8-115",
+        "tile-l8-116"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Shared property"
+        ],
+        "description": "Word affixes - Auto is a prefix not suffix but all are affixes making Graph look like the impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-59",
+      "tileIds": [
+        "tile-l8-124",
+        "tile-l8-122"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Photography - photo frame makes you think the row is about photography"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 1,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

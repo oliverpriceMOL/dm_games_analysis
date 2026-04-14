@@ -1,0 +1,317 @@
+{
+  "schemaVersion": 1,
+  "id": "l23",
+  "date": "2026-04-07",
+  "name": "Strings section",
+  "rows": [
+    {
+      "id": "row-l23-89",
+      "position": 0,
+      "category": "Guitar parts",
+      "tiles": [
+        {
+          "id": "tile-l23-353",
+          "text": "Violas",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-354",
+          "text": "Strings",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l23-355",
+          "text": "Head",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-356",
+          "text": "Bridge",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Music"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l23-90",
+      "position": 1,
+      "category": "Vocal techniques",
+      "tiles": [
+        {
+          "id": "tile-l23-357",
+          "text": "Belt",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-358",
+          "text": "Harp",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-359",
+          "text": "Vibrato",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-360",
+          "text": "Falsetto",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Music"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l23-91",
+      "position": 2,
+      "category": "Passages of music",
+      "tiles": [
+        {
+          "id": "tile-l23-361",
+          "text": "Movement",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-362",
+          "text": "Section",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l23-363",
+          "text": "Violin",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-364",
+          "text": "Solo",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Music"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l23-92",
+      "position": 3,
+      "category": "Musical notation",
+      "tiles": [
+        {
+          "id": "tile-l23-365",
+          "text": "Double bass",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-366",
+          "text": "Semi quaver",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-367",
+          "text": "Crotchet",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-368",
+          "text": "Clef",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Music"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Strings",
+        "source": "grid",
+        "sourceRowId": "row-l23-89"
+      },
+      {
+        "text": "Section",
+        "source": "grid",
+        "sourceRowId": "row-l23-91"
+      }
+    ],
+    "answer": "Strings section",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Music"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-30",
+      "tileIds": [
+        "tile-l23-353",
+        "tile-l23-354",
+        "tile-l23-356"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "String instrument parts - makes you think the row is orchestral and Head is the impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-31",
+      "tileIds": [
+        "tile-l23-363",
+        "tile-l23-361",
+        "tile-l23-364"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Orchestral performance - makes you think the row is about orchestra and Section is the impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-32",
+      "tileIds": [
+        "tile-l23-365",
+        "tile-l23-366",
+        "tile-l23-367",
+        "tile-l23-368"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "Musical terms - all four are musical making it hard to spot that only 3 are notation"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

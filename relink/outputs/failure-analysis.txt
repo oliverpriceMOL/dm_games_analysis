@@ -1,0 +1,2529 @@
+================================================================================
+FAILURE ANALYSIS: WHAT CAUSES PLAYERS TO LOSE?
+Data: 2026-03-25 to 2026-04-13
+================================================================================
+
+Puzzles found: 16
+  2026-03-26: 9 players (6 won, 3 lost)
+  2026-03-27: 2 players (0 won, 2 lost)
+  2026-03-31: 31 players (25 won, 6 lost)
+  2026-04-01: 56 players (30 won, 26 lost)
+  2026-04-02: 56 players (21 won, 35 lost)
+  2026-04-03: 35 players (23 won, 12 lost)
+  2026-04-04: 30 players (7 won, 23 lost)
+  2026-04-05: 19 players (7 won, 12 lost)
+  2026-04-06: 29 players (14 won, 15 lost)
+  2026-04-07: 31 players (24 won, 7 lost)
+  2026-04-08: 51 players (30 won, 21 lost)
+  2026-04-09: 62 players (15 won, 47 lost)
+  2026-04-10: 73 players (41 won, 32 lost)
+  2026-04-11: 48 players (29 won, 19 lost)
+  2026-04-12: 32 players (24 won, 8 lost)
+  2026-04-13: 22 players (4 won, 18 lost)
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-03-26
+Losers: 3  |  Winners: 6
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 2: 2/3 losers' final mistake
+  Row 3: 1/3 losers' final mistake
+  Final wrong word picked:
+    'Falsetto': 2
+    'Semi quaver': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      3/15 (20%)           0                   
+  Row 1      2/15 (13%)           0                   
+  Row 2      6/15 (40%)           0                   
+  Row 3      4/15 (27%)           0                   
+
+  Per-player wrong guess sequence:
+    , GB                           R0:'Head' -> R2:'Belt' -> R2:'Vibrato' -> R2:'Falsetto'
+    Kensington, GB                 R0:'Head' -> R2:'Belt' -> R2:'Vibrato' -> R2:'Falsetto'
+    Askim, SE                      R1:'Section' -> R3:'Crotchet' -> R3:'Semi quaver' -> R1:'Movement' -> R0:'Strings' -> R3:'Crotchet' -> R3:'Semi quaver'
+
+  Most picked wrong tiles (losers):
+    R0:'Head': 2
+    R2:'Belt': 2
+    R2:'Vibrato': 2
+    R2:'Falsetto': 2
+    R3:'Crotchet': 2
+    R3:'Semi quaver': 2
+    R1:'Section': 1
+    R1:'Movement': 1
+    R0:'Strings': 1
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-03-26 , GB                           4 wrong | R2:3, R0:1
+  2026-03-26 Kensington, GB                 4 wrong | R2:3, R0:1
+  2026-03-27 Askim, SE                      7 wrong | R3:4, R1:2, R0:1
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  2026-03-27 Askim, SE: 'Crotchet' x2, 'Semi quaver' x2
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-03-26 , GB                           Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-03-26 Kensington, GB                 Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-03-27 Askim, SE                      Completed 4/4 rows | Reached relink: Yes | Wrong: 7
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 2.1s, avg 4.1s (n=23)
+  Winners: median gap 3.2s, avg 58.9s (n=28)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  2/3 (67%)
+  Winners starting with wrong guess: 0/6 (0%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-03-26 , GB                           longest streak: 3 wrong in a row
+    R2:'Belt' -> R2:'Vibrato' -> R2:'Falsetto'
+  2026-03-26 Kensington, GB                 longest streak: 3 wrong in a row
+    R2:'Belt' -> R2:'Vibrato' -> R2:'Falsetto'
+  2026-03-27 Askim, SE                      longest streak: 2 wrong in a row
+    R3:'Crotchet' -> R3:'Semi quaver'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-03-27
+Losers: 2  |  Winners: 0
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 1: 2/2 losers' final mistake
+  Final wrong word picked:
+    'Tower': 2
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      0/8 (0%)             0                   
+  Row 1      6/8 (75%)            0                   
+  Row 2      0/8 (0%)             0                   
+  Row 3      2/8 (25%)            0                   
+
+  Per-player wrong guess sequence:
+    Askim, SE                      R1:'London' -> R3:'Going, gone' -> R1:'Millennium' -> R1:'Tower'
+    Askim, SE                      R1:'London' -> R3:'Going, gone' -> R1:'Millennium' -> R1:'Tower'
+
+  Most picked wrong tiles (losers):
+    R1:'London': 2
+    R3:'Going, gone': 2
+    R1:'Millennium': 2
+    R1:'Tower': 2
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-03-27 Askim, SE                      4 wrong | R1:3, R3:1
+  2026-03-27 Askim, SE                      4 wrong | R1:3, R3:1
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  (none)
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-03-27 Askim, SE                      Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-03-27 Askim, SE                      Completed 3/4 rows | Reached relink: No | Wrong: 4
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 18.8s, avg 19.5s (n=12)
+  Winners: no data
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  2/2 (100%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-03-27 Askim, SE                      longest streak: 2 wrong in a row
+    R1:'Millennium' -> R1:'Tower'
+  2026-03-27 Askim, SE                      longest streak: 2 wrong in a row
+    R1:'Millennium' -> R1:'Tower'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-03-31
+Losers: 6  |  Winners: 25
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 3: 5/6 losers' final mistake
+  Row 1: 1/6 losers' final mistake
+  Final wrong word picked:
+    'Sections': 3
+    'Chapters': 2
+    'Trees': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      1/26 (4%)            3/70 (4%)           
+  Row 1      11/26 (42%)          43/70 (61%)         
+  Row 2      2/26 (8%)            6/70 (9%)           
+  Row 3      12/26 (46%)          18/70 (26%)         
+
+  Per-player wrong guess sequence:
+    Askim, SE                      R1:'Cricket bat' -> R3:'Chapters' -> R3:'Parts' -> R3:'Sections'
+    South Shields, GB              R1:'Cricket bat' -> R1:'Trees' -> R1:'Newspaper' -> R3:'Chapters'
+    Kensington, GB                 R1:'Trees' -> R1:'Cricket bat' -> R1:'Trees' -> R2:'Neither' -> R3:'Parts' -> R3:'Sections'
+    Greenwich, GB                  R1:'Trees' -> R3:'Parts' -> R3:'Chapters' -> R3:'Sections'
+    New York, US                   R0:'Science' -> R1:'Cricket bat' -> R2:'Neither' -> R3:'Chapters'
+    Dallas, US                     R3:'Chapters' -> R3:'Parts' -> R1:'Cricket bat' -> R1:'Trees'
+
+  Most picked wrong tiles (losers):
+    R1:'Cricket bat': 5
+    R3:'Chapters': 5
+    R1:'Trees': 5
+    R3:'Parts': 4
+    R3:'Sections': 3
+    R2:'Neither': 2
+    R1:'Newspaper': 1
+    R0:'Science': 1
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-03-31 Askim, SE                      4 wrong | R3:3, R1:1
+  2026-03-31 South Shields, GB              4 wrong | R1:3, R3:1
+  2026-03-31 Kensington, GB                 6 wrong | R1:3, R3:2, R2:1
+  2026-03-31 Greenwich, GB                  4 wrong | R3:3, R1:1
+  2026-03-31 New York, US                   4 wrong | R0:1, R1:1, R2:1, R3:1
+  2026-03-31 Dallas, US                     4 wrong | R3:2, R1:2
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  2026-03-31 Kensington, GB: 'Trees' x2
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-03-31 Askim, SE                      Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-03-31 South Shields, GB              Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-03-31 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 6
+  2026-03-31 Greenwich, GB                  Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-03-31 New York, US                   Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-03-31 Dallas, US                     Completed 2/4 rows | Reached relink: No | Wrong: 4
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 4.9s, avg 10.5s (n=44)
+  Winners: median gap 6.0s, avg 35.8s (n=241)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  1/6 (17%)
+  Winners starting with wrong guess: 2/25 (8%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-03-31 Askim, SE                      longest streak: 3 wrong in a row
+    R3:'Chapters' -> R3:'Parts' -> R3:'Sections'
+  2026-03-31 South Shields, GB              longest streak: 3 wrong in a row
+    R1:'Cricket bat' -> R1:'Trees' -> R1:'Newspaper'
+  2026-03-31 Kensington, GB                 longest streak: 4 wrong in a row
+    R1:'Trees' -> R2:'Neither' -> R3:'Parts' -> R3:'Sections'
+  2026-03-31 Greenwich, GB                  longest streak: 3 wrong in a row
+    R3:'Parts' -> R3:'Chapters' -> R3:'Sections'
+  2026-03-31 New York, US                   longest streak: 1 wrong in a row
+    R0:'Science'
+  2026-03-31 Dallas, US                     longest streak: 2 wrong in a row
+    R3:'Chapters' -> R3:'Parts'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-01
+Losers: 26  |  Winners: 30
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 3: 16/26 losers' final mistake
+  Row 1: 6/26 losers' final mistake
+  Row 0: 3/26 losers' final mistake
+  Final wrong word picked:
+    'Going, gone': 15
+    'London': 4
+    'Millennium': 2
+    'Stations': 2
+    'Underground': 1
+    'Utilities': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      26/125 (21%)         26/62 (42%)         
+  Row 1      68/125 (54%)         19/62 (31%)         
+  Row 2      6/125 (5%)           1/62 (2%)           
+  Row 3      25/125 (20%)         16/62 (26%)         
+
+  Per-player wrong guess sequence:
+    South Shields, GB              R0:'Utilities' -> R1:'Tower' -> R0:'Stations' -> R1:'Millennium'
+    Kensington, GB                 R0:'Utilities' -> R0:'Jail' -> R1:'London'
+    Sydney, AU                     R1:'Tower' -> R2:'Sole' -> R1:'London' -> R1:'Millennium'
+    Kensington, GB                 R0:'Jail' -> R1:'London' -> R3:'Postal' -> R3:'Going, gone' -> R3:'Underground' -> R3:'Postal' -> R0:'Stations' -> R0:'Utilities' -> R0:'Jail' -> R1:'Millennium' -> R2:'John Dory' -> R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone'
+    City of Westminster, GB        R1:'Millennium' -> R1:'London' -> R1:'Tower' -> R3:'Going, gone'
+    Kensington, GB                 R1:'Millennium' -> R2:'John Dory' -> R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone'
+    Kensington, GB                 R1:'Millennium' -> R2:'John Dory' -> R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone'
+    Norwich, GB                    R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone'
+    Kensington, GB                 R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone'
+    , GB                           R3:'Underground' -> R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R1:'Tower' -> R3:'Going, gone'
+    Potters Bar, GB                R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone'
+    St Helens, GB                  R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone'
+    Bristol, GB                    R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone'
+    Southwark, GB                  R3:'Underground' -> R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R1:'Tower' -> R3:'Going, gone'
+    High Wycombe, GB               R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone'
+    Skelmersdale, GB               R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone'
+    New York, US                   R0:'Utilities' -> R0:'Jail' -> R2:'John Dory' -> R3:'Going, gone'
+    Kensington, GB                 R3:'Going, gone' -> R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone' -> R0:'Jail' -> R0:'Utilities' -> R0:'Stations' -> R1:'London'
+    Kensington, GB                 R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone'
+    , GB                           R1:'London' -> R1:'Millennium' -> R1:'Tower' -> R3:'Going, gone' -> R0:'Jail' -> R0:'Utilities' -> R0:'Stations' -> R1:'London'
+    , GB                           R0:'Jail' -> R1:'London' -> R1:'Millennium' -> R0:'Stations'
+    New York, US                   R0:'Stations' -> R0:'Jail' -> R0:'Utilities' -> R1:'London'
+    New York, US                   R0:'Utilities' -> R1:'Millennium' -> R2:'John Dory' -> R3:'Underground'
+    Queens, US                     R0:'Stations' -> R0:'Utilities'
+    Sydney, AU                     R0:'Utilities' -> R1:'London' -> R1:'Millennium' -> R0:'Stations'
+
+  Most picked wrong tiles (losers):
+    R1:'Millennium': 24
+    R1:'London': 24
+    R1:'Tower': 20
+    R3:'Going, gone': 19
+    R0:'Utilities': 10
+    R0:'Stations': 8
+    R0:'Jail': 8
+    R2:'John Dory': 5
+    R3:'Underground': 4
+    R3:'Postal': 2
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-01 South Shields, GB              4 wrong | R0:2, R1:2
+  2026-04-01 Kensington, GB                 3 wrong | R0:2, R1:1
+  2026-04-01 Sydney, AU                     4 wrong | R1:3, R2:1
+  2026-04-01 Kensington, GB                 15 wrong | R1:5, R3:5, R0:4, R2:1
+  2026-04-01 City of Westminster, GB        4 wrong | R1:3, R3:1
+  2026-04-01 Kensington, GB                 6 wrong | R1:4, R2:1, R3:1
+  2026-04-01 Kensington, GB                 6 wrong | R1:4, R2:1, R3:1
+  2026-04-01 Norwich, GB                    4 wrong | R1:3, R3:1
+  2026-04-01 Kensington, GB                 4 wrong | R1:3, R3:1
+  2026-04-01 , GB                           6 wrong | R1:4, R3:2
+  2026-04-01 Potters Bar, GB                4 wrong | R1:3, R3:1
+  2026-04-01 St Helens, GB                  4 wrong | R1:3, R3:1
+  2026-04-01 Bristol, GB                    4 wrong | R1:3, R3:1
+  2026-04-01 Southwark, GB                  6 wrong | R1:4, R3:2
+  2026-04-01 High Wycombe, GB               4 wrong | R1:3, R3:1
+  2026-04-01 Skelmersdale, GB               4 wrong | R1:3, R3:1
+  2026-04-01 New York, US                   4 wrong | R0:2, R2:1, R3:1
+  2026-04-01 Kensington, GB                 0 wrong | 
+  2026-04-01 Kensington, GB                 9 wrong | R1:4, R0:3, R3:2
+  2026-04-01 Kensington, GB                 4 wrong | R1:3, R3:1
+  2026-04-01 , GB                           8 wrong | R1:4, R0:3, R3:1
+  2026-04-01 , GB                           4 wrong | R0:2, R1:2
+  2026-04-01 New York, US                   4 wrong | R0:3, R1:1
+  2026-04-01 New York, US                   4 wrong | R0:1, R1:1, R2:1, R3:1
+  2026-04-01 Queens, US                     2 wrong | R0:2
+  2026-04-01 Sydney, AU                     4 wrong | R0:2, R1:2
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  2026-04-01 Kensington, GB: 'Jail' x2, 'London' x2, 'Postal' x2, 'Going, gone' x2, 'Millennium' x2
+  2026-04-01 Kensington, GB: 'Millennium' x2
+  2026-04-01 Kensington, GB: 'Millennium' x2
+  2026-04-01 , GB: 'Tower' x2
+  2026-04-01 Southwark, GB: 'Tower' x2
+  2026-04-01 Kensington, GB: 'Going, gone' x2, 'London' x2
+  2026-04-01 , GB: 'London' x2
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-01 South Shields, GB              Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-01 Sydney, AU                     Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 15
+  2026-04-01 City of Westminster, GB        Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 6
+  2026-04-01 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 6
+  2026-04-01 Norwich, GB                    Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 Kensington, GB                 Completed 4/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 , GB                           Completed 4/4 rows | Reached relink: No | Wrong: 6
+  2026-04-01 Potters Bar, GB                Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 St Helens, GB                  Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 Bristol, GB                    Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 Southwark, GB                  Completed 4/4 rows | Reached relink: No | Wrong: 6
+  2026-04-01 High Wycombe, GB               Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 Skelmersdale, GB               Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 New York, US                   Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 0
+  2026-04-01 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 9
+  2026-04-01 Kensington, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 , GB                           Completed 2/4 rows | Reached relink: No | Wrong: 8
+  2026-04-01 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 New York, US                   Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 New York, US                   Completed 0/4 rows | Reached relink: No | Wrong: 4
+  2026-04-01 Queens, US                     Completed 4/4 rows | Reached relink: Yes | Wrong: 2
+  2026-04-01 Sydney, AU                     Completed 3/4 rows | Reached relink: No | Wrong: 4
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 5.8s, avg 35.7s (n=240)
+  Winners: median gap 6.0s, avg 22.9s (n=196)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  11/26 (42%)
+  Winners starting with wrong guess: 8/30 (27%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-01 South Shields, GB              longest streak: 3 wrong in a row
+    R0:'Utilities' -> R1:'Tower' -> R0:'Stations'
+  2026-04-01 Kensington, GB                 longest streak: 2 wrong in a row
+    R0:'Utilities' -> R0:'Jail'
+  2026-04-01 Sydney, AU                     longest streak: 2 wrong in a row
+    R1:'Tower' -> R2:'Sole'
+  2026-04-01 Kensington, GB                 longest streak: 3 wrong in a row
+    R3:'Going, gone' -> R3:'Underground' -> R3:'Postal'
+  2026-04-01 City of Westminster, GB        longest streak: 3 wrong in a row
+    R1:'Millennium' -> R1:'London' -> R1:'Tower'
+  2026-04-01 Kensington, GB                 longest streak: 3 wrong in a row
+    R1:'London' -> R1:'Millennium' -> R1:'Tower'
+  2026-04-01 Kensington, GB                 longest streak: 3 wrong in a row
+    R1:'London' -> R1:'Millennium' -> R1:'Tower'
+  2026-04-01 Norwich, GB                    longest streak: 3 wrong in a row
+    R1:'London' -> R1:'Millennium' -> R1:'Tower'
+  2026-04-01 Kensington, GB                 longest streak: 3 wrong in a row
+    R1:'London' -> R1:'Millennium' -> R1:'Tower'
+  2026-04-01 , GB                           longest streak: 3 wrong in a row
+    R3:'Underground' -> R1:'London' -> R1:'Millennium'
+  2026-04-01 Potters Bar, GB                longest streak: 3 wrong in a row
+    R1:'London' -> R1:'Millennium' -> R1:'Tower'
+  2026-04-01 St Helens, GB                  longest streak: 3 wrong in a row
+    R1:'London' -> R1:'Millennium' -> R1:'Tower'
+  2026-04-01 Bristol, GB                    longest streak: 3 wrong in a row
+    R1:'London' -> R1:'Millennium' -> R1:'Tower'
+  2026-04-01 Southwark, GB                  longest streak: 3 wrong in a row
+    R3:'Underground' -> R1:'London' -> R1:'Millennium'
+  2026-04-01 High Wycombe, GB               longest streak: 3 wrong in a row
+    R1:'London' -> R1:'Millennium' -> R1:'Tower'
+  2026-04-01 Skelmersdale, GB               longest streak: 3 wrong in a row
+    R1:'London' -> R1:'Millennium' -> R1:'Tower'
+  2026-04-01 New York, US                   longest streak: 4 wrong in a row
+    R0:'Utilities' -> R0:'Jail' -> R2:'John Dory' -> R3:'Going, gone'
+  2026-04-01 Kensington, GB                 longest streak: 0 wrong in a row
+  2026-04-01 Kensington, GB                 longest streak: 4 wrong in a row
+    R3:'Going, gone' -> R0:'Jail' -> R0:'Utilities' -> R0:'Stations'
+  2026-04-01 Kensington, GB                 longest streak: 3 wrong in a row
+    R1:'London' -> R1:'Millennium' -> R1:'Tower'
+  2026-04-01 , GB                           longest streak: 4 wrong in a row
+    R3:'Going, gone' -> R0:'Jail' -> R0:'Utilities' -> R0:'Stations'
+  2026-04-01 , GB                           longest streak: 3 wrong in a row
+    R1:'London' -> R1:'Millennium' -> R0:'Stations'
+  2026-04-01 New York, US                   longest streak: 3 wrong in a row
+    R0:'Stations' -> R0:'Jail' -> R0:'Utilities'
+  2026-04-01 New York, US                   longest streak: 4 wrong in a row
+    R0:'Utilities' -> R1:'Millennium' -> R2:'John Dory' -> R3:'Underground'
+  2026-04-01 Queens, US                     longest streak: 2 wrong in a row
+    R0:'Stations' -> R0:'Utilities'
+  2026-04-01 Sydney, AU                     longest streak: 2 wrong in a row
+    R0:'Utilities' -> R1:'London'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-02
+Losers: 35  |  Winners: 21
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 1: 18/35 losers' final mistake
+  Row 3: 13/35 losers' final mistake
+  Row 0: 3/35 losers' final mistake
+  Row 2: 1/35 losers' final mistake
+  Final wrong word picked:
+    'Flush': 13
+    'Aquatic mammal': 5
+    'Approval': 5
+    'Ramble': 4
+    'Eleven': 3
+    'Royal': 3
+    'Laugh': 1
+    'Duck King': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      29/129 (22%)         24/40 (60%)         
+  Row 1      54/129 (42%)         2/40 (5%)           
+  Row 2      3/129 (2%)           0/40 (0%)           
+  Row 3      43/129 (33%)         14/40 (35%)         
+
+  Per-player wrong guess sequence:
+    Southwark, GB                  R1:'Laugh' -> R1:'Flush' -> R1:'Ramble' -> R3:'Aquatic mammal'
+    Southwark, GB                  R1:'Laugh' -> R1:'Flush' -> R1:'Ramble' -> R3:'Aquatic mammal'
+    , GB                           R0:'Two' -> R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+    Rochford, GB                   R0:'Two' -> R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+    Southend-on-Sea, GB            R0:'Two' -> R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+    Middlesbrough, GB              R0:'Two' -> R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+    Edinburgh, GB                  R0:'Two' -> R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+    , GB                           R0:'Two' -> R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+    Stirling, GB                   R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+    Portsmouth, GB                 R1:'Ramble' -> R1:'Flush'
+    Wakefield, GB                  R1:'Flush'
+    Wakefield, GB                  R1:'Flush'
+    London, GB                     R1:'Flush'
+    Lewisham, GB                   R1:'Flush'
+    Southwark, GB                  R1:'Flush'
+    Lambeth, GB                    R3:'Aquatic mammal' -> R3:'Approval' -> R1:'Laugh' -> R0:'Eleven'
+    , GB                           R3:'Approval'
+    Kensington, GB                 R0:'Two' -> R3:'Aquatic mammal' -> R3:'Approval' -> R3:'Royal' -> R0:'Seven' -> R0:'Two' -> R0:'Eleven' -> R1:'Laugh' -> R1:'Ramble'
+    Turin, IT                      R0:'Two' -> R0:'Eleven' -> R0:'Seven' -> R1:'Laugh'
+    Kensington, GB                 R0:'Two' -> R3:'Aquatic mammal' -> R3:'Approval' -> R3:'Royal'
+    Kensington, GB                 R0:'Two' -> R0:'Eleven' -> R1:'Laugh' -> R1:'Ramble'
+    Bromley, GB                    R1:'Laugh' -> R3:'Approval' -> R3:'Aquatic mammal' -> R3:'Royal'
+    Kensington, GB                 R0:'Two' -> R0:'Seven' -> R1:'Ramble' -> R3:'Aquatic mammal'
+    , GB                           R3:'Aquatic mammal'
+    Kensington, GB                 R0:'Eleven' -> R0:'Seven' -> R0:'Eleven' -> R0:'Eleven' -> R1:'Ramble' -> R2:'Mock King' -> R2:'Duck King'
+    New York, US                   R3:'Approval' -> R3:'Royal' -> R3:'Aquatic mammal' -> R0:'Eleven'
+    Sydney, AU                     R3:'Aquatic mammal' -> R2:'Duck King' -> R1:'Laugh' -> R0:'Eleven'
+    Kensington, GB                 R0:'Two' -> R1:'Ramble' -> R3:'Royal' -> R3:'Aquatic mammal' -> R3:'Approval'
+    Bromley, GB                    R0:'Eleven' -> R3:'Approval' -> R3:'Aquatic mammal' -> R3:'Royal'
+    Kensington, GB                 R1:'Ramble' -> R3:'Royal' -> R3:'Aquatic mammal' -> R3:'Approval'
+    New York, US                   R1:'Laugh' -> R3:'Royal' -> R3:'Approval' -> R3:'Aquatic mammal'
+    Wimbledon, GB                  R1:'Laugh' -> R1:'Ramble' -> R3:'Aquatic mammal' -> R3:'Approval'
+    Kensington, GB                 R3:'Royal' -> R3:'Aquatic mammal' -> R3:'Approval' -> R1:'Ramble' -> R0:'Eleven' -> R1:'Laugh' -> R1:'Flush' -> R1:'Ramble'
+    , GB                           R3:'Royal' -> R3:'Aquatic mammal' -> R3:'Approval' -> R1:'Ramble'
+    Wandsworth, GB                 R0:'Two' -> R3:'Royal' -> R3:'Aquatic mammal' -> R3:'Approval'
+
+  Most picked wrong tiles (losers):
+    R1:'Ramble': 20
+    R1:'Laugh': 18
+    R3:'Aquatic mammal': 18
+    R1:'Flush': 16
+    R0:'Two': 14
+    R3:'Approval': 14
+    R0:'Eleven': 11
+    R3:'Royal': 11
+    R0:'Seven': 4
+    R2:'Duck King': 2
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-02 Southwark, GB                  4 wrong | R1:3, R3:1
+  2026-04-02 Southwark, GB                  4 wrong | R1:3, R3:1
+  2026-04-02 , GB                           4 wrong | R1:3, R0:1
+  2026-04-02 Rochford, GB                   4 wrong | R1:3, R0:1
+  2026-04-02 Southend-on-Sea, GB            4 wrong | R1:3, R0:1
+  2026-04-02 Middlesbrough, GB              4 wrong | R1:3, R0:1
+  2026-04-02 Edinburgh, GB                  4 wrong | R1:3, R0:1
+  2026-04-02 , GB                           4 wrong | R1:3, R0:1
+  2026-04-02 Stirling, GB                   3 wrong | R1:3
+  2026-04-02 Portsmouth, GB                 2 wrong | R1:2
+  2026-04-02 Wakefield, GB                  1 wrong | R1:1
+  2026-04-02 Wakefield, GB                  1 wrong | R1:1
+  2026-04-02 London, GB                     1 wrong | R1:1
+  2026-04-02 Lewisham, GB                   1 wrong | R1:1
+  2026-04-02 Southwark, GB                  1 wrong | R1:1
+  2026-04-02 Lambeth, GB                    4 wrong | R3:2, R1:1, R0:1
+  2026-04-02 , GB                           1 wrong | R3:1
+  2026-04-02 Kensington, GB                 9 wrong | R0:4, R3:3, R1:2
+  2026-04-02 Turin, IT                      4 wrong | R0:3, R1:1
+  2026-04-02 Kensington, GB                 4 wrong | R3:3, R0:1
+  2026-04-02 Kensington, GB                 4 wrong | R0:2, R1:2
+  2026-04-02 Bromley, GB                    4 wrong | R3:3, R1:1
+  2026-04-02 Kensington, GB                 4 wrong | R0:2, R1:1, R3:1
+  2026-04-02 , GB                           1 wrong | R3:1
+  2026-04-02 Kensington, GB                 7 wrong | R0:4, R2:2, R1:1
+  2026-04-02 New York, US                   4 wrong | R3:3, R0:1
+  2026-04-02 Sydney, AU                     4 wrong | R3:1, R2:1, R1:1, R0:1
+  2026-04-02 Kensington, GB                 5 wrong | R3:3, R0:1, R1:1
+  2026-04-02 Bromley, GB                    4 wrong | R3:3, R0:1
+  2026-04-02 Kensington, GB                 4 wrong | R3:3, R1:1
+  2026-04-02 New York, US                   4 wrong | R3:3, R1:1
+  2026-04-02 Wimbledon, GB                  4 wrong | R1:2, R3:2
+  2026-04-02 Kensington, GB                 8 wrong | R1:4, R3:3, R0:1
+  2026-04-02 , GB                           4 wrong | R3:3, R1:1
+  2026-04-02 Wandsworth, GB                 4 wrong | R3:3, R0:1
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  2026-04-02 Kensington, GB: 'Two' x2
+  2026-04-02 Kensington, GB: 'Eleven' x3
+  2026-04-02 Kensington, GB: 'Ramble' x2
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-02 Southwark, GB                  Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Southwark, GB                  Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Rochford, GB                   Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Southend-on-Sea, GB            Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Middlesbrough, GB              Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Edinburgh, GB                  Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Stirling, GB                   Completed 0/4 rows | Reached relink: No | Wrong: 3
+  2026-04-02 Portsmouth, GB                 Completed 0/4 rows | Reached relink: No | Wrong: 2
+  2026-04-02 Wakefield, GB                  Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-02 Wakefield, GB                  Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-02 London, GB                     Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-02 Lewisham, GB                   Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-02 Southwark, GB                  Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-02 Lambeth, GB                    Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 1
+  2026-04-02 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 9
+  2026-04-02 Turin, IT                      Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Kensington, GB                 Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 4
+  2026-04-02 Bromley, GB                    Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Kensington, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 1
+  2026-04-02 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 7
+  2026-04-02 New York, US                   Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Sydney, AU                     Completed 0/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 5
+  2026-04-02 Bromley, GB                    Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 4
+  2026-04-02 New York, US                   Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Wimbledon, GB                  Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Kensington, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 8
+  2026-04-02 , GB                           Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-02 Wandsworth, GB                 Completed 1/4 rows | Reached relink: No | Wrong: 4
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 10.9s, avg 43.4s (n=205)
+  Winners: median gap 11.9s, avg 60.1s (n=122)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  20/35 (57%)
+  Winners starting with wrong guess: 6/21 (29%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-02 Southwark, GB                  longest streak: 3 wrong in a row
+    R1:'Laugh' -> R1:'Flush' -> R1:'Ramble'
+  2026-04-02 Southwark, GB                  longest streak: 3 wrong in a row
+    R1:'Laugh' -> R1:'Flush' -> R1:'Ramble'
+  2026-04-02 , GB                           longest streak: 3 wrong in a row
+    R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+  2026-04-02 Rochford, GB                   longest streak: 3 wrong in a row
+    R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+  2026-04-02 Southend-on-Sea, GB            longest streak: 3 wrong in a row
+    R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+  2026-04-02 Middlesbrough, GB              longest streak: 3 wrong in a row
+    R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+  2026-04-02 Edinburgh, GB                  longest streak: 3 wrong in a row
+    R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+  2026-04-02 , GB                           longest streak: 3 wrong in a row
+    R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+  2026-04-02 Stirling, GB                   longest streak: 3 wrong in a row
+    R1:'Laugh' -> R1:'Ramble' -> R1:'Flush'
+  2026-04-02 Portsmouth, GB                 longest streak: 2 wrong in a row
+    R1:'Ramble' -> R1:'Flush'
+  2026-04-02 Wakefield, GB                  longest streak: 1 wrong in a row
+    R1:'Flush'
+  2026-04-02 Wakefield, GB                  longest streak: 1 wrong in a row
+    R1:'Flush'
+  2026-04-02 London, GB                     longest streak: 1 wrong in a row
+    R1:'Flush'
+  2026-04-02 Lewisham, GB                   longest streak: 1 wrong in a row
+    R1:'Flush'
+  2026-04-02 Southwark, GB                  longest streak: 1 wrong in a row
+    R1:'Flush'
+  2026-04-02 Lambeth, GB                    longest streak: 2 wrong in a row
+    R3:'Aquatic mammal' -> R3:'Approval'
+  2026-04-02 , GB                           longest streak: 1 wrong in a row
+    R3:'Approval'
+  2026-04-02 Kensington, GB                 longest streak: 3 wrong in a row
+    R3:'Aquatic mammal' -> R3:'Approval' -> R3:'Royal'
+  2026-04-02 Turin, IT                      longest streak: 3 wrong in a row
+    R0:'Two' -> R0:'Eleven' -> R0:'Seven'
+  2026-04-02 Kensington, GB                 longest streak: 3 wrong in a row
+    R3:'Aquatic mammal' -> R3:'Approval' -> R3:'Royal'
+  2026-04-02 Kensington, GB                 longest streak: 2 wrong in a row
+    R1:'Laugh' -> R1:'Ramble'
+  2026-04-02 Bromley, GB                    longest streak: 3 wrong in a row
+    R3:'Approval' -> R3:'Aquatic mammal' -> R3:'Royal'
+  2026-04-02 Kensington, GB                 longest streak: 2 wrong in a row
+    R0:'Two' -> R0:'Seven'
+  2026-04-02 , GB                           longest streak: 1 wrong in a row
+    R3:'Aquatic mammal'
+  2026-04-02 Kensington, GB                 longest streak: 2 wrong in a row
+    R2:'Mock King' -> R2:'Duck King'
+  2026-04-02 New York, US                   longest streak: 3 wrong in a row
+    R3:'Approval' -> R3:'Royal' -> R3:'Aquatic mammal'
+  2026-04-02 Sydney, AU                     longest streak: 4 wrong in a row
+    R3:'Aquatic mammal' -> R2:'Duck King' -> R1:'Laugh' -> R0:'Eleven'
+  2026-04-02 Kensington, GB                 longest streak: 3 wrong in a row
+    R3:'Royal' -> R3:'Aquatic mammal' -> R3:'Approval'
+  2026-04-02 Bromley, GB                    longest streak: 3 wrong in a row
+    R3:'Approval' -> R3:'Aquatic mammal' -> R3:'Royal'
+  2026-04-02 Kensington, GB                 longest streak: 3 wrong in a row
+    R3:'Royal' -> R3:'Aquatic mammal' -> R3:'Approval'
+  2026-04-02 New York, US                   longest streak: 3 wrong in a row
+    R3:'Royal' -> R3:'Approval' -> R3:'Aquatic mammal'
+  2026-04-02 Wimbledon, GB                  longest streak: 2 wrong in a row
+    R1:'Laugh' -> R1:'Ramble'
+  2026-04-02 Kensington, GB                 longest streak: 3 wrong in a row
+    R3:'Royal' -> R3:'Aquatic mammal' -> R3:'Approval'
+  2026-04-02 , GB                           longest streak: 3 wrong in a row
+    R3:'Royal' -> R3:'Aquatic mammal' -> R3:'Approval'
+  2026-04-02 Wandsworth, GB                 longest streak: 3 wrong in a row
+    R3:'Royal' -> R3:'Aquatic mammal' -> R3:'Approval'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-03
+Losers: 12  |  Winners: 23
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 2: 4/12 losers' final mistake
+  Row 3: 4/12 losers' final mistake
+  Row 1: 2/12 losers' final mistake
+  Row 0: 2/12 losers' final mistake
+  Final wrong word picked:
+    'Companies': 2
+    'Litre': 2
+    'Colour': 1
+    'Grey': 1
+    'Coke': 1
+    'Polo': 1
+    'Humbug': 1
+    'English Breakfast': 1
+    'Platoons': 1
+    'Units': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      13/52 (25%)          2/22 (9%)           
+  Row 1      9/52 (17%)           8/22 (36%)          
+  Row 2      16/52 (31%)          0/22 (0%)           
+  Row 3      14/52 (27%)          12/22 (55%)         
+
+  Per-player wrong guess sequence:
+    Turin, IT                      R0:'Humbug' -> R0:'Imperial' -> R1:'English Breakfast' -> R2:'Companies'
+    Wandsworth, GB                 R2:'Companies' -> R3:'Litre' -> R3:'Grey' -> R3:'Colour'
+    Kensington, GB                 R2:'This' -> R2:'Flours' -> R3:'Is' -> R3:'Puzzle' -> R2:'Flours' -> R3:'Booze' -> R1:'Red Bull' -> R1:'Coke' -> R3:'Grey' -> R3:'Litre' -> R2:'Companies' -> R2:'Units' -> R3:'Colour' -> R3:'Grey'
+    South Shields, GB              R2:'Companies' -> R2:'Units' -> R2:'Platoons' -> R3:'Litre'
+    Sutton, GB                     R0:'Humbug' -> R0:'Polo' -> R0:'Imperial' -> R2:'Companies'
+    Northolt, GB                   R0:'Humbug' -> R2:'Platoons' -> R2:'Units' -> R1:'Coke'
+    New York, US                   R0:'Humbug' -> R3:'Litre' -> R0:'Imperial' -> R0:'Polo'
+    Brooklyn, US                   R0:'Humbug'
+    Queens, US                     R0:'Humbug' -> R0:'Imperial' -> R1:'Coke' -> R1:'English Breakfast'
+    Hawthorne, US                  R0:'Humbug' -> R2:'Companies' -> R2:'Platoons'
+    West Malling, GB               R1:'English Breakfast' -> R2:'Units'
+    Liverpool, GB                  R1:'Red Bull' -> R1:'Coke' -> R3:'Grey' -> R3:'Litre'
+
+  Most picked wrong tiles (losers):
+    R0:'Humbug': 7
+    R2:'Companies': 6
+    R3:'Litre': 5
+    R0:'Imperial': 4
+    R3:'Grey': 4
+    R1:'Coke': 4
+    R2:'Units': 4
+    R1:'English Breakfast': 3
+    R2:'Platoons': 3
+    R3:'Colour': 2
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-03 Turin, IT                      4 wrong | R0:2, R1:1, R2:1
+  2026-04-03 Wandsworth, GB                 4 wrong | R3:3, R2:1
+  2026-04-03 Kensington, GB                 14 wrong | R3:7, R2:5, R1:2
+  2026-04-03 South Shields, GB              4 wrong | R2:3, R3:1
+  2026-04-03 Sutton, GB                     4 wrong | R0:3, R2:1
+  2026-04-03 Northolt, GB                   4 wrong | R2:2, R0:1, R1:1
+  2026-04-03 New York, US                   4 wrong | R0:3, R3:1
+  2026-04-03 Brooklyn, US                   1 wrong | R0:1
+  2026-04-03 Queens, US                     4 wrong | R0:2, R1:2
+  2026-04-03 Hawthorne, US                  3 wrong | R2:2, R0:1
+  2026-04-03 West Malling, GB               2 wrong | R1:1, R2:1
+  2026-04-03 Liverpool, GB                  4 wrong | R1:2, R3:2
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  2026-04-03 Kensington, GB: 'Flours' x2, 'Grey' x2
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-03 Turin, IT                      Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-03 Wandsworth, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-03 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 14
+  2026-04-03 South Shields, GB              Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-03 Sutton, GB                     Completed 4/4 rows | Reached relink: Yes | Wrong: 4
+  2026-04-03 Northolt, GB                   Completed 0/4 rows | Reached relink: No | Wrong: 4
+  2026-04-03 New York, US                   Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-03 Brooklyn, US                   Completed 4/4 rows | Reached relink: Yes | Wrong: 1
+  2026-04-03 Queens, US                     Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-03 Hawthorne, US                  Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-03 West Malling, GB               Completed 4/4 rows | Reached relink: Yes | Wrong: 2
+  2026-04-03 Liverpool, GB                  Completed 3/4 rows | Reached relink: No | Wrong: 4
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 10.0s, avg 37.6s (n=86)
+  Winners: median gap 4.8s, avg 47.1s (n=87)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  5/12 (42%)
+  Winners starting with wrong guess: 1/23 (4%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-03 Turin, IT                      longest streak: 2 wrong in a row
+    R0:'Humbug' -> R0:'Imperial'
+  2026-04-03 Wandsworth, GB                 longest streak: 3 wrong in a row
+    R3:'Litre' -> R3:'Grey' -> R3:'Colour'
+  2026-04-03 Kensington, GB                 longest streak: 2 wrong in a row
+    R2:'This' -> R2:'Flours'
+  2026-04-03 South Shields, GB              longest streak: 3 wrong in a row
+    R2:'Companies' -> R2:'Units' -> R2:'Platoons'
+  2026-04-03 Sutton, GB                     longest streak: 3 wrong in a row
+    R0:'Humbug' -> R0:'Polo' -> R0:'Imperial'
+  2026-04-03 Northolt, GB                   longest streak: 4 wrong in a row
+    R0:'Humbug' -> R2:'Platoons' -> R2:'Units' -> R1:'Coke'
+  2026-04-03 New York, US                   longest streak: 2 wrong in a row
+    R3:'Litre' -> R0:'Imperial'
+  2026-04-03 Brooklyn, US                   longest streak: 1 wrong in a row
+    R0:'Humbug'
+  2026-04-03 Queens, US                     longest streak: 2 wrong in a row
+    R0:'Humbug' -> R0:'Imperial'
+  2026-04-03 Hawthorne, US                  longest streak: 2 wrong in a row
+    R2:'Companies' -> R2:'Platoons'
+  2026-04-03 West Malling, GB               longest streak: 1 wrong in a row
+    R1:'English Breakfast'
+  2026-04-03 Liverpool, GB                  longest streak: 2 wrong in a row
+    R1:'Red Bull' -> R1:'Coke'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-04
+Losers: 23  |  Winners: 7
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 3: 18/23 losers' final mistake
+  Row 2: 5/23 losers' final mistake
+  Final wrong word picked:
+    'Babies': 13
+    'Products': 5
+    'Steen': 4
+    'Onion': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      2/87 (2%)            1/4 (25%)           
+  Row 1      5/87 (6%)            2/4 (50%)           
+  Row 2      51/87 (59%)          1/4 (25%)           
+  Row 3      29/87 (33%)          0/4 (0%)            
+
+  Per-player wrong guess sequence:
+    Sydney, AU                     R1:'Violet Beauregarde' -> R2:'Onion' -> R2:'Steen' -> R3:'Babies'
+    , AU                           R1:'Violet Beauregarde' -> R2:'Onion' -> R2:'Steen' -> R3:'Babies'
+    Beckenham, GB                  R2:'Steen' -> R3:'Babies' -> R3:'Bananas' -> R3:'Products'
+    Leigh, GB                      R2:'Onion' -> R2:'Clean' -> R2:'Steen' -> R3:'Babies'
+    Royal Tunbridge Wells, GB      R2:'Onion' -> R2:'Clean' -> R2:'Steen' -> R3:'Babies'
+    Morecambe, GB                  R2:'Onion' -> R2:'Clean' -> R2:'Steen' -> R3:'Babies'
+    Southampton, GB                R2:'Onion' -> R2:'Clean' -> R2:'Steen' -> R3:'Babies'
+    Winchester, GB                 R2:'Onion' -> R2:'Clean' -> R2:'Steen' -> R3:'Babies'
+    , GB                           R2:'Onion' -> R2:'Clean' -> R2:'Steen' -> R3:'Babies'
+    Mansfield, GB                  R2:'Onion' -> R2:'Clean' -> R2:'Steen' -> R3:'Babies'
+    Woking, GB                     R2:'Clean' -> R2:'Steen' -> R3:'Babies'
+    Matlock, GB                    R2:'Clean' -> R2:'Steen' -> R3:'Babies'
+    Farnborough, GB                R3:'Babies' -> R2:'Onion' -> R2:'Clean' -> R2:'Steen'
+    Wandsworth, GB                 R1:'Violet Beauregarde' -> R0:'Barclays' -> R2:'Steen' -> R2:'Onion'
+    London, GB                     R3:'Products' -> R3:'Bananas' -> R2:'Steen'
+    New York, US                   R2:'Steen' -> R3:'Bananas' -> R2:'Onion' -> R3:'Products'
+    Liverpool, GB                  R2:'Onion' -> R2:'Steen' -> R3:'Bananas' -> R3:'Babies'
+    , GB                           R3:'Bananas' -> R3:'Babies'
+    Sutton, GB                     R3:'Bananas' -> R2:'Onion' -> R2:'Steen'
+    , GB                           R2:'Onion' -> R2:'Steen'
+    Kidderminster, GB              R2:'Steen' -> R2:'Onion' -> R3:'Bananas' -> R3:'Products'
+    Kensington, GB                 R3:'Crotchet' -> R2:'Belt' -> R0:'Strings' -> R1:'Smurfs' -> R2:'Clean' -> R2:'Steen' -> R3:'Products'
+    Kensington, GB                 R1:'Smurfs' -> R2:'Clean' -> R2:'Steen' -> R3:'Products'
+
+  Most picked wrong tiles (losers):
+    R2:'Steen': 22
+    R2:'Onion': 16
+    R3:'Babies': 15
+    R2:'Clean': 12
+    R3:'Bananas': 7
+    R3:'Products': 6
+    R1:'Violet Beauregarde': 3
+    R1:'Smurfs': 2
+    R0:'Barclays': 1
+    R3:'Crotchet': 1
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-04 Sydney, AU                     4 wrong | R2:2, R1:1, R3:1
+  2026-04-04 , AU                           4 wrong | R2:2, R1:1, R3:1
+  2026-04-04 Beckenham, GB                  4 wrong | R3:3, R2:1
+  2026-04-04 Leigh, GB                      4 wrong | R2:3, R3:1
+  2026-04-04 Royal Tunbridge Wells, GB      4 wrong | R2:3, R3:1
+  2026-04-04 Morecambe, GB                  4 wrong | R2:3, R3:1
+  2026-04-04 Southampton, GB                4 wrong | R2:3, R3:1
+  2026-04-04 Winchester, GB                 4 wrong | R2:3, R3:1
+  2026-04-04 , GB                           4 wrong | R2:3, R3:1
+  2026-04-04 Mansfield, GB                  4 wrong | R2:3, R3:1
+  2026-04-04 Woking, GB                     3 wrong | R2:2, R3:1
+  2026-04-04 Matlock, GB                    3 wrong | R2:2, R3:1
+  2026-04-04 Farnborough, GB                4 wrong | R2:3, R3:1
+  2026-04-04 Wandsworth, GB                 4 wrong | R2:2, R1:1, R0:1
+  2026-04-04 London, GB                     3 wrong | R3:2, R2:1
+  2026-04-04 New York, US                   4 wrong | R2:2, R3:2
+  2026-04-04 Liverpool, GB                  4 wrong | R2:2, R3:2
+  2026-04-04 , GB                           2 wrong | R3:2
+  2026-04-04 Sutton, GB                     3 wrong | R2:2, R3:1
+  2026-04-04 , GB                           2 wrong | R2:2
+  2026-04-04 Kidderminster, GB              4 wrong | R2:2, R3:2
+  2026-04-07 Kensington, GB                 7 wrong | R2:3, R3:2, R0:1, R1:1
+  2026-04-07 Kensington, GB                 4 wrong | R2:2, R1:1, R3:1
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  (none)
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-04 Sydney, AU                     Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 , AU                           Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 Beckenham, GB                  Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 Leigh, GB                      Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 Royal Tunbridge Wells, GB      Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 Morecambe, GB                  Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 Southampton, GB                Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 Winchester, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 , GB                           Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 Mansfield, GB                  Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 Woking, GB                     Completed 1/4 rows | Reached relink: No | Wrong: 3
+  2026-04-04 Matlock, GB                    Completed 1/4 rows | Reached relink: No | Wrong: 3
+  2026-04-04 Farnborough, GB                Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 Wandsworth, GB                 Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 London, GB                     Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-04 New York, US                   Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 Liverpool, GB                  Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-04 , GB                           Completed 0/4 rows | Reached relink: No | Wrong: 2
+  2026-04-04 Sutton, GB                     Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-04 , GB                           Completed 2/4 rows | Reached relink: Yes | Wrong: 2
+  2026-04-04 Kidderminster, GB              Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-07 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 7
+  2026-04-07 Kensington, GB                 Completed 1/4 rows | Reached relink: No | Wrong: 4
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 6.3s, avg 38.7s (n=120)
+  Winners: median gap 3.7s, avg 45.1s (n=27)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  8/23 (35%)
+  Winners starting with wrong guess: 1/7 (14%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-04 Sydney, AU                     longest streak: 2 wrong in a row
+    R2:'Onion' -> R2:'Steen'
+  2026-04-04 , AU                           longest streak: 2 wrong in a row
+    R2:'Onion' -> R2:'Steen'
+  2026-04-04 Beckenham, GB                  longest streak: 4 wrong in a row
+    R2:'Steen' -> R3:'Babies' -> R3:'Bananas' -> R3:'Products'
+  2026-04-04 Leigh, GB                      longest streak: 3 wrong in a row
+    R2:'Onion' -> R2:'Clean' -> R2:'Steen'
+  2026-04-04 Royal Tunbridge Wells, GB      longest streak: 3 wrong in a row
+    R2:'Onion' -> R2:'Clean' -> R2:'Steen'
+  2026-04-04 Morecambe, GB                  longest streak: 3 wrong in a row
+    R2:'Onion' -> R2:'Clean' -> R2:'Steen'
+  2026-04-04 Southampton, GB                longest streak: 3 wrong in a row
+    R2:'Onion' -> R2:'Clean' -> R2:'Steen'
+  2026-04-04 Winchester, GB                 longest streak: 3 wrong in a row
+    R2:'Onion' -> R2:'Clean' -> R2:'Steen'
+  2026-04-04 , GB                           longest streak: 3 wrong in a row
+    R2:'Onion' -> R2:'Clean' -> R2:'Steen'
+  2026-04-04 Mansfield, GB                  longest streak: 3 wrong in a row
+    R2:'Onion' -> R2:'Clean' -> R2:'Steen'
+  2026-04-04 Woking, GB                     longest streak: 2 wrong in a row
+    R2:'Clean' -> R2:'Steen'
+  2026-04-04 Matlock, GB                    longest streak: 2 wrong in a row
+    R2:'Clean' -> R2:'Steen'
+  2026-04-04 Farnborough, GB                longest streak: 3 wrong in a row
+    R2:'Onion' -> R2:'Clean' -> R2:'Steen'
+  2026-04-04 Wandsworth, GB                 longest streak: 2 wrong in a row
+    R1:'Violet Beauregarde' -> R0:'Barclays'
+  2026-04-04 London, GB                     longest streak: 2 wrong in a row
+    R3:'Products' -> R3:'Bananas'
+  2026-04-04 New York, US                   longest streak: 4 wrong in a row
+    R2:'Steen' -> R3:'Bananas' -> R2:'Onion' -> R3:'Products'
+  2026-04-04 Liverpool, GB                  longest streak: 2 wrong in a row
+    R2:'Onion' -> R2:'Steen'
+  2026-04-04 , GB                           longest streak: 2 wrong in a row
+    R3:'Bananas' -> R3:'Babies'
+  2026-04-04 Sutton, GB                     longest streak: 2 wrong in a row
+    R2:'Onion' -> R2:'Steen'
+  2026-04-04 , GB                           longest streak: 2 wrong in a row
+    R2:'Onion' -> R2:'Steen'
+  2026-04-04 Kidderminster, GB              longest streak: 4 wrong in a row
+    R2:'Steen' -> R2:'Onion' -> R3:'Bananas' -> R3:'Products'
+  2026-04-07 Kensington, GB                 longest streak: 4 wrong in a row
+    R1:'Smurfs' -> R2:'Clean' -> R2:'Steen' -> R3:'Products'
+  2026-04-07 Kensington, GB                 longest streak: 4 wrong in a row
+    R1:'Smurfs' -> R2:'Clean' -> R2:'Steen' -> R3:'Products'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-05
+Losers: 12  |  Winners: 7
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 3: 7/12 losers' final mistake
+  Row 2: 3/12 losers' final mistake
+  Row 0: 1/12 losers' final mistake
+  Row 1: 1/12 losers' final mistake
+  Final wrong word picked:
+    'Collective': 4
+    'Nouns': 3
+    'Prankster': 2
+    'Cold blooded': 1
+    'Tale': 1
+    'Beaker': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      6/39 (15%)           3/6 (50%)           
+  Row 1      7/39 (18%)           0/6 (0%)            
+  Row 2      6/39 (15%)           0/6 (0%)            
+  Row 3      20/39 (51%)          3/6 (50%)           
+
+  Per-player wrong guess sequence:
+    Sydney, AU                     R3:'Cold blooded' -> R3:'Collective' -> R3:'Prankster'
+    Bromley, GB                    R0:'Tale' -> R1:'Beaker' -> R1:'Gonzo' -> R3:'Collective'
+    Tokyo, JP                      R3:'Collective' -> R3:'Prankster' -> R3:'Cold blooded'
+    Wandsworth, GB                 R3:'Collective' -> R3:'Collective' -> R0:'Tale'
+    London, GB                     R3:'Collective' -> R3:'Prankster' -> R2:'Mote' -> R2:'Nouns'
+    Mora, SE                       R0:'Tale' -> R1:'Animal' -> R1:'Gonzo' -> R1:'Beaker'
+    Liverpool, GB                  R0:'Tale' -> R2:'Biotics' -> R3:'Cold blooded' -> R3:'Collective'
+    Gravesend, GB                  R0:'Tale' -> R2:'Mote' -> R3:'Prankster' -> R3:'Collective'
+    Gravesend, GB                  R3:'Prankster' -> R3:'Collective'
+    Leeds, GB                      R3:'Prankster' -> R0:'Tale' -> R1:'Beaker' -> R2:'Nouns'
+    , GB                           R1:'Beaker' -> R2:'Nouns'
+    Kensington, GB                 R3:'Cold blooded' -> R3:'Prankster'
+
+  Most picked wrong tiles (losers):
+    R3:'Collective': 9
+    R3:'Prankster': 7
+    R0:'Tale': 6
+    R3:'Cold blooded': 4
+    R1:'Beaker': 4
+    R2:'Nouns': 3
+    R1:'Gonzo': 2
+    R2:'Mote': 2
+    R1:'Animal': 1
+    R2:'Biotics': 1
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-05 Sydney, AU                     3 wrong | R3:3
+  2026-04-05 Bromley, GB                    4 wrong | R1:2, R0:1, R3:1
+  2026-04-05 Tokyo, JP                      3 wrong | R3:3
+  2026-04-05 Wandsworth, GB                 3 wrong | R3:2, R0:1
+  2026-04-05 London, GB                     4 wrong | R3:2, R2:2
+  2026-04-05 Mora, SE                       4 wrong | R1:3, R0:1
+  2026-04-05 Liverpool, GB                  4 wrong | R3:2, R0:1, R2:1
+  2026-04-05 Gravesend, GB                  4 wrong | R3:2, R0:1, R2:1
+  2026-04-05 Gravesend, GB                  2 wrong | R3:2
+  2026-04-05 Leeds, GB                      4 wrong | R3:1, R0:1, R1:1, R2:1
+  2026-04-05 , GB                           2 wrong | R1:1, R2:1
+  2026-04-05 Kensington, GB                 2 wrong | R3:2
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  2026-04-05 Wandsworth, GB: 'Collective' x2
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-05 Sydney, AU                     Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-05 Bromley, GB                    Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-05 Tokyo, JP                      Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-05 Wandsworth, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-05 London, GB                     Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-05 Mora, SE                       Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-05 Liverpool, GB                  Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-05 Gravesend, GB                  Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-05 Gravesend, GB                  Completed 0/4 rows | Reached relink: No | Wrong: 2
+  2026-04-05 Leeds, GB                      Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-05 , GB                           Completed 0/4 rows | Reached relink: No | Wrong: 2
+  2026-04-05 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 2
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 6.4s, avg 13.7s (n=58)
+  Winners: median gap 10.7s, avg 21.3s (n=30)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  7/12 (58%)
+  Winners starting with wrong guess: 2/7 (29%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-05 Sydney, AU                     longest streak: 3 wrong in a row
+    R3:'Cold blooded' -> R3:'Collective' -> R3:'Prankster'
+  2026-04-05 Bromley, GB                    longest streak: 2 wrong in a row
+    R1:'Beaker' -> R1:'Gonzo'
+  2026-04-05 Tokyo, JP                      longest streak: 3 wrong in a row
+    R3:'Collective' -> R3:'Prankster' -> R3:'Cold blooded'
+  2026-04-05 Wandsworth, GB                 longest streak: 3 wrong in a row
+    R3:'Collective' -> R3:'Collective' -> R0:'Tale'
+  2026-04-05 London, GB                     longest streak: 2 wrong in a row
+    R3:'Collective' -> R3:'Prankster'
+  2026-04-05 Mora, SE                       longest streak: 3 wrong in a row
+    R1:'Animal' -> R1:'Gonzo' -> R1:'Beaker'
+  2026-04-05 Liverpool, GB                  longest streak: 2 wrong in a row
+    R3:'Cold blooded' -> R3:'Collective'
+  2026-04-05 Gravesend, GB                  longest streak: 2 wrong in a row
+    R3:'Prankster' -> R3:'Collective'
+  2026-04-05 Gravesend, GB                  longest streak: 2 wrong in a row
+    R3:'Prankster' -> R3:'Collective'
+  2026-04-05 Leeds, GB                      longest streak: 2 wrong in a row
+    R3:'Prankster' -> R0:'Tale'
+  2026-04-05 , GB                           longest streak: 2 wrong in a row
+    R1:'Beaker' -> R2:'Nouns'
+  2026-04-05 Kensington, GB                 longest streak: 2 wrong in a row
+    R3:'Cold blooded' -> R3:'Prankster'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-06
+Losers: 15  |  Winners: 14
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 1: 6/15 losers' final mistake
+  Row 3: 5/15 losers' final mistake
+  Row 0: 2/15 losers' final mistake
+  Row 2: 2/15 losers' final mistake
+  Final wrong word picked:
+    'USB': 5
+    'Besties': 2
+    'Mascots': 2
+    'Magic': 2
+    'Queen': 2
+    'The Chain': 1
+    'Shotgun': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      24/66 (36%)          5/23 (22%)          
+  Row 1      22/66 (33%)          12/23 (52%)         
+  Row 2      12/66 (18%)          4/23 (17%)          
+  Row 3      8/66 (12%)           2/23 (9%)           
+
+  Per-player wrong guess sequence:
+    , ES                           R1:'USB' -> R2:'Queen' -> R2:'Video' -> R3:'Besties'
+    London, GB                     R0:'Game' -> R0:'Charm' -> R0:'Magic' -> R3:'The Chain'
+    Sydney, AU                     R0:'Game' -> R0:'Magic' -> R0:'Charm' -> R1:'USB'
+    Camberley, GB                  R0:'Game' -> R0:'Charm' -> R0:'Magic' -> R1:'USB'
+    Piedimonte Matese, IT          R0:'Magic' -> R0:'Game' -> R1:'Boom' -> R3:'Mascots'
+    London, GB                     R0:'Charm' -> R0:'Game' -> R1:'Shotgun' -> R1:'USB'
+    Kensington, GB                 R3:'The Chain' -> R3:'Besties' -> R0:'Game' -> R1:'USB' -> R2:'Video' -> R3:'Mascots'
+    Kensington, GB                 R0:'Charm' -> R0:'Magic' -> R1:'Shotgun' -> R1:'USB'
+    New York, US                   R1:'Shotgun' -> R1:'USB' -> R1:'Boom' -> R3:'Besties'
+    Kensington, GB                 R2:'Psycho' -> R2:'Queen' -> R0:'Charm' -> R0:'Magic' -> R0:'Game' -> R1:'Boom' -> R1:'USB' -> R1:'Shotgun'
+    , GB                           R2:'Psycho' -> R2:'Queen' -> R0:'Charm' -> R0:'Magic'
+    Orpington, GB                  R1:'USB' -> R1:'Boom' -> R2:'Psycho' -> R2:'Queen'
+    London, GB                     R1:'USB' -> R0:'Game' -> R2:'Video' -> R2:'Queen'
+    South Benfleet, GB             R1:'USB' -> R0:'Game' -> R1:'Shotgun' -> R0:'Magic'
+    Kensington, GB                 R3:'The Chain' -> R2:'Video' -> R1:'Shotgun' -> R1:'USB'
+
+  Most picked wrong tiles (losers):
+    R1:'USB': 12
+    R0:'Game': 9
+    R0:'Magic': 8
+    R0:'Charm': 7
+    R1:'Shotgun': 6
+    R2:'Queen': 5
+    R2:'Video': 4
+    R1:'Boom': 4
+    R3:'Besties': 3
+    R3:'The Chain': 3
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-06 , ES                           4 wrong | R2:2, R1:1, R3:1
+  2026-04-06 London, GB                     4 wrong | R0:3, R3:1
+  2026-04-06 Sydney, AU                     4 wrong | R0:3, R1:1
+  2026-04-06 Camberley, GB                  4 wrong | R0:3, R1:1
+  2026-04-06 Piedimonte Matese, IT          4 wrong | R0:2, R1:1, R3:1
+  2026-04-06 London, GB                     4 wrong | R0:2, R1:2
+  2026-04-06 Kensington, GB                 6 wrong | R3:3, R0:1, R1:1, R2:1
+  2026-04-06 Kensington, GB                 4 wrong | R0:2, R1:2
+  2026-04-06 New York, US                   4 wrong | R1:3, R3:1
+  2026-04-06 Kensington, GB                 8 wrong | R0:3, R1:3, R2:2
+  2026-04-06 , GB                           4 wrong | R2:2, R0:2
+  2026-04-06 Orpington, GB                  4 wrong | R1:2, R2:2
+  2026-04-06 London, GB                     4 wrong | R2:2, R1:1, R0:1
+  2026-04-06 South Benfleet, GB             4 wrong | R1:2, R0:2
+  2026-04-07 Kensington, GB                 4 wrong | R1:2, R3:1, R2:1
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  (none)
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-06 , ES                           Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-06 London, GB                     Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-06 Sydney, AU                     Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-06 Camberley, GB                  Completed 0/4 rows | Reached relink: No | Wrong: 4
+  2026-04-06 Piedimonte Matese, IT          Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-06 London, GB                     Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-06 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 6
+  2026-04-06 Kensington, GB                 Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-06 New York, US                   Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-06 Kensington, GB                 Completed 2/4 rows | Reached relink: No | Wrong: 8
+  2026-04-06 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-06 Orpington, GB                  Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-06 London, GB                     Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-06 South Benfleet, GB             Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-07 Kensington, GB                 Completed 2/4 rows | Reached relink: No | Wrong: 4
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 6.4s, avg 32.7s (n=74)
+  Winners: median gap 7.0s, avg 25.9s (n=70)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  13/15 (87%)
+  Winners starting with wrong guess: 2/14 (14%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-06 , ES                           longest streak: 3 wrong in a row
+    R1:'USB' -> R2:'Queen' -> R2:'Video'
+  2026-04-06 London, GB                     longest streak: 3 wrong in a row
+    R0:'Game' -> R0:'Charm' -> R0:'Magic'
+  2026-04-06 Sydney, AU                     longest streak: 3 wrong in a row
+    R0:'Game' -> R0:'Magic' -> R0:'Charm'
+  2026-04-06 Camberley, GB                  longest streak: 4 wrong in a row
+    R0:'Game' -> R0:'Charm' -> R0:'Magic' -> R1:'USB'
+  2026-04-06 Piedimonte Matese, IT          longest streak: 2 wrong in a row
+    R0:'Magic' -> R0:'Game'
+  2026-04-06 London, GB                     longest streak: 2 wrong in a row
+    R0:'Charm' -> R0:'Game'
+  2026-04-06 Kensington, GB                 longest streak: 4 wrong in a row
+    R0:'Game' -> R1:'USB' -> R2:'Video' -> R3:'Mascots'
+  2026-04-06 Kensington, GB                 longest streak: 2 wrong in a row
+    R0:'Charm' -> R0:'Magic'
+  2026-04-06 New York, US                   longest streak: 3 wrong in a row
+    R1:'Shotgun' -> R1:'USB' -> R1:'Boom'
+  2026-04-06 Kensington, GB                 longest streak: 3 wrong in a row
+    R0:'Charm' -> R0:'Magic' -> R0:'Game'
+  2026-04-06 , GB                           longest streak: 2 wrong in a row
+    R2:'Psycho' -> R2:'Queen'
+  2026-04-06 Orpington, GB                  longest streak: 2 wrong in a row
+    R1:'USB' -> R1:'Boom'
+  2026-04-06 London, GB                     longest streak: 2 wrong in a row
+    R1:'USB' -> R0:'Game'
+  2026-04-06 South Benfleet, GB             longest streak: 2 wrong in a row
+    R1:'USB' -> R0:'Game'
+  2026-04-07 Kensington, GB                 longest streak: 2 wrong in a row
+    R3:'The Chain' -> R2:'Video'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-07
+Losers: 7  |  Winners: 24
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 3: 2/7 losers' final mistake
+  Row 1: 2/7 losers' final mistake
+  Row 2: 2/7 losers' final mistake
+  Row 0: 1/7 losers' final mistake
+  Final wrong word picked:
+    'Belt': 2
+    'Clef': 1
+    'Section': 1
+    'Crotchet': 1
+    'Bridge': 1
+    'Movement': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      27/50 (54%)          23/46 (50%)         
+  Row 1      7/50 (14%)           13/46 (28%)         
+  Row 2      7/50 (14%)           5/46 (11%)          
+  Row 3      9/50 (18%)           5/46 (11%)          
+
+  Per-player wrong guess sequence:
+    Sydney, AU                     R3:'Crotchet' -> R3:'Clef'
+    South Shields, GB              R0:'Head' -> R0:'Bridge' -> R1:'Movement' -> R1:'Section'
+    , GB                           R3:'Crotchet'
+    New York, US                   R0:'Head' -> R0:'Bridge' -> R0:'Strings' -> R3:'Crotchet' -> R0:'Head' -> R3:'Crotchet' -> R0:'Bridge'
+    Kensington, GB                 R0:'Head' -> R1:'Solo' -> R3:'Crotchet' -> R2:'Vibrato' -> R0:'Game' -> R0:'Magnetism' -> R0:'Charm' -> R0:'Head' -> R0:'Bridge' -> R1:'Movement' -> R2:'Vibrato' -> R3:'Mascots' -> R0:'Game' -> R0:'Magnetism' -> R0:'Charm' -> R3:'The Chain' -> R3:'The Chain' -> R2:'Video' -> R1:'Shotgun' -> R1:'USB' -> R0:'Strings' -> R0:'Head' -> R0:'Bridge' -> R2:'Belt' -> R0:'Strings' -> R0:'Head' -> R0:'Bridge' -> R2:'Belt'
+    Kensington, GB                 R0:'Head' -> R0:'Bridge' -> R0:'Strings' -> R2:'Belt'
+    Kensington, GB                 R0:'Head' -> R0:'Bridge' -> R2:'Belt' -> R1:'Movement'
+
+  Most picked wrong tiles (losers):
+    R0:'Head': 9
+    R0:'Bridge': 8
+    R3:'Crotchet': 5
+    R0:'Strings': 4
+    R2:'Belt': 4
+    R1:'Movement': 3
+    R2:'Vibrato': 2
+    R0:'Game': 2
+    R0:'Magnetism': 2
+    R0:'Charm': 2
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-07 Sydney, AU                     2 wrong | R3:2
+  2026-04-07 South Shields, GB              4 wrong | R0:2, R1:2
+  2026-04-07 , GB                           1 wrong | R3:1
+  2026-04-07 New York, US                   7 wrong | R0:5, R3:2
+  2026-04-07 Kensington, GB                 28 wrong | R0:15, R2:5, R1:4, R3:4
+  2026-04-07 Kensington, GB                 4 wrong | R0:3, R2:1
+  2026-04-07 Kensington, GB                 4 wrong | R0:2, R2:1, R1:1
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  2026-04-07 New York, US: 'Head' x2, 'Bridge' x2, 'Crotchet' x2
+  2026-04-07 Kensington, GB: 'Head' x4, 'Vibrato' x2, 'Game' x2, 'Magnetism' x2, 'Charm' x2, 'Bridge' x3, 'The Chain' x2, 'Strings' x2, 'Belt' x2
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-07 Sydney, AU                     Completed 4/4 rows | Reached relink: Yes | Wrong: 2
+  2026-04-07 South Shields, GB              Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-07 , GB                           Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-07 New York, US                   Completed 4/4 rows | Reached relink: Yes | Wrong: 7
+  2026-04-07 Kensington, GB                 Completed 4/4 rows | Reached relink: No | Wrong: 28
+  2026-04-07 Kensington, GB                 Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-07 Kensington, GB                 Completed 0/4 rows | Reached relink: No | Wrong: 4
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 4.6s, avg 69.2s (n=61)
+  Winners: median gap 4.0s, avg 48.9s (n=352)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  6/7 (86%)
+  Winners starting with wrong guess: 6/24 (25%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-07 Sydney, AU                     longest streak: 2 wrong in a row
+    R3:'Crotchet' -> R3:'Clef'
+  2026-04-07 South Shields, GB              longest streak: 2 wrong in a row
+    R0:'Head' -> R0:'Bridge'
+  2026-04-07 , GB                           longest streak: 1 wrong in a row
+    R3:'Crotchet'
+  2026-04-07 New York, US                   longest streak: 2 wrong in a row
+    R0:'Bridge' -> R0:'Strings'
+  2026-04-07 Kensington, GB                 longest streak: 9 wrong in a row
+    R0:'Head' -> R1:'Solo' -> R3:'Crotchet' -> R2:'Vibrato' -> R0:'Game' -> R0:'Magnetism' -> R0:'Charm' -> R0:'Head' -> R0:'Bridge'
+  2026-04-07 Kensington, GB                 longest streak: 3 wrong in a row
+    R0:'Head' -> R0:'Bridge' -> R0:'Strings'
+  2026-04-07 Kensington, GB                 longest streak: 4 wrong in a row
+    R0:'Head' -> R0:'Bridge' -> R2:'Belt' -> R1:'Movement'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-08
+Losers: 21  |  Winners: 30
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 2: 12/21 losers' final mistake
+  Row 3: 5/21 losers' final mistake
+  Row 1: 4/21 losers' final mistake
+  Final wrong word picked:
+    'New': 8
+    'Eave': 5
+    'Out': 3
+    'Mass': 2
+    'Over': 1
+    'Energy': 1
+    'Speed of light': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      10/98 (10%)          20/70 (29%)         
+  Row 1      46/98 (47%)          34/70 (49%)         
+  Row 2      30/98 (31%)          8/70 (11%)          
+  Row 3      12/98 (12%)          8/70 (11%)          
+
+  Per-player wrong guess sequence:
+    , SE                           R0:'Signature' -> R0:'CC' -> R1:'Speed of light' -> R1:'Mass'
+    Askim, SE                      R3:'Eave' -> R1:'Mass' -> R1:'Speed of light' -> R2:'Over'
+    Kensington, GB                 R1:'Mass' -> R0:'Signature' -> R0:'Signature' -> R3:'Eave' -> R0:'Signature' -> R1:'Speed of light' -> R0:'Signature' -> R1:'Speed of light' -> R1:'Mass' -> R1:'Energy' -> R1:'Mass' -> R1:'Speed of light' -> R1:'Energy' -> R2:'New'
+    Newham, GB                     R2:'New' -> R1:'Speed of light' -> R1:'Mass' -> R1:'Energy'
+    Kensington, GB                 R1:'Speed of light' -> R0:'Signature' -> R1:'Speed of light' -> R1:'Mass' -> R1:'Energy' -> R1:'Mass' -> R1:'Speed of light' -> R1:'Energy' -> R2:'New' -> R1:'Energy' -> R1:'Mass' -> R1:'Speed of light' -> R2:'Over' -> R2:'Out' -> R2:'New'
+    Bristol, GB                    R1:'Speed of light' -> R2:'New' -> R2:'Over' -> R2:'Out'
+    , ES                           R3:'Able' -> R1:'Speed of light' -> R1:'Energy' -> R2:'New'
+    Monforte del Cid, ES           R3:'Able' -> R1:'Speed of light' -> R1:'Energy' -> R2:'New'
+    , ES                           R3:'Able' -> R1:'Speed of light' -> R1:'Energy' -> R2:'New'
+    , GB                           R2:'Over' -> R2:'New' -> R2:'Out' -> R1:'Speed of light' -> R2:'Over' -> R2:'Out' -> R2:'New'
+    Maidstone, GB                  R2:'Over' -> R2:'New' -> R2:'Out' -> R1:'Speed of light'
+    London, GB                     R2:'New' -> R2:'Over' -> R2:'Out' -> R3:'Eave'
+    , GB                           R3:'Eave'
+    Wandsworth, GB                 R1:'Speed of light' -> R3:'Cane' -> R3:'Able' -> R3:'Eave'
+    Greenwich, GB                  R0:'Signature' -> R1:'Speed of light' -> R1:'Mass' -> R3:'Eave'
+    Greenwich, GB                  R0:'Signature' -> R1:'Speed of light' -> R1:'Mass' -> R3:'Eave'
+    Kensington, GB                 R2:'New'
+    New York, US                   R2:'New' -> R2:'Out'
+    Kensington, GB                 R1:'Mass' -> R1:'Energy' -> R1:'Speed of light' -> R2:'Out'
+    St Albans, GB                  R1:'Speed of light' -> R1:'Mass' -> R1:'Energy' -> R2:'New'
+    Bristol, GB                    R0:'Signature' -> R1:'Mass'
+
+  Most picked wrong tiles (losers):
+    R1:'Speed of light': 21
+    R2:'New': 15
+    R1:'Mass': 14
+    R1:'Energy': 11
+    R0:'Signature': 9
+    R2:'Out': 8
+    R3:'Eave': 7
+    R2:'Over': 7
+    R3:'Able': 4
+    R0:'CC': 1
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-08 , SE                           4 wrong | R0:2, R1:2
+  2026-04-08 Askim, SE                      4 wrong | R1:2, R3:1, R2:1
+  2026-04-08 Kensington, GB                 14 wrong | R1:8, R0:4, R3:1, R2:1
+  2026-04-08 Newham, GB                     4 wrong | R1:3, R2:1
+  2026-04-08 Kensington, GB                 15 wrong | R1:10, R2:4, R0:1
+  2026-04-08 Bristol, GB                    4 wrong | R2:3, R1:1
+  2026-04-08 , ES                           4 wrong | R1:2, R3:1, R2:1
+  2026-04-08 Monforte del Cid, ES           4 wrong | R1:2, R3:1, R2:1
+  2026-04-08 , ES                           4 wrong | R1:2, R3:1, R2:1
+  2026-04-08 , GB                           7 wrong | R2:6, R1:1
+  2026-04-08 Maidstone, GB                  4 wrong | R2:3, R1:1
+  2026-04-08 London, GB                     4 wrong | R2:3, R3:1
+  2026-04-08 , GB                           1 wrong | R3:1
+  2026-04-08 Wandsworth, GB                 4 wrong | R3:3, R1:1
+  2026-04-08 Greenwich, GB                  4 wrong | R1:2, R0:1, R3:1
+  2026-04-08 Greenwich, GB                  4 wrong | R1:2, R0:1, R3:1
+  2026-04-08 Kensington, GB                 1 wrong | R2:1
+  2026-04-08 New York, US                   2 wrong | R2:2
+  2026-04-08 Kensington, GB                 4 wrong | R1:3, R2:1
+  2026-04-08 St Albans, GB                  4 wrong | R1:3, R2:1
+  2026-04-08 Bristol, GB                    2 wrong | R0:1, R1:1
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  2026-04-08 Kensington, GB: 'Mass' x3, 'Signature' x4, 'Speed of light' x3, 'Energy' x2
+  2026-04-08 Kensington, GB: 'Speed of light' x4, 'Mass' x3, 'Energy' x3, 'New' x2
+  2026-04-08 , GB: 'Over' x2, 'New' x2, 'Out' x2
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-08 , SE                           Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 Askim, SE                      Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 14
+  2026-04-08 Newham, GB                     Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 15
+  2026-04-08 Bristol, GB                    Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 , ES                           Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 Monforte del Cid, ES           Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 , ES                           Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 , GB                           Completed 4/4 rows | Reached relink: No | Wrong: 7
+  2026-04-08 Maidstone, GB                  Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 London, GB                     Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 , GB                           Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-08 Wandsworth, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 Greenwich, GB                  Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 Greenwich, GB                  Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 Kensington, GB                 Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-08 New York, US                   Completed 4/4 rows | Reached relink: Yes | Wrong: 2
+  2026-04-08 Kensington, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 St Albans, GB                  Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-08 Bristol, GB                    Completed 4/4 rows | Reached relink: Yes | Wrong: 2
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 8.6s, avg 29.3s (n=165)
+  Winners: median gap 9.6s, avg 47.9s (n=206)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  8/21 (38%)
+  Winners starting with wrong guess: 7/30 (23%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-08 , SE                           longest streak: 2 wrong in a row
+    R0:'Signature' -> R0:'CC'
+  2026-04-08 Askim, SE                      longest streak: 2 wrong in a row
+    R1:'Mass' -> R1:'Speed of light'
+  2026-04-08 Kensington, GB                 longest streak: 3 wrong in a row
+    R1:'Speed of light' -> R1:'Mass' -> R1:'Energy'
+  2026-04-08 Newham, GB                     longest streak: 3 wrong in a row
+    R1:'Speed of light' -> R1:'Mass' -> R1:'Energy'
+  2026-04-08 Kensington, GB                 longest streak: 3 wrong in a row
+    R1:'Speed of light' -> R1:'Mass' -> R1:'Energy'
+  2026-04-08 Bristol, GB                    longest streak: 3 wrong in a row
+    R2:'New' -> R2:'Over' -> R2:'Out'
+  2026-04-08 , ES                           longest streak: 3 wrong in a row
+    R3:'Able' -> R1:'Speed of light' -> R1:'Energy'
+  2026-04-08 Monforte del Cid, ES           longest streak: 3 wrong in a row
+    R3:'Able' -> R1:'Speed of light' -> R1:'Energy'
+  2026-04-08 , ES                           longest streak: 3 wrong in a row
+    R3:'Able' -> R1:'Speed of light' -> R1:'Energy'
+  2026-04-08 , GB                           longest streak: 3 wrong in a row
+    R2:'Over' -> R2:'New' -> R2:'Out'
+  2026-04-08 Maidstone, GB                  longest streak: 3 wrong in a row
+    R2:'Over' -> R2:'New' -> R2:'Out'
+  2026-04-08 London, GB                     longest streak: 3 wrong in a row
+    R2:'New' -> R2:'Over' -> R2:'Out'
+  2026-04-08 , GB                           longest streak: 1 wrong in a row
+    R3:'Eave'
+  2026-04-08 Wandsworth, GB                 longest streak: 3 wrong in a row
+    R3:'Cane' -> R3:'Able' -> R3:'Eave'
+  2026-04-08 Greenwich, GB                  longest streak: 2 wrong in a row
+    R1:'Speed of light' -> R1:'Mass'
+  2026-04-08 Greenwich, GB                  longest streak: 2 wrong in a row
+    R1:'Speed of light' -> R1:'Mass'
+  2026-04-08 Kensington, GB                 longest streak: 1 wrong in a row
+    R2:'New'
+  2026-04-08 New York, US                   longest streak: 1 wrong in a row
+    R2:'New'
+  2026-04-08 Kensington, GB                 longest streak: 3 wrong in a row
+    R1:'Mass' -> R1:'Energy' -> R1:'Speed of light'
+  2026-04-08 St Albans, GB                  longest streak: 3 wrong in a row
+    R1:'Speed of light' -> R1:'Mass' -> R1:'Energy'
+  2026-04-08 Bristol, GB                    longest streak: 1 wrong in a row
+    R0:'Signature'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-09
+Losers: 47  |  Winners: 15
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 3: 32/47 losers' final mistake
+  Row 2: 6/47 losers' final mistake
+  Row 0: 5/47 losers' final mistake
+  Row 1: 1/47 losers' final mistake
+  Final wrong word picked:
+    'Rations': 24
+    'Delta': 6
+    'Equality': 2
+    'Finale': 2
+    'Sting': 2
+    'X': 2
+    'Omega': 2
+    'Gamma': 2
+    'Heirloom': 1
+    'Ultimate': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      38/225 (17%)         0/13 (0%)           
+  Row 1      12/225 (5%)          2/13 (15%)          
+  Row 2      104/225 (46%)        3/13 (23%)          
+  Row 3      71/225 (32%)         8/13 (62%)          
+
+  Per-player wrong guess sequence:
+    Kensington, GB                 R0:'Finale' -> R0:'Ultimate' -> R2:'Sting' -> R2:'X' -> R0:'Omega' -> R2:'Sting' -> R3:'Delta' -> R3:'Rations' -> R3:'Delta' -> R2:'Gamma' -> R3:'Rations' -> R3:'Delta' -> R0:'Finale' -> R1:'Tradition' -> R2:'Sting' -> R1:'Heirloom' -> R2:'Sting' -> R2:'Gamma' -> R0:'Finale' -> R3:'Delta' -> R3:'Equality' -> R0:'Ultimate' -> R0:'Omega' -> R0:'Finale' -> R3:'Rations' -> R3:'Rations' -> R3:'Delta' -> R3:'Equality'
+    Kensington, GB                 R0:'Finale' -> R0:'Ultimate' -> R2:'Sting' -> R2:'X' -> R0:'Omega' -> R2:'Sting' -> R3:'Delta' -> R3:'Rations' -> R3:'Delta'
+    Kensington, GB                 R0:'Finale' -> R0:'Ultimate' -> R2:'Sting' -> R2:'X' -> R0:'Omega' -> R2:'Sting' -> R3:'Delta' -> R3:'Rations' -> R3:'Delta' -> R2:'Gamma' -> R3:'Rations' -> R3:'Delta' -> R0:'Finale' -> R1:'Tradition' -> R2:'Sting' -> R1:'Heirloom' -> R2:'Sting' -> R2:'Gamma' -> R0:'Finale'
+    Kensington, GB                 R2:'Sting' -> R2:'X' -> R0:'Omega' -> R2:'Sting' -> R3:'Delta' -> R3:'Rations' -> R3:'Delta' -> R2:'Gamma' -> R3:'Rations' -> R3:'Delta' -> R0:'Finale' -> R1:'Tradition' -> R2:'Sting' -> R1:'Heirloom' -> R2:'Sting' -> R2:'Gamma' -> R0:'Finale' -> R3:'Delta' -> R3:'Equality' -> R0:'Ultimate' -> R0:'Omega' -> R0:'Finale'
+    , GB                           R0:'Omega' -> R0:'Finale' -> R3:'Delta' -> R2:'Sting' -> R0:'Finale' -> R1:'Tradition' -> R2:'Sting' -> R3:'Delta' -> R1:'Heirloom'
+    South Shields, GB              R0:'Omega' -> R0:'Finale' -> R2:'Sting' -> R3:'Delta'
+    Wandsworth, GB                 R3:'Delta' -> R3:'Rations' -> R2:'Sting'
+    Boston, GB                     R0:'Omega' -> R3:'Delta' -> R3:'Rations'
+    Sydney, AU                     R3:'Delta'
+    Zagreb, HR                     R1:'Heirloom' -> R3:'Equality' -> R3:'Rations'
+    , GB                           R3:'Equality' -> R0:'Ultimate' -> R0:'Omega' -> R0:'Finale' -> R3:'Rations'
+    Kensington, GB                 R2:'Sting' -> R2:'Gamma' -> R3:'Delta' -> R3:'Equality'
+    , GB                           R0:'Omega' -> R2:'Sting' -> R2:'Gamma' -> R2:'X'
+    Kensington, GB                 R0:'Omega' -> R2:'Sting' -> R2:'Gamma' -> R2:'X'
+    , GB                           R3:'Delta'
+    Southwark, GB                  R3:'Delta'
+    Greenwich, GB                  R3:'Delta' -> R2:'Sting' -> R2:'Gamma' -> R0:'Omega'
+    , GB                           R0:'Omega'
+    Caerleon, GB                   R1:'Gene' -> R1:'Tradition' -> R1:'Heirloom' -> R2:'Sting'
+    Wandsworth, GB                 R0:'Omega' -> R2:'Sting' -> R2:'Gamma' -> R0:'Ultimate'
+    New York, US                   R2:'Sting' -> R3:'Equality' -> R3:'Rations' -> R2:'X' -> R2:'Sting' -> R3:'Rations' -> R3:'Delta' -> R2:'Gamma'
+    Kensington, GB                 R2:'Sting' -> R2:'Gamma' -> R2:'X' -> R3:'Rations'
+    Kensington, GB                 R2:'Sting' -> R2:'Gamma' -> R2:'X' -> R3:'Rations'
+    , GB                           R2:'Sting' -> R2:'Gamma' -> R2:'X' -> R3:'Rations'
+    , GB                           R2:'Sting' -> R2:'Gamma' -> R2:'X' -> R3:'Rations'
+    Kensington, GB                 R2:'Sting' -> R2:'Gamma' -> R3:'Delta'
+    Liversedge, GB                 R2:'Sting' -> R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    Luton, GB                      R2:'Sting' -> R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    Blackburn, GB                  R2:'Sting' -> R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    London, GB                     R2:'Gamma'
+    Leeds, GB                      R2:'Sting' -> R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    London, GB                     R2:'Gamma' -> R2:'Sting' -> R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    Derby, GB                      R2:'Sting' -> R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    York, GB                       R2:'Sting' -> R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    , GB                           R2:'Sting' -> R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    Rayleigh, GB                   R2:'Sting' -> R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    Shrewsbury, GB                 R2:'Sting' -> R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    Bromley, GB                    R2:'Sting' -> R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    Hoddesdon, GB                  R2:'Sting' -> R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    Dudley, GB                     R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    Liverpool, GB                  R2:'X' -> R2:'Gamma' -> R3:'Rations'
+    Daventry, GB                   R3:'Rations'
+    Kensington, GB                 R0:'Omega' -> R2:'Gamma' -> R3:'Delta' -> R3:'Rations'
+    St Louis, US                   R2:'Sting' -> R2:'Gamma' -> R3:'Equality' -> R3:'Rations'
+
+  Most picked wrong tiles (losers):
+    R2:'Sting': 44
+    R3:'Rations': 36
+    R2:'Gamma': 35
+    R3:'Delta': 27
+    R2:'X': 25
+    R0:'Omega': 16
+    R0:'Finale': 15
+    R3:'Equality': 8
+    R0:'Ultimate': 7
+    R1:'Heirloom': 6
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-09 Kensington, GB                 28 wrong | R3:11, R0:8, R2:7, R1:2
+  2026-04-09 Kensington, GB                 9 wrong | R0:3, R2:3, R3:3
+  2026-04-09 Kensington, GB                 19 wrong | R2:7, R0:5, R3:5, R1:2
+  2026-04-09 Kensington, GB                 22 wrong | R2:7, R3:7, R0:6, R1:2
+  2026-04-09 , GB                           9 wrong | R0:3, R3:2, R2:2, R1:2
+  2026-04-09 South Shields, GB              4 wrong | R0:2, R2:1, R3:1
+  2026-04-09 Wandsworth, GB                 3 wrong | R3:2, R2:1
+  2026-04-09 Boston, GB                     3 wrong | R3:2, R0:1
+  2026-04-09 Sydney, AU                     1 wrong | R3:1
+  2026-04-09 Zagreb, HR                     3 wrong | R3:2, R1:1
+  2026-04-09 , GB                           5 wrong | R0:3, R3:2
+  2026-04-09 Kensington, GB                 4 wrong | R2:2, R3:2
+  2026-04-09 , GB                           4 wrong | R2:3, R0:1
+  2026-04-09 Kensington, GB                 4 wrong | R2:3, R0:1
+  2026-04-09 , GB                           1 wrong | R3:1
+  2026-04-09 Southwark, GB                  1 wrong | R3:1
+  2026-04-09 Greenwich, GB                  4 wrong | R2:2, R3:1, R0:1
+  2026-04-09 , GB                           1 wrong | R0:1
+  2026-04-09 Kensington, GB                 0 wrong | 
+  2026-04-09 Kensington, GB                 0 wrong | 
+  2026-04-09 Caerleon, GB                   4 wrong | R1:3, R2:1
+  2026-04-09 Wandsworth, GB                 4 wrong | R0:2, R2:2
+  2026-04-09 Kensington, GB                 0 wrong | 
+  2026-04-09 New York, US                   8 wrong | R2:4, R3:4
+  2026-04-09 Kensington, GB                 4 wrong | R2:3, R3:1
+  2026-04-09 Kensington, GB                 4 wrong | R2:3, R3:1
+  2026-04-09 , GB                           4 wrong | R2:3, R3:1
+  2026-04-09 , GB                           4 wrong | R2:3, R3:1
+  2026-04-09 Kensington, GB                 3 wrong | R2:2, R3:1
+  2026-04-09 Liversedge, GB                 4 wrong | R2:3, R3:1
+  2026-04-09 Luton, GB                      4 wrong | R2:3, R3:1
+  2026-04-09 Blackburn, GB                  4 wrong | R2:3, R3:1
+  2026-04-09 London, GB                     1 wrong | R2:1
+  2026-04-09 Leeds, GB                      4 wrong | R2:3, R3:1
+  2026-04-09 London, GB                     5 wrong | R2:4, R3:1
+  2026-04-09 Derby, GB                      4 wrong | R2:3, R3:1
+  2026-04-09 York, GB                       4 wrong | R2:3, R3:1
+  2026-04-09 , GB                           4 wrong | R2:3, R3:1
+  2026-04-09 Rayleigh, GB                   4 wrong | R2:3, R3:1
+  2026-04-09 Shrewsbury, GB                 4 wrong | R2:3, R3:1
+  2026-04-09 Bromley, GB                    4 wrong | R2:3, R3:1
+  2026-04-09 Hoddesdon, GB                  4 wrong | R2:3, R3:1
+  2026-04-09 Dudley, GB                     3 wrong | R2:2, R3:1
+  2026-04-09 Liverpool, GB                  3 wrong | R2:2, R3:1
+  2026-04-09 Daventry, GB                   1 wrong | R3:1
+  2026-04-09 Kensington, GB                 4 wrong | R3:2, R0:1, R2:1
+  2026-04-09 St Louis, US                   4 wrong | R2:2, R3:2
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  2026-04-09 Kensington, GB: 'Finale' x4, 'Ultimate' x2, 'Sting' x4, 'Omega' x2, 'Delta' x5, 'Rations' x4, 'Gamma' x2, 'Equality' x2
+  2026-04-09 Kensington, GB: 'Sting' x2, 'Delta' x2
+  2026-04-09 Kensington, GB: 'Finale' x3, 'Sting' x4, 'Delta' x3, 'Rations' x2, 'Gamma' x2
+  2026-04-09 Kensington, GB: 'Sting' x4, 'Omega' x2, 'Delta' x4, 'Rations' x2, 'Gamma' x2, 'Finale' x3
+  2026-04-09 , GB: 'Finale' x2, 'Delta' x2, 'Sting' x2
+  2026-04-09 New York, US: 'Sting' x2, 'Rations' x2
+  2026-04-09 London, GB: 'Gamma' x2
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-09 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 28
+  2026-04-09 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 9
+  2026-04-09 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 19
+  2026-04-09 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 22
+  2026-04-09 , GB                           Completed 4/4 rows | Reached relink: Yes | Wrong: 9
+  2026-04-09 South Shields, GB              Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Wandsworth, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-09 Boston, GB                     Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-09 Sydney, AU                     Completed 4/4 rows | Reached relink: Yes | Wrong: 1
+  2026-04-09 Zagreb, HR                     Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-09 , GB                           Completed 4/4 rows | Reached relink: No | Wrong: 5
+  2026-04-09 Kensington, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 , GB                           Completed 4/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Kensington, GB                 Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 1
+  2026-04-09 Southwark, GB                  Completed 4/4 rows | Reached relink: Yes | Wrong: 1
+  2026-04-09 Greenwich, GB                  Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 , GB                           Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-09 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 0
+  2026-04-09 Kensington, GB                 Completed 2/4 rows | Reached relink: Yes | Wrong: 0
+  2026-04-09 Caerleon, GB                   Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Wandsworth, GB                 Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 0
+  2026-04-09 New York, US                   Completed 3/4 rows | Reached relink: No | Wrong: 8
+  2026-04-09 Kensington, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Kensington, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 , GB                           Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 , GB                           Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-09 Liversedge, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Luton, GB                      Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Blackburn, GB                  Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 London, GB                     Completed 4/4 rows | Reached relink: Yes | Wrong: 1
+  2026-04-09 Leeds, GB                      Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 London, GB                     Completed 4/4 rows | Reached relink: Yes | Wrong: 5
+  2026-04-09 Derby, GB                      Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 York, GB                       Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 , GB                           Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Rayleigh, GB                   Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Shrewsbury, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Bromley, GB                    Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Hoddesdon, GB                  Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 Dudley, GB                     Completed 1/4 rows | Reached relink: No | Wrong: 3
+  2026-04-09 Liverpool, GB                  Completed 1/4 rows | Reached relink: No | Wrong: 3
+  2026-04-09 Daventry, GB                   Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-09 Kensington, GB                 Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-09 St Louis, US                   Completed 3/4 rows | Reached relink: No | Wrong: 4
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 6.8s, avg 26.5s (n=463)
+  Winners: median gap 8.3s, avg 11.7s (n=73)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  17/47 (36%)
+  Winners starting with wrong guess: 0/15 (0%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-09 Kensington, GB                 longest streak: 3 wrong in a row
+    R0:'Finale' -> R1:'Tradition' -> R2:'Sting'
+  2026-04-09 Kensington, GB                 longest streak: 2 wrong in a row
+    R0:'Finale' -> R0:'Ultimate'
+  2026-04-09 Kensington, GB                 longest streak: 3 wrong in a row
+    R0:'Finale' -> R1:'Tradition' -> R2:'Sting'
+  2026-04-09 Kensington, GB                 longest streak: 3 wrong in a row
+    R0:'Finale' -> R1:'Tradition' -> R2:'Sting'
+  2026-04-09 , GB                           longest streak: 4 wrong in a row
+    R0:'Omega' -> R0:'Finale' -> R3:'Delta' -> R2:'Sting'
+  2026-04-09 South Shields, GB              longest streak: 3 wrong in a row
+    R0:'Omega' -> R0:'Finale' -> R2:'Sting'
+  2026-04-09 Wandsworth, GB                 longest streak: 2 wrong in a row
+    R3:'Delta' -> R3:'Rations'
+  2026-04-09 Boston, GB                     longest streak: 2 wrong in a row
+    R3:'Delta' -> R3:'Rations'
+  2026-04-09 Sydney, AU                     longest streak: 1 wrong in a row
+    R3:'Delta'
+  2026-04-09 Zagreb, HR                     longest streak: 2 wrong in a row
+    R3:'Equality' -> R3:'Rations'
+  2026-04-09 , GB                           longest streak: 3 wrong in a row
+    R0:'Ultimate' -> R0:'Omega' -> R0:'Finale'
+  2026-04-09 Kensington, GB                 longest streak: 2 wrong in a row
+    R2:'Gamma' -> R3:'Delta'
+  2026-04-09 , GB                           longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'Gamma' -> R2:'X'
+  2026-04-09 Kensington, GB                 longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'Gamma' -> R2:'X'
+  2026-04-09 , GB                           longest streak: 1 wrong in a row
+    R3:'Delta'
+  2026-04-09 Southwark, GB                  longest streak: 1 wrong in a row
+    R3:'Delta'
+  2026-04-09 Greenwich, GB                  longest streak: 2 wrong in a row
+    R3:'Delta' -> R2:'Sting'
+  2026-04-09 , GB                           longest streak: 1 wrong in a row
+    R0:'Omega'
+  2026-04-09 Kensington, GB                 longest streak: 0 wrong in a row
+  2026-04-09 Kensington, GB                 longest streak: 0 wrong in a row
+  2026-04-09 Caerleon, GB                   longest streak: 3 wrong in a row
+    R1:'Gene' -> R1:'Tradition' -> R1:'Heirloom'
+  2026-04-09 Wandsworth, GB                 longest streak: 3 wrong in a row
+    R0:'Omega' -> R2:'Sting' -> R2:'Gamma'
+  2026-04-09 Kensington, GB                 longest streak: 0 wrong in a row
+  2026-04-09 New York, US                   longest streak: 3 wrong in a row
+    R2:'Sting' -> R3:'Equality' -> R3:'Rations'
+  2026-04-09 Kensington, GB                 longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'Gamma' -> R2:'X'
+  2026-04-09 Kensington, GB                 longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'Gamma' -> R2:'X'
+  2026-04-09 , GB                           longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'Gamma' -> R2:'X'
+  2026-04-09 , GB                           longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'Gamma' -> R2:'X'
+  2026-04-09 Kensington, GB                 longest streak: 1 wrong in a row
+    R2:'Sting'
+  2026-04-09 Liversedge, GB                 longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'X' -> R2:'Gamma'
+  2026-04-09 Luton, GB                      longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'X' -> R2:'Gamma'
+  2026-04-09 Blackburn, GB                  longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'X' -> R2:'Gamma'
+  2026-04-09 London, GB                     longest streak: 1 wrong in a row
+    R2:'Gamma'
+  2026-04-09 Leeds, GB                      longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'X' -> R2:'Gamma'
+  2026-04-09 London, GB                     longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'X' -> R2:'Gamma'
+  2026-04-09 Derby, GB                      longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'X' -> R2:'Gamma'
+  2026-04-09 York, GB                       longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'X' -> R2:'Gamma'
+  2026-04-09 , GB                           longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'X' -> R2:'Gamma'
+  2026-04-09 Rayleigh, GB                   longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'X' -> R2:'Gamma'
+  2026-04-09 Shrewsbury, GB                 longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'X' -> R2:'Gamma'
+  2026-04-09 Bromley, GB                    longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'X' -> R2:'Gamma'
+  2026-04-09 Hoddesdon, GB                  longest streak: 3 wrong in a row
+    R2:'Sting' -> R2:'X' -> R2:'Gamma'
+  2026-04-09 Dudley, GB                     longest streak: 2 wrong in a row
+    R2:'X' -> R2:'Gamma'
+  2026-04-09 Liverpool, GB                  longest streak: 2 wrong in a row
+    R2:'X' -> R2:'Gamma'
+  2026-04-09 Daventry, GB                   longest streak: 1 wrong in a row
+    R3:'Rations'
+  2026-04-09 Kensington, GB                 longest streak: 3 wrong in a row
+    R2:'Gamma' -> R3:'Delta' -> R3:'Rations'
+  2026-04-09 St Louis, US                   longest streak: 2 wrong in a row
+    R2:'Sting' -> R2:'Gamma'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-10
+Losers: 32  |  Winners: 41
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 1: 14/32 losers' final mistake
+  Row 3: 12/32 losers' final mistake
+  Row 2: 3/32 losers' final mistake
+  Row 0: 3/32 losers' final mistake
+  Final wrong word picked:
+    'English': 9
+    'Robert': 6
+    'Conqueror': 5
+    'Storm': 3
+    'Monarchs': 3
+    'Bravo': 2
+    'Pea': 2
+    'Nicknames': 1
+    '& Sour': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      63/157 (40%)         20/77 (26%)         
+  Row 1      34/157 (22%)         10/77 (13%)         
+  Row 2      27/157 (17%)         4/77 (5%)           
+  Row 3      33/157 (21%)         43/77 (56%)         
+
+  Per-player wrong guess sequence:
+    Kensington, GB                 R0:'Swallowtail' -> R0:'Monarchs' -> R0:'Swallowtail' -> R0:'Red admirals' -> R1:'Bravo' -> R3:'Nicknames' -> R2:'& Sour' -> R2:'Pea' -> R3:'Conqueror' -> R0:'Swallowtail' -> R1:'English' -> R1:'Bravo' -> R1:'Storm' -> R0:'Swallowtail' -> R0:'Monarchs' -> R1:'Bravo' -> R3:'Conqueror' -> R0:'Monarchs' -> R3:'Robert' -> R0:'Swallowtail' -> R1:'Bravo'
+    Kensington, GB                 R0:'Swallowtail' -> R0:'Monarchs' -> R0:'Swallowtail' -> R0:'Red admirals' -> R1:'Bravo' -> R3:'Nicknames' -> R2:'& Sour' -> R2:'Pea' -> R3:'Conqueror' -> R0:'Swallowtail' -> R1:'English' -> R1:'Bravo' -> R1:'Storm' -> R0:'Swallowtail' -> R0:'Monarchs' -> R1:'Bravo' -> R3:'Conqueror' -> R0:'Monarchs' -> R3:'Robert'
+    London, GB                     R2:'& Sour' -> R2:'Pea' -> R2:'Corn' -> R1:'English'
+    Pinner, GB                     R0:'Swallowtail' -> R2:'& Sour' -> R3:'Conqueror' -> R3:'Robert'
+    South Shields, GB              R2:'& Sour' -> R2:'Corn' -> R0:'Monarchs' -> R1:'Storm'
+    Sydney, AU                     R0:'Swallowtail' -> R1:'English' -> R2:'& Sour' -> R2:'Pea'
+    , GB                           R0:'Swallowtail' -> R1:'English' -> R1:'Bravo' -> R1:'Storm'
+    Maidstone, GB                  R0:'Swallowtail' -> R0:'Monarchs' -> R3:'Nicknames' -> R3:'Conqueror'
+    , GB                           R3:'Nicknames' -> R3:'Conqueror'
+    Sydney, AU                     R3:'Nicknames' -> R0:'Swallowtail' -> R1:'English' -> R1:'Bravo'
+    Amersham, GB                   R2:'& Sour' -> R2:'Pea' -> R3:'Nicknames' -> R3:'Conqueror'
+    , GB                           R2:'Pea' -> R3:'Nicknames' -> R3:'Conqueror' -> R0:'Swallowtail' -> R0:'Red admirals' -> R0:'Monarchs'
+    Islington, GB                  R0:'Swallowtail' -> R0:'Red admirals' -> R0:'Monarchs' -> R3:'Conqueror'
+    , GB                           R3:'Conqueror'
+    Ealing, GB                     R1:'Bravo' -> R1:'Storm' -> R2:'& Sour' -> R3:'Robert'
+    Derby, GB                      R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail' -> R1:'English'
+    , GB                           R0:'Swallowtail' -> R0:'Red admirals' -> R0:'Swallowtail' -> R1:'Storm' -> R2:'& Sour' -> R3:'Nicknames' -> R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail' -> R1:'English'
+    St Albans, GB                  R0:'Swallowtail' -> R1:'Storm' -> R2:'& Sour' -> R3:'Nicknames'
+    St Louis, US                   R0:'Monarchs' -> R0:'Red admirals' -> R2:'& Sour'
+    Milton Keynes, GB              R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail' -> R1:'English'
+    London, GB                     R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail' -> R1:'English'
+    Croydon, GB                    R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail' -> R1:'English'
+    Liverpool, GB                  R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail' -> R1:'English'
+    Greenwich, GB                  R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail' -> R1:'English'
+    Mansfield, GB                  R1:'English'
+    Northampton, GB                R0:'Swallowtail' -> R1:'English' -> R1:'Bravo' -> R1:'Storm'
+    New York, US                   R0:'Swallowtail' -> R3:'Conqueror' -> R3:'Nicknames' -> R3:'Robert'
+    Caerleon, GB                   R3:'Nicknames' -> R2:'& Sour' -> R2:'Corn' -> R2:'Pea'
+    Bromley, GB                    R2:'& Sour' -> R3:'Conqueror' -> R3:'Nicknames' -> R3:'Robert'
+    , GB                           R3:'Nicknames' -> R3:'Robert'
+    Wandsworth, GB                 R2:'& Sour' -> R2:'Pea' -> R0:'Red admirals' -> R0:'Monarchs'
+    , GB                           R2:'& Sour' -> R2:'Pea' -> R0:'Red admirals' -> R0:'Monarchs'
+
+  Most picked wrong tiles (losers):
+    R0:'Swallowtail': 28
+    R0:'Monarchs': 20
+    R0:'Red admirals': 15
+    R2:'& Sour': 15
+    R1:'English': 15
+    R3:'Nicknames': 13
+    R3:'Conqueror': 13
+    R1:'Bravo': 11
+    R2:'Pea': 9
+    R1:'Storm': 8
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-10 Kensington, GB                 21 wrong | R0:9, R1:6, R3:4, R2:2
+  2026-04-10 Kensington, GB                 19 wrong | R0:8, R1:5, R3:4, R2:2
+  2026-04-10 London, GB                     4 wrong | R2:3, R1:1
+  2026-04-10 Pinner, GB                     4 wrong | R3:2, R0:1, R2:1
+  2026-04-10 South Shields, GB              4 wrong | R2:2, R0:1, R1:1
+  2026-04-10 Sydney, AU                     4 wrong | R2:2, R0:1, R1:1
+  2026-04-10 , GB                           4 wrong | R1:3, R0:1
+  2026-04-10 Maidstone, GB                  4 wrong | R0:2, R3:2
+  2026-04-10 , GB                           2 wrong | R3:2
+  2026-04-10 Sydney, AU                     4 wrong | R1:2, R3:1, R0:1
+  2026-04-10 Amersham, GB                   4 wrong | R2:2, R3:2
+  2026-04-10 , GB                           6 wrong | R0:3, R3:2, R2:1
+  2026-04-10 Islington, GB                  4 wrong | R0:3, R3:1
+  2026-04-10 , GB                           1 wrong | R3:1
+  2026-04-10 Ealing, GB                     4 wrong | R1:2, R2:1, R3:1
+  2026-04-10 Derby, GB                      4 wrong | R0:3, R1:1
+  2026-04-10 , GB                           10 wrong | R0:6, R1:2, R2:1, R3:1
+  2026-04-10 St Albans, GB                  4 wrong | R0:1, R1:1, R2:1, R3:1
+  2026-04-10 St Louis, US                   3 wrong | R0:2, R2:1
+  2026-04-10 Milton Keynes, GB              4 wrong | R0:3, R1:1
+  2026-04-10 London, GB                     4 wrong | R0:3, R1:1
+  2026-04-10 Croydon, GB                    4 wrong | R0:3, R1:1
+  2026-04-10 Liverpool, GB                  4 wrong | R0:3, R1:1
+  2026-04-10 Greenwich, GB                  4 wrong | R0:3, R1:1
+  2026-04-10 Mansfield, GB                  1 wrong | R1:1
+  2026-04-10 Northampton, GB                4 wrong | R1:3, R0:1
+  2026-04-10 New York, US                   4 wrong | R3:3, R0:1
+  2026-04-10 Caerleon, GB                   4 wrong | R2:3, R3:1
+  2026-04-10 Bromley, GB                    4 wrong | R3:3, R2:1
+  2026-04-10 , GB                           2 wrong | R3:2
+  2026-04-10 Wandsworth, GB                 4 wrong | R2:2, R0:2
+  2026-04-10 , GB                           4 wrong | R2:2, R0:2
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  2026-04-10 Kensington, GB: 'Swallowtail' x5, 'Monarchs' x3, 'Bravo' x4, 'Conqueror' x2
+  2026-04-10 Kensington, GB: 'Swallowtail' x4, 'Monarchs' x3, 'Bravo' x3, 'Conqueror' x2
+  2026-04-10 , GB: 'Swallowtail' x3, 'Red admirals' x2
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-10 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 21
+  2026-04-10 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 19
+  2026-04-10 London, GB                     Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 Pinner, GB                     Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 South Shields, GB              Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 Sydney, AU                     Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 Maidstone, GB                  Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 , GB                           Completed 0/4 rows | Reached relink: No | Wrong: 2
+  2026-04-10 Sydney, AU                     Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 Amersham, GB                   Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 , GB                           Completed 2/4 rows | Reached relink: No | Wrong: 6
+  2026-04-10 Islington, GB                  Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 , GB                           Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-10 Ealing, GB                     Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 Derby, GB                      Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 , GB                           Completed 3/4 rows | Reached relink: No | Wrong: 10
+  2026-04-10 St Albans, GB                  Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 St Louis, US                   Completed 1/4 rows | Reached relink: No | Wrong: 3
+  2026-04-10 Milton Keynes, GB              Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 London, GB                     Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 Croydon, GB                    Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 Liverpool, GB                  Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 Greenwich, GB                  Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 Mansfield, GB                  Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-10 Northampton, GB                Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 New York, US                   Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 Caerleon, GB                   Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 Bromley, GB                    Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 2
+  2026-04-10 Wandsworth, GB                 Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-10 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 4
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 4.2s, avg 24.0s (n=221)
+  Winners: median gap 7.6s, avg 36.1s (n=204)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  25/32 (78%)
+  Winners starting with wrong guess: 13/41 (32%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-10 Kensington, GB                 longest streak: 5 wrong in a row
+    R1:'English' -> R1:'Bravo' -> R1:'Storm' -> R0:'Swallowtail' -> R0:'Monarchs'
+  2026-04-10 Kensington, GB                 longest streak: 5 wrong in a row
+    R1:'English' -> R1:'Bravo' -> R1:'Storm' -> R0:'Swallowtail' -> R0:'Monarchs'
+  2026-04-10 London, GB                     longest streak: 3 wrong in a row
+    R2:'& Sour' -> R2:'Pea' -> R2:'Corn'
+  2026-04-10 Pinner, GB                     longest streak: 2 wrong in a row
+    R3:'Conqueror' -> R3:'Robert'
+  2026-04-10 South Shields, GB              longest streak: 2 wrong in a row
+    R2:'& Sour' -> R2:'Corn'
+  2026-04-10 Sydney, AU                     longest streak: 2 wrong in a row
+    R2:'& Sour' -> R2:'Pea'
+  2026-04-10 , GB                           longest streak: 3 wrong in a row
+    R1:'English' -> R1:'Bravo' -> R1:'Storm'
+  2026-04-10 Maidstone, GB                  longest streak: 2 wrong in a row
+    R0:'Swallowtail' -> R0:'Monarchs'
+  2026-04-10 , GB                           longest streak: 2 wrong in a row
+    R3:'Nicknames' -> R3:'Conqueror'
+  2026-04-10 Sydney, AU                     longest streak: 2 wrong in a row
+    R3:'Nicknames' -> R0:'Swallowtail'
+  2026-04-10 Amersham, GB                   longest streak: 2 wrong in a row
+    R2:'& Sour' -> R2:'Pea'
+  2026-04-10 , GB                           longest streak: 5 wrong in a row
+    R3:'Nicknames' -> R3:'Conqueror' -> R0:'Swallowtail' -> R0:'Red admirals' -> R0:'Monarchs'
+  2026-04-10 Islington, GB                  longest streak: 3 wrong in a row
+    R0:'Swallowtail' -> R0:'Red admirals' -> R0:'Monarchs'
+  2026-04-10 , GB                           longest streak: 1 wrong in a row
+    R3:'Conqueror'
+  2026-04-10 Ealing, GB                     longest streak: 2 wrong in a row
+    R1:'Bravo' -> R1:'Storm'
+  2026-04-10 Derby, GB                      longest streak: 3 wrong in a row
+    R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail'
+  2026-04-10 , GB                           longest streak: 4 wrong in a row
+    R3:'Nicknames' -> R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail'
+  2026-04-10 St Albans, GB                  longest streak: 1 wrong in a row
+    R0:'Swallowtail'
+  2026-04-10 St Louis, US                   longest streak: 2 wrong in a row
+    R0:'Monarchs' -> R0:'Red admirals'
+  2026-04-10 Milton Keynes, GB              longest streak: 3 wrong in a row
+    R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail'
+  2026-04-10 London, GB                     longest streak: 3 wrong in a row
+    R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail'
+  2026-04-10 Croydon, GB                    longest streak: 3 wrong in a row
+    R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail'
+  2026-04-10 Liverpool, GB                  longest streak: 3 wrong in a row
+    R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail'
+  2026-04-10 Greenwich, GB                  longest streak: 3 wrong in a row
+    R0:'Monarchs' -> R0:'Red admirals' -> R0:'Swallowtail'
+  2026-04-10 Mansfield, GB                  longest streak: 1 wrong in a row
+    R1:'English'
+  2026-04-10 Northampton, GB                longest streak: 3 wrong in a row
+    R1:'English' -> R1:'Bravo' -> R1:'Storm'
+  2026-04-10 New York, US                   longest streak: 3 wrong in a row
+    R3:'Conqueror' -> R3:'Nicknames' -> R3:'Robert'
+  2026-04-10 Caerleon, GB                   longest streak: 3 wrong in a row
+    R2:'& Sour' -> R2:'Corn' -> R2:'Pea'
+  2026-04-10 Bromley, GB                    longest streak: 3 wrong in a row
+    R2:'& Sour' -> R3:'Conqueror' -> R3:'Nicknames'
+  2026-04-10 , GB                           longest streak: 1 wrong in a row
+    R3:'Nicknames'
+  2026-04-10 Wandsworth, GB                 longest streak: 2 wrong in a row
+    R2:'& Sour' -> R2:'Pea'
+  2026-04-10 , GB                           longest streak: 2 wrong in a row
+    R2:'& Sour' -> R2:'Pea'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-11
+Losers: 19  |  Winners: 29
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 1: 12/19 losers' final mistake
+  Row 0: 6/19 losers' final mistake
+  Row 3: 1/19 losers' final mistake
+  Final wrong word picked:
+    'Birthday present': 10
+    'Amethyst': 3
+    'Iodine': 2
+    'The One Ring': 2
+    'Aircraft': 1
+    'This': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      24/66 (36%)          18/29 (62%)         
+  Row 1      26/66 (39%)          4/29 (14%)          
+  Row 2      12/66 (18%)          4/29 (14%)          
+  Row 3      4/66 (6%)            3/29 (10%)          
+
+  Per-player wrong guess sequence:
+    Kensington, GB                 R0:'This' -> R0:'Amethyst' -> R0:'Iodine' -> R1:'Birthday present'
+    City of London, GB             R1:'Birthday present' -> R3:'Aircraft' -> R0:'This' -> R0:'Iodine'
+    Sydney, AU                     R0:'This' -> R2:'Noble gases' -> R2:'Halogens' -> R0:'Amethyst'
+    London, GB                     R2:'Metals' -> R2:'Noble gases' -> R2:'Halogens' -> R3:'Aircraft'
+    Kensington, GB                 R0:'This' -> R1:'Birthday present' -> R2:'Metals' -> R0:'Amethyst'
+    Sydney, AU                     R2:'Halogens' -> R2:'Metals' -> R2:'Noble gases' -> R0:'This'
+    City of London, GB             R2:'Metals' -> R2:'Noble gases' -> R1:'Birthday present' -> R1:'The One Ring'
+    Maidstone, GB                  R0:'This' -> R0:'Iodine' -> R1:'Birthday present' -> R1:'The One Ring'
+    , GB                           R0:'This' -> R0:'Iodine' -> R1:'Precious' -> R1:'Birthday present'
+    Blackwood, GB                  R0:'Iodine' -> R1:'Precious' -> R1:'Birthday present'
+    Greenwich, GB                  R0:'Iodine' -> R1:'Precious' -> R1:'Birthday present'
+    Gloucester, GB                 R0:'Iodine' -> R1:'Precious' -> R1:'Birthday present'
+    Twickenham, GB                 R0:'Iodine' -> R1:'Precious' -> R1:'Birthday present'
+    , GB                           R0:'Iodine' -> R1:'Precious' -> R1:'Birthday present'
+    Stockport, GB                  R0:'Iodine' -> R1:'Precious' -> R1:'Birthday present'
+    Larkhall, GB                   R1:'Precious' -> R1:'Birthday present'
+    Wakefield, GB                  R1:'Precious' -> R1:'Birthday present'
+    London, GB                     R0:'This' -> R3:'Aircraft' -> R3:'Sheep' -> R0:'Amethyst'
+    New York, US                   R0:'This' -> R1:'Birthday present' -> R2:'Halogens' -> R0:'Iodine'
+
+  Most picked wrong tiles (losers):
+    R1:'Birthday present': 15
+    R0:'Iodine': 11
+    R0:'This': 9
+    R1:'Precious': 9
+    R0:'Amethyst': 4
+    R2:'Noble gases': 4
+    R2:'Halogens': 4
+    R2:'Metals': 4
+    R3:'Aircraft': 3
+    R1:'The One Ring': 2
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-11 Kensington, GB                 4 wrong | R0:3, R1:1
+  2026-04-11 City of London, GB             4 wrong | R0:2, R1:1, R3:1
+  2026-04-11 Sydney, AU                     4 wrong | R0:2, R2:2
+  2026-04-11 London, GB                     4 wrong | R2:3, R3:1
+  2026-04-11 Kensington, GB                 4 wrong | R0:2, R1:1, R2:1
+  2026-04-11 Sydney, AU                     4 wrong | R2:3, R0:1
+  2026-04-11 City of London, GB             4 wrong | R2:2, R1:2
+  2026-04-11 Maidstone, GB                  4 wrong | R0:2, R1:2
+  2026-04-11 , GB                           4 wrong | R0:2, R1:2
+  2026-04-11 Blackwood, GB                  3 wrong | R1:2, R0:1
+  2026-04-11 Greenwich, GB                  3 wrong | R1:2, R0:1
+  2026-04-11 Gloucester, GB                 3 wrong | R1:2, R0:1
+  2026-04-11 Twickenham, GB                 3 wrong | R1:2, R0:1
+  2026-04-11 , GB                           3 wrong | R1:2, R0:1
+  2026-04-11 Stockport, GB                  3 wrong | R1:2, R0:1
+  2026-04-11 Larkhall, GB                   2 wrong | R1:2
+  2026-04-11 Wakefield, GB                  2 wrong | R1:2
+  2026-04-11 London, GB                     4 wrong | R0:2, R3:2
+  2026-04-11 New York, US                   4 wrong | R0:2, R1:1, R2:1
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  (none)
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-11 Kensington, GB                 Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-11 City of London, GB             Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-11 Sydney, AU                     Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-11 London, GB                     Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-11 Kensington, GB                 Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-11 Sydney, AU                     Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-11 City of London, GB             Completed 0/4 rows | Reached relink: No | Wrong: 4
+  2026-04-11 Maidstone, GB                  Completed 0/4 rows | Reached relink: No | Wrong: 4
+  2026-04-11 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-11 Blackwood, GB                  Completed 1/4 rows | Reached relink: No | Wrong: 3
+  2026-04-11 Greenwich, GB                  Completed 1/4 rows | Reached relink: No | Wrong: 3
+  2026-04-11 Gloucester, GB                 Completed 1/4 rows | Reached relink: No | Wrong: 3
+  2026-04-11 Twickenham, GB                 Completed 1/4 rows | Reached relink: No | Wrong: 3
+  2026-04-11 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 3
+  2026-04-11 Stockport, GB                  Completed 1/4 rows | Reached relink: No | Wrong: 3
+  2026-04-11 Larkhall, GB                   Completed 0/4 rows | Reached relink: No | Wrong: 2
+  2026-04-11 Wakefield, GB                  Completed 0/4 rows | Reached relink: No | Wrong: 2
+  2026-04-11 London, GB                     Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-11 New York, US                   Completed 0/4 rows | Reached relink: No | Wrong: 4
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 7.3s, avg 47.5s (n=69)
+  Winners: median gap 4.2s, avg 17.1s (n=114)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  17/19 (89%)
+  Winners starting with wrong guess: 13/29 (45%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-11 Kensington, GB                 longest streak: 3 wrong in a row
+    R0:'This' -> R0:'Amethyst' -> R0:'Iodine'
+  2026-04-11 City of London, GB             longest streak: 2 wrong in a row
+    R3:'Aircraft' -> R0:'This'
+  2026-04-11 Sydney, AU                     longest streak: 3 wrong in a row
+    R0:'This' -> R2:'Noble gases' -> R2:'Halogens'
+  2026-04-11 London, GB                     longest streak: 3 wrong in a row
+    R2:'Metals' -> R2:'Noble gases' -> R2:'Halogens'
+  2026-04-11 Kensington, GB                 longest streak: 2 wrong in a row
+    R0:'This' -> R1:'Birthday present'
+  2026-04-11 Sydney, AU                     longest streak: 3 wrong in a row
+    R2:'Halogens' -> R2:'Metals' -> R2:'Noble gases'
+  2026-04-11 City of London, GB             longest streak: 4 wrong in a row
+    R2:'Metals' -> R2:'Noble gases' -> R1:'Birthday present' -> R1:'The One Ring'
+  2026-04-11 Maidstone, GB                  longest streak: 4 wrong in a row
+    R0:'This' -> R0:'Iodine' -> R1:'Birthday present' -> R1:'The One Ring'
+  2026-04-11 , GB                           longest streak: 2 wrong in a row
+    R0:'This' -> R0:'Iodine'
+  2026-04-11 Blackwood, GB                  longest streak: 2 wrong in a row
+    R1:'Precious' -> R1:'Birthday present'
+  2026-04-11 Greenwich, GB                  longest streak: 2 wrong in a row
+    R1:'Precious' -> R1:'Birthday present'
+  2026-04-11 Gloucester, GB                 longest streak: 2 wrong in a row
+    R1:'Precious' -> R1:'Birthday present'
+  2026-04-11 Twickenham, GB                 longest streak: 2 wrong in a row
+    R1:'Precious' -> R1:'Birthday present'
+  2026-04-11 , GB                           longest streak: 2 wrong in a row
+    R1:'Precious' -> R1:'Birthday present'
+  2026-04-11 Stockport, GB                  longest streak: 2 wrong in a row
+    R1:'Precious' -> R1:'Birthday present'
+  2026-04-11 Larkhall, GB                   longest streak: 2 wrong in a row
+    R1:'Precious' -> R1:'Birthday present'
+  2026-04-11 Wakefield, GB                  longest streak: 2 wrong in a row
+    R1:'Precious' -> R1:'Birthday present'
+  2026-04-11 London, GB                     longest streak: 2 wrong in a row
+    R3:'Aircraft' -> R3:'Sheep'
+  2026-04-11 New York, US                   longest streak: 4 wrong in a row
+    R0:'This' -> R1:'Birthday present' -> R2:'Halogens' -> R0:'Iodine'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-12
+Losers: 8  |  Winners: 24
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 2: 3/8 losers' final mistake
+  Row 1: 3/8 losers' final mistake
+  Row 0: 1/8 losers' final mistake
+  Final wrong word picked:
+    'Class': 3
+    'Colon': 2
+    'Coal': 1
+    'Astute': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      5/21 (24%)           0/2 (0%)            
+  Row 1      10/21 (48%)          2/2 (100%)          
+  Row 2      5/21 (24%)           0/2 (0%)            
+  Row 3      1/21 (5%)            0/2 (0%)            
+
+  Per-player wrong guess sequence:
+    Mill Hill, GB                  R1:'Station' -> R1:'Class' -> R2:'Coal' -> R2:'Colon'
+    , GB                           R2:'Coal' -> R2:'Colon'
+    Maidstone, GB                  R1:'Caste' -> R1:'Class' -> R2:'Coal'
+    Hackney, GB                    R0:'Sharp' -> R1:'Caste' -> R1:'Class'
+    Hackney, GB                    R0:'Sharp' -> R1:'Caste' -> R1:'Class'
+    , GB                           R0:'Sharp' -> R1:'Caste' -> R1:'Class'
+    New York, US                   R0:'Shrewd' -> R3:'Under' -> R0:'Astute'
+
+  Most picked wrong tiles (losers):
+    R1:'Class': 5
+    R1:'Caste': 4
+    R2:'Coal': 3
+    R0:'Sharp': 3
+    R2:'Colon': 2
+    R1:'Station': 1
+    R0:'Shrewd': 1
+    R3:'Under': 1
+    R0:'Astute': 1
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-12 Mill Hill, GB                  4 wrong | R1:2, R2:2
+  2026-04-12 , GB                           2 wrong | R2:2
+  2026-04-12 Maidstone, GB                  3 wrong | R1:2, R2:1
+  2026-04-12 Hackney, GB                    3 wrong | R1:2, R0:1
+  2026-04-12 Hackney, GB                    3 wrong | R1:2, R0:1
+  2026-04-12 , GB                           3 wrong | R1:2, R0:1
+  2026-04-12 Newton Aycliffe, GB            0 wrong | 
+  2026-04-12 New York, US                   3 wrong | R0:2, R3:1
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  (none)
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-12 Mill Hill, GB                  Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-12 , GB                           Completed 1/4 rows | Reached relink: No | Wrong: 2
+  2026-04-12 Maidstone, GB                  Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-12 Hackney, GB                    Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-12 Hackney, GB                    Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-12 , GB                           Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-12 Newton Aycliffe, GB            Completed 1/4 rows | Reached relink: Yes | Wrong: 0
+  2026-04-12 New York, US                   Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 8.5s, avg 31.8s (n=37)
+  Winners: median gap 7.7s, avg 22.2s (n=71)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  4/8 (50%)
+  Winners starting with wrong guess: 0/24 (0%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-12 Mill Hill, GB                  longest streak: 2 wrong in a row
+    R1:'Station' -> R1:'Class'
+  2026-04-12 , GB                           longest streak: 2 wrong in a row
+    R2:'Coal' -> R2:'Colon'
+  2026-04-12 Maidstone, GB                  longest streak: 2 wrong in a row
+    R1:'Caste' -> R1:'Class'
+  2026-04-12 Hackney, GB                    longest streak: 2 wrong in a row
+    R1:'Caste' -> R1:'Class'
+  2026-04-12 Hackney, GB                    longest streak: 2 wrong in a row
+    R1:'Caste' -> R1:'Class'
+  2026-04-12 , GB                           longest streak: 2 wrong in a row
+    R1:'Caste' -> R1:'Class'
+  2026-04-12 Newton Aycliffe, GB            longest streak: 0 wrong in a row
+  2026-04-12 New York, US                   longest streak: 2 wrong in a row
+    R3:'Under' -> R0:'Astute'
+
+
+
+================================================================================
+FAILURE ANALYSIS: PUZZLE: 2026-04-13
+Losers: 18  |  Winners: 4
+================================================================================
+
+
+--- 1. KILLING BLOW: Which row was the final wrong guess on? ---
+  Row 3: 7/18 losers' final mistake
+  Row 2: 5/18 losers' final mistake
+  Row 1: 4/18 losers' final mistake
+  Row 0: 2/18 losers' final mistake
+  Final wrong word picked:
+    'Dramatic': 5
+    'Lift cabin': 2
+    'Two': 2
+    'Teapot': 2
+    'Sunrise': 2
+    'DJ': 2
+    'Podcasts': 1
+    'Northbound train': 1
+    'Library': 1
+
+
+--- 2. WHERE LOSERS SPENT THEIR LIVES ---
+
+  Row        Loser wrongs         Winner wrongs       
+  --------------------------------------------------
+  Row 0      38/100 (38%)         22/51 (43%)         
+  Row 1      22/100 (22%)         10/51 (20%)         
+  Row 2      17/100 (17%)         6/51 (12%)          
+  Row 3      23/100 (23%)         13/51 (25%)         
+
+  Per-player wrong guess sequence:
+    Liverpool, GB                  R0:'Pause' -> R3:'Dramatic'
+    Kensington, GB                 R0:'Two' -> R0:'Pause' -> R0:'Equals' -> R0:'Pause' -> R2:'Lift cabin'
+    Kensington, GB                 R0:'Two' -> R0:'Equals' -> R0:'Pause' -> R1:'DJ' -> R1:'DJ' -> R2:'Northbound train' -> R3:'Dramatic' -> R0:'Two' -> R0:'Equals' -> R3:'Teapot' -> R3:'Dirtbag' -> R3:'Dramatic' -> R0:'Two' -> R1:'Library' -> R0:'Pause' -> R3:'Dirtbag' -> R3:'Dramatic' -> R1:'Library' -> R1:'Podcasts' -> R2:'Sunrise' -> R2:'Lift cabin' -> R3:'Dirtbag' -> R0:'Two' -> R0:'Pause' -> R0:'Two' -> R0:'Two' -> R2:'Lift cabin' -> R3:'Dramatic' -> R3:'Teapot' -> R3:'Teapot' -> R3:'Dirtbag' -> R3:'Dramatic'
+    Kensington, GB                 R0:'Two' -> R0:'Equals' -> R0:'Pause' -> R1:'DJ' -> R1:'DJ' -> R2:'Northbound train' -> R3:'Dramatic'
+    London, GB                     R1:'Podcasts' -> R1:'Library' -> R1:'DJ' -> R0:'Two'
+    , GB                           R0:'Two'
+    Sydenham, GB                   R0:'Two' -> R0:'Pause' -> R3:'Teapot' -> R2:'Lift cabin'
+    South Shields, GB              R0:'Pause' -> R0:'Equals' -> R1:'Library' -> R1:'Podcasts'
+    , GB                           R3:'Teapot' -> R3:'Dirtbag' -> R3:'Dramatic'
+    Sydney, AU                     R1:'Podcasts' -> R1:'Library' -> R2:'Sunrise' -> R3:'Teapot'
+    Sydney, AU                     R3:'Teapot'
+    Kensington, GB                 R3:'Teapot' -> R3:'Dirtbag' -> R3:'Dramatic'
+    Sydney, AU                     R0:'Pause' -> R0:'Two' -> R1:'Library' -> R2:'Northbound train'
+    Kensington, GB                 R0:'Two' -> R0:'Equals' -> R0:'Pause' -> R1:'DJ' -> R2:'Northbound train' -> R2:'Lift cabin' -> R2:'Sunrise'
+    , GB                           R0:'Two' -> R0:'Equals' -> R0:'Pause' -> R1:'DJ' -> R2:'Northbound train' -> R2:'Lift cabin' -> R2:'Sunrise'
+    Kensington, GB                 R0:'Two' -> R0:'Equals' -> R0:'Pause' -> R1:'DJ'
+    Askim, SE                      R0:'Two' -> R0:'Pause' -> R1:'Library' -> R1:'DJ'
+    Kensington, GB                 R2:'Sunrise' -> R2:'Lift cabin' -> R1:'Podcasts' -> R1:'Library'
+
+  Most picked wrong tiles (losers):
+    R0:'Two': 16
+    R0:'Pause': 14
+    R3:'Dramatic': 9
+    R1:'DJ': 9
+    R0:'Equals': 8
+    R3:'Teapot': 8
+    R1:'Library': 8
+    R2:'Lift cabin': 7
+    R3:'Dirtbag': 6
+    R2:'Northbound train': 5
+
+
+--- 3. MISTAKE CONCENTRATION: One row or spread? ---
+  2026-04-13 Liverpool, GB                  2 wrong | R0:1, R3:1
+  2026-04-13 Kensington, GB                 5 wrong | R0:4, R2:1
+  2026-04-13 Kensington, GB                 32 wrong | R3:12, R0:11, R1:5, R2:4
+  2026-04-13 Kensington, GB                 7 wrong | R0:3, R1:2, R2:1, R3:1
+  2026-04-13 London, GB                     4 wrong | R1:3, R0:1
+  2026-04-13 , GB                           1 wrong | R0:1
+  2026-04-13 Sydenham, GB                   4 wrong | R0:2, R3:1, R2:1
+  2026-04-13 South Shields, GB              4 wrong | R0:2, R1:2
+  2026-04-13 , GB                           3 wrong | R3:3
+  2026-04-13 Sydney, AU                     4 wrong | R1:2, R2:1, R3:1
+  2026-04-13 Sydney, AU                     1 wrong | R3:1
+  2026-04-13 Kensington, GB                 3 wrong | R3:3
+  2026-04-13 Sydney, AU                     4 wrong | R0:2, R1:1, R2:1
+  2026-04-13 Kensington, GB                 7 wrong | R0:3, R2:3, R1:1
+  2026-04-13 , GB                           7 wrong | R0:3, R2:3, R1:1
+  2026-04-13 Kensington, GB                 4 wrong | R0:3, R1:1
+  2026-04-13 Askim, SE                      4 wrong | R0:2, R1:2
+  2026-04-13 Kensington, GB                 4 wrong | R2:2, R1:2
+
+
+--- 4. REPEAT MISTAKES: Same wrong word picked multiple times ---
+  2026-04-13 Kensington, GB: 'Pause' x2
+  2026-04-13 Kensington, GB: 'Two' x6, 'Equals' x2, 'Pause' x3, 'DJ' x2, 'Dramatic' x5, 'Teapot' x3, 'Dirtbag' x4, 'Library' x2, 'Lift cabin' x2
+  2026-04-13 Kensington, GB: 'DJ' x2
+
+
+--- 5. PROGRESS BEFORE FAILURE: How many rows completed? ---
+  2026-04-13 Liverpool, GB                  Completed 4/4 rows | Reached relink: Yes | Wrong: 2
+  2026-04-13 Kensington, GB                 Completed 2/4 rows | Reached relink: No | Wrong: 5
+  2026-04-13 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 32
+  2026-04-13 Kensington, GB                 Completed 3/4 rows | Reached relink: No | Wrong: 7
+  2026-04-13 London, GB                     Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-13 , GB                           Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-13 Sydenham, GB                   Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-13 South Shields, GB              Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-13 , GB                           Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-13 Sydney, AU                     Completed 3/4 rows | Reached relink: No | Wrong: 4
+  2026-04-13 Sydney, AU                     Completed 0/4 rows | Reached relink: No | Wrong: 1
+  2026-04-13 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 3
+  2026-04-13 Sydney, AU                     Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-13 Kensington, GB                 Completed 4/4 rows | Reached relink: Yes | Wrong: 7
+  2026-04-13 , GB                           Completed 4/4 rows | Reached relink: No | Wrong: 7
+  2026-04-13 Kensington, GB                 Completed 2/4 rows | Reached relink: No | Wrong: 4
+  2026-04-13 Askim, SE                      Completed 1/4 rows | Reached relink: No | Wrong: 4
+  2026-04-13 Kensington, GB                 Completed 1/4 rows | Reached relink: No | Wrong: 4
+
+
+--- 6. TIMING: Losers vs Winners ---
+  Losers:  median gap 4.5s, avg 37.1s (n=145)
+  Winners: median gap 4.5s, avg 8.1s (n=87)
+
+
+--- 7. FIRST GUESS: Right or wrong? ---
+  Losers starting with wrong guess:  12/18 (67%)
+  Winners starting with wrong guess: 0/4 (0%)
+
+
+--- 8. CASCADING FAILURES: Longest wrong streaks ---
+  2026-04-13 Liverpool, GB                  longest streak: 1 wrong in a row
+    R0:'Pause'
+  2026-04-13 Kensington, GB                 longest streak: 3 wrong in a row
+    R0:'Two' -> R0:'Pause' -> R0:'Equals'
+  2026-04-13 Kensington, GB                 longest streak: 6 wrong in a row
+    R2:'Lift cabin' -> R3:'Dirtbag' -> R0:'Two' -> R0:'Pause' -> R0:'Two' -> R0:'Two'
+  2026-04-13 Kensington, GB                 longest streak: 3 wrong in a row
+    R1:'DJ' -> R2:'Northbound train' -> R3:'Dramatic'
+  2026-04-13 London, GB                     longest streak: 3 wrong in a row
+    R1:'Podcasts' -> R1:'Library' -> R1:'DJ'
+  2026-04-13 , GB                           longest streak: 1 wrong in a row
+    R0:'Two'
+  2026-04-13 Sydenham, GB                   longest streak: 2 wrong in a row
+    R0:'Two' -> R0:'Pause'
+  2026-04-13 South Shields, GB              longest streak: 2 wrong in a row
+    R0:'Pause' -> R0:'Equals'
+  2026-04-13 , GB                           longest streak: 3 wrong in a row
+    R3:'Teapot' -> R3:'Dirtbag' -> R3:'Dramatic'
+  2026-04-13 Sydney, AU                     longest streak: 2 wrong in a row
+    R1:'Podcasts' -> R1:'Library'
+  2026-04-13 Sydney, AU                     longest streak: 1 wrong in a row
+    R3:'Teapot'
+  2026-04-13 Kensington, GB                 longest streak: 3 wrong in a row
+    R3:'Teapot' -> R3:'Dirtbag' -> R3:'Dramatic'
+  2026-04-13 Sydney, AU                     longest streak: 2 wrong in a row
+    R0:'Pause' -> R0:'Two'
+  2026-04-13 Kensington, GB                 longest streak: 3 wrong in a row
+    R0:'Two' -> R0:'Equals' -> R0:'Pause'
+  2026-04-13 , GB                           longest streak: 3 wrong in a row
+    R0:'Two' -> R0:'Equals' -> R0:'Pause'
+  2026-04-13 Kensington, GB                 longest streak: 3 wrong in a row
+    R0:'Two' -> R0:'Equals' -> R0:'Pause'
+  2026-04-13 Askim, SE                      longest streak: 2 wrong in a row
+    R0:'Two' -> R0:'Pause'
+  2026-04-13 Kensington, GB                 longest streak: 2 wrong in a row
+    R2:'Sunrise' -> R2:'Lift cabin'

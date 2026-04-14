@@ -1,0 +1,1919 @@
+================================================================================
+ABANDONMENT ANALYSIS: WHO QUITS AND WHY?
+================================================================================
+
+Puzzles found: 21
+  2026-03-06: 2 players (2 completed, 0 incomplete)
+  2026-03-08: 8 players (8 completed, 0 incomplete)
+  2026-03-16: 1 players (1 completed, 0 incomplete)
+  2026-03-19: 1 players (1 completed, 0 incomplete)
+  2026-03-26: 10 players (9 completed, 1 incomplete)
+  2026-03-27: 3 players (2 completed, 1 incomplete)
+  2026-03-30: 1 players (0 completed, 1 incomplete)
+  2026-03-31: 36 players (32 completed, 4 incomplete)
+  2026-04-01: 70 players (58 completed, 12 incomplete)
+  2026-04-02: 64 players (56 completed, 8 incomplete)
+  2026-04-03: 39 players (35 completed, 4 incomplete)
+  2026-04-04: 35 players (31 completed, 4 incomplete)
+  2026-04-05: 23 players (20 completed, 3 incomplete)
+  2026-04-06: 35 players (29 completed, 6 incomplete)
+  2026-04-07: 40 players (32 completed, 8 incomplete)
+  2026-04-08: 61 players (52 completed, 9 incomplete)
+  2026-04-09: 77 players (65 completed, 12 incomplete)
+  2026-04-10: 102 players (82 completed, 20 incomplete)
+  2026-04-11: 66 players (50 completed, 16 incomplete)
+  2026-04-12: 49 players (41 completed, 8 incomplete)
+  2026-04-13: 28 players (23 completed, 5 incomplete)
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-03-06
+Total players: 2 | Completed: 2 (2W/0L) | Incomplete: 0
+================================================================================
+
+  No incomplete sessions — everyone finished.
+
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-03-08
+Total players: 8 | Completed: 8 (5W/3L) | Incomplete: 0
+================================================================================
+
+  No incomplete sessions — everyone finished.
+
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-03-16
+Total players: 1 | Completed: 1 (1W/0L) | Incomplete: 0
+================================================================================
+
+  No incomplete sessions — everyone finished.
+
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-03-19
+Total players: 1 | Completed: 1 (0W/1L) | Incomplete: 0
+================================================================================
+
+  No incomplete sessions — everyone finished.
+
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-03-26
+Total players: 10 | Completed: 9 (6W/3L) | Incomplete: 1
+================================================================================
+
+  Abandonment rate: 1/10 (10%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  Askim, SE                      desktop  | 28 guesses (1 wrong) | Rows: 4/4 | Last: Row 2 (WRONG) | Play time: 854s
+      Row 0: 'RENOUNCE' -> correct
+      Row 1: 'CHAMOMILE' -> correct (+22.4s)
+      Row 2: 'COMPOUNDS' -> correct (+7.2s)
+      Row 3: 'COURTYARD' -> correct (+17.9s)
+      Row 0: 'Violas' -> correct (+20.6s)
+      Row 1: 'Violin' -> correct (+6.1s)
+      Row 0: 'RENOUNCE' -> correct (+24.9s)
+      Row 0: 'RENOUNCE' -> correct (+18.2s)
+      Row 1: 'CHAMOMILE' -> correct (+3.8s)
+      Row 2: 'COMPOUNDS' -> correct (+13.1s)
+      Row 2: 'COMPOUNDS' -> correct (+27.0s)
+      Row 0: 'RENOUNCE' -> correct (+7.6s)
+      Row 1: 'CHAMOMILE' -> correct (+3.3s)
+      Row 3: 'COURTYARD' -> correct (+5.3s)
+      Row 0: 'RENOUNCE' -> correct (+78.5s)
+      Row 1: 'CHAMOMILE' -> correct (+117.9s)
+      Row 2: 'COMPOUNDS' -> correct (+6.9s)
+      Row 3: 'COURTYARD' -> correct (+3.4s)
+      Row 0: 'RENOUNCE' -> correct (+25.0s)
+      Row 1: 'CHAMOMILE' -> correct (+82.6s)
+      Row 2: 'COMPOUNDS' -> correct (+3.4s)
+      Row 3: 'COURTYARD' -> correct (+2.5s)
+      Row 0: 'RENOUNCE' -> correct (+13.6s)
+      Row 1: 'CHAMOMILE' -> correct (+2.5s)
+      Row 2: 'COMPOUNDS' -> correct (+2.0s)
+      Row 3: 'COURTYARD' -> correct (+2.7s)
+      Row 2: 'Falsetto' -> WRONG (+327.3s)
+      RELINK: r2w2,r2w1 -> WRONG (+8.2s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  4/4 rows completed: 1/1 (100%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   1/1 (100%)
+  Quit after a correct guess: 0/1 (0%)
+
+  Players who quit after wrong guess:
+    Askim, SE                      Row 2: 'Falsetto' | Lives remaining: 3 | Rows done: 4/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 0/1 (0%)
+  Completed players who played tutorial: 5/9 (56%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      1/9 abandoned (11%) | 8/9 completed (89%)
+  mobile       0/1 abandoned (0%) | 1/1 completed (100%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 854s, avg 854s (n=1)
+  Completed:  median 75s, avg 200s (n=9)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.0 wrong guesses
+  Completed:  avg 1.7 wrong guesses
+    Winners:  avg 0.0 wrong guesses
+    Losers:   avg 5.0 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 0/1 wrong guesses (0%)
+  Row 1: 0/1 wrong guesses (0%)
+  Row 2: 1/1 wrong guesses (100%)
+  Row 3: 0/1 wrong guesses (0%)
+
+  Row they were working on when they quit:
+    Row 2: 1 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R2:'Falsetto': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  start_screen_viewed: 9
+  level_started: 9
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-03-27
+Total players: 3 | Completed: 2 (0W/2L) | Incomplete: 1
+================================================================================
+
+  Abandonment rate: 1/3 (33%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  Askim, SE                      desktop  | 3 guesses (2 wrong) | Rows: 1/4 | Last: Row 0 (correct) | Play time: 4s
+      Row 0: 'Utilities' -> WRONG
+      Row 0: 'Jail' -> WRONG (+1.6s)
+      Row 0: 'Bank' -> correct (+2.1s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  1/4 rows completed: 1/1 (100%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   0/1 (0%)
+  Quit after a correct guess: 1/1 (100%)
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 0/1 (0%)
+  Completed players who played tutorial: 1/2 (50%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      1/2 abandoned (50%) | 1/2 completed (50%)
+  mobile       0/1 abandoned (0%) | 1/1 completed (100%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 4s, avg 4s (n=1)
+  Completed:  median 117s, avg 117s (n=2)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 2.0 wrong guesses
+  Completed:  avg 4.0 wrong guesses
+    Losers:   avg 4.0 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 2/2 wrong guesses (100%)
+  Row 1: 0/2 wrong guesses (0%)
+  Row 2: 0/2 wrong guesses (0%)
+  Row 3: 0/2 wrong guesses (0%)
+
+  Row they were working on when they quit:
+    Row 0: 1 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R0:'Utilities': 1
+  R0:'Jail': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  session_started: 1
+  start_screen_viewed: 1
+  level_started: 1
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-03-30
+Total players: 1 | Completed: 0 (0W/0L) | Incomplete: 1
+================================================================================
+
+  Abandonment rate: 1/1 (100%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  , GB                           desktop  | 2 guesses (2 wrong) | Rows: 0/4 | Last: Row 1 (WRONG) | Play time: 50s
+      Row 2: 'Equals' -> WRONG
+      Row 1: 'Lift cabin' -> WRONG (+50.2s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  0/4 rows completed: 1/1 (100%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   1/1 (100%)
+  Quit after a correct guess: 0/1 (0%)
+
+  Players who quit after wrong guess:
+    , GB                           Row 1: 'Lift cabin' | Lives remaining: 1 | Rows done: 0/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 0/1 (0%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      1/1 abandoned (100%) | 0/1 completed (0%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 50s, avg 50s (n=1)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 2.0 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 0/2 wrong guesses (0%)
+  Row 1: 1/2 wrong guesses (50%)
+  Row 2: 1/2 wrong guesses (50%)
+  Row 3: 0/2 wrong guesses (0%)
+
+  Row they were working on when they quit:
+    Row 1: 1 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R2:'Equals': 1
+  R1:'Lift cabin': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  No other events
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-03-31
+Total players: 36 | Completed: 32 (26W/6L) | Incomplete: 4
+================================================================================
+
+  Abandonment rate: 4/36 (11%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  Kensington, GB                 desktop  | 5 guesses (1 wrong) | Rows: 4/4 | Last: Row 3 (correct) | Play time: 46s
+      Row 0: 'News' -> correct
+      Row 1: 'Trees' -> WRONG (+15.4s)
+      Row 1: 'Money' -> correct (+2.2s)
+      Row 2: 'Health' -> correct (+8.7s)
+      Row 3: 'Columns' -> correct (+19.9s)
+  , GB                           desktop  | 4 guesses (1 wrong) | Rows: 3/4 | Last: Row 2 (correct) | Play time: 26s
+      Row 0: 'News' -> correct
+      Row 1: 'Trees' -> WRONG (+15.4s)
+      Row 1: 'Money' -> correct (+2.2s)
+      Row 2: 'Health' -> correct (+8.7s)
+  , GB                           desktop  | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 1 (WRONG) | Play time: 11s
+      Row 0: 'News' -> correct
+      Row 1: 'Cricket bat' -> WRONG (+10.8s)
+  , GB                           mobile   | 3 guesses (1 wrong) | Rows: 2/4 | Last: Row 1 (WRONG) | Play time: 38s
+      Row 0: 'News' -> correct
+      Row 3: 'Columns' -> correct (+10.9s)
+      Row 1: 'Cricket bat' -> WRONG (+27.4s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  1/4 rows completed: 1/4 (25%)
+  2/4 rows completed: 1/4 (25%)
+  3/4 rows completed: 1/4 (25%)
+  4/4 rows completed: 1/4 (25%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   2/4 (50%)
+  Quit after a correct guess: 2/4 (50%)
+
+  Players who quit after wrong guess:
+    , GB                           Row 1: 'Cricket bat' | Lives remaining: 3 | Rows done: 1/4
+    , GB                           Row 1: 'Cricket bat' | Lives remaining: 3 | Rows done: 2/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 1/4 (25%)
+  Completed players who played tutorial: 25/32 (78%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      3/26 abandoned (12%) | 23/26 completed (88%)
+  mobile       1/9 abandoned (11%) | 8/9 completed (89%)
+  tablet       0/1 abandoned (0%) | 1/1 completed (100%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 38s, avg 30s (n=4)
+  Completed:  median 74s, avg 305s (n=32)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.0 wrong guesses
+  Completed:  avg 3.0 wrong guesses
+    Winners:  avg 2.7 wrong guesses
+    Losers:   avg 4.3 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 0/4 wrong guesses (0%)
+  Row 1: 4/4 wrong guesses (100%)
+  Row 2: 0/4 wrong guesses (0%)
+  Row 3: 0/4 wrong guesses (0%)
+
+  Row they were working on when they quit:
+    Row 1: 2 players
+    Row 3: 1 players
+    Row 2: 1 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R1:'Trees': 2
+  R1:'Cricket bat': 2
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  tutorial_skipped: 2
+  level_started: 2
+  session_started: 1
+  start_screen_viewed: 1
+  tutorial_started: 1
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-01
+Total players: 70 | Completed: 58 (32W/26L) | Incomplete: 12
+================================================================================
+
+  Abandonment rate: 12/70 (17%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  Askim, SE                      desktop  | 5 guesses (2 wrong) | Rows: 3/4 | Last: Row 2 (correct) | Play time: 88s
+      Row 0: 'Bank' -> correct
+      Row 1: 'Millennium' -> WRONG (+66.1s)
+      Row 1: 'London' -> WRONG (+5.8s)
+      Row 1: 'Monument' -> correct (+2.1s)
+      Row 2: 'Temple' -> correct (+14.2s)
+  Kensington, GB                 mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 3 (correct) | Play time: 5s
+      Row 3: 'Going, gone' -> WRONG
+      Row 3: 'Angel' -> correct (+5.1s)
+  , GB                           mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 3 (correct) | Play time: 5s
+      Row 3: 'Going, gone' -> WRONG
+      Row 3: 'Angel' -> correct (+5.1s)
+  Southwark, GB                  desktop  | 2 guesses (2 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 16s
+      Row 0: 'Utilities' -> WRONG
+      Row 0: 'Jail' -> WRONG (+15.9s)
+  , GB                           desktop  | 2 guesses (2 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 16s
+      Row 0: 'Utilities' -> WRONG
+      Row 0: 'Jail' -> WRONG (+15.9s)
+  , GB                           desktop  | 4 guesses (3 wrong) | Rows: 1/4 | Last: Row 0 (correct) | Play time: 18s
+      Row 0: 'Stations' -> WRONG
+      Row 0: 'Utilities' -> WRONG (+14.7s)
+      Row 0: 'Jail' -> WRONG (+1.8s)
+      Row 0: 'Bank' -> correct (+1.7s)
+  Southwark, GB                  desktop  | 3 guesses (1 wrong) | Rows: 1/4 | Last: Row 3 (WRONG) | Play time: 14s
+      Row 2: 'Temple' -> correct
+      Row 2: 'Temple' -> correct (+11.3s)
+      Row 3: 'Underground' -> WRONG (+2.3s)
+  Manchester, GB                 mobile   | 4 guesses (3 wrong) | Rows: 1/4 | Last: Row 1 (correct) | Play time: 7s
+      Row 1: 'London' -> WRONG
+      Row 1: 'Millennium' -> WRONG (+1.7s)
+      Row 1: 'Tower' -> WRONG (+3.2s)
+      Row 1: 'Monument' -> correct (+2.1s)
+  New York, US                   desktop  | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 2 (correct) | Play time: 7s
+      Row 0: 'Utilities' -> WRONG
+      Row 2: 'Temple' -> correct (+6.7s)
+  , GB                           mobile   | 4 guesses (1 wrong) | Rows: 3/4 | Last: Row 2 (correct) | Play time: 28s
+      Row 0: 'Stations' -> WRONG
+      Row 0: 'Bank' -> correct (+3.9s)
+      Row 1: 'Monument' -> correct (+8.3s)
+      Row 2: 'Temple' -> correct (+15.6s)
+  Eastleigh, GB                  mobile   | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'Jail' -> WRONG
+  Sydney, AU                     mobile   | 4 guesses (1 wrong) | Rows: 3/4 | Last: Row 1 (correct) | Play time: 32s
+      Row 3: 'Angel' -> correct
+      Row 2: 'Temple' -> correct (+20.1s)
+      Row 1: 'Millennium' -> WRONG (+10.4s)
+      Row 1: 'Monument' -> correct (+1.6s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  0/4 rows completed: 3/12 (25%)
+  1/4 rows completed: 6/12 (50%)
+  3/4 rows completed: 3/12 (25%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   4/12 (33%)
+  Quit after a correct guess: 8/12 (67%)
+
+  Players who quit after wrong guess:
+    Southwark, GB                  Row 0: 'Jail' | Lives remaining: 2 | Rows done: 0/4
+    , GB                           Row 0: 'Jail' | Lives remaining: 2 | Rows done: 0/4
+    Southwark, GB                  Row 3: 'Underground' | Lives remaining: 1 | Rows done: 1/4
+    Eastleigh, GB                  Row 0: 'Jail' | Lives remaining: 3 | Rows done: 0/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 1/12 (8%)
+  Completed players who played tutorial: 30/58 (52%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      6/49 abandoned (12%) | 43/49 completed (88%)
+  mobile       6/21 abandoned (29%) | 15/21 completed (71%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 16s, avg 21s (n=11)
+  Completed:  median 55s, avg 257s (n=56)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.6 wrong guesses
+  Completed:  avg 3.2 wrong guesses
+    Winners:  avg 1.9 wrong guesses
+    Losers:   avg 4.8 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 10/19 wrong guesses (53%)
+  Row 1: 6/19 wrong guesses (32%)
+  Row 2: 0/19 wrong guesses (0%)
+  Row 3: 3/19 wrong guesses (16%)
+
+  Row they were working on when they quit:
+    Row 0: 4 players
+    Row 2: 3 players
+    Row 3: 3 players
+    Row 1: 2 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R0:'Utilities': 4
+  R0:'Jail': 4
+  R1:'Millennium': 3
+  R1:'London': 2
+  R3:'Going, gone': 2
+  R0:'Stations': 2
+  R3:'Underground': 1
+  R1:'Tower': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  level_started: 6
+  start_screen_viewed: 4
+  session_started: 3
+  session_start: 2
+  session_end: 2
+  tutorial_started: 1
+  tutorial_skipped: 1
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-02
+Total players: 64 | Completed: 56 (21W/35L) | Incomplete: 8
+================================================================================
+
+  Abandonment rate: 8/64 (12%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  Wembley, GB                    mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 0 (correct) | Play time: 18s
+      Row 0: 'Two' -> WRONG
+      Row 0: 'Ten' -> correct (+18.3s)
+  Telford, GB                    mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 0 (correct) | Play time: 18s
+      Row 0: 'Two' -> WRONG
+      Row 0: 'Ten' -> correct (+18.3s)
+  Kensington, GB                 mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 1 (WRONG) | Play time: 49s
+      Row 0: 'Ten' -> correct
+      Row 1: 'Laugh' -> WRONG (+48.9s)
+  Maidstone, GB                  desktop  | 2 guesses (2 wrong) | Rows: 0/4 | Last: Row 1 (WRONG) | Play time: 10s
+      Row 1: 'Laugh' -> WRONG
+      Row 1: 'Ramble' -> WRONG (+9.7s)
+  Kingston upon Thames, GB       desktop  | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 1 (WRONG) | Play time: 0s
+      Row 1: 'Laugh' -> WRONG
+  , GB                           mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 0 (correct) | Play time: 14s
+      Row 0: 'Two' -> WRONG
+      Row 0: 'Ten' -> correct (+13.8s)
+  Kensington, GB                 desktop  | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 2 (correct) | Play time: 9s
+      Row 0: 'Two' -> WRONG
+      Row 2: 'Queen King' -> correct (+8.9s)
+  , GB                           mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 2 (correct) | Play time: 24s
+      Row 0: 'Two' -> WRONG
+      Row 2: 'Queen King' -> correct (+24.4s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  0/4 rows completed: 2/8 (25%)
+  1/4 rows completed: 6/8 (75%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   3/8 (38%)
+  Quit after a correct guess: 5/8 (62%)
+
+  Players who quit after wrong guess:
+    Kensington, GB                 Row 1: 'Laugh' | Lives remaining: 2 | Rows done: 1/4
+    Maidstone, GB                  Row 1: 'Ramble' | Lives remaining: 1 | Rows done: 0/4
+    Kingston upon Thames, GB       Row 1: 'Laugh' | Lives remaining: 2 | Rows done: 0/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 1/8 (12%)
+  Completed players who played tutorial: 21/56 (38%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      3/43 abandoned (7%) | 40/43 completed (93%)
+  mobile       5/18 abandoned (28%) | 13/18 completed (72%)
+  tablet       0/3 abandoned (0%) | 3/3 completed (100%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 18s, avg 20s (n=7)
+  Completed:  median 91s, avg 330s (n=51)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.1 wrong guesses
+  Completed:  avg 3.0 wrong guesses
+    Winners:  avg 1.9 wrong guesses
+    Losers:   avg 3.7 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 5/9 wrong guesses (56%)
+  Row 1: 4/9 wrong guesses (44%)
+  Row 2: 0/9 wrong guesses (0%)
+  Row 3: 0/9 wrong guesses (0%)
+
+  Row they were working on when they quit:
+    Row 0: 3 players
+    Row 1: 3 players
+    Row 2: 2 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R0:'Two': 5
+  R1:'Laugh': 3
+  R1:'Ramble': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  session_start: 2
+  session_started: 2
+  start_screen_viewed: 2
+  level_started: 2
+  tutorial_started: 1
+  tutorial_skipped: 1
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-03
+Total players: 39 | Completed: 35 (23W/12L) | Incomplete: 4
+================================================================================
+
+  Abandonment rate: 4/39 (10%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  , GB                           mobile   | 4 guesses (2 wrong) | Rows: 2/4 | Last: Row 2 (correct) | Play time: 47s
+      Row 0: 'Courtyard' -> correct
+      Row 2: 'Companies' -> WRONG (+37.2s)
+      Row 2: 'Units' -> WRONG (+8.8s)
+      Row 2: 'Compounds' -> correct (+1.3s)
+  , GB                           desktop  | 3 guesses (1 wrong) | Rows: 2/4 | Last: Row 3 (correct) | Play time: 29s
+      Row 0: 'Courtyard' -> correct
+      Row 1: 'Red Bull' -> WRONG (+16.9s)
+      Row 3: 'Renounce' -> correct (+11.8s)
+  , GB                           desktop  | 7 guesses (2 wrong) | Rows: 4/4 | Last: Row 1 (correct) | Play time: 150s
+      Row 0: 'Courtyard' -> correct
+      Row 1: 'Red Bull' -> WRONG (+16.9s)
+      Row 3: 'Renounce' -> correct (+11.8s)
+      Row 2: 'Compounds' -> correct (+26.4s)
+      Row 1: 'Coke' -> WRONG (+9.3s)
+      Row 1: 'Chamomile' -> correct (+2.4s)
+      RELINK: r0w1,r3w1 -> WRONG (+83.1s)
+  London, GB                     mobile   | 7 guesses (2 wrong) | Rows: 4/4 | Last: Row 1 (correct) | Play time: 150s
+      Row 0: 'Courtyard' -> correct
+      Row 1: 'Red Bull' -> WRONG (+16.9s)
+      Row 3: 'Renounce' -> correct (+11.8s)
+      Row 2: 'Compounds' -> correct (+26.4s)
+      Row 1: 'Coke' -> WRONG (+9.3s)
+      Row 1: 'Chamomile' -> correct (+2.4s)
+      RELINK: r0w1,r3w1 -> WRONG (+83.1s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  2/4 rows completed: 2/4 (50%)
+  4/4 rows completed: 2/4 (50%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   0/4 (0%)
+  Quit after a correct guess: 4/4 (100%)
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 3/4 (75%)
+  Completed players who played tutorial: 9/35 (26%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      2/15 abandoned (13%) | 13/15 completed (87%)
+  mobile       2/22 abandoned (9%) | 20/22 completed (91%)
+  tablet       0/2 abandoned (0%) | 2/2 completed (100%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 150s, avg 94s (n=4)
+  Completed:  median 89s, avg 232s (n=35)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.8 wrong guesses
+  Completed:  avg 2.1 wrong guesses
+    Winners:  avg 1.0 wrong guesses
+    Losers:   avg 4.3 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 0/7 wrong guesses (0%)
+  Row 1: 5/7 wrong guesses (71%)
+  Row 2: 2/7 wrong guesses (29%)
+  Row 3: 0/7 wrong guesses (0%)
+
+  Row they were working on when they quit:
+    Row 1: 2 players
+    Row 2: 1 players
+    Row 3: 1 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R1:'Red Bull': 3
+  R1:'Coke': 2
+  R2:'Companies': 1
+  R2:'Units': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  start_screen_viewed: 4
+  session_started: 4
+  level_started: 4
+  session_start: 3
+  tutorial_started: 3
+  tutorial_skipped: 3
+  session_end: 2
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-04
+Total players: 35 | Completed: 31 (8W/23L) | Incomplete: 4
+================================================================================
+
+  Abandonment rate: 4/35 (11%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  Runcorn, GB                    mobile   | 6 guesses (3 wrong) | Rows: 3/4 | Last: Row 2 (correct) | Play time: 35s
+      Row 0: 'Polish' -> correct
+      Row 1: 'Dove' -> correct (+11.7s)
+      Row 2: 'Onion' -> WRONG (+11.6s)
+      Row 2: 'Clean' -> WRONG (+6.1s)
+      Row 2: 'Steen' -> WRONG (+1.5s)
+      Row 2: 'Mop' -> correct (+3.8s)
+  , GB                           mobile   | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 2 (WRONG) | Play time: 0s
+      Row 2: 'Onion' -> WRONG
+  Liverpool, GB                  mobile   | 3 guesses (2 wrong) | Rows: 1/4 | Last: Row 2 (correct) | Play time: 20s
+      Row 2: 'Onion' -> WRONG
+      Row 2: 'Steen' -> WRONG (+18.7s)
+      Row 2: 'Mop' -> correct (+1.8s)
+  , GB                           desktop  | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 2 (correct) | Play time: 2s
+      Row 2: 'Steen' -> WRONG
+      Row 2: 'Mop' -> correct (+1.8s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  0/4 rows completed: 1/4 (25%)
+  1/4 rows completed: 2/4 (50%)
+  3/4 rows completed: 1/4 (25%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   1/4 (25%)
+  Quit after a correct guess: 3/4 (75%)
+
+  Players who quit after wrong guess:
+    , GB                           Row 2: 'Onion' | Lives remaining: 2 | Rows done: 0/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 1/4 (25%)
+  Completed players who played tutorial: 12/31 (39%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      1/11 abandoned (9%) | 10/11 completed (91%)
+  mobile       3/22 abandoned (14%) | 19/22 completed (86%)
+  tablet       0/2 abandoned (0%) | 2/2 completed (100%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 20s, avg 19s (n=3)
+  Completed:  median 50s, avg 207s (n=30)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.8 wrong guesses
+  Completed:  avg 2.9 wrong guesses
+    Winners:  avg 0.5 wrong guesses
+    Losers:   avg 3.8 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 0/7 wrong guesses (0%)
+  Row 1: 0/7 wrong guesses (0%)
+  Row 2: 7/7 wrong guesses (100%)
+  Row 3: 0/7 wrong guesses (0%)
+
+  Row they were working on when they quit:
+    Row 2: 4 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R2:'Onion': 3
+  R2:'Steen': 3
+  R2:'Clean': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  session_start: 1
+  session_started: 1
+  start_screen_viewed: 1
+  tutorial_started: 1
+  level_started: 1
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-05
+Total players: 23 | Completed: 20 (7W/13L) | Incomplete: 3
+================================================================================
+
+  Abandonment rate: 3/23 (13%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  , GB                           desktop  | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 1 (WRONG) | Play time: 0s
+      Row 1: 'Beaker' -> WRONG
+  City of Westminster, GB        mobile   | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'Tale' -> WRONG
+  , GB                           mobile   | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'Tale' -> WRONG
+
+
+--- 2. WHERE THEY STOPPED ---
+  0/4 rows completed: 3/3 (100%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   3/3 (100%)
+  Quit after a correct guess: 0/3 (0%)
+
+  Players who quit after wrong guess:
+    , GB                           Row 1: 'Beaker' | Lives remaining: 2 | Rows done: 0/4
+    City of Westminster, GB        Row 0: 'Tale' | Lives remaining: 3 | Rows done: 0/4
+    , GB                           Row 0: 'Tale' | Lives remaining: 3 | Rows done: 0/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 0/3 (0%)
+  Completed players who played tutorial: 4/20 (20%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      1/5 abandoned (20%) | 4/5 completed (80%)
+  mobile       2/16 abandoned (12%) | 14/16 completed (88%)
+  tablet       0/2 abandoned (0%) | 2/2 completed (100%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: insufficient data (most had <=1 guess)
+  Completed:  median 94s, avg 105s (n=20)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.0 wrong guesses
+  Completed:  avg 2.2 wrong guesses
+    Winners:  avg 0.9 wrong guesses
+    Losers:   avg 3.0 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 2/3 wrong guesses (67%)
+  Row 1: 1/3 wrong guesses (33%)
+  Row 2: 0/3 wrong guesses (0%)
+  Row 3: 0/3 wrong guesses (0%)
+
+  Row they were working on when they quit:
+    Row 0: 2 players
+    Row 1: 1 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R0:'Tale': 2
+  R1:'Beaker': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  session_start: 1
+  start_screen_viewed: 1
+  session_started: 1
+  level_started: 1
+  session_end: 1
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-06
+Total players: 35 | Completed: 29 (14W/15L) | Incomplete: 6
+================================================================================
+
+  Abandonment rate: 6/35 (17%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  Ealing, GB                     mobile   | 4 guesses (2 wrong) | Rows: 2/4 | Last: Row 1 (correct) | Play time: 144s
+      Row 1: 'USB' -> WRONG
+      Row 0: 'Game' -> WRONG (+21.9s)
+      Row 2: 'Sonic' -> correct (+117.5s)
+      Row 1: 'Crash' -> correct (+4.9s)
+  Greenwich, GB                  mobile   | 3 guesses (2 wrong) | Rows: 1/4 | Last: Row 0 (WRONG) | Play time: 54s
+      Row 1: 'USB' -> WRONG
+      Row 2: 'Sonic' -> correct (+32.3s)
+      Row 0: 'Game' -> WRONG (+22.1s)
+  London, GB                     mobile   | 5 guesses (4 wrong) | Rows: 1/4 | Last: Row 1 (WRONG) | Play time: 25s
+      Row 0: 'Charm' -> WRONG
+      Row 0: 'Game' -> WRONG (+5.2s)
+      Row 0: 'Link' -> correct (+2.1s)
+      Row 1: 'Shotgun' -> WRONG (+11.1s)
+      Row 1: 'USB' -> WRONG (+6.5s)
+  Thatcham, GB                   desktop  | 7 guesses (3 wrong) | Rows: 4/4 | Last: Row 3 (correct) | Play time: 137s
+      Row 1: 'USB' -> WRONG
+      Row 1: 'Crash' -> correct (+10.2s)
+      Row 2: 'Video' -> WRONG (+32.8s)
+      Row 2: 'Sonic' -> correct (+1.9s)
+      Row 0: 'Link' -> correct (+18.7s)
+      Row 3: 'The Chain' -> WRONG (+68.6s)
+      Row 3: 'Banjo' -> correct (+4.8s)
+  , GB                           mobile   | 3 guesses (2 wrong) | Rows: 1/4 | Last: Row 0 (correct) | Play time: 5s
+      Row 0: 'Charm' -> WRONG
+      Row 0: 'Magic' -> WRONG (+2.2s)
+      Row 0: 'Link' -> correct (+2.6s)
+  Los Angeles, US                desktop  | 3 guesses (2 wrong) | Rows: 1/4 | Last: Row 1 (correct) | Play time: 26s
+      Row 1: 'USB' -> WRONG
+      Row 1: 'Boom' -> WRONG (+23.4s)
+      Row 1: 'Crash' -> correct (+2.7s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  1/4 rows completed: 4/6 (67%)
+  2/4 rows completed: 1/6 (17%)
+  4/4 rows completed: 1/6 (17%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   2/6 (33%)
+  Quit after a correct guess: 4/6 (67%)
+
+  Players who quit after wrong guess:
+    Greenwich, GB                  Row 0: 'Game' | Lives remaining: 2 | Rows done: 1/4
+    London, GB                     Row 1: 'USB' | Lives remaining: 0 | Rows done: 1/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 0/6 (0%)
+  Completed players who played tutorial: 9/29 (31%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      2/15 abandoned (13%) | 13/15 completed (87%)
+  mobile       4/19 abandoned (21%) | 15/19 completed (79%)
+  tablet       0/1 abandoned (0%) | 1/1 completed (100%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 54s, avg 65s (n=6)
+  Completed:  median 64s, avg 161s (n=29)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 2.5 wrong guesses
+  Completed:  avg 3.1 wrong guesses
+    Winners:  avg 1.6 wrong guesses
+    Losers:   avg 4.4 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 6/15 wrong guesses (40%)
+  Row 1: 7/15 wrong guesses (47%)
+  Row 2: 1/15 wrong guesses (7%)
+  Row 3: 1/15 wrong guesses (7%)
+
+  Row they were working on when they quit:
+    Row 1: 3 players
+    Row 0: 2 players
+    Row 3: 1 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R1:'USB': 5
+  R0:'Game': 3
+  R0:'Charm': 2
+  R1:'Shotgun': 1
+  R2:'Video': 1
+  R3:'The Chain': 1
+  R0:'Magic': 1
+  R1:'Boom': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  session_start: 4
+  start_screen_viewed: 4
+  session_started: 4
+  level_started: 4
+  session_end: 2
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-07
+Total players: 40 | Completed: 32 (25W/7L) | Incomplete: 8
+================================================================================
+
+  Abandonment rate: 8/40 (20%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  Southwark, GB                  mobile   | 5 guesses (1 wrong) | Rows: 4/4 | Last: Row 3 (correct) | Play time: 12s
+      Row 0: 'Violas' -> correct
+      Row 1: 'Violin' -> correct (+4.1s)
+      Row 2: 'Harp' -> correct (+2.8s)
+      Row 3: 'Clef' -> WRONG (+3.9s)
+      Row 3: 'Double bass' -> correct (+1.7s)
+  Woking, GB                     desktop  | 5 guesses (1 wrong) | Rows: 4/4 | Last: Row 3 (correct) | Play time: 24s
+      Row 0: 'Violas' -> correct
+      Row 1: 'Violin' -> correct (+5.9s)
+      Row 2: 'Belt' -> WRONG (+6.9s)
+      Row 2: 'Harp' -> correct (+3.4s)
+      Row 3: 'Double bass' -> correct (+7.9s)
+  , GB                           desktop  | 3 guesses (3 wrong) | Rows: 0/4 | Last: Row 1 (WRONG) | Play time: 20s
+      Row 0: 'Bridge' -> WRONG
+      Row 0: 'Head' -> WRONG (+8.2s)
+      Row 1: 'Section' -> WRONG (+11.8s)
+  Kensington, GB                 desktop  | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 3 (WRONG) | Play time: 14s
+      Row 0: 'Violas' -> correct
+      Row 3: 'Crotchet' -> WRONG (+13.9s)
+  Kensington, GB                 desktop  | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 3 (WRONG) | Play time: 14s
+      Row 0: 'Violas' -> correct
+      Row 3: 'Crotchet' -> WRONG (+13.9s)
+  Kensington, GB                 mobile   | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 3 (WRONG) | Play time: 0s
+      Row 3: 'Crotchet' -> WRONG
+  , GB                           desktop  | 3 guesses (2 wrong) | Rows: 1/4 | Last: Row 3 (WRONG) | Play time: 21s
+      Row 1: 'This puzzle' -> WRONG
+      Row 0: 'This puzzle' -> correct (+13.3s)
+      Row 3: 'Is' -> WRONG (+7.9s)
+  Kensington, GB                 desktop  | 3 guesses (3 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 3s
+      Row 0: 'Game' -> WRONG
+      Row 0: 'Magnetism' -> WRONG (+1.1s)
+      Row 0: 'Charm' -> WRONG (+1.8s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  0/4 rows completed: 3/8 (38%)
+  1/4 rows completed: 3/8 (38%)
+  4/4 rows completed: 2/8 (25%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   6/8 (75%)
+  Quit after a correct guess: 2/8 (25%)
+
+  Players who quit after wrong guess:
+    , GB                           Row 1: 'Section' | Lives remaining: 1 | Rows done: 0/4
+    Kensington, GB                 Row 3: 'Crotchet' | Lives remaining: 3 | Rows done: 1/4
+    Kensington, GB                 Row 3: 'Crotchet' | Lives remaining: 3 | Rows done: 1/4
+    Kensington, GB                 Row 3: 'Crotchet' | Lives remaining: 3 | Rows done: 0/4
+    , GB                           Row 3: 'Is' | Lives remaining: 2 | Rows done: 1/4
+    Kensington, GB                 Row 0: 'Charm' | Lives remaining: 1 | Rows done: 0/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 3/8 (38%)
+  Completed players who played tutorial: 8/32 (25%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      6/29 abandoned (21%) | 23/29 completed (79%)
+  mobile       2/11 abandoned (18%) | 9/11 completed (82%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 14s, avg 16s (n=7)
+  Completed:  median 56s, avg 733s (n=30)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.6 wrong guesses
+  Completed:  avg 3.0 wrong guesses
+    Winners:  avg 1.8 wrong guesses
+    Losers:   avg 7.1 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 5/13 wrong guesses (38%)
+  Row 1: 2/13 wrong guesses (15%)
+  Row 2: 1/13 wrong guesses (8%)
+  Row 3: 5/13 wrong guesses (38%)
+
+  Row they were working on when they quit:
+    Row 3: 6 players
+    Row 1: 1 players
+    Row 0: 1 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R3:'Crotchet': 3
+  R3:'Clef': 1
+  R2:'Belt': 1
+  R0:'Bridge': 1
+  R0:'Head': 1
+  R1:'Section': 1
+  R1:'This puzzle': 1
+  R3:'Is': 1
+  R0:'Game': 1
+  R0:'Magnetism': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  level_started: 11
+  start_screen_viewed: 9
+  session_started: 9
+  tutorial_started: 6
+  tutorial_skipped: 5
+  session_end: 4
+  session_start: 3
+  final_board_viewed: 1
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-08
+Total players: 61 | Completed: 52 (31W/21L) | Incomplete: 9
+================================================================================
+
+  Abandonment rate: 9/61 (15%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  Kensington, GB                 desktop  | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 1 (WRONG) | Play time: 8s
+      Row 0: 'HEP' -> correct
+      Row 1: 'Mass' -> WRONG (+7.6s)
+  , GB                           mobile   | 4 guesses (2 wrong) | Rows: 2/4 | Last: Row 0 (correct) | Play time: 21s
+      Row 1: 'Solar' -> correct
+      Row 2: 'New' -> WRONG (+13.0s)
+      Row 0: 'Signature' -> WRONG (+5.6s)
+      Row 0: 'HEP' -> correct (+2.1s)
+  , GB                           desktop  | 4 guesses (3 wrong) | Rows: 1/4 | Last: Row 2 (correct) | Play time: 5s
+      Row 2: 'New' -> WRONG
+      Row 2: 'Over' -> WRONG (+2.2s)
+      Row 2: 'Out' -> WRONG (+1.4s)
+      Row 2: 'Wind' -> correct (+1.7s)
+  Kensington, GB                 desktop  | 6 guesses (3 wrong) | Rows: 3/4 | Last: Row 1 (correct) | Play time: 299s
+      Row 0: 'Signature' -> WRONG
+      Row 0: 'HEP' -> correct (+5.4s)
+      Row 3: 'Tidal' -> correct (+246.3s)
+      Row 1: 'Mass' -> WRONG (+28.9s)
+      Row 1: 'Energy' -> WRONG (+11.5s)
+      Row 1: 'Solar' -> correct (+7.0s)
+  , GB                           mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 0 (correct) | Play time: 5s
+      Row 0: 'Signature' -> WRONG
+      Row 0: 'HEP' -> correct (+5.4s)
+  Kensington, GB                 desktop  | 4 guesses (2 wrong) | Rows: 2/4 | Last: Row 1 (correct) | Play time: 59s
+      Row 0: 'HEP' -> correct
+      Row 1: 'Mass' -> WRONG (+45.9s)
+      Row 1: 'Energy' -> WRONG (+10.4s)
+      Row 1: 'Solar' -> correct (+2.7s)
+  , GB                           desktop  | 3 guesses (1 wrong) | Rows: 2/4 | Last: Row 1 (correct) | Play time: 16s
+      Row 0: 'HEP' -> correct
+      Row 1: 'Energy' -> WRONG (+11.3s)
+      Row 1: 'Solar' -> correct (+4.6s)
+  New York, US                   desktop  | 3 guesses (2 wrong) | Rows: 1/4 | Last: Row 1 (WRONG) | Play time: 5s
+      Row 0: 'Signature' -> WRONG
+      Row 0: 'HEP' -> correct (+1.7s)
+      Row 1: 'Mass' -> WRONG (+3.4s)
+  Bristol, GB                    mobile   | 4 guesses (1 wrong) | Rows: 3/4 | Last: Row 2 (correct) | Play time: 47s
+      Row 1: 'Mass' -> WRONG
+      Row 1: 'Solar' -> correct (+2.3s)
+      Row 3: 'Tidal' -> correct (+29.3s)
+      Row 2: 'Wind' -> correct (+15.7s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  1/4 rows completed: 4/9 (44%)
+  2/4 rows completed: 3/9 (33%)
+  3/4 rows completed: 2/9 (22%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   2/9 (22%)
+  Quit after a correct guess: 7/9 (78%)
+
+  Players who quit after wrong guess:
+    Kensington, GB                 Row 1: 'Mass' | Lives remaining: 3 | Rows done: 1/4
+    New York, US                   Row 1: 'Mass' | Lives remaining: 2 | Rows done: 1/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 2/9 (22%)
+  Completed players who played tutorial: 23/52 (44%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      6/34 abandoned (18%) | 28/34 completed (82%)
+  mobile       3/24 abandoned (12%) | 21/24 completed (88%)
+  tablet       0/3 abandoned (0%) | 3/3 completed (100%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 16s, avg 52s (n=9)
+  Completed:  median 101s, avg 338s (n=49)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.8 wrong guesses
+  Completed:  avg 3.2 wrong guesses
+    Winners:  avg 2.3 wrong guesses
+    Losers:   avg 4.7 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 4/16 wrong guesses (25%)
+  Row 1: 8/16 wrong guesses (50%)
+  Row 2: 4/16 wrong guesses (25%)
+  Row 3: 0/16 wrong guesses (0%)
+
+  Row they were working on when they quit:
+    Row 1: 5 players
+    Row 0: 2 players
+    Row 2: 2 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R1:'Mass': 5
+  R0:'Signature': 4
+  R1:'Energy': 3
+  R2:'New': 2
+  R2:'Over': 1
+  R2:'Out': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  start_screen_viewed: 6
+  session_started: 6
+  session_start: 5
+  level_started: 5
+  session_end: 4
+  tutorial_started: 2
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-09
+Total players: 77 | Completed: 65 (15W/50L) | Incomplete: 12
+================================================================================
+
+  Abandonment rate: 12/77 (16%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  , GB                           desktop  | 6 guesses (2 wrong) | Rows: 3/4 | Last: Row 3 (correct) | Play time: 143s
+      Row 2: 'Z' -> correct
+      Row 0: 'Finale' -> WRONG (+104.5s)
+      Row 0: 'Ultimate' -> WRONG (+10.4s)
+      Row 0: 'Silent' -> correct (+2.0s)
+      Row 0: 'Silent' -> correct (+12.4s)
+      Row 3: 'Greatest' -> correct (+13.6s)
+  Kensington, GB                 mobile   | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'Finale' -> WRONG
+  , GB                           mobile   | 8 guesses (3 wrong) | Rows: 4/4 | Last: Row 3 (correct) | Play time: 30s
+      Row 0: 'Silent' -> correct
+      Row 1: 'Alpha' -> correct (+9.4s)
+      Row 2: 'Z' -> correct (+6.1s)
+      Row 3: 'Rations' -> WRONG (+7.8s)
+      Row 3: 'Delta' -> WRONG (+0.0s)
+      Row 3: 'Greatest' -> correct (+0.9s)
+      Row 3: 'Rations' -> WRONG (+2.4s)
+      Row 3: 'Greatest' -> correct (+3.5s)
+  Kensington, GB                 mobile   | 5 guesses (1 wrong) | Rows: 4/4 | Last: Row 3 (correct) | Play time: 28s
+      Row 0: 'Silent' -> correct
+      Row 1: 'Alpha' -> correct (+5.7s)
+      Row 2: 'Z' -> correct (+4.1s)
+      Row 3: 'Rations' -> WRONG (+11.5s)
+      Row 3: 'Greatest' -> correct (+6.5s)
+  , GB                           mobile   | 3 guesses (1 wrong) | Rows: 2/4 | Last: Row 2 (correct) | Play time: 61s
+      Row 3: 'Delta' -> WRONG
+      Row 0: 'Silent' -> correct (+22.6s)
+      Row 2: 'Z' -> correct (+38.9s)
+  , GB                           mobile   | 2 guesses (2 wrong) | Rows: 0/4 | Last: Row 1 (WRONG) | Play time: 11s
+      Row 0: 'Omega' -> WRONG
+      Row 1: 'Tradition' -> WRONG (+11.0s)
+  , GB                           mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 3 (correct) | Play time: 7s
+      Row 3: 'Delta' -> WRONG
+      Row 3: 'Greatest' -> correct (+7.4s)
+  , US                           desktop  | 3 guesses (2 wrong) | Rows: 1/4 | Last: Row 3 (correct) | Play time: 7s
+      Row 3: 'Equality' -> WRONG
+      Row 3: 'Delta' -> WRONG (+1.8s)
+      Row 3: 'Greatest' -> correct (+5.3s)
+  New York, US                   desktop  | 3 guesses (2 wrong) | Rows: 1/4 | Last: Row 3 (correct) | Play time: 7s
+      Row 3: 'Equality' -> WRONG
+      Row 3: 'Delta' -> WRONG (+1.8s)
+      Row 3: 'Greatest' -> correct (+5.3s)
+  Norwich, GB                    mobile   | 3 guesses (1 wrong) | Rows: 2/4 | Last: Row 2 (WRONG) | Play time: 37s
+      Row 0: 'Silent' -> correct
+      Row 1: 'Alpha' -> correct (+27.0s)
+      Row 2: 'Sting' -> WRONG (+9.9s)
+  Letchworth Garden City, GB     desktop  | 6 guesses (3 wrong) | Rows: 3/4 | Last: Row 2 (correct) | Play time: 46s
+      Row 0: 'Silent' -> correct
+      Row 1: 'Alpha' -> correct (+27.0s)
+      Row 2: 'Sting' -> WRONG (+9.9s)
+      Row 2: 'X' -> WRONG (+4.1s)
+      Row 2: 'Gamma' -> WRONG (+1.9s)
+      Row 2: 'Z' -> correct (+3.3s)
+  West Bromwich, GB              mobile   | 6 guesses (3 wrong) | Rows: 3/4 | Last: Row 2 (correct) | Play time: 46s
+      Row 0: 'Silent' -> correct
+      Row 1: 'Alpha' -> correct (+27.0s)
+      Row 2: 'Sting' -> WRONG (+9.9s)
+      Row 2: 'X' -> WRONG (+4.1s)
+      Row 2: 'Gamma' -> WRONG (+1.9s)
+      Row 2: 'Z' -> correct (+3.3s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  0/4 rows completed: 2/12 (17%)
+  1/4 rows completed: 3/12 (25%)
+  2/4 rows completed: 2/12 (17%)
+  3/4 rows completed: 3/12 (25%)
+  4/4 rows completed: 2/12 (17%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   3/12 (25%)
+  Quit after a correct guess: 9/12 (75%)
+
+  Players who quit after wrong guess:
+    Kensington, GB                 Row 0: 'Finale' | Lives remaining: 3 | Rows done: 0/4
+    , GB                           Row 1: 'Tradition' | Lives remaining: 2 | Rows done: 0/4
+    Norwich, GB                    Row 2: 'Sting' | Lives remaining: 3 | Rows done: 2/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 2/12 (17%)
+  Completed players who played tutorial: 24/65 (37%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      4/42 abandoned (10%) | 38/42 completed (90%)
+  mobile       8/34 abandoned (24%) | 26/34 completed (76%)
+  tablet       0/1 abandoned (0%) | 1/1 completed (100%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 30s, avg 39s (n=11)
+  Completed:  median 69s, avg 252s (n=62)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.8 wrong guesses
+  Completed:  avg 3.7 wrong guesses
+    Winners:  avg 0.9 wrong guesses
+    Losers:   avg 4.5 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 4/22 wrong guesses (18%)
+  Row 1: 1/22 wrong guesses (5%)
+  Row 2: 7/22 wrong guesses (32%)
+  Row 3: 10/22 wrong guesses (45%)
+
+  Row they were working on when they quit:
+    Row 3: 6 players
+    Row 2: 4 players
+    Row 0: 1 players
+    Row 1: 1 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R3:'Delta': 5
+  R3:'Rations': 3
+  R2:'Sting': 3
+  R0:'Finale': 2
+  R3:'Equality': 2
+  R2:'X': 2
+  R2:'Gamma': 2
+  R0:'Ultimate': 1
+  R0:'Omega': 1
+  R1:'Tradition': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  start_screen_viewed: 9
+  level_started: 9
+  session_started: 8
+  session_start: 5
+  tutorial_started: 3
+  session_end: 3
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-10
+Total players: 102 | Completed: 82 (50W/32L) | Incomplete: 20
+================================================================================
+
+  Abandonment rate: 20/102 (20%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  Lambeth, GB                    mobile   | 6 guesses (2 wrong) | Rows: 4/4 | Last: Row 1 (correct) | Play time: 51s
+      Row 0: 'Swallowtail' -> WRONG
+      Row 0: 'Lionheart' -> correct (+3.7s)
+      Row 1: 'English' -> WRONG (+11.2s)
+      Row 2: 'Elder' -> correct (+12.6s)
+      Row 3: 'Unready' -> correct (+15.9s)
+      Row 1: 'Confessor' -> correct (+7.2s)
+  Lambeth, GB                    desktop  | 6 guesses (2 wrong) | Rows: 4/4 | Last: Row 1 (correct) | Play time: 51s
+      Row 0: 'Swallowtail' -> WRONG
+      Row 0: 'Lionheart' -> correct (+3.7s)
+      Row 1: 'English' -> WRONG (+11.2s)
+      Row 2: 'Elder' -> correct (+12.6s)
+      Row 3: 'Unready' -> correct (+15.9s)
+      Row 1: 'Confessor' -> correct (+7.2s)
+  Kensington, GB                 desktop  | 2 guesses (2 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 6s
+      Row 0: 'Swallowtail' -> WRONG
+      Row 0: 'Red admirals' -> WRONG (+5.8s)
+  St Louis, US                   mobile   | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'Swallowtail' -> WRONG
+  Manchester, GB                 desktop  | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'Monarchs' -> WRONG
+  Nottingham, GB                 tablet   | 2 guesses (2 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 10s
+      Row 0: 'Monarchs' -> WRONG
+      Row 0: 'Red admirals' -> WRONG (+10.5s)
+  Sheerness, GB                  mobile   | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'Monarchs' -> WRONG
+  , GB                           mobile   | 5 guesses (2 wrong) | Rows: 3/4 | Last: Row 3 (WRONG) | Play time: 35s
+      Row 0: 'Lionheart' -> correct
+      Row 1: 'Confessor' -> correct (+15.5s)
+      Row 2: '& Sour' -> WRONG (+7.2s)
+      Row 2: 'Elder' -> correct (+5.2s)
+      Row 3: 'Conqueror' -> WRONG (+7.1s)
+  , GB                           mobile   | 3 guesses (2 wrong) | Rows: 1/4 | Last: Row 3 (WRONG) | Play time: 12s
+      Row 2: '& Sour' -> WRONG
+      Row 2: 'Elder' -> correct (+5.2s)
+      Row 3: 'Conqueror' -> WRONG (+7.1s)
+  , GB                           mobile   | 4 guesses (1 wrong) | Rows: 3/4 | Last: Row 1 (correct) | Play time: 26s
+      Row 2: 'Elder' -> correct
+      Row 0: 'Lionheart' -> correct (+21.6s)
+      Row 1: 'English' -> WRONG (+1.3s)
+      Row 1: 'Confessor' -> correct (+3.0s)
+  City of London, GB             desktop  | 4 guesses (1 wrong) | Rows: 3/4 | Last: Row 1 (correct) | Play time: 26s
+      Row 2: 'Elder' -> correct
+      Row 0: 'Lionheart' -> correct (+21.6s)
+      Row 1: 'English' -> WRONG (+1.3s)
+      Row 1: 'Confessor' -> correct (+3.0s)
+  Crawley, GB                    mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 1 (WRONG) | Play time: 1s
+      Row 0: 'Lionheart' -> correct
+      Row 1: 'English' -> WRONG (+1.3s)
+  Hull, GB                       desktop  | 5 guesses (3 wrong) | Rows: 2/4 | Last: Row 3 (WRONG) | Play time: 26s
+      Row 0: 'Lionheart' -> correct
+      Row 1: 'English' -> WRONG (+1.3s)
+      Row 1: 'Confessor' -> correct (+3.0s)
+      Row 3: 'Conqueror' -> WRONG (+15.5s)
+      Row 3: 'Nicknames' -> WRONG (+6.2s)
+  , GB                           desktop  | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 3 (WRONG) | Play time: 0s
+      Row 3: 'Conqueror' -> WRONG
+  , GB                           mobile   | 3 guesses (2 wrong) | Rows: 1/4 | Last: Row 0 (correct) | Play time: 5s
+      Row 0: 'Swallowtail' -> WRONG
+      Row 0: 'Monarchs' -> WRONG (+2.5s)
+      Row 0: 'Lionheart' -> correct (+2.5s)
+  , GB                           mobile   | 4 guesses (2 wrong) | Rows: 2/4 | Last: Row 3 (correct) | Play time: 33s
+      Row 0: 'Swallowtail' -> WRONG
+      Row 0: 'Monarchs' -> WRONG (+2.5s)
+      Row 0: 'Lionheart' -> correct (+2.5s)
+      Row 3: 'Unready' -> correct (+27.7s)
+  Sunderland, GB                 desktop  | 3 guesses (1 wrong) | Rows: 2/4 | Last: Row 1 (correct) | Play time: 6s
+      Row 0: 'Swallowtail' -> WRONG
+      Row 0: 'Lionheart' -> correct (+1.1s)
+      Row 1: 'Confessor' -> correct (+5.2s)
+  Brighton, GB                   desktop  | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 0 (correct) | Play time: 1s
+      Row 0: 'Swallowtail' -> WRONG
+      Row 0: 'Lionheart' -> correct (+1.1s)
+  Camden, GB                     mobile   | 3 guesses (1 wrong) | Rows: 2/4 | Last: Row 1 (correct) | Play time: 25s
+      Row 3: 'Unready' -> correct
+      Row 1: 'English' -> WRONG (+19.7s)
+      Row 1: 'Confessor' -> correct (+5.7s)
+  Barnsley, GB                   mobile   | 7 guesses (3 wrong) | Rows: 4/4 | Last: Row 0 (correct) | Play time: 38s
+      Row 2: 'Elder' -> correct
+      Row 3: 'Robert' -> WRONG (+14.5s)
+      Row 3: 'Nicknames' -> WRONG (+5.1s)
+      Row 3: 'Conqueror' -> WRONG (+3.9s)
+      Row 3: 'Unready' -> correct (+3.0s)
+      Row 1: 'Confessor' -> correct (+7.5s)
+      Row 0: 'Lionheart' -> correct (+4.0s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  0/4 rows completed: 6/20 (30%)
+  1/4 rows completed: 4/20 (20%)
+  2/4 rows completed: 4/20 (20%)
+  3/4 rows completed: 3/20 (15%)
+  4/4 rows completed: 3/20 (15%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   10/20 (50%)
+  Quit after a correct guess: 10/20 (50%)
+
+  Players who quit after wrong guess:
+    Kensington, GB                 Row 0: 'Red admirals' | Lives remaining: 2 | Rows done: 0/4
+    St Louis, US                   Row 0: 'Swallowtail' | Lives remaining: 3 | Rows done: 0/4
+    Manchester, GB                 Row 0: 'Monarchs' | Lives remaining: 3 | Rows done: 0/4
+    Nottingham, GB                 Row 0: 'Red admirals' | Lives remaining: 2 | Rows done: 0/4
+    Sheerness, GB                  Row 0: 'Monarchs' | Lives remaining: 3 | Rows done: 0/4
+    , GB                           Row 3: 'Conqueror' | Lives remaining: 2 | Rows done: 3/4
+    , GB                           Row 3: 'Conqueror' | Lives remaining: 2 | Rows done: 1/4
+    Crawley, GB                    Row 1: 'English' | Lives remaining: 3 | Rows done: 1/4
+    Hull, GB                       Row 3: 'Nicknames' | Lives remaining: 1 | Rows done: 2/4
+    , GB                           Row 3: 'Conqueror' | Lives remaining: 3 | Rows done: 0/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 1/20 (5%)
+  Completed players who played tutorial: 18/82 (22%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      8/54 abandoned (15%) | 46/54 completed (85%)
+  mobile       11/45 abandoned (24%) | 34/45 completed (76%)
+  tablet       1/3 abandoned (33%) | 2/3 completed (67%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 26s, avg 22s (n=16)
+  Completed:  median 44s, avg 195s (n=71)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.6 wrong guesses
+  Completed:  avg 2.9 wrong guesses
+    Winners:  avg 1.5 wrong guesses
+    Losers:   avg 4.9 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 15/32 wrong guesses (47%)
+  Row 1: 7/32 wrong guesses (22%)
+  Row 2: 2/32 wrong guesses (6%)
+  Row 3: 8/32 wrong guesses (25%)
+
+  Row they were working on when they quit:
+    Row 0: 8 players
+    Row 1: 7 players
+    Row 3: 5 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R0:'Swallowtail': 8
+  R1:'English': 7
+  R0:'Monarchs': 5
+  R3:'Conqueror': 5
+  R0:'Red admirals': 2
+  R2:'& Sour': 2
+  R3:'Nicknames': 2
+  R3:'Robert': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  level_started: 13
+  session_started: 10
+  start_screen_viewed: 10
+  session_start: 7
+  session_end: 5
+  tutorial_started: 1
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-11
+Total players: 66 | Completed: 50 (31W/19L) | Incomplete: 16
+================================================================================
+
+  Abandonment rate: 16/66 (24%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  , GB                           mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 0 (correct) | Play time: 4s
+      Row 0: 'This' -> WRONG
+      Row 0: 'Platinum' -> correct (+3.6s)
+  , GB                           desktop  | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'This' -> WRONG
+  , GB                           mobile   | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'This' -> WRONG
+  City of London, GB             desktop  | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'Iodine' -> WRONG
+  Leicester, GB                  mobile   | 2 guesses (2 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 15s
+      Row 0: 'This' -> WRONG
+      Row 0: 'Iodine' -> WRONG (+14.6s)
+  Leicester, GB                  mobile   | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'This' -> WRONG
+  Cardiff, GB                    mobile   | 3 guesses (1 wrong) | Rows: 2/4 | Last: Row 0 (correct) | Play time: 17s
+      Row 0: 'This' -> WRONG
+      Row 1: 'Silver' -> correct (+7.9s)
+      Row 0: 'Platinum' -> correct (+8.7s)
+  , GB                           mobile   | 2 guesses (2 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 22s
+      Row 0: 'This' -> WRONG
+      Row 0: 'Iodine' -> WRONG (+22.1s)
+  , GB                           mobile   | 2 guesses (2 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 22s
+      Row 0: 'This' -> WRONG
+      Row 0: 'Iodine' -> WRONG (+22.1s)
+  , GB                           mobile   | 4 guesses (2 wrong) | Rows: 2/4 | Last: Row 3 (correct) | Play time: 119s
+      Row 1: 'Birthday present' -> WRONG
+      Row 1: 'Silver' -> correct (+9.0s)
+      Row 3: 'Aircraft' -> WRONG (+107.0s)
+      Row 3: 'Gold' -> correct (+2.8s)
+  Jarrow, GB                     mobile   | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'This' -> WRONG
+  Sleaford, GB                   tablet   | 1 guesses (1 wrong) | Rows: 0/4 | Last: Row 0 (WRONG) | Play time: 0s
+      Row 0: 'This' -> WRONG
+  Bideford, GB                   desktop  | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 0 (correct) | Play time: 2s
+      Row 0: 'Iodine' -> WRONG
+      Row 0: 'Platinum' -> correct (+1.6s)
+  Edinburgh, GB                  mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 0 (correct) | Play time: 2s
+      Row 0: 'Iodine' -> WRONG
+      Row 0: 'Platinum' -> correct (+1.6s)
+  , GB                           mobile   | 5 guesses (1 wrong) | Rows: 4/4 | Last: Row 3 (correct) | Play time: 70s
+      Row 0: 'This' -> WRONG
+      Row 1: 'Silver' -> correct (+16.4s)
+      Row 2: 'Palladium' -> correct (+17.3s)
+      Row 0: 'Platinum' -> correct (+2.9s)
+      Row 3: 'Gold' -> correct (+33.4s)
+  Lambeth, GB                    mobile   | 6 guesses (2 wrong) | Rows: 4/4 | Last: Row 2 (correct) | Play time: 33s
+      Row 0: 'This' -> WRONG
+      Row 0: 'Iodine' -> WRONG (+4.1s)
+      Row 0: 'Platinum' -> correct (+4.0s)
+      Row 1: 'Silver' -> correct (+10.8s)
+      Row 3: 'Gold' -> correct (+7.4s)
+      Row 2: 'Palladium' -> correct (+6.2s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  0/4 rows completed: 9/16 (56%)
+  1/4 rows completed: 3/16 (19%)
+  2/4 rows completed: 2/16 (12%)
+  4/4 rows completed: 2/16 (12%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   9/16 (56%)
+  Quit after a correct guess: 7/16 (44%)
+
+  Players who quit after wrong guess:
+    , GB                           Row 0: 'This' | Lives remaining: 1 | Rows done: 0/4
+    , GB                           Row 0: 'This' | Lives remaining: 1 | Rows done: 0/4
+    City of London, GB             Row 0: 'Iodine' | Lives remaining: 0 | Rows done: 0/4
+    Leicester, GB                  Row 0: 'Iodine' | Lives remaining: 2 | Rows done: 0/4
+    Leicester, GB                  Row 0: 'This' | Lives remaining: 3 | Rows done: 0/4
+    , GB                           Row 0: 'Iodine' | Lives remaining: 2 | Rows done: 0/4
+    , GB                           Row 0: 'Iodine' | Lives remaining: 2 | Rows done: 0/4
+    Jarrow, GB                     Row 0: 'This' | Lives remaining: 3 | Rows done: 0/4
+    Sleaford, GB                   Row 0: 'This' | Lives remaining: 3 | Rows done: 0/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 4/16 (25%)
+  Completed players who played tutorial: 10/50 (20%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      3/18 abandoned (17%) | 15/18 completed (83%)
+  mobile       12/45 abandoned (27%) | 33/45 completed (73%)
+  tablet       1/3 abandoned (33%) | 2/3 completed (67%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 22s, avg 30s (n=10)
+  Completed:  median 31s, avg 124s (n=48)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.3 wrong guesses
+  Completed:  avg 1.9 wrong guesses
+    Winners:  avg 0.9 wrong guesses
+    Losers:   avg 3.5 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 19/21 wrong guesses (90%)
+  Row 1: 1/21 wrong guesses (5%)
+  Row 2: 0/21 wrong guesses (0%)
+  Row 3: 1/21 wrong guesses (5%)
+
+  Row they were working on when they quit:
+    Row 0: 13 players
+    Row 3: 2 players
+    Row 2: 1 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R0:'This': 12
+  R0:'Iodine': 7
+  R1:'Birthday present': 1
+  R3:'Aircraft': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  level_started: 11
+  start_screen_viewed: 9
+  session_started: 9
+  session_start: 7
+  tutorial_started: 4
+  tutorial_skipped: 3
+  session_end: 1
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-12
+Total players: 49 | Completed: 41 (31W/10L) | Incomplete: 8
+================================================================================
+
+  Abandonment rate: 8/49 (16%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  , GB                           mobile   | 5 guesses (1 wrong) | Rows: 4/4 | Last: Row 3 (correct) | Play time: 39s
+      Row 0: 'Cross' -> correct
+      Row 1: 'Station' -> WRONG (+7.3s)
+      Row 2: 'Square' -> correct (+28.4s)
+      Row 1: 'Triangle' -> correct (+2.1s)
+      Row 3: 'Circle' -> correct (+1.2s)
+  Beckenham, GB                  mobile   | 5 guesses (1 wrong) | Rows: 4/4 | Last: Row 3 (correct) | Play time: 39s
+      Row 0: 'Cross' -> correct
+      Row 1: 'Station' -> WRONG (+7.3s)
+      Row 2: 'Square' -> correct (+28.4s)
+      Row 1: 'Triangle' -> correct (+2.1s)
+      Row 3: 'Circle' -> correct (+1.2s)
+  , GB                           desktop  | 5 guesses (3 wrong) | Rows: 2/4 | Last: Row 2 (correct) | Play time: 11s
+      Row 1: 'Caste' -> WRONG
+      Row 1: 'Class' -> WRONG (+1.5s)
+      Row 1: 'Triangle' -> correct (+2.0s)
+      Row 2: 'Coal' -> WRONG (+6.5s)
+      Row 2: 'Square' -> correct (+1.4s)
+  Wembley, GB                    desktop  | 3 guesses (2 wrong) | Rows: 1/4 | Last: Row 1 (WRONG) | Play time: 32s
+      Row 0: 'Sharp' -> WRONG
+      Row 0: 'Cross' -> correct (+2.7s)
+      Row 1: 'Caste' -> WRONG (+29.0s)
+  Bristol, GB                    mobile   | 5 guesses (3 wrong) | Rows: 2/4 | Last: Row 1 (correct) | Play time: 35s
+      Row 0: 'Sharp' -> WRONG
+      Row 0: 'Cross' -> correct (+2.7s)
+      Row 1: 'Caste' -> WRONG (+29.0s)
+      Row 1: 'Class' -> WRONG (+1.9s)
+      Row 1: 'Triangle' -> correct (+1.2s)
+  Ealing, GB                     mobile   | 5 guesses (2 wrong) | Rows: 3/4 | Last: Row 3 (correct) | Play time: 28s
+      Row 1: 'Caste' -> WRONG
+      Row 1: 'Class' -> WRONG (+1.9s)
+      Row 1: 'Triangle' -> correct (+1.2s)
+      Row 2: 'Square' -> correct (+8.5s)
+      Row 3: 'Circle' -> correct (+16.9s)
+  Pont-y-clun, GB                desktop  | 4 guesses (2 wrong) | Rows: 2/4 | Last: Row 2 (correct) | Play time: 12s
+      Row 1: 'Caste' -> WRONG
+      Row 1: 'Class' -> WRONG (+1.9s)
+      Row 1: 'Triangle' -> correct (+1.2s)
+      Row 2: 'Square' -> correct (+8.5s)
+  Barnsley, GB                   mobile   | 5 guesses (1 wrong) | Rows: 4/4 | Last: Row 3 (correct) | Play time: 66s
+      Row 0: 'Cross' -> correct
+      Row 1: 'Triangle' -> correct (+1.5s)
+      Row 2: 'Colon' -> WRONG (+51.5s)
+      Row 2: 'Square' -> correct (+7.3s)
+      Row 3: 'Circle' -> correct (+5.9s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  1/4 rows completed: 1/8 (12%)
+  2/4 rows completed: 3/8 (38%)
+  3/4 rows completed: 1/8 (12%)
+  4/4 rows completed: 3/8 (38%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   1/8 (12%)
+  Quit after a correct guess: 7/8 (88%)
+
+  Players who quit after wrong guess:
+    Wembley, GB                    Row 1: 'Caste' | Lives remaining: 2 | Rows done: 1/4
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 0/8 (0%)
+  Completed players who played tutorial: 2/41 (5%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      3/14 abandoned (21%) | 11/14 completed (79%)
+  mobile       5/30 abandoned (17%) | 25/30 completed (83%)
+  tablet       0/5 abandoned (0%) | 5/5 completed (100%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 35s, avg 33s (n=8)
+  Completed:  median 56s, avg 133s (n=32)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 1.9 wrong guesses
+  Completed:  avg 0.6 wrong guesses
+    Winners:  avg 0.1 wrong guesses
+    Losers:   avg 2.1 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 2/15 wrong guesses (13%)
+  Row 1: 11/15 wrong guesses (73%)
+  Row 2: 2/15 wrong guesses (13%)
+  Row 3: 0/15 wrong guesses (0%)
+
+  Row they were working on when they quit:
+    Row 3: 4 players
+    Row 2: 2 players
+    Row 1: 2 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R1:'Caste': 5
+  R1:'Class': 4
+  R1:'Station': 2
+  R0:'Sharp': 2
+  R2:'Coal': 1
+  R2:'Colon': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  session_started: 5
+  start_screen_viewed: 5
+  level_started: 5
+  session_start: 3
+  session_end: 3
+
+
+
+================================================================================
+ABANDONMENT ANALYSIS: PUZZLE: 2026-04-13
+Total players: 28 | Completed: 23 (4W/19L) | Incomplete: 5
+================================================================================
+
+  Abandonment rate: 5/28 (18%)
+
+
+--- 1. INDIVIDUAL ABANDONMENT DETAILS ---
+  Askim, SE                      desktop  | 4 guesses (3 wrong) | Rows: 1/4 | Last: Row 3 (correct) | Play time: 16s
+      Row 1: 'Library' -> WRONG
+      Row 2: 'Sunrise' -> WRONG (+12.2s)
+      Row 3: 'Teapot' -> WRONG (+2.8s)
+      Row 3: 'Suspense' -> correct (+1.4s)
+  , GB                           desktop  | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 2 (correct) | Play time: 46s
+      Row 1: 'Library' -> WRONG
+      Row 2: 'Eastenders doofs' -> correct (+46.2s)
+  City of London, GB             mobile   | 2 guesses (1 wrong) | Rows: 1/4 | Last: Row 2 (correct) | Play time: 46s
+      Row 1: 'Library' -> WRONG
+      Row 2: 'Eastenders doofs' -> correct (+46.2s)
+  , GB                           mobile   | 4 guesses (3 wrong) | Rows: 1/4 | Last: Row 3 (correct) | Play time: 10s
+      Row 3: 'Teapot' -> WRONG
+      Row 3: 'Dirtbag' -> WRONG (+3.7s)
+      Row 3: 'Dramatic' -> WRONG (+3.1s)
+      Row 3: 'Suspense' -> correct (+3.2s)
+  , GB                           mobile   | 4 guesses (3 wrong) | Rows: 1/4 | Last: Row 2 (correct) | Play time: 8s
+      Row 2: 'Northbound train' -> WRONG
+      Row 2: 'Lift cabin' -> WRONG (+4.5s)
+      Row 2: 'Sunrise' -> WRONG (+1.7s)
+      Row 2: 'Eastenders doofs' -> correct (+1.6s)
+
+
+--- 2. WHERE THEY STOPPED ---
+  1/4 rows completed: 5/5 (100%)
+
+
+--- 3. LAST ACTION BEFORE QUITTING ---
+  Quit after a WRONG guess:   0/5 (0%)
+  Quit after a correct guess: 5/5 (100%)
+
+
+--- 4. TUTORIAL AND ABANDONMENT ---
+  Incomplete players who played tutorial: 2/5 (40%)
+  Completed players who played tutorial: 6/23 (26%)
+
+
+--- 5. DEVICE BREAKDOWN ---
+  desktop      2/20 abandoned (10%) | 18/20 completed (90%)
+  mobile       3/8 abandoned (38%) | 5/8 completed (62%)
+
+
+--- 6. PLAY TIME (first guess to last guess) ---
+  Incomplete: median 16s, avg 25s (n=5)
+  Completed:  median 106s, avg 336s (n=20)
+
+
+--- 7. WRONG GUESS COUNT ---
+  Incomplete: avg 2.2 wrong guesses
+  Completed:  avg 6.6 wrong guesses
+    Winners:  avg 12.8 wrong guesses
+    Losers:   avg 5.3 wrong guesses
+
+
+--- 8. WHICH ROWS CAUSED ABANDONMENT? ---
+  Row 0: 0/11 wrong guesses (0%)
+  Row 1: 3/11 wrong guesses (27%)
+  Row 2: 4/11 wrong guesses (36%)
+  Row 3: 4/11 wrong guesses (36%)
+
+  Row they were working on when they quit:
+    Row 2: 3 players
+    Row 3: 2 players
+
+
+--- 9. WRONG WORDS THAT PRECEDED ABANDONMENT ---
+  R1:'Library': 3
+  R2:'Sunrise': 2
+  R3:'Teapot': 2
+  R3:'Dirtbag': 1
+  R3:'Dramatic': 1
+  R2:'Northbound train': 1
+  R2:'Lift cabin': 1
+
+
+--- 10. OTHER EVENTS FROM ABANDONERS ---
+  session_start: 3
+  session_started: 3
+  start_screen_viewed: 3
+  level_started: 3
+  session_end: 3
+  tutorial_started: 2
+  tutorial_skipped: 2

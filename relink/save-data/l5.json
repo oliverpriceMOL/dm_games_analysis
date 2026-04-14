@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 1,
+  "id": "l5",
+  "date": "",
+  "name": "Monopoly",
+  "rows": [
+    {
+      "id": "row-l5-17",
+      "position": 0,
+      "category": "Second words of Premier League football teams",
+      "tiles": [
+        {
+          "id": "tile-l5-65",
+          "text": "Palace",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l5-66",
+          "text": "Villa",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l5-67",
+          "text": "Hotel",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l5-68",
+          "text": "City",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Sport"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l5-18",
+      "position": 1,
+      "category": "Fortifications",
+      "tiles": [
+        {
+          "id": "tile-l5-69",
+          "text": "Castle",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l5-70",
+          "text": "House",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l5-71",
+          "text": "Keep",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l5-72",
+          "text": "Citadel",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l5-19",
+      "position": 2,
+      "category": "Subjects of Beatles songs",
+      "tiles": [
+        {
+          "id": "tile-l5-73",
+          "text": "Walrus",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l5-74",
+          "text": "Her Majesty",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l5-75",
+          "text": "Jude",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l5-76",
+          "text": "Dog",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l5-20",
+      "position": 3,
+      "category": "Top-hatted mascots",
+      "tiles": [
+        {
+          "id": "tile-l5-77",
+          "text": "Battleship",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l5-78",
+          "text": "Monopoly",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l5-79",
+          "text": "Bassetts",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l5-80",
+          "text": "Planters",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Monopoly",
+        "source": "grid",
+        "sourceRowId": "row-l5-20"
+      }
+    ],
+    "answer": "Monopoly",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-54",
+      "tileIds": [
+        "tile-l5-67",
+        "tile-l5-65",
+        "tile-l5-66",
+        "tile-l5-68"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "All are types of building - hides that the real category is PL team second words"
+      }
+    },
+    {
+      "id": "decoy-1776089211-55",
+      "tileIds": [
+        "tile-l5-77",
+        "tile-l5-78"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "Board games - makes you think the row is board games not top-hatted mascots"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 2,
+    "decoyCount": 0,
+    "phase2TileCount": 1,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

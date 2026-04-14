@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "id": "l17",
+  "date": "2026-04-09",
+  "name": "Generations",
+  "rows": [
+    {
+      "id": "row-l17-65",
+      "position": 0,
+      "category": "The end",
+      "tiles": [
+        {
+          "id": "tile-l17-257",
+          "text": "Omega",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l17-258",
+          "text": "Ultimate",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l17-259",
+          "text": "Silent",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l17-260",
+          "text": "Finale",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l17-66",
+      "position": 1,
+      "category": "Passed down",
+      "tiles": [
+        {
+          "id": "tile-l17-261",
+          "text": "Gene",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l17-262",
+          "text": "Heirloom",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l17-263",
+          "text": "Alpha",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l17-264",
+          "text": "Tradition",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l17-67",
+      "position": 2,
+      "category": "_ _ _ Ray",
+      "tiles": [
+        {
+          "id": "tile-l17-265",
+          "text": "Sting",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l17-266",
+          "text": "Z",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l17-267",
+          "text": "X",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l17-268",
+          "text": "Gamma",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l17-68",
+      "position": 3,
+      "category": "Start with maths terms",
+      "tiles": [
+        {
+          "id": "tile-l17-269",
+          "text": "Delta",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l17-270",
+          "text": "Greatest",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l17-271",
+          "text": "Rations",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l17-272",
+          "text": "Equality",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Maths",
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Gene",
+        "source": "grid",
+        "sourceRowId": "row-l17-66"
+      },
+      {
+        "text": "Rations",
+        "source": "grid",
+        "sourceRowId": "row-l17-68"
+      }
+    ],
+    "answer": "Generations",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Word split"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-15",
+      "tileIds": [
+        "tile-l17-257",
+        "tile-l17-263",
+        "tile-l17-268",
+        "tile-l17-269"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "Greek letters - one per row creates a full false vertical answer. Only Alpha is the real impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-16",
+      "tileIds": [
+        "tile-l17-267"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Gen X fits the Generations impostor theme - player may pick X instead of Z as impostor in row 3"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

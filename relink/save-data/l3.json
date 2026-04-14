@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "id": "l3",
+  "date": "",
+  "name": "Daily ____",
+  "rows": [
+    {
+      "id": "row-l3-9",
+      "position": 0,
+      "category": "Celestial newspaper names",
+      "tiles": [
+        {
+          "id": "tile-l3-33",
+          "text": "Star",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l3-34",
+          "text": "Mail",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l3-35",
+          "text": "Sun",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l3-36",
+          "text": "Globe",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l3-10",
+      "position": 1,
+      "category": "England footballers",
+      "tiles": [
+        {
+          "id": "tile-l3-37",
+          "text": "Kane",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l3-38",
+          "text": "Rice",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l3-39",
+          "text": "Bread",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l3-40",
+          "text": "Stones",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Sport"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Food"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l3-11",
+      "position": 2,
+      "category": "70s rock bands",
+      "tiles": [
+        {
+          "id": "tile-l3-41",
+          "text": "Dire Straits",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l3-42",
+          "text": "Genesis",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l3-43",
+          "text": "Queen",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l3-44",
+          "text": "Grind",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l3-12",
+      "position": 3,
+      "category": "Homophones of Team GB Olympians",
+      "tiles": [
+        {
+          "id": "tile-l3-45",
+          "text": "Daily",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l3-46",
+          "text": "Homes",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l3-47",
+          "text": "Bored man",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l3-48",
+          "text": "Planner",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "Homophone"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Sport"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Daily",
+        "source": "grid",
+        "sourceRowId": "row-l3-12"
+      }
+    ],
+    "answer": "Daily ____",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-40",
+      "tileIds": [
+        "tile-l3-34",
+        "tile-l3-33",
+        "tile-l3-35",
+        "tile-l3-36"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "All are newspapers - hard to spot which does not fit celestial newspaper names"
+      }
+    },
+    {
+      "id": "decoy-1776089211-41",
+      "tileIds": [
+        "tile-l3-33"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Star is also Daily Star - fits the impostor relink theme Daily ___"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 1,
+    "decoyCount": 0,
+    "phase2TileCount": 1,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

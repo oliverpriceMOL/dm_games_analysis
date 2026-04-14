@@ -1,0 +1,288 @@
+{
+  "schemaVersion": 1,
+  "id": "l22",
+  "date": "",
+  "name": "Named after US Presidents",
+  "rows": [
+    {
+      "id": "row-l22-85",
+      "position": 0,
+      "category": "Leadership roles",
+      "tiles": [
+        {
+          "id": "tile-l22-337",
+          "text": "Presidents",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l22-338",
+          "text": "States",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l22-339",
+          "text": "Chairs",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l22-340",
+          "text": "Chiefs",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l22-86",
+      "position": 1,
+      "category": "Jordan Peele filmography",
+      "tiles": [
+        {
+          "id": "tile-l22-341",
+          "text": "Us",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l22-342",
+          "text": "Nope",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l22-343",
+          "text": "Dam",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l22-344",
+          "text": "Get Out",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Film-TV"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l22-87",
+      "position": 2,
+      "category": "Headline lingo",
+      "tiles": [
+        {
+          "id": "tile-l22-345",
+          "text": "Named",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l22-346",
+          "text": "Memorial",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l22-347",
+          "text": "Sensational",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l22-348",
+          "text": "Slams",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary",
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "Literature"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l22-88",
+      "position": 3,
+      "category": "Associated with '8'",
+      "tiles": [
+        {
+          "id": "tile-l22-349",
+          "text": "Fortune-telling ball",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l22-350",
+          "text": "Snowman",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l22-351",
+          "text": "Teddy bear",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l22-352",
+          "text": "After",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Named",
+        "source": "grid",
+        "sourceRowId": "row-l22-87"
+      },
+      {
+        "text": "After",
+        "source": "grid",
+        "sourceRowId": "row-l22-88"
+      },
+      {
+        "text": "Us",
+        "source": "grid",
+        "sourceRowId": "row-l22-86"
+      },
+      {
+        "text": "Presidents",
+        "source": "grid",
+        "sourceRowId": "row-l22-85"
+      }
+    ],
+    "answer": "Named after US Presidents",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "knowledgeDomain": [
+          "History",
+          "Geography"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-29",
+      "tileIds": [
+        "tile-l22-338",
+        "tile-l22-337",
+        "tile-l22-340"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "US government - makes you think the row is about government and Chairs is the impostor"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 1,
+    "decoyCount": 0,
+    "phase2TileCount": 4,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

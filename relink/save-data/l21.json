@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "id": "l21",
+  "date": "",
+  "name": "Spaceships",
+  "rows": [
+    {
+      "id": "row-l21-81",
+      "position": 0,
+      "category": "Ice lollies",
+      "tiles": [
+        {
+          "id": "tile-l21-321",
+          "text": "Serenity",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l21-322",
+          "text": "Magnum",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l21-323",
+          "text": "Rocket",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l21-324",
+          "text": "Fab",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Food"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l21-82",
+      "position": 1,
+      "category": "Bottom row of a Windows keyboard",
+      "tiles": [
+        {
+          "id": "tile-l21-325",
+          "text": "Windows",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l21-326",
+          "text": "Enterprise",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l21-327",
+          "text": "Space",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l21-328",
+          "text": "Control",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Technology"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Technology"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l21-83",
+      "position": 2,
+      "category": "Potato dishes with first letter changed to 's'",
+      "tiles": [
+        {
+          "id": "tile-l21-329",
+          "text": "Ships",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l21-330",
+          "text": "Sloo",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l21-331",
+          "text": "Soyuz",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l21-332",
+          "text": "Sash",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "Letter add-delete"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Food"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l21-84",
+      "position": 3,
+      "category": "What happens to your tongue in idioms",
+      "tiles": [
+        {
+          "id": "tile-l21-333",
+          "text": "Tie",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l21-334",
+          "text": "Curiosity",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l21-335",
+          "text": "Cat",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l21-336",
+          "text": "Lost",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language",
+            "Literature"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Language"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Space",
+        "source": "grid",
+        "sourceRowId": "row-l21-82"
+      },
+      {
+        "text": "Ships",
+        "source": "grid",
+        "sourceRowId": "row-l21-83"
+      }
+    ],
+    "answer": "Spaceships",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-26",
+      "tileIds": [
+        "tile-l21-326",
+        "tile-l21-325",
+        "tile-l21-328"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Business/corporate - makes you think the row is corporate terms and Space is the impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-27",
+      "tileIds": [
+        "tile-l21-334",
+        "tile-l21-335"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Curiosity killed the cat - famous saying links these tiles"
+      }
+    },
+    {
+      "id": "decoy-1776089211-28",
+      "tileIds": [
+        "tile-l21-323"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Rocket is a spaceship - fits the impostor Spaceships theme, player may pick Rocket instead of Serenity"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

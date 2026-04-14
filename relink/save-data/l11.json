@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "id": "l11",
+  "date": "2026-03-31",
+  "name": "Newspaper sections",
+  "rows": [
+    {
+      "id": "row-l11-41",
+      "position": 0,
+      "category": "School subjects",
+      "tiles": [
+        {
+          "id": "tile-l11-161",
+          "text": "Science",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-162",
+          "text": "News",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-163",
+          "text": "English",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-164",
+          "text": "French",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l11-42",
+      "position": 1,
+      "category": "Made of wood",
+      "tiles": [
+        {
+          "id": "tile-l11-165",
+          "text": "Newspaper",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l11-166",
+          "text": "Trees",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-167",
+          "text": "Cricket bat",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-168",
+          "text": "Money",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l11-43",
+      "position": 2,
+      "category": "Pronunciations in 'Let's Call The Whole Thing Off'",
+      "tiles": [
+        {
+          "id": "tile-l11-169",
+          "text": "Neither",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-170",
+          "text": "Tomato",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-171",
+          "text": "Potato",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-172",
+          "text": "Health",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l11-44",
+      "position": 3,
+      "category": "Structure of a parliamentary act",
+      "tiles": [
+        {
+          "id": "tile-l11-173",
+          "text": "Columns",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-174",
+          "text": "Parts",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-175",
+          "text": "Sections",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l11-176",
+          "text": "Chapters",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Newspaper",
+        "source": "grid",
+        "sourceRowId": "row-l11-42"
+      },
+      {
+        "text": "Sections",
+        "source": "grid",
+        "sourceRowId": "row-l11-44"
+      }
+    ],
+    "answer": "Newspaper sections",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-3",
+      "tileIds": [
+        "tile-l11-173",
+        "tile-l11-174",
+        "tile-l11-175"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "Newspaper layout terms - makes you think newspaper structure and Chapters is the impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-4",
+      "tileIds": [
+        "tile-l11-161"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Science is a newspaper section - fits the impostor theme, player may pick Science instead of News"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 1,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

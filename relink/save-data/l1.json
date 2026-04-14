@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 1,
+  "id": "l1",
+  "date": "2026-04-15",
+  "name": "Something old, new, borrowed and blue",
+  "rows": [
+    {
+      "id": "row-l1-1",
+      "position": 0,
+      "category": "Confident' minus 'B'",
+      "tiles": [
+        {
+          "id": "tile-l1-1",
+          "text": "Old",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l1-2",
+          "text": "Relic",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l1-3",
+          "text": "Rash",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l1-4",
+          "text": "Razen",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Letter add-delete"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Language"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l1-2",
+      "position": 1,
+      "category": "Ocean nicknames",
+      "tiles": [
+        {
+          "id": "tile-l1-5",
+          "text": "Deep",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l1-6",
+          "text": "Drink",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l1-7",
+          "text": "Fresh",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l1-8",
+          "text": "Blue",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language",
+            "Geography"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l1-3",
+      "position": 2,
+      "category": "UK _____port cities",
+      "tiles": [
+        {
+          "id": "tile-l1-9",
+          "text": "New",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l1-10",
+          "text": "Stock",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l1-11",
+          "text": "Book",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l1-12",
+          "text": "South",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Geography"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l1-4",
+      "position": 3,
+      "category": "Contain watersports",
+      "tiles": [
+        {
+          "id": "tile-l1-13",
+          "text": "Borrowed",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l1-14",
+          "text": "Assailant",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l1-15",
+          "text": "Diversity",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l1-16",
+          "text": "Depression",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property",
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Sport"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Sport"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Old",
+        "source": "grid",
+        "sourceRowId": "row-l1-1"
+      },
+      {
+        "text": "New",
+        "source": "grid",
+        "sourceRowId": "row-l1-3"
+      },
+      {
+        "text": "Borrowed",
+        "source": "grid",
+        "sourceRowId": "row-l1-4"
+      },
+      {
+        "text": "Blue",
+        "source": "grid",
+        "sourceRowId": "row-l1-2"
+      }
+    ],
+    "answer": "Something old, new, borrowed and blue",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [],
+  "board": {
+    "specialistGroupCount": 1,
+    "decoyCount": 0,
+    "phase2TileCount": 4,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

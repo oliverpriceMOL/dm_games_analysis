@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "id": "l15",
+  "date": "2026-04-05",
+  "name": "Collective animals nouns",
+  "rows": [
+    {
+      "id": "row-l15-57",
+      "position": 0,
+      "category": "Long-winded stories",
+      "tiles": [
+        {
+          "id": "tile-l15-225",
+          "text": "Yarn",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l15-226",
+          "text": "Flock",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l15-227",
+          "text": "Thread",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l15-228",
+          "text": "Tale",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l15-58",
+      "position": 1,
+      "category": "The Muppets",
+      "tiles": [
+        {
+          "id": "tile-l15-229",
+          "text": "Gonzo",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l15-230",
+          "text": "Crash",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l15-231",
+          "text": "Animal",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l15-232",
+          "text": "Beaker",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Film-TV"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l15-59",
+      "position": 2,
+      "category": "Pro ___",
+      "tiles": [
+        {
+          "id": "tile-l15-233",
+          "text": "Biotics",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l15-234",
+          "text": "Mote",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l15-235",
+          "text": "School",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l15-236",
+          "text": "Nouns",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Language"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l15-60",
+      "position": 3,
+      "category": "Start with types of call",
+      "tiles": [
+        {
+          "id": "tile-l15-237",
+          "text": "Collective",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l15-238",
+          "text": "Prankster",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l15-239",
+          "text": "Coldblooded",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l15-240",
+          "text": "Murder",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Collective",
+        "source": "grid",
+        "sourceRowId": "row-l15-60"
+      },
+      {
+        "text": "Animal",
+        "source": "grid",
+        "sourceRowId": "row-l15-58"
+      },
+      {
+        "text": "Nouns",
+        "source": "grid",
+        "sourceRowId": "row-l15-59"
+      }
+    ],
+    "answer": "Collective animals nouns",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-11",
+      "tileIds": [
+        "tile-l15-226",
+        "tile-l15-225",
+        "tile-l15-227"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Textiles/wool - makes you think the row is about fabric and Tale is the impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-12",
+      "tileIds": [
+        "tile-l15-240",
+        "tile-l15-239"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Crime/killing - makes you think the row is about crime"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 3,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

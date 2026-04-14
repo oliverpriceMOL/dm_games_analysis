@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relink PDL Analysis</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+:root {
+    --bg: #f5f6fa; --card: #fff; --text: #2d3436; --muted: #636e72;
+    --accent: #6c5ce7; --accent2: #00b894; --danger: #d63031; --warn: #fdcb6e;
+    --border: #dfe6e9;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+       background: var(--bg); color: var(--text); line-height: 1.6; }
+.layout { display: flex; min-height: 100vh; }
+nav { width: 240px; background: #2d3436; color: #fff; padding: 20px 0;
+      position: fixed; height: 100vh; overflow-y: auto; }
+nav h2 { padding: 0 20px 15px; font-size: 14px; color: #b2bec3; text-transform: uppercase;
+          letter-spacing: 1px; }
+nav a { display: block; padding: 8px 20px; color: #dfe6e9; text-decoration: none;
+         font-size: 13px; border-left: 3px solid transparent; }
+nav a:hover, nav a.active { background: rgba(255,255,255,0.05); color: #fff;
+                              border-left-color: var(--accent); }
+main { margin-left: 240px; padding: 30px; max-width: 1200px; width: 100%; }
+h1 { font-size: 28px; margin-bottom: 5px; }
+.subtitle { color: var(--muted); margin-bottom: 30px; }
+.section { margin-bottom: 40px; scroll-margin-top: 20px; }
+.section h2 { font-size: 20px; margin-bottom: 15px; padding-bottom: 8px;
+               border-bottom: 2px solid var(--accent); }
+.card { background: var(--card); border-radius: 12px; padding: 20px;
+         box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin-bottom: 20px; }
+.card h3 { font-size: 16px; margin-bottom: 10px; color: var(--muted); }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+               gap: 15px; margin-bottom: 20px; }
+.stat-card { background: var(--card); border-radius: 10px; padding: 18px;
+              box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center; }
+.stat-card .value { font-size: 32px; font-weight: 700; color: var(--accent); }
+.stat-card .label { font-size: 12px; color: var(--muted); text-transform: uppercase;
+                     letter-spacing: 0.5px; margin-top: 4px; }
+.chart-container { position: relative; height: 350px; margin: 10px 0; }
+.chart-container.tall { height: 450px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: #f8f9fa; font-weight: 600; position: sticky; top: 0; }
+.heatmap-grid { display: grid; gap: 2px; margin: 10px 0; }
+.hm-cell { padding: 12px 8px; text-align: center; border-radius: 6px; font-size: 12px;
+            font-weight: 600; color: #fff; }
+.hm-header { padding: 8px; text-align: center; font-size: 11px; font-weight: 600;
+              color: var(--muted); }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px;
+          font-weight: 600; }
+.badge-green { background: #00b89420; color: #00b894; }
+.badge-amber { background: #fdcb6e30; color: #e17055; }
+.badge-red { background: #d6303120; color: #d63031; }
+.collapsible { cursor: pointer; user-select: none; }
+.collapsible::before { content: '▸ '; color: var(--muted); }
+.collapsible.open::before { content: '▾ '; }
+.collapse-content { display: none; padding-top: 10px; }
+.collapse-content.show { display: block; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 900px) {
+    nav { display: none; }
+    main { margin-left: 0; }
+    .two-col { grid-template-columns: 1fr; }
+}
+.confusion-grid { display: inline-grid; gap: 1px; background: var(--border); border-radius: 8px;
+                    overflow: hidden; margin: 10px 0; }
+.confusion-cell { padding: 10px; text-align: center; background: var(--card); min-width: 60px; font-size: 13px; }
+.confusion-header { background: #f8f9fa; font-weight: 600; font-size: 11px; }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+    <h2>PDL Analysis</h2>
+    <a href="#findings">Key Findings</a>
+    <a href="#crosstabs">PDL Cross-tabs</a>
+    <a href="#heatmap">Difficulty Heatmap</a>
+    <a href="#impostor">Impostor Domain</a>
+    <a href="#correlations">Puzzle Correlations</a>
+    <a href="#regression">Regression Models</a>
+    <a href="#vertical">Vertical Inference</a>
+    <a href="#decoys">Decoy Analysis</a>
+    <a href="#confusion">Confusion Maps</a>
+    <a href="#relink">Relink Phase</a>
+    <a href="#clusters">Clustering</a>
+    <a href="#predictions">Predictions</a>
+</nav>
+<main>
+
+<h1>Relink PDL &times; Behaviour Analysis</h1>
+<p class="subtitle">39 puzzles analysed &middot; 14 with player data &middot;
+614 total completions</p>
+
+<!-- KEY FINDINGS -->
+<div class="section" id="findings">
+<h2>Key Findings</h2>
+<div class="stats-grid" id="stats-grid"></div>
+</div>
+
+<!-- CROSS-TABS -->
+<div class="section" id="crosstabs">
+<h2>PDL Axis Breakdown</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Mean first-try correct % and average wrong guesses per row, grouped by each PDL axis. Shows which design labels correlate with harder or easier rows.</p>
+<div class="two-col">
+    <div class="card"><h3>By Manipulation Type</h3><div class="chart-container"><canvas id="chart-manip"></canvas></div></div>
+    <div class="card"><h3>By Abstraction Type</h3><div class="chart-container"><canvas id="chart-abstr"></canvas></div></div>
+    <div class="card"><h3>By Knowledge Level</h3><div class="chart-container"><canvas id="chart-know"></canvas></div></div>
+    <div class="card"><h3>By Knowledge Domain</h3><div class="chart-container tall"><canvas id="chart-domain"></canvas></div></div>
+</div>
+</div>
+
+<!-- HEATMAP -->
+<div class="section" id="heatmap">
+<h2>Manipulation &times; Abstraction Heatmap</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Mean first-try correct % for each combination. Darker red = harder.</p>
+<div class="card" id="heatmap-container"></div>
+</div>
+
+<!-- IMPOSTOR DOMAIN -->
+<div class="section" id="impostor">
+<h2>Impostor Domain Analysis</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Do impostors from the same knowledge domain as the group fool players more?</p>
+<div class="two-col">
+    <div class="card"><h3>Same vs Different Domain</h3><div class="chart-container"><canvas id="chart-domain-dist"></canvas></div></div>
+    <div class="card"><h3>By Impostor Domain</h3><div class="chart-container"><canvas id="chart-imp-domain"></canvas></div></div>
+</div>
+</div>
+
+<!-- CORRELATIONS -->
+<div class="section" id="correlations">
+<h2>Puzzle-Level Correlations</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Board-level design parameters vs solve rate. Each point is one puzzle date.</p>
+<div class="two-col" id="scatter-container"></div>
+</div>
+
+<!-- REGRESSION -->
+<div class="section" id="regression">
+<h2>Regression Models</h2>
+<div class="two-col">
+    <div class="card">
+        <h3>Puzzle-Level (n=14)</h3>
+        <table id="reg-puzzle-table"></table>
+        <p style="margin-top:10px;color:var(--muted);font-size:13px;">
+            R&sup2; = 0.653 &middot; LOO-CV MAE = 13.2pp
+        </p>
+    </div>
+    <div class="card">
+        <h3>Row-Level: All Rows (n=56)</h3>
+        <table id="reg-row-table"></table>
+        <p style="margin-top:10px;color:var(--muted);font-size:13px;">R&sup2; = 0.267</p>
+    </div>
+</div>
+<div class="card" style="margin-top:20px;">
+    <h3>Row-Level: Position-Controlled (n=56)</h3>
+    <table id="reg-intrinsic-table"></table>
+    <p style="margin-top:10px;color:var(--muted);font-size:13px;">
+        R&sup2; = 0.268 — Same features + mean attempt position as covariate to control for vertical inference
+    </p>
+</div>
+<div class="card" style="margin-top:20px;">
+    <h3>Regression Coefficients (Row-Level Forest Plot)</h3>
+    <div class="chart-container tall"><canvas id="chart-forest"></canvas></div>
+</div>
+</div>
+
+<!-- VERTICAL INFERENCE -->
+<div class="section" id="vertical">
+<h2>Vertical Inference &amp; Theme Transparency</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Which PDL features promote or inhibit vertical inference? Acceleration = ratio of last to first inter-correct interval (&lt;1 means players sped up). Transparency = % of players who got their 3rd row first-try after solving 2.</p>
+<div class="card" style="margin-bottom:20px;">
+    <h3>Summary</h3>
+    <div id="vi-summary"></div>
+</div>
+<div class="card" style="margin-bottom:20px;">
+    <h3>Acceleration by PDL Feature</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">
+        Mean acceleration factor per category. Lower = players sped up more (stronger vertical inference). The dashed line marks 1.0 (no change).
+    </p>
+    <div id="vi-accel-charts"></div>
+</div>
+<div class="card" style="margin-bottom:20px;">
+    <h3>Transparency by PDL Feature</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">
+        Mean theme transparency (% first-try on 3rd row after 2 correct) per category. Higher = theme is more deducible.
+    </p>
+    <div id="vi-transp-charts"></div>
+</div>
+<div class="card">
+    <h3>Per-Puzzle Detail</h3>
+    <table id="vi-puzzle-table">
+        <thead><tr><th>Puzzle</th><th>Date</th><th>Acceleration</th><th>Transparency</th><th>Solve Rate</th></tr></thead>
+        <tbody></tbody>
+    </table>
+</div>
+</div>
+
+<!-- DECOYS -->
+<div class="section" id="decoys">
+<h2>Decoy Analysis</h2>
+<div class="two-col">
+    <div class="card">
+        <h3>Puzzles With vs Without Decoys</h3>
+        <div class="chart-container"><canvas id="chart-decoy-compare"></canvas></div>
+    </div>
+    <div class="card">
+        <h3>Decoy Hit Rate</h3>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">What fraction of wrong guesses match tiles from designed decoy groupings?</p>
+        <div class="chart-container"><canvas id="chart-decoy-hits"></canvas></div>
+    </div>
+</div>
+</div>
+
+<!-- CONFUSION -->
+<div class="section" id="confusion">
+<h2>Cross-Row Confusion</h2>
+<p style="color:var(--muted);margin-bottom:15px;">When a player guesses wrong in a row, which row did the tile they picked actually belong to? High off-diagonal values indicate cross-row interference.</p>
+<div id="confusion-container"></div>
+</div>
+
+<!-- RELINK PHASE -->
+<div class="section" id="relink">
+<h2>Relink Phase PDL</h2>
+<div class="two-col">
+    <div class="card">
+        <h3>By Meta-Connection Manipulation</h3>
+        <div class="chart-container"><canvas id="chart-relink-manip"></canvas></div>
+    </div>
+    <div class="card">
+        <h3>By Phase 2 Tile Count</h3>
+        <div class="chart-container"><canvas id="chart-relink-tiles"></canvas></div>
+    </div>
+</div>
+</div>
+
+<!-- CLUSTERING -->
+<div class="section" id="clusters">
+<h2>Puzzle &amp; Row Archetypes</h2>
+<div class="two-col">
+    <div class="card">
+        <h3>Puzzle Clusters (k=3)</h3>
+        <div class="chart-container"><canvas id="chart-puzzle-cluster"></canvas></div>
+        <div id="cluster-members" style="margin-top:15px;"></div>
+    </div>
+    <div class="card">
+        <h3>Row Archetypes (k=4)</h3>
+        <div class="chart-container"><canvas id="chart-row-cluster"></canvas></div>
+    </div>
+</div>
+</div>
+
+<!-- PREDICTIONS -->
+<div class="section" id="predictions">
+<h2>Difficulty Predictions</h2>
+<p style="color:var(--muted);margin-bottom:15px;">
+    Predicted solve rate for all 39 puzzles based on row-level PDL regression.
+    Validation: r = 0.479, MAE = 16.0pp
+</p>
+<div class="card" style="margin-bottom:20px;">
+    <h3>Predicted vs Actual (Dated Puzzles)</h3>
+    <div class="chart-container"><canvas id="chart-pred-scatter"></canvas></div>
+</div>
+<div class="card">
+    <h3>All Puzzles — Predicted Difficulty</h3>
+    <table id="pred-table">
+        <thead><tr><th>Puzzle</th><th>Date</th><th>Predicted</th><th>Actual</th><th>Delta</th>
+                   <th>Manip. Complexity</th><th>Cluster</th></tr></thead>
+        <tbody></tbody>
+    </table>
+</div>
+</div>
+
+</main>
+</div>
+
+<script>
+// ── Data ──
+const chartData = {"Manipulation": {"labels": ["Compound", "Hidden word", "Homophone", "None", "Word split"], "first_try": [58.294819793589085, 35.947086968758796, 72.3404255319149, 61.93444421859672, 97.72727272727273], "avg_wrong": [0.8701677312716132, 1.4070456890890326, 0.425531914893617, 0.8303838732792751, 0.06818181818181818], "never_correct": [13.133800161855788, 26.349563748944554, 17.02127659574468, 12.805668918211873, 2.272727272727273], "n": [7, 5, 1, 42, 1]}, "Abstraction": {"labels": ["Association", "Direct membership", "Shared property"], "first_try": [64.67311598757503, 62.64305048348323, 51.572515144328314], "avg_wrong": [0.7223148325271681, 0.8161802157698814, 1.0355904330388976], "never_correct": [20.524417238269614, 12.15827958995932, 17.50502589913297], "n": [3, 39, 14]}, "Knowledge": {"labels": ["Common cultural", "General vocabulary", "Specialist cultural"], "first_try": [65.85253247904733, 56.07387185541217, 82.44360902255639], "avg_wrong": [0.8819304421265555, 0.888651707792522, 0.31165413533834585], "never_correct": [11.29933747237821, 15.76931414556534, 2.631578947368421], "n": [17, 37, 2]}, "Knowledge Domain": {"labels": ["Film-TV", "Food", "General", "Geography", "Language", "Literature", "Maths", "Music", "Religion", "Science", "Technology"], "first_try": [65.01111934766493, 78.84360551027217, 63.466823667152006, 50.847457627118644, 58.288450487606, 58.69565217391305, 31.380867498514558, 70.44545829665782, 72.3404255319149, 55.87871193134352, 43.40311986863711], "avg_wrong": [0.5767234988880652, 0.3973926307259641, 0.7894789036581561, 1.576271186440678, 0.8656918960822949, 0.6521739130434783, 1.2358526440879383, 0.70135095686391, 0.425531914893617, 1.0657059314954052, 1.6276683087027914], "never_correct": [19.68124536693847, 5.893512560179227, 11.33668165160702, 8.47457627118644, 14.360139963111083, 28.26086956521739, 39.3630421865716, 8.866879923921372, 17.02127659574468, 7.562466772993089, 14.827586206896552], "n": [2, 3, 14, 1, 19, 1, 3, 6, 1, 3, 3]}};
+const heatmapManips = ["Compound", "Hidden word", "Homophone", "None", "Word split"];
+const heatmapAbstrs = ["Association", "Direct membership", "Shared property"];
+const heatmapValues = [[null, null, null, 64.7, null], [58.3, null, 72.3, 63.3, null], [null, 35.9, null, 55.6, 97.7]];
+const heatmapAnnotations = [["", "", "", "65% (n=3)", ""], ["58% (n=7)", "", "72% (n=1)", "63% (n=31)", ""], ["", "36% (n=5)", "", "56% (n=8)", "98% (n=1)"]];
+const scatterData = {"phase2TileCount": {"label": "Phase 2 Tile Count", "xs": [2, 3, 2, 2, 3, 3, 3, 2, 4, 2, 3, 2, 3, 2], "ys": [82.9, 54.4, 38.6, 66.7, 25.0, 35.0, 48.1, 71.8, 59.6, 21.2, 61.9, 61.2, 75.6, 17.4], "pearson_r": 0.046, "spearman_r": -0.095, "labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "decoyCount": {"label": "Decoy Count", "xs": [2, 3, 2, 2, 2, 2, 1, 3, 0, 2, 1, 1, 0, 0], "ys": [82.9, 54.4, 38.6, 66.7, 25.0, 35.0, 48.1, 71.8, 59.6, 21.2, 61.9, 61.2, 75.6, 17.4], "pearson_r": 0.034, "spearman_r": -0.125, "labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "manipulationComplexity": {"label": "Manipulation Complexity", "xs": [0, 1, 1, 0, 1, 2, 1, 0, 2, 2, 2, 0, 1, 1], "ys": [82.9, 54.4, 38.6, 66.7, 25.0, 35.0, 48.1, 71.8, 59.6, 21.2, 61.9, 61.2, 75.6, 17.4], "pearson_r": -0.49, "spearman_r": -0.495, "labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "abstractionComplexity": {"label": "Abstraction Complexity", "xs": [1, 0, 2, 1, 1, 1, 2, 0, 0, 1, 1, 3, 1, 3], "ys": [82.9, 54.4, 38.6, 66.7, 25.0, 35.0, 48.1, 71.8, 59.6, 21.2, 61.9, 61.2, 75.6, 17.4], "pearson_r": -0.361, "spearman_r": -0.358, "labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "knowledgeBreadth": {"label": "Knowledge Breadth", "xs": [2, 4, 3, 3, 3, 2, 3, 1, 4, 3, 4, 4, 2, 3], "ys": [82.9, 54.4, 38.6, 66.7, 25.0, 35.0, 48.1, 71.8, 59.6, 21.2, 61.9, 61.2, 75.6, 17.4], "pearson_r": -0.194, "spearman_r": -0.292, "labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "specialistGroupCount": {"label": "Specialist Group Count", "xs": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0], "ys": [82.9, 54.4, 38.6, 66.7, 25.0, 35.0, 48.1, 71.8, 59.6, 21.2, 61.9, 61.2, 75.6, 17.4], "pearson_r": 0.417, "spearman_r": 0.262, "labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}};
+const regressionData = {"puzzle": {"names": ["Intercept", "Manipulation Complexity", "Abstraction Complexity", "Phase2 Tile Count", "Player Count (covariate)"], "coefs": [0.2476, -0.258, -0.0575, 0.157, 0.0036], "r2": 0.653, "loo_mae": 13.2, "residuals": [18.3, -16.8, -3.9, 1.7, -26.9, 12.1, 1.6, -1.5, 1.5, -6.0, 9.6, -1.3, 17.5, -5.9], "puzzle_labels": ["Newspaper sections", "London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "row": {"names": ["Intercept", "manip:Hidden word", "manip:Homophone", "manip:None", "manip:Word split", "abstr:Direct membership", "abstr:Shared property", "know:General vocabulary", "know:Specialist cultural", "same_domain"], "coefs": [0.6635, -0.1473, 0.0851, -0.0122, 0.4705, -0.0252, -0.082, -0.0747, 0.1645, 0.0679], "r2": 0.267, "n": 56}, "pos_controlled": {"names": ["Intercept", "manip:Hidden word", "manip:Homophone", "manip:None", "manip:Word split", "abstr:Direct membership", "abstr:Shared property", "know:General vocabulary", "know:Specialist cultural", "same_domain", "mean_attempt_position"], "coefs": [0.6356, -0.1468, 0.0772, -0.0013, 0.4853, -0.0176, -0.0786, -0.0772, 0.1525, 0.0646, 0.0127], "r2": 0.268, "n": 56}};
+const viData = {"puzzles": [{"label": "Mar 31", "name": "Newspaper sections", "accel_factor": 0.818, "transparency": 93.3, "solve_rate": 82.9, "manipulationComplexity": 0, "abstractionComplexity": 1, "knowledgeBreadth": 2, "phase2TileCount": 2, "decoyCount": 2, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": true}, {"label": "Apr 1", "name": "London Underground stations", "accel_factor": 0.5, "transparency": 83.3, "solve_rate": 54.4, "manipulationComplexity": 1, "abstractionComplexity": 0, "knowledgeBreadth": 4, "phase2TileCount": 3, "decoyCount": 3, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 2", "name": "Royal flush", "accel_factor": 0.898, "transparency": 73.5, "solve_rate": 38.6, "manipulationComplexity": 1, "abstractionComplexity": 2, "knowledgeBreadth": 3, "phase2TileCount": 2, "decoyCount": 2, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 3", "name": "End in imperial units", "accel_factor": 0.836, "transparency": 66.7, "solve_rate": 66.7, "manipulationComplexity": 0, "abstractionComplexity": 1, "knowledgeBreadth": 3, "phase2TileCount": 2, "decoyCount": 2, "relink_manipulation": "Hidden word", "relink_abstraction": "Shared property", "hasSpecialist": false}, {"label": "Apr 4", "name": "Cleaning products", "accel_factor": 1.306, "transparency": 37.5, "solve_rate": 25.0, "manipulationComplexity": 1, "abstractionComplexity": 1, "knowledgeBreadth": 3, "phase2TileCount": 3, "decoyCount": 2, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 5", "name": "Collective animals nouns", "accel_factor": 1.454, "transparency": 64.3, "solve_rate": 35.0, "manipulationComplexity": 2, "abstractionComplexity": 1, "knowledgeBreadth": 2, "phase2TileCount": 3, "decoyCount": 2, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 6", "name": "Video game mascots", "accel_factor": 0.099, "transparency": 85.7, "solve_rate": 48.1, "manipulationComplexity": 1, "abstractionComplexity": 2, "knowledgeBreadth": 3, "phase2TileCount": 3, "decoyCount": 1, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 7", "name": "Strings section", "accel_factor": 0.544, "transparency": 81.2, "solve_rate": 71.8, "manipulationComplexity": 0, "abstractionComplexity": 0, "knowledgeBreadth": 1, "phase2TileCount": 2, "decoyCount": 3, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 8", "name": "Renewable energy", "accel_factor": 0.871, "transparency": 77.5, "solve_rate": 59.6, "manipulationComplexity": 2, "abstractionComplexity": 0, "knowledgeBreadth": 4, "phase2TileCount": 4, "decoyCount": 0, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 9", "name": "Generations", "accel_factor": 1.345, "transparency": 49.0, "solve_rate": 21.2, "manipulationComplexity": 2, "abstractionComplexity": 1, "knowledgeBreadth": 3, "phase2TileCount": 2, "decoyCount": 2, "relink_manipulation": "Word split", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 10", "name": "Nicknames for English Monarchs", "accel_factor": 0.72, "transparency": 63.0, "solve_rate": 61.9, "manipulationComplexity": 2, "abstractionComplexity": 1, "knowledgeBreadth": 4, "phase2TileCount": 3, "decoyCount": 1, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 11", "name": "Precious metals", "accel_factor": 0.343, "transparency": 75.9, "solve_rate": 61.2, "manipulationComplexity": 0, "abstractionComplexity": 3, "knowledgeBreadth": 4, "phase2TileCount": 2, "decoyCount": 1, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": true}, {"label": "Apr 12", "name": "PlayStation buttons", "accel_factor": 0.431, "transparency": 92.6, "solve_rate": 75.6, "manipulationComplexity": 1, "abstractionComplexity": 1, "knowledgeBreadth": 2, "phase2TileCount": 3, "decoyCount": 0, "relink_manipulation": "None", "relink_abstraction": "Direct membership", "hasSpecialist": false}, {"label": "Apr 13", "name": "Dramatic pause", "accel_factor": 1.893, "transparency": 23.1, "solve_rate": 17.4, "manipulationComplexity": 1, "abstractionComplexity": 3, "knowledgeBreadth": 3, "phase2TileCount": 2, "decoyCount": 0, "relink_manipulation": "Compound", "relink_abstraction": "Direct membership", "hasSpecialist": false}], "crosstabs": {"manipulationComplexity": {"label": "Manipulation Complexity", "categories": {"0": {"n": 4, "mean_accel": 0.635, "mean_transparency": 79.3, "mean_solve_rate": 70.7, "puzzles": ["Newspaper sections", "End in imperial units", "Strings section", "Precious metals"]}, "1": {"n": 6, "mean_accel": 0.854, "mean_transparency": 66.0, "mean_solve_rate": 43.2, "puzzles": ["London Underground stations", "Royal flush", "Cleaning products", "Video game mascots", "PlayStation buttons", "Dramatic pause"]}, "2": {"n": 4, "mean_accel": 1.097, "mean_transparency": 63.5, "mean_solve_rate": 44.4, "puzzles": ["Collective animals nouns", "Renewable energy", "Generations", "Nicknames for English Monarchs"]}}}, "abstractionComplexity": {"label": "Abstraction Complexity", "categories": {"0": {"n": 3, "mean_accel": 0.638, "mean_transparency": 80.7, "mean_solve_rate": 61.9, "puzzles": ["London Underground stations", "Strings section", "Renewable energy"]}, "1": {"n": 7, "mean_accel": 0.987, "mean_transparency": 66.6, "mean_solve_rate": 52.6, "puzzles": ["Newspaper sections", "End in imperial units", "Cleaning products", "Collective animals nouns", "Generations", "Nicknames for English Monarchs", "PlayStation buttons"]}, "2": {"n": 2, "mean_accel": 0.498, "mean_transparency": 79.6, "mean_solve_rate": 43.4, "puzzles": ["Royal flush", "Video game mascots"]}, "3": {"n": 2, "mean_accel": 1.118, "mean_transparency": 49.5, "mean_solve_rate": 39.3, "puzzles": ["Precious metals", "Dramatic pause"]}}}, "knowledgeBreadth": {"label": "Knowledge Breadth", "categories": {"1": {"n": 1, "mean_accel": 0.544, "mean_transparency": 81.2, "mean_solve_rate": 71.8, "puzzles": ["Strings section"]}, "2": {"n": 3, "mean_accel": 0.901, "mean_transparency": 83.4, "mean_solve_rate": 64.5, "puzzles": ["Newspaper sections", "Collective animals nouns", "PlayStation buttons"]}, "3": {"n": 6, "mean_accel": 1.063, "mean_transparency": 55.9, "mean_solve_rate": 36.2, "puzzles": ["Royal flush", "End in imperial units", "Cleaning products", "Video game mascots", "Generations", "Dramatic pause"]}, "4": {"n": 4, "mean_accel": 0.609, "mean_transparency": 74.9, "mean_solve_rate": 59.3, "puzzles": ["London Underground stations", "Renewable energy", "Nicknames for English Monarchs", "Precious metals"]}}}, "phase2TileCount": {"label": "Phase 2 Tile Count", "categories": {"2": {"n": 7, "mean_accel": 0.954, "mean_transparency": 66.1, "mean_solve_rate": 51.4, "puzzles": ["Newspaper sections", "Royal flush", "End in imperial units", "Strings section", "Generations", "Precious metals", "Dramatic pause"]}, "3": {"n": 6, "mean_accel": 0.752, "mean_transparency": 71.1, "mean_solve_rate": 50.0, "puzzles": ["London Underground stations", "Cleaning products", "Collective animals nouns", "Video game mascots", "Nicknames for English Monarchs", "PlayStation buttons"]}, "4": {"n": 1, "mean_accel": 0.871, "mean_transparency": 77.5, "mean_solve_rate": 59.6, "puzzles": ["Renewable energy"]}}}, "decoyCount": {"label": "Decoy Count", "categories": {"0": {"n": 3, "mean_accel": 1.065, "mean_transparency": 64.4, "mean_solve_rate": 50.9, "puzzles": ["Renewable energy", "PlayStation buttons", "Dramatic pause"]}, "1": {"n": 3, "mean_accel": 0.387, "mean_transparency": 74.9, "mean_solve_rate": 57.1, "puzzles": ["Video game mascots", "Nicknames for English Monarchs", "Precious metals"]}, "2": {"n": 6, "mean_accel": 1.109, "mean_transparency": 64.0, "mean_solve_rate": 44.9, "puzzles": ["Newspaper sections", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Generations"]}, "3": {"n": 2, "mean_accel": 0.522, "mean_transparency": 82.2, "mean_solve_rate": 63.1, "puzzles": ["London Underground stations", "Strings section"]}}}, "relink_manipulation": {"label": "Relink Manipulation", "categories": {"Compound": {"n": 6, "mean_accel": 1.022, "mean_transparency": 63.5, "mean_solve_rate": 47.4, "puzzles": ["Newspaper sections", "Royal flush", "Cleaning products", "Renewable energy", "Precious metals", "Dramatic pause"]}, "Hidden word": {"n": 1, "mean_accel": 0.836, "mean_transparency": 66.7, "mean_solve_rate": 66.7, "puzzles": ["End in imperial units"]}, "None": {"n": 6, "mean_accel": 0.625, "mean_transparency": 78.4, "mean_solve_rate": 57.8, "puzzles": ["London Underground stations", "Collective animals nouns", "Video game mascots", "Strings section", "Nicknames for English Monarchs", "PlayStation buttons"]}, "Word split": {"n": 1, "mean_accel": 1.345, "mean_transparency": 49.0, "mean_solve_rate": 21.2, "puzzles": ["Generations"]}}}, "relink_abstraction": {"label": "Relink Abstraction", "categories": {"Direct membership": {"n": 13, "mean_accel": 0.863, "mean_transparency": 69.2, "mean_solve_rate": 50.2, "puzzles": ["Newspaper sections", "London Underground stations", "Royal flush", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "Precious metals", "PlayStation buttons", "Dramatic pause"]}, "Shared property": {"n": 1, "mean_accel": 0.836, "mean_transparency": 66.7, "mean_solve_rate": 66.7, "puzzles": ["End in imperial units"]}}}, "hasSpecialist": {"label": "Has Specialist Knowledge", "categories": {"No": {"n": 12, "mean_accel": 0.908, "mean_transparency": 66.5, "mean_solve_rate": 47.9, "puzzles": ["London Underground stations", "Royal flush", "End in imperial units", "Cleaning products", "Collective animals nouns", "Video game mascots", "Strings section", "Renewable energy", "Generations", "Nicknames for English Monarchs", "PlayStation buttons", "Dramatic pause"]}, "Yes": {"n": 2, "mean_accel": 0.581, "mean_transparency": 84.6, "mean_solve_rate": 72.1, "puzzles": ["Newspaper sections", "Precious metals"]}}}}, "summary": {"median_intervals": [14.0, 11.7, 10.6], "interval_ns": [482, 418, 338], "mean_accel": 0.861, "n_accelerated": 10, "n_total": 14, "mean_transparency": 69.0}};
+const transparencyData = [{"label": "Mar 31", "name": "Newspaper sections", "score": 93.3, "n": 30, "relink_manip": "Compound", "solve_rate": 82.9}, {"label": "Apr 1", "name": "London Underground stations", "score": 83.3, "n": 42, "relink_manip": "None", "solve_rate": 54.4}, {"label": "Apr 2", "name": "Royal flush", "score": 73.5, "n": 34, "relink_manip": "Compound", "solve_rate": 38.6}, {"label": "Apr 3", "name": "End in imperial units", "score": 66.7, "n": 30, "relink_manip": "Hidden word", "solve_rate": 66.7}, {"label": "Apr 4", "name": "Cleaning products", "score": 37.5, "n": 16, "relink_manip": "Compound", "solve_rate": 25.0}, {"label": "Apr 5", "name": "Collective animals nouns", "score": 64.3, "n": 14, "relink_manip": "None", "solve_rate": 35.0}, {"label": "Apr 6", "name": "Video game mascots", "score": 85.7, "n": 14, "relink_manip": "None", "solve_rate": 48.1}, {"label": "Apr 7", "name": "Strings section", "score": 81.2, "n": 32, "relink_manip": "None", "solve_rate": 71.8}, {"label": "Apr 8", "name": "Renewable energy", "score": 77.5, "n": 40, "relink_manip": "Compound", "solve_rate": 59.6}, {"label": "Apr 9", "name": "Generations", "score": 49.0, "n": 51, "relink_manip": "Word split", "solve_rate": 21.2}, {"label": "Apr 10", "name": "Nicknames for English Monarchs", "score": 63.0, "n": 46, "relink_manip": "None", "solve_rate": 61.9}, {"label": "Apr 11", "name": "Precious metals", "score": 75.9, "n": 29, "relink_manip": "Compound", "solve_rate": 61.2}, {"label": "Apr 12", "name": "PlayStation buttons", "score": 92.6, "n": 27, "relink_manip": "None", "solve_rate": 75.6}, {"label": "Apr 13", "name": "Dramatic pause", "score": 23.1, "n": 13, "relink_manip": "Compound", "solve_rate": 17.4}];
+const decoyData = {"no_decoys": {"n": 3, "mean_solve_rate": 0.5087214835359056, "mean_avg_wrong": 1.0656731037465108}, "has_decoys": {"n": 11, "mean_solve_rate": 0.5152642350181653, "mean_avg_wrong": 0.8115491302316663}, "hit_analysis": [{"date": "2026-03-31", "label": "Mar 31", "name": "Newspaper sections", "decoy_count": 2, "total_wrong": 102, "decoy_wrong": 23, "hit_rate": 0.22549019607843138, "descriptions": ["Newspaper layout terms - makes you think newspaper structure and Chapters is the impostor", "Science is a newspaper section - fits the impostor theme, player may pick Science instead of News"]}, {"date": "2026-04-01", "label": "Apr 1", "name": "London Underground stations", "decoy_count": 3, "total_wrong": 206, "decoy_wrong": 74, "hit_rate": 0.3592233009708738, "descriptions": ["London landmarks - makes you think the row is London landmarks and London is the impostor", "All also tube station names - makes you think tube stations is the row theme", "Tower Hill is also a tube station - player may pick Tower as impostor instead of Monument"]}, {"date": "2026-04-02", "label": "Apr 2", "name": "Royal flush", "decoy_count": 2, "total_wrong": 178, "decoy_wrong": 32, "hit_rate": 0.1797752808988764, "descriptions": ["Poker terms - makes you think the row is about poker not reactions to embarrassment", "Cards/poker - makes you think the row is about cards not seals"]}, {"date": "2026-04-03", "label": "Apr 3", "name": "End in imperial units", "decoy_count": 2, "total_wrong": 83, "decoy_wrong": 20, "hit_rate": 0.24096385542168675, "descriptions": ["Types of tea - makes you think the row is teas and Coke/Red Bull is the impostor", "All sound military - hard to spot that Compounds is not a group/unit structure"]}, {"date": "2026-04-04", "label": "Apr 4", "name": "Cleaning products", "decoy_count": 2, "total_wrong": 87, "decoy_wrong": 31, "hit_rate": 0.3563218390804598, "descriptions": ["Cleaning - makes you think the row is about cleaning not Spring ___", "Baby products - makes you think the row is about baby care and Bananas is the impostor"]}, {"date": "2026-04-05", "label": "Apr 5", "name": "Collective animals nouns", "decoy_count": 2, "total_wrong": 48, "decoy_wrong": 0, "hit_rate": 0.0, "descriptions": ["Textiles/wool - makes you think the row is about fabric and Tale is the impostor", "Crime/killing - makes you think the row is about crime"]}, {"date": "2026-04-06", "label": "Apr 6", "name": "Video game mascots", "decoy_count": 1, "total_wrong": 96, "decoy_wrong": 15, "hit_rate": 0.15625, "descriptions": ["Loud noises/explosions - makes you think the row is about loud sounds and USB is the impostor"]}, {"date": "2026-04-07", "label": "Apr 7", "name": "Strings section", "decoy_count": 3, "total_wrong": 135, "decoy_wrong": 54, "hit_rate": 0.4, "descriptions": ["String instrument parts - makes you think the row is orchestral and Head is the impostor", "Orchestral performance - makes you think the row is about orchestra and Section is the impostor", "Musical terms - all four are musical making it hard to spot that only 3 are notation"]}, {"date": "2026-04-09", "label": "Apr 9", "name": "Generations", "decoy_count": 2, "total_wrong": 296, "decoy_wrong": 130, "hit_rate": 0.4391891891891892, "descriptions": ["Greek letters - one per row creates a full false vertical answer. Only Alpha is the real impostor", "Gen X fits the Generations impostor theme - player may pick X instead of Z as impostor in row 3"]}, {"date": "2026-04-10", "label": "Apr 10", "name": "Nicknames for English Monarchs", "decoy_count": 1, "total_wrong": 271, "decoy_wrong": 41, "hit_rate": 0.15129151291512916, "descriptions": ["William the Conqueror is a monarch nickname - player may pick Conqueror instead of Unready"]}, {"date": "2026-04-11", "label": "Apr 11", "name": "Precious metals", "decoy_count": 1, "total_wrong": 111, "decoy_wrong": 10, "hit_rate": 0.09009009009009009, "descriptions": ["Precious metals - makes you think the row is about valuable metals not Saurons Ring"]}]};
+const confusionData = {"Mar 31": {"name": "Newspaper sections", "matrix": [[4, 0, 0, 0], [0, 58, 0, 0], [0, 0, 8, 0], [0, 0, 0, 30]]}, "Apr 1": {"name": "London Underground stations", "matrix": [[62, 0, 0, 0], [0, 93, 0, 0], [0, 0, 7, 0], [0, 0, 0, 44]]}, "Apr 2": {"name": "Royal flush", "matrix": [[58, 0, 0, 0], [0, 60, 0, 0], [0, 0, 3, 0], [0, 0, 0, 57]]}, "Apr 3": {"name": "End in imperial units", "matrix": [[15, 0, 0, 0], [0, 22, 0, 0], [0, 0, 15, 0], [0, 0, 0, 23]]}, "Apr 4": {"name": "Cleaning products", "matrix": [[2, 0, 0, 0], [0, 5, 0, 0], [0, 0, 31, 0], [0, 0, 0, 26]]}, "Apr 5": {"name": "Collective animals nouns", "matrix": [[11, 0, 0, 0], [0, 8, 0, 0], [0, 0, 6, 0], [0, 0, 0, 19]]}, "Apr 6": {"name": "Video game mascots", "matrix": [[23, 0, 0, 0], [0, 37, 0, 0], [0, 0, 16, 0], [0, 0, 0, 10]]}, "Apr 7": {"name": "Strings section", "matrix": [[49, 0, 0, 0], [0, 0, 21, 0], [0, 13, 0, 0], [0, 0, 0, 16]]}, "Apr 8": {"name": "Renewable energy", "matrix": [[33, 0, 0, 0], [0, 87, 0, 0], [0, 0, 41, 0], [0, 0, 0, 19]]}, "Apr 9": {"name": "Generations", "matrix": [[51, 0, 0, 0], [0, 17, 0, 0], [0, 0, 117, 0], [0, 0, 0, 95]]}, "Apr 10": {"name": "Nicknames for English Monarchs", "matrix": [[101, 0, 0, 0], [0, 52, 0, 0], [0, 0, 32, 0], [0, 0, 0, 84]]}, "Apr 11": {"name": "Precious metals", "matrix": [[58, 0, 0, 0], [0, 30, 0, 0], [0, 0, 15, 0], [0, 0, 0, 8]]}, "Apr 12": {"name": "PlayStation buttons", "matrix": [[7, 0, 0, 0], [0, 23, 0, 0], [0, 0, 7, 0], [0, 0, 0, 1]]}, "Apr 13": {"name": "Dramatic pause", "matrix": [[0, 0, 60, 0], [35, 0, 0, 0], [0, 27, 0, 0], [0, 0, 0, 40]]}};
+const relinkData = {"by_manip": {"Compound": {"n": 6, "mean_first_try": 0.8452380952380952, "mean_attempts": 1.3778659611992945}, "Hidden word": {"n": 1, "mean_first_try": 0.8064516129032258, "mean_attempts": 1.1612903225806452}, "None": {"n": 6, "mean_first_try": 0.8671303753363743, "mean_attempts": 1.4765166869015198}, "Word split": {"n": 1, "mean_first_try": 0.5142857142857142, "mean_attempts": 3.342857142857143}}, "by_tiles": {"2": {"n": 7, "mean_first_try": 0.794206714944042, "mean_attempts": 1.8564723380391581, "mean_solve_rate": 0.5139186970037388}, "3": {"n": 6, "mean_first_try": 0.8440120957664817, "mean_attempts": 1.19157045034238, "mean_solve_rate": 0.500081051771253}, "4": {"n": 1, "mean_first_try": 0.9714285714285714, "mean_attempts": 1.4857142857142858, "mean_solve_rate": 0.5961538461538461}}};
+const clusterData = {"puzzles": {"Abstract Reasoning": {"n_total": 18, "n_dated": 7, "mean_solve_rate": 52.6, "members": ["PlayStation buttons", "Generations", "Video game mascots", "Collective animals nouns", "End in imperial units", "Royal flush", "Newspaper sections", "Comes in second", "To con", "Batman rogues gallery", "Friends characters", "Estate planning", "Evergreen trees", "This puzzle is hard", "Squid", "____graph", "Silent letter", "Start with shades of blue"], "centroid": {"manip_Compound": 0.5, "manip_Hidden word": 0.56, "manip_Homophone": 0.06, "manip_Letter add-delete": 0.22, "manip_None": 2.61, "manip_Word split": 0.06, "abstr_Association": 0.39, "abstr_Direct membership": 2.44, "abstr_Shared property": 1.17, "know_Common cultural": 0.39, "know_General vocabulary": 3.39, "know_Specialist cultural": 0.22, "phase2TileCount": 2.17, "decoyCount": 1.61, "specialistGroupCount": 0.22}}, "Straightforward": {"n_total": 12, "n_dated": 4, "mean_solve_rate": 52.7, "members": ["Types of bean", "Renewable energy", "Strings section", "Cleaning products", "London Underground stations", "Taylor Swift records", "Spaceships", "Songbirds", "Associated with volcanic eruptions", "21\u02e2\u1d57 Century Popes", "Daily ____", "Monopoly"], "centroid": {"manip_Compound": 0.42, "manip_Hidden word": 0.0, "manip_Homophone": 0.17, "manip_Letter add-delete": 0.17, "manip_None": 3.25, "manip_Word split": 0.0, "abstr_Association": 0.08, "abstr_Direct membership": 3.58, "abstr_Shared property": 0.33, "know_Common cultural": 2.25, "know_General vocabulary": 1.33, "know_Specialist cultural": 0.42, "phase2TileCount": 2.08, "decoyCount": 2.33, "specialistGroupCount": 0.42}}}, "rows": {"None / Direct membership": {"n": 15, "mean_first_try": 61.8, "mean_avg_wrong": 0.77, "manip_dist": {"None": 15}, "abstr_dist": {"Shared property": 4, "Direct membership": 9, "Association": 2}}, "Compound / Direct membership": {"n": 13, "mean_first_try": 52.7, "mean_avg_wrong": 1.01, "manip_dist": {"Hidden word": 5, "Compound": 7, "Word split": 1}, "abstr_dist": {"Shared property": 6, "Direct membership": 7}}}};
+const predData = {"all": [{"name": "Friends characters", "date": "", "predicted": 45.5, "actual": null, "cluster": 1, "manipComplexity": 2, "abstrComplexity": 2, "phase2Tiles": 3}, {"name": "Chocolate bars", "date": "", "predicted": 49.9, "actual": null, "cluster": 0, "manipComplexity": 2, "abstrComplexity": 3, "phase2Tiles": 2}, {"name": "Video game mascots", "date": "2026-04-06", "predicted": 50.8, "actual": 48.1, "cluster": 1, "manipComplexity": 1, "abstrComplexity": 2, "phase2Tiles": 3}, {"name": "Dramatic pause", "date": "2026-04-13", "predicted": 51.1, "actual": 17.4, "cluster": 0, "manipComplexity": 1, "abstrComplexity": 3, "phase2Tiles": 2}, {"name": "This puzzle is hard", "date": "", "predicted": 51.6, "actual": null, "cluster": 1, "manipComplexity": 2, "abstrComplexity": 3, "phase2Tiles": 4}, {"name": "Generations", "date": "2026-04-09", "predicted": 52.3, "actual": 21.2, "cluster": 1, "manipComplexity": 2, "abstrComplexity": 1, "phase2Tiles": 2}, {"name": "Nicknames for English Monarchs", "date": "2026-04-10", "predicted": 54.4, "actual": 61.9, "cluster": 0, "manipComplexity": 2, "abstrComplexity": 1, "phase2Tiles": 3}, {"name": "Estate planning", "date": "", "predicted": 54.7, "actual": null, "cluster": 1, "manipComplexity": 2, "abstrComplexity": 2, "phase2Tiles": 1}, {"name": "Batman rogues gallery", "date": "", "predicted": 55.9, "actual": null, "cluster": 1, "manipComplexity": 1, "abstrComplexity": 1, "phase2Tiles": 4}, {"name": "Collective animals nouns", "date": "2026-04-05", "predicted": 55.9, "actual": 35.0, "cluster": 1, "manipComplexity": 2, "abstrComplexity": 1, "phase2Tiles": 3}, {"name": "____graph", "date": "", "predicted": 58.2, "actual": null, "cluster": 1, "manipComplexity": 1, "abstrComplexity": 2, "phase2Tiles": 1}, {"name": "To con", "date": "", "predicted": 58.4, "actual": null, "cluster": 1, "manipComplexity": 1, "abstrComplexity": 2, "phase2Tiles": 1}, {"name": "Evergreen trees", "date": "", "predicted": 58.5, "actual": null, "cluster": 1, "manipComplexity": 0, "abstrComplexity": 0, "phase2Tiles": 2}, {"name": "Start with shades of blue", "date": "", "predicted": 58.6, "actual": null, "cluster": 1, "manipComplexity": 2, "abstrComplexity": 2, "phase2Tiles": 2}, {"name": "Silent letter", "date": "", "predicted": 58.6, "actual": null, "cluster": 1, "manipComplexity": 3, "abstrComplexity": 2, "phase2Tiles": 2}, {"name": "PlayStation buttons", "date": "2026-04-12", "predicted": 59.5, "actual": 75.6, "cluster": 1, "manipComplexity": 1, "abstrComplexity": 1, "phase2Tiles": 3}, {"name": "Types of bean", "date": "2026-04-14", "predicted": 60.4, "actual": null, "cluster": 2, "manipComplexity": 0, "abstrComplexity": 0, "phase2Tiles": 1}, {"name": "End in imperial units", "date": "2026-04-03", "predicted": 60.7, "actual": 66.7, "cluster": 1, "manipComplexity": 0, "abstrComplexity": 1, "phase2Tiles": 2}, {"name": "Songbirds", "date": "", "predicted": 60.9, "actual": null, "cluster": 2, "manipComplexity": 1, "abstrComplexity": 0, "phase2Tiles": 2}, {"name": "Cleaning products", "date": "2026-04-04", "predicted": 61.1, "actual": 25.0, "cluster": 2, "manipComplexity": 1, "abstrComplexity": 1, "phase2Tiles": 3}, {"name": "The Beatles members", "date": "", "predicted": 61.1, "actual": null, "cluster": 0, "manipComplexity": 1, "abstrComplexity": 1, "phase2Tiles": 2}, {"name": "21\u02e2\u1d57 Century Popes", "date": "", "predicted": 61.3, "actual": null, "cluster": 2, "manipComplexity": 2, "abstrComplexity": 0, "phase2Tiles": 2}, {"name": "Squid", "date": "", "predicted": 61.6, "actual": null, "cluster": 1, "manipComplexity": 2, "abstrComplexity": 2, "phase2Tiles": 1}, {"name": "Something old, new, borrowed and blue", "date": "2026-04-15", "predicted": 62.6, "actual": null, "cluster": 0, "manipComplexity": 3, "abstrComplexity": 2, "phase2Tiles": 4}, {"name": "London Underground stations", "date": "2026-04-01", "predicted": 62.7, "actual": 54.4, "cluster": 2, "manipComplexity": 1, "abstrComplexity": 0, "phase2Tiles": 3}, {"name": "Spaceships", "date": "", "predicted": 63.0, "actual": null, "cluster": 2, "manipComplexity": 1, "abstrComplexity": 1, "phase2Tiles": 2}, {"name": "Preparing for battle", "date": "2026-04-16", "predicted": 63.2, "actual": null, "cluster": 0, "manipComplexity": 0, "abstrComplexity": 2, "phase2Tiles": 1}, {"name": "Dictionaries", "date": "", "predicted": 63.2, "actual": null, "cluster": 0, "manipComplexity": 1, "abstrComplexity": 2, "phase2Tiles": 1}, {"name": "Precious metals", "date": "2026-04-11", "predicted": 64.2, "actual": 61.2, "cluster": 0, "manipComplexity": 0, "abstrComplexity": 3, "phase2Tiles": 2}, {"name": "Comes in second", "date": "", "predicted": 64.3, "actual": null, "cluster": 1, "manipComplexity": 2, "abstrComplexity": 1, "phase2Tiles": 1}, {"name": "Newspaper sections", "date": "2026-03-31", "predicted": 64.8, "actual": 82.9, "cluster": 1, "manipComplexity": 0, "abstrComplexity": 1, "phase2Tiles": 2}, {"name": "Renewable energy", "date": "2026-04-08", "predicted": 65.0, "actual": 59.6, "cluster": 2, "manipComplexity": 2, "abstrComplexity": 0, "phase2Tiles": 4}, {"name": "Strings section", "date": "2026-04-07", "predicted": 67.5, "actual": 71.8, "cluster": 2, "manipComplexity": 0, "abstrComplexity": 0, "phase2Tiles": 2}, {"name": "Taylor Swift records", "date": "", "predicted": 68.5, "actual": null, "cluster": 2, "manipComplexity": 0, "abstrComplexity": 1, "phase2Tiles": 2}, {"name": "Associated with volcanic eruptions", "date": "", "predicted": 68.9, "actual": null, "cluster": 2, "manipComplexity": 0, "abstrComplexity": 1, "phase2Tiles": 2}, {"name": "Daily ____", "date": "", "predicted": 69.4, "actual": null, "cluster": 2, "manipComplexity": 1, "abstrComplexity": 1, "phase2Tiles": 1}, {"name": "Named after US Presidents", "date": "", "predicted": 69.5, "actual": null, "cluster": 0, "manipComplexity": 0, "abstrComplexity": 2, "phase2Tiles": 4}, {"name": "Royal flush", "date": "2026-04-02", "predicted": 69.8, "actual": 38.6, "cluster": 1, "manipComplexity": 1, "abstrComplexity": 2, "phase2Tiles": 2}, {"name": "Monopoly", "date": "", "predicted": 72.4, "actual": null, "cluster": 2, "manipComplexity": 0, "abstrComplexity": 0, "phase2Tiles": 1}], "validation": {"r": 0.479, "mae": 16.0}};
+const impDomainData = {"same_domain": {"n": 25, "mean_first_try": 64.4, "mean_avg_wrong": 0.77}, "diff_domain": {"n": 31, "mean_first_try": 56.4, "mean_avg_wrong": 0.94}, "by_imp_domain": {"Film-TV": {"n": 2, "mean_first_try": 56.4, "mean_avg_wrong": 0.97}, "Food": {"n": 1, "mean_first_try": 62.9, "mean_avg_wrong": 0.66}, "General": {"n": 36, "mean_first_try": 60.2, "mean_avg_wrong": 0.85}, "Geography": {"n": 4, "mean_first_try": 64.1, "mean_avg_wrong": 0.91}, "History": {"n": 3, "mean_first_try": 43.1, "mean_avg_wrong": 1.07}, "Language": {"n": 3, "mean_first_try": 67.9, "mean_avg_wrong": 0.64}, "Maths": {"n": 1, "mean_first_try": 35.3, "mean_avg_wrong": 1.14}, "Music": {"n": 4, "mean_first_try": 67.2, "mean_avg_wrong": 0.82}, "Science": {"n": 2, "mean_first_try": 61.8, "mean_avg_wrong": 1.0}}};
+
+// ── Colours ──
+const COLORS = ['#6c5ce7','#00b894','#e17055','#0984e3','#fdcb6e','#a29bfe',
+                '#55efc4','#fab1a0','#74b9ff','#ffeaa7','#dfe6e9','#636e72','#d63031'];
+function hsl(h, s, l) { return `hsl(${h}, ${s}%, ${l}%)`; }
+function hsla(h, s, l, a) { return `hsla(${h}, ${s}%, ${l}%, ${a})`; }
+
+// ── Key Findings ──
+(function() {
+    const grid = document.getElementById('stats-grid');
+    // Find most impactful features
+    const rowCoefs = regressionData.row;
+    let maxCoef = '', maxVal = 0;
+    for (let i = 1; i < rowCoefs.names.length; i++) {
+        if (Math.abs(rowCoefs.coefs[i]) > Math.abs(maxVal)) {
+            maxVal = rowCoefs.coefs[i];
+            maxCoef = rowCoefs.names[i];
+        }
+    }
+
+    const findings = [
+        { value: predData.validation.r.toFixed(2), label: 'Prediction Correlation (r)' },
+        { value: predData.validation.mae + 'pp', label: 'Prediction MAE' },
+        { value: regressionData.row.r2, label: 'Row Regression R²' },
+        { value: maxCoef.replace('manip:','').replace('abstr:','').replace('know:',''),
+           label: 'Strongest Predictor' },
+        { value: (maxVal > 0 ? '+' : '') + (maxVal * 100).toFixed(0) + 'pp',
+           label: 'Its Effect on First-Try %' },
+        { value: regressionData.puzzle.loo_mae + 'pp', label: 'Puzzle LOO-CV MAE' },
+    ];
+    findings.forEach(f => {
+        grid.innerHTML += `<div class="stat-card"><div class="value">${f.value}</div><div class="label">${f.label}</div></div>`;
+    });
+})();
+
+// ── Cross-tab charts ──
+function makeBarChart(canvasId, data, horizontal) {
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    const indexAxis = horizontal ? 'y' : 'x';
+    const valAxis = horizontal ? 'xAxisID' : 'yAxisID';
+    const ds1 = { label: 'First-try correct %', data: data.first_try.map(v => v.toFixed(1)),
+                   backgroundColor: hsla(260, 70, 55, 0.7), borderColor: hsl(260, 70, 55),
+                   borderWidth: 1 };
+    const ds2 = { label: 'Avg wrong guesses', data: data.avg_wrong.map(v => v.toFixed(2)),
+                   backgroundColor: hsla(15, 70, 55, 0.7), borderColor: hsl(15, 70, 55),
+                   borderWidth: 1 };
+    ds1[valAxis] = horizontal ? 'x' : 'y';
+    ds2[valAxis] = horizontal ? 'x1' : 'y1';
+    const scales = horizontal ? {
+        x: { beginAtZero: true, position: 'bottom',
+              title: { display: true, text: 'First-try %' } },
+        x1: { beginAtZero: true, position: 'top', grid: { drawOnChartArea: false },
+               title: { display: true, text: 'Avg wrong' } },
+    } : {
+        y: { beginAtZero: true, position: 'left',
+              title: { display: true, text: 'First-try %' } },
+        y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false },
+               title: { display: true, text: 'Avg wrong' } },
+    };
+    new Chart(ctx, {
+        type: 'bar',
+        data: { labels: data.labels, datasets: [ds1, ds2] },
+        options: {
+            indexAxis,
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        afterBody: (items) => {
+                            const i = items[0].dataIndex;
+                            return `n = ${data.n[i]} rows`;
+                        }
+                    }
+                }
+            },
+            scales,
+        }
+    });
+}
+
+makeBarChart('chart-manip', chartData['Manipulation'], false);
+makeBarChart('chart-abstr', chartData['Abstraction'], false);
+makeBarChart('chart-know', chartData['Knowledge'], false);
+makeBarChart('chart-domain', chartData['Knowledge Domain'], true);
+
+// ── Heatmap ──
+(function() {
+    const container = document.getElementById('heatmap-container');
+    const cols = heatmapManips.length + 1;
+    let html = `<div class="heatmap-grid" style="grid-template-columns: 120px repeat(${heatmapManips.length}, 1fr);">`;
+    html += '<div class="hm-header"></div>';
+    heatmapManips.forEach(m => { html += `<div class="hm-header">${m}</div>`; });
+    heatmapAbstrs.forEach((a, ai) => {
+        html += `<div class="hm-header" style="text-align:right;padding-right:8px;">${a}</div>`;
+        heatmapValues[ai].forEach((v, mi) => {
+            if (v === null) {
+                html += '<div class="hm-cell" style="background:#eee;color:#999;">—</div>';
+            } else {
+                const pct = v;
+                const h = pct < 40 ? 0 : pct < 55 ? 30 : pct < 70 ? 120 : 150;
+                const s = 65; const l = 42;
+                html += `<div class="hm-cell" style="background:${hsl(h,s,l)};">${heatmapAnnotations[ai][mi]}</div>`;
+            }
+        });
+    });
+    html += '</div>';
+    container.innerHTML += html;
+})();
+
+// ── Impostor Domain ──
+(function() {
+    const ctx1 = document.getElementById('chart-domain-dist').getContext('2d');
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['Same Domain', 'Different Domain'],
+            datasets: [
+                { label: 'First-try %', data: [impDomainData.same_domain.mean_first_try,
+                   impDomainData.diff_domain.mean_first_try],
+                   backgroundColor: [hsla(260,70,55,0.7), hsla(170,70,45,0.7)] },
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        afterBody: (items) => {
+                            const d = items[0].dataIndex === 0 ? impDomainData.same_domain : impDomainData.diff_domain;
+                            return `n = ${d.n} rows\nAvg wrong: ${d.mean_avg_wrong}`;
+                        }
+                    }
+                }
+            },
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'First-try correct %' } } }
+        }
+    });
+
+    const bd = impDomainData.by_imp_domain;
+    const labels = Object.keys(bd);
+    const ctx2 = document.getElementById('chart-imp-domain').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{ label: 'First-try %', data: labels.map(l => bd[l].mean_first_try),
+                          backgroundColor: labels.map((_, i) => COLORS[i % COLORS.length]) }]
+        },
+        options: {
+            indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        afterBody: (items) => {
+                            const l = items[0].label;
+                            return `n = ${bd[l].n} rows\nAvg wrong: ${bd[l].mean_avg_wrong}`;
+                        }
+                    }
+                }
+            },
+            scales: { x: { beginAtZero: true, title: { display: true, text: 'First-try %' } } }
+        }
+    });
+})();
+
+// ── Scatter Plots ──
+(function() {
+    const container = document.getElementById('scatter-container');
+    const feats = Object.keys(scatterData);
+    feats.forEach((feat, fi) => {
+        const d = scatterData[feat];
+        const cardId = `scatter-${fi}`;
+        container.innerHTML += `<div class="card"><h3>${d.label} vs Solve Rate</h3>
+            <p style="color:var(--muted);font-size:12px;">Pearson r=${d.pearson_r} · Spearman ρ=${d.spearman_r}</p>
+            <div class="chart-container"><canvas id="${cardId}"></canvas></div></div>`;
+    });
+
+    feats.forEach((feat, fi) => {
+        const d = scatterData[feat];
+        const ctx = document.getElementById(`scatter-${fi}`).getContext('2d');
+        const pts = d.xs.map((x, i) => ({ x, y: d.ys[i] }));
+        // Trendline
+        const n = d.xs.length;
+        const mx = d.xs.reduce((a,b) => a+b, 0) / n;
+        const my = d.ys.reduce((a,b) => a+b, 0) / n;
+        const ssxy = d.xs.reduce((s, x, i) => s + (x - mx) * (d.ys[i] - my), 0);
+        const ssxx = d.xs.reduce((s, x) => s + (x - mx) ** 2, 0);
+        const slope = ssxx ? ssxy / ssxx : 0;
+        const intercept = my - slope * mx;
+        const xMin = Math.min(...d.xs) - 0.5;
+        const xMax = Math.max(...d.xs) + 0.5;
+
+        // Detect integer-only x values and force integer ticks
+        const allInt = d.xs.every(x => Number.isInteger(x));
+        const xScale = allInt ? {
+            title: { display: true, text: d.label },
+            min: Math.min(...d.xs) - 0.3,
+            max: Math.max(...d.xs) + 0.3,
+            ticks: { stepSize: 1, callback: (v) => Number.isInteger(v) ? v : '' }
+        } : {
+            title: { display: true, text: d.label },
+        };
+
+        new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    { label: 'Puzzles', data: pts, backgroundColor: hsla(260,70,55,0.8),
+                       pointRadius: 6, pointHoverRadius: 8 },
+                    { label: 'Trend', data: [{x: xMin, y: intercept + slope * xMin},
+                                               {x: xMax, y: intercept + slope * xMax}],
+                       type: 'line', borderColor: hsla(0,70,55,0.5), borderDash: [6,3],
+                       pointRadius: 0, borderWidth: 2 },
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => {
+                                if (ctx.datasetIndex === 0) {
+                                    const i = ctx.dataIndex;
+                                    return `${d.labels[i]}: ${d.ys[i]}% solve rate`;
+                                }
+                                return '';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: xScale,
+                    y: { title: { display: true, text: 'Solve Rate %' } },
+                }
+            }
+        });
+    });
+})();
+
+// ── Regression Tables ──
+function makeRegTable(tableId, data) {
+    const table = document.getElementById(tableId);
+    let html = '<thead><tr><th>Feature</th><th>Coefficient</th><th>Effect</th></tr></thead><tbody>';
+    data.names.forEach((name, i) => {
+        const c = data.coefs[i];
+        const effect = i === 0 ? 'baseline' : (c > 0 ? '+' : '') + (c * 100).toFixed(1) + 'pp';
+        const cls = i === 0 ? '' : (Math.abs(c) > 0.1 ? ' style="font-weight:600;"' : '');
+        html += `<tr${cls}><td>${name}</td><td>${c.toFixed(4)}</td><td>${effect}</td></tr>`;
+    });
+    html += '</tbody>';
+    table.innerHTML = html;
+}
+makeRegTable('reg-puzzle-table', regressionData.puzzle);
+makeRegTable('reg-row-table', regressionData.row);
+if (regressionData.pos_controlled.coefs.length > 0) makeRegTable('reg-intrinsic-table', regressionData.pos_controlled);
+
+// Forest plot
+(function() {
+    const rd = regressionData.row;
+    const labels = rd.names.slice(1);
+    const coefs = rd.coefs.slice(1).map(c => c * 100);
+    const ctx = document.getElementById('chart-forest').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{ label: 'Effect on first-try % (pp)', data: coefs,
+                          backgroundColor: coefs.map(c => c >= 0 ? hsla(150,60,45,0.7) : hsla(0,65,50,0.7)),
+                          borderColor: coefs.map(c => c >= 0 ? hsl(150,60,45) : hsl(0,65,50)),
+                          borderWidth: 1 }]
+        },
+        options: {
+            indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { title: { display: true, text: 'Effect on first-try correct % (pp)' },
+                      grid: { color: (ctx) => ctx.tick.value === 0 ? '#2d3436' : '#eee' } }
+            }
+        }
+    });
+})();
+
+// ── Vertical Inference ──
+(function() {
+    const ct = viData.crosstabs;
+    const summ = viData.summary;
+
+    // Summary
+    const summDiv = document.getElementById('vi-summary');
+    const meds = summ.median_intervals;
+    const drop = meds[0] > 0 ? ((meds[0] - meds[2]) / meds[0] * 100).toFixed(0) : '?';
+    let sh = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;">`;
+    sh += `<div class="stat-card"><div class="value">${meds[0]}s → ${meds[2]}s</div><div class="label">Median interval: 1st→2nd → 3rd→4th</div></div>`;
+    sh += `<div class="stat-card"><div class="value">${drop}%</div><div class="label">Median time drop</div></div>`;
+    sh += `<div class="stat-card"><div class="value">${summ.mean_accel}x</div><div class="label">Mean acceleration factor</div></div>`;
+    sh += `<div class="stat-card"><div class="value">${summ.n_accelerated}/${summ.n_total}</div><div class="label">Puzzles that accelerated (&lt;1x)</div></div>`;
+    sh += `<div class="stat-card"><div class="value">${summ.mean_transparency}%</div><div class="label">Mean theme transparency</div></div>`;
+    sh += `</div>`;
+    summDiv.innerHTML = sh;
+
+    // Helper: create a grouped bar chart for a metric across all PDL feature axes
+    function makeViCrosstabs(containerId, metric, metricLabel, refLine) {
+        const container = document.getElementById(containerId);
+        const features = Object.keys(ct);
+        features.forEach((feat, fi) => {
+            const axis = ct[feat];
+            const cats = Object.keys(axis.categories);
+            const vals = cats.map(c => axis.categories[c]['mean_' + metric]);
+            const ns = cats.map(c => axis.categories[c].n);
+
+            // Skip if all null
+            if (vals.every(v => v === null)) return;
+
+            const chartId = `vi-${metric}-${fi}`;
+            container.innerHTML += `<div style="margin-bottom:20px;">
+                <h4 style="color:var(--text);margin-bottom:8px;">${axis.label}</h4>
+                <div class="chart-container" style="height:200px;"><canvas id="${chartId}"></canvas></div>
+            </div>`;
+        });
+
+        // Render charts after DOM update
+        features.forEach((feat, fi) => {
+            const axis = ct[feat];
+            const cats = Object.keys(axis.categories);
+            const vals = cats.map(c => axis.categories[c]['mean_' + metric]);
+            const ns = cats.map(c => axis.categories[c].n);
+            if (vals.every(v => v === null)) return;
+
+            const chartId = `vi-${metric}-${fi}`;
+            const el = document.getElementById(chartId);
+            if (!el) return;
+            const ctx = el.getContext('2d');
+
+            const barColors = vals.map(v => {
+                if (v === null) return '#dfe6e9';
+                if (metric === 'accel') return v < 1 ? hsla(150,60,45,0.7) : hsla(0,65,50,0.7);
+                return hsla(260,70,55,0.7);
+            });
+
+            const annotation = refLine !== null ? {
+                annotations: {
+                    refLine: { type: 'line', yMin: refLine, yMax: refLine,
+                               borderColor: '#636e72', borderDash: [4,4], borderWidth: 1 }
+                }
+            } : {};
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: cats.map((c, i) => `${c} (n=${ns[i]})`),
+                    datasets: [{ label: metricLabel, data: vals.map(v => v !== null ? v : 0),
+                                  backgroundColor: barColors, borderWidth: 0 }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        annotation,
+                        tooltip: {
+                            callbacks: {
+                                afterBody: (items) => {
+                                    const i = items[0].dataIndex;
+                                    const cat = cats[i];
+                                    const info = axis.categories[cat];
+                                    return `Puzzles: ${info.puzzles.join(', ')}\nSolve rate: ${info.mean_solve_rate}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: { y: { title: { display: true, text: metricLabel } } }
+                }
+            });
+        });
+    }
+
+    makeViCrosstabs('vi-accel-charts', 'accel', 'Acceleration factor (< 1 = sped up)', 1.0);
+    makeViCrosstabs('vi-transp-charts', 'transparency', 'Theme transparency %', null);
+
+    // Per-puzzle detail table
+    const tbody = document.querySelector('#vi-puzzle-table tbody');
+    const sorted = [...viData.puzzles].sort((a, b) => (a.accel_factor || 99) - (b.accel_factor || 99));
+    sorted.forEach(p => {
+        const accelStr = p.accel_factor !== null ? p.accel_factor.toFixed(3) + 'x' : '—';
+        const accelColor = p.accel_factor !== null ? (p.accel_factor < 1 ? 'color:#00b894' : 'color:#d63031') : '';
+        tbody.innerHTML += `<tr>
+            <td>${p.name}</td><td>${p.label}</td>
+            <td style="${accelColor};font-weight:600;">${accelStr}</td>
+            <td>${p.transparency}%</td>
+            <td>${p.solve_rate}%</td></tr>`;
+    });
+})();
+
+// ── Decoy Analysis ──
+(function() {
+    const ctx = document.getElementById('chart-decoy-compare').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['No Decoys', 'Has Decoys'],
+            datasets: [
+                { label: 'Mean Solve Rate %', data: [
+                    (decoyData.no_decoys.mean_solve_rate * 100).toFixed(1),
+                    (decoyData.has_decoys.mean_solve_rate * 100).toFixed(1)],
+                   backgroundColor: [hsla(260,70,55,0.7), hsla(170,70,45,0.7)] },
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        afterBody: (items) => {
+                            const i = items[0].dataIndex;
+                            const d = i === 0 ? decoyData.no_decoys : decoyData.has_decoys;
+                            return `n = ${d.n} puzzles\nAvg wrong/row: ${d.mean_avg_wrong.toFixed(2)}`;
+                        }
+                    }
+                }
+            },
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'Solve Rate %' } } }
+        }
+    });
+
+    const hits = decoyData.hit_analysis;
+    if (hits.length > 0) {
+        const ctx2 = document.getElementById('chart-decoy-hits').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: hits.map(h => h.label + ' ' + h.name.substring(0, 15)),
+                datasets: [
+                    { label: 'Decoy-matching wrong guesses', data: hits.map(h => h.decoy_wrong),
+                       backgroundColor: hsla(0,65,50,0.7) },
+                    { label: 'Other wrong guesses', data: hits.map(h => h.total_wrong - h.decoy_wrong),
+                       backgroundColor: hsla(220,30,70,0.5) },
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                scales: { x: { stacked: true }, y: { stacked: true,
+                    title: { display: true, text: 'Wrong guesses' } } },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            afterBody: (items) => {
+                                const i = items[0].dataIndex;
+                                return `Hit rate: ${(hits[i].hit_rate * 100).toFixed(0)}%\nDecoys: ${hits[i].descriptions.join('; ')}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+})();
+
+// ── Confusion Maps ──
+(function() {
+    const container = document.getElementById('confusion-container');
+    for (const [label, cd] of Object.entries(confusionData)) {
+        let html = `<div class="card"><h3>${label} — ${cd.name}</h3>`;
+        html += `<div class="confusion-grid" style="grid-template-columns: 80px repeat(4, 60px);">`;
+        html += '<div class="confusion-cell confusion-header"></div>';
+        for (let c = 0; c < 4; c++) html += `<div class="confusion-cell confusion-header">From R${c}</div>`;
+        for (let r = 0; r < 4; r++) {
+            html += `<div class="confusion-cell confusion-header">Guessed R${r}</div>`;
+            const rowTotal = cd.matrix[r].reduce((a,b) => a+b, 0);
+            for (let c = 0; c < 4; c++) {
+                const v = cd.matrix[r][c];
+                const intensity = rowTotal > 0 ? Math.min(v / Math.max(rowTotal, 1), 1) : 0;
+                const bg = r === c ? `hsla(260, 70%, 55%, ${0.1 + intensity * 0.6})` :
+                                     `hsla(0, 65%, 50%, ${intensity * 0.8})`;
+                html += `<div class="confusion-cell" style="background:${bg};${intensity > 0.4 ? 'color:#fff;' : ''}">${v || ''}</div>`;
+            }
+        }
+        html += '</div></div>';
+        container.innerHTML += html;
+    }
+})();
+
+// ── Relink Phase ──
+(function() {
+    const byM = relinkData.by_manip;
+    const mLabels = Object.keys(byM);
+    const ctx1 = document.getElementById('chart-relink-manip').getContext('2d');
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: mLabels,
+            datasets: [
+                { label: 'First-try %', data: mLabels.map(l => (byM[l].mean_first_try * 100).toFixed(1)),
+                   backgroundColor: hsla(260,70,55,0.7) },
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        afterBody: (items) => {
+                            const l = items[0].label;
+                            return `n = ${byM[l].n} puzzles\nAvg attempts: ${byM[l].mean_attempts.toFixed(1)}`;
+                        }
+                    }
+                }
+            },
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'Relink first-try %' } } }
+        }
+    });
+
+    const byT = relinkData.by_tiles;
+    const tLabels = Object.keys(byT).sort();
+    const ctx2 = document.getElementById('chart-relink-tiles').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: tLabels.map(t => t + ' tile' + (t === '1' ? '' : 's')),
+            datasets: [
+                { label: 'Relink first-try %', data: tLabels.map(t => (byT[t].mean_first_try * 100).toFixed(1)),
+                   backgroundColor: hsla(260, 70, 55, 0.7), yAxisID: 'y' },
+                { label: 'Puzzle solve rate %', data: tLabels.map(t => (byT[t].mean_solve_rate * 100).toFixed(1)),
+                   backgroundColor: hsla(170, 70, 45, 0.7), yAxisID: 'y' },
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            scales: { y: { beginAtZero: true, title: { display: true, text: '%' } } },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        afterBody: (items) => {
+                            const t = tLabels[items[0].dataIndex];
+                            return `n = ${byT[t].n} puzzles\nAvg attempts: ${byT[t].mean_attempts.toFixed(1)}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+})();
+
+// ── Clustering ──
+(function() {
+    const pc = clusterData.puzzles;
+    const cNames = Object.keys(pc);
+    const ctx1 = document.getElementById('chart-puzzle-cluster').getContext('2d');
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: cNames,
+            datasets: [
+                { label: 'Puzzles', data: cNames.map(c => pc[c].n_total),
+                   backgroundColor: cNames.map((_, i) => COLORS[i]) },
+                { label: 'Mean Solve Rate %', data: cNames.map(c => pc[c].mean_solve_rate),
+                   type: 'line', borderColor: '#d63031', backgroundColor: 'transparent',
+                   yAxisID: 'y1', pointRadius: 6, borderWidth: 2 },
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            scales: {
+                y: { beginAtZero: true, title: { display: true, text: 'Count' } },
+                y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false },
+                       title: { display: true, text: 'Solve Rate %' } },
+            }
+        }
+    });
+
+    // Cluster members list
+    const membersDiv = document.getElementById('cluster-members');
+    cNames.forEach((c, i) => {
+        membersDiv.innerHTML += `<p style="margin:5px 0;"><span style="display:inline-block;width:12px;height:12px;
+            background:${COLORS[i]};border-radius:3px;margin-right:6px;vertical-align:middle;"></span>
+            <strong>${c}</strong> (${pc[c].n_total} puzzles, ${pc[c].n_dated} dated):
+            ${pc[c].members.slice(0, 8).join(', ')}${pc[c].members.length > 8 ? '...' : ''}</p>`;
+    });
+
+    const rc = clusterData.rows;
+    const rNames = Object.keys(rc);
+    const ctx2 = document.getElementById('chart-row-cluster').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: rNames,
+            datasets: [
+                { label: 'First-try %', data: rNames.map(r => rc[r].mean_first_try),
+                   backgroundColor: rNames.map((_, i) => COLORS[i + 3]) },
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        afterBody: (items) => {
+                            const r = rNames[items[0].dataIndex];
+                            return `n = ${rc[r].n} rows\nAvg wrong: ${rc[r].mean_avg_wrong}`;
+                        }
+                    }
+                }
+            },
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'First-try correct %' } } }
+        }
+    });
+})();
+
+// ── Predictions ──
+(function() {
+    // Scatter: predicted vs actual
+    const dated = predData.all.filter(p => p.actual !== null);
+    const ctx = document.getElementById('chart-pred-scatter').getContext('2d');
+    new Chart(ctx, {
+        type: 'scatter',
+        data: {
+            datasets: [
+                { label: 'Puzzles', data: dated.map(p => ({ x: p.predicted, y: p.actual })),
+                   backgroundColor: hsla(260, 70, 55, 0.8), pointRadius: 7, pointHoverRadius: 9 },
+                { label: 'Perfect prediction', data: [{x: 0, y: 0}, {x: 100, y: 100}],
+                   type: 'line', borderColor: '#b2bec3', borderDash: [6, 3],
+                   pointRadius: 0, borderWidth: 1 },
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (ctx) => {
+                            if (ctx.datasetIndex === 0) {
+                                const p = dated[ctx.dataIndex];
+                                return `${p.name}: predicted ${p.predicted}%, actual ${p.actual}%`;
+                            }
+                            return '';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: { title: { display: true, text: 'Predicted solve rate %' }, min: 0, max: 100 },
+                y: { title: { display: true, text: 'Actual solve rate %' }, min: 0, max: 100 },
+            }
+        }
+    });
+
+    // Prediction table
+    const tbody = document.querySelector('#pred-table tbody');
+    const clusterNames = Object.keys(clusterData.puzzles);
+    predData.all.sort((a, b) => a.predicted - b.predicted).forEach(p => {
+        const badge = p.predicted < 30 ? 'badge-red' : p.predicted > 70 ? 'badge-green' : 'badge-amber';
+        const delta = p.actual !== null ? (p.actual - p.predicted).toFixed(1) + 'pp' : '—';
+        const cName = clusterNames[p.cluster] || '?';
+        tbody.innerHTML += `<tr>
+            <td>${p.name}</td>
+            <td>${p.date || '<em>undated</em>'}</td>
+            <td><span class="badge ${badge}">${p.predicted.toFixed(1)}%</span></td>
+            <td>${p.actual !== null ? p.actual.toFixed(1) + '%' : '—'}</td>
+            <td>${delta}</td>
+            <td>${p.manipComplexity} manip / ${p.abstrComplexity} abstr</td>
+            <td>${cName}</td>
+        </tr>`;
+    });
+})();
+
+// ── Nav highlighting ──
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+    });
+});
+</script>
+</body>
+</html>

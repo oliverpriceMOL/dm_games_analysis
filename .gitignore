@@ -1,0 +1,5 @@
+# Raw CSV data (large, potentially sensitive)
+raw/
+
+# OS files
+.DS_Store

@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 1,
+  "id": "l4",
+  "date": "",
+  "name": "Squid",
+  "rows": [
+    {
+      "id": "row-l4-13",
+      "position": 0,
+      "category": "Art tools",
+      "tiles": [
+        {
+          "id": "tile-l4-49",
+          "text": "Paintbrush",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l4-50",
+          "text": "Ink",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l4-51",
+          "text": "Pen",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l4-52",
+          "text": "Pencil",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l4-14",
+      "position": 1,
+      "category": "Meat from land mammals",
+      "tiles": [
+        {
+          "id": "tile-l4-53",
+          "text": "Pork",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l4-54",
+          "text": "Beef",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l4-55",
+          "text": "Calamari",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l4-56",
+          "text": "Venison",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Food"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Food"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l4-15",
+      "position": 2,
+      "category": "Add 'in' to get its antonym",
+      "tiles": [
+        {
+          "id": "tile-l4-57",
+          "text": "Colossal",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l4-58",
+          "text": "Finite",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l4-59",
+          "text": "Visible",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l4-60",
+          "text": "Divisible",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Letter add-delete"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Language"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l4-16",
+      "position": 3,
+      "category": "Currency nicknames plus a letter",
+      "tiles": [
+        {
+          "id": "tile-l4-61",
+          "text": "Squid",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l4-62",
+          "text": "Bucky",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l4-63",
+          "text": "Tentacle",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l4-64",
+          "text": "Cloonie",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "Letter add-delete"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Squid",
+        "source": "grid",
+        "sourceRowId": "row-l4-16"
+      }
+    ],
+    "answer": "Squid",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-52",
+      "tileIds": [
+        "tile-l4-55",
+        "tile-l4-53",
+        "tile-l4-54",
+        "tile-l4-56"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "All are types of meat - player must notice land mammals qualifier to spot Calamari"
+      }
+    },
+    {
+      "id": "decoy-1776089211-53",
+      "tileIds": [
+        "tile-l4-63",
+        "tile-l4-61"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Sea creatures - makes you think the row theme is marine life"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 1,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

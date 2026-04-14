@@ -1,0 +1,319 @@
+{
+  "schemaVersion": 1,
+  "id": "l2",
+  "date": "2026-04-01",
+  "name": "London Underground stations",
+  "rows": [
+    {
+      "id": "row-l2-5",
+      "position": 0,
+      "category": "Types of Monopoly square",
+      "tiles": [
+        {
+          "id": "tile-l2-17",
+          "text": "Stations",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l2-18",
+          "text": "Bank",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l2-19",
+          "text": "Jail",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l2-20",
+          "text": "Utilities",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Geography"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l2-6",
+      "position": 1,
+      "category": "Bridges of London",
+      "tiles": [
+        {
+          "id": "tile-l2-21",
+          "text": "London",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l2-22",
+          "text": "Millennium",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l2-23",
+          "text": "Tower",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l2-24",
+          "text": "Monument",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Geography"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Geography"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l2-7",
+      "position": 2,
+      "category": "Species of fish",
+      "tiles": [
+        {
+          "id": "tile-l2-25",
+          "text": "Sole",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l2-26",
+          "text": "Temple",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l2-27",
+          "text": "John Dory",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l2-28",
+          "text": "Snapper",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Food"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Geography"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l2-8",
+      "position": 3,
+      "category": "Going ____",
+      "tiles": [
+        {
+          "id": "tile-l2-29",
+          "text": "Underground",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l2-30",
+          "text": "Postal",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l2-31",
+          "text": "Angel",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l2-32",
+          "text": "Going, gone",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Geography"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "London",
+        "source": "grid",
+        "sourceRowId": "row-l2-6"
+      },
+      {
+        "text": "Underground",
+        "source": "grid",
+        "sourceRowId": "row-l2-8"
+      },
+      {
+        "text": "Stations",
+        "source": "grid",
+        "sourceRowId": "row-l2-5"
+      }
+    ],
+    "answer": "London Underground stations",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Geography"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-21",
+      "tileIds": [
+        "tile-l2-24",
+        "tile-l2-23",
+        "tile-l2-22"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "description": "London landmarks - makes you think the row is London landmarks and London is the impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-22",
+      "tileIds": [
+        "tile-l2-31",
+        "tile-l2-29",
+        "tile-l2-30"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "All also tube station names - makes you think tube stations is the row theme"
+      }
+    },
+    {
+      "id": "decoy-1776089211-23",
+      "tileIds": [
+        "tile-l2-23"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Tower Hill is also a tube station - player may pick Tower as impostor instead of Monument"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 3,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

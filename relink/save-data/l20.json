@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "id": "l20",
+  "date": "2026-04-04",
+  "name": "Cleaning products",
+  "rows": [
+    {
+      "id": "row-l20-77",
+      "position": 0,
+      "category": "Banks",
+      "tiles": [
+        {
+          "id": "tile-l20-305",
+          "text": "Ing",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l20-306",
+          "text": "Barclays",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l20-307",
+          "text": "Chase",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l20-308",
+          "text": "Polish",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l20-78",
+      "position": 1,
+      "category": "Blue people",
+      "tiles": [
+        {
+          "id": "tile-l20-309",
+          "text": "Dove",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l20-310",
+          "text": "Violet Beauregarde",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l20-311",
+          "text": "Smurfs",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l20-312",
+          "text": "Na'vi",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l20-79",
+      "position": 2,
+      "category": "Spring _ _ _",
+      "tiles": [
+        {
+          "id": "tile-l20-313",
+          "text": "Onion",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l20-314",
+          "text": "Clean",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l20-315",
+          "text": "Mop",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l20-316",
+          "text": "Roll",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l20-80",
+      "position": 3,
+      "category": "Results of multiplication",
+      "tiles": [
+        {
+          "id": "tile-l20-317",
+          "text": "Products",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l20-318",
+          "text": "Babies",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l20-319",
+          "text": "Wipes",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l20-320",
+          "text": "Bananas",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Maths"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Clean",
+        "source": "grid",
+        "sourceRowId": "row-l20-79"
+      },
+      {
+        "text": "Ing",
+        "source": "grid",
+        "sourceRowId": "row-l20-77"
+      },
+      {
+        "text": "Products",
+        "source": "grid",
+        "sourceRowId": "row-l20-80"
+      }
+    ],
+    "answer": "Cleaning products",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-24",
+      "tileIds": [
+        "tile-l20-315",
+        "tile-l20-314"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Cleaning - makes you think the row is about cleaning not Spring ___"
+      }
+    },
+    {
+      "id": "decoy-1776089211-25",
+      "tileIds": [
+        "tile-l20-319",
+        "tile-l20-318",
+        "tile-l20-317"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Baby products - makes you think the row is about baby care and Bananas is the impostor"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 3,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

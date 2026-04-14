@@ -1,0 +1,311 @@
+{
+  "schemaVersion": 1,
+  "id": "l19",
+  "date": "",
+  "name": "Estate planning",
+  "rows": [
+    {
+      "id": "row-l19-73",
+      "position": 0,
+      "category": "Agents",
+      "tiles": [
+        {
+          "id": "tile-l19-289",
+          "text": "Will",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l19-290",
+          "text": "Secret",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l19-291",
+          "text": "News",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l19-292",
+          "text": "Estate",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l19-74",
+      "position": 1,
+      "category": "Field _ _ _",
+      "tiles": [
+        {
+          "id": "tile-l19-293",
+          "text": "Work",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l19-294",
+          "text": "Mouse",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l19-295",
+          "text": "Trust",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l19-296",
+          "text": "Trip",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l19-75",
+      "position": 2,
+      "category": "First halves of 'X & Y' sayings",
+      "tiles": [
+        {
+          "id": "tile-l19-297",
+          "text": "Death",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l19-298",
+          "text": "Taxes",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l19-299",
+          "text": "Smoke",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l19-300",
+          "text": "Null",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l19-76",
+      "position": 3,
+      "category": "Hidden networks",
+      "tiles": [
+        {
+          "id": "tile-l19-301",
+          "text": "Grouters",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l19-302",
+          "text": "Planning",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l19-303",
+          "text": "Testament",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l19-304",
+          "text": "Midwifing",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Estate",
+        "source": "grid",
+        "sourceRowId": "row-l19-73"
+      },
+      {
+        "text": "planning",
+        "source": "fodder"
+      }
+    ],
+    "answer": "Estate planning",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-18",
+      "tileIds": [
+        "tile-l19-289",
+        "tile-l19-292"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Estate planning/legal - makes you think the row is about wills and estates"
+      }
+    },
+    {
+      "id": "decoy-1776089211-19",
+      "tileIds": [
+        "tile-l19-298",
+        "tile-l19-297"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Death and Taxes - famous saying makes these two tiles feel linked"
+      }
+    },
+    {
+      "id": "decoy-1776089211-20",
+      "tileIds": [
+        "tile-l19-297"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Death duties = estate planning - fits the impostor theme, player may pick Death instead of Taxes"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 1,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

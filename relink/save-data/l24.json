@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "id": "l24",
+  "date": "2026-04-16",
+  "name": "Preparing for battle",
+  "rows": [
+    {
+      "id": "row-l24-93",
+      "position": 0,
+      "category": "Candidate list",
+      "tiles": [
+        {
+          "id": "tile-l24-369",
+          "text": "Slate",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l24-370",
+          "text": "Recon",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l24-371",
+          "text": "Roster",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l24-372",
+          "text": "Pool",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l24-94",
+      "position": 1,
+      "category": "Represented by a magnifying glass",
+      "tiles": [
+        {
+          "id": "tile-l24-373",
+          "text": "Spotlight",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l24-374",
+          "text": "Strategising",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l24-375",
+          "text": "Inspecting",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l24-376",
+          "text": "Search",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l24-95",
+      "position": 2,
+      "category": "Artificial Intelligences",
+      "tiles": [
+        {
+          "id": "tile-l24-377",
+          "text": "Claude",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l24-378",
+          "text": "Cortana",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l24-379",
+          "text": "Gemini",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l24-380",
+          "text": "Intelligence",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Technology"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l24-96",
+      "position": 3,
+      "category": "What famous statues do",
+      "tiles": [
+        {
+          "id": "tile-l24-381",
+          "text": "Preparing for battle",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l24-382",
+          "text": "Thinking",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l24-383",
+          "text": "Reading The Art of War",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l24-384",
+          "text": "Holding a torch",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Preparing for battle",
+        "source": "grid",
+        "sourceRowId": "row-l24-96"
+      }
+    ],
+    "answer": "Preparing for battle",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 1,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

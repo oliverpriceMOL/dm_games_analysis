@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "id": "l34",
+  "date": "",
+  "name": "21ˢᵗ Century Popes",
+  "rows": [
+    {
+      "id": "row-l34-133",
+      "position": 0,
+      "category": "Subjects of Harry Potter titles",
+      "tiles": [
+        {
+          "id": "tile-l34-529",
+          "text": "Stone",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l34-530",
+          "text": "Prisoner",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l34-531",
+          "text": "Prince",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l34-532",
+          "text": "Francis",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Literature"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Religion"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l34-134",
+      "position": 1,
+      "category": "Pixar movies",
+      "tiles": [
+        {
+          "id": "tile-l34-533",
+          "text": "Leo",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l34-534",
+          "text": "Luca",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l34-535",
+          "text": "Up",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l34-536",
+          "text": "Coco",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Film-TV"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Religion"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l34-135",
+      "position": 2,
+      "category": "Chicken shops minus a letter",
+      "tiles": [
+        {
+          "id": "tile-l34-537",
+          "text": "KC",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l34-538",
+          "text": "Popes",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l34-539",
+          "text": "John Paul",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l34-540",
+          "text": "Chick fil",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "Letter add-delete"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Food"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Religion"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l34-136",
+      "position": 3,
+      "category": "___ Fox",
+      "tiles": [
+        {
+          "id": "tile-l34-541",
+          "text": "Silver",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l34-542",
+          "text": "Benedict",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l34-543",
+          "text": "21ˢᵗ Century",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l34-544",
+          "text": "Sly",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Religion"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "21ˢᵗ Century",
+        "source": "grid",
+        "sourceRowId": "row-l34-136"
+      },
+      {
+        "text": "Popes",
+        "source": "grid",
+        "sourceRowId": "row-l34-135"
+      }
+    ],
+    "answer": "21ˢᵗ Century Popes",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Religion"
+        ]
+      }
+    }
+  },
+  "decoys": [],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

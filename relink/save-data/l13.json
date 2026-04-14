@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "id": "l13",
+  "date": "",
+  "name": "Start with shades of blue",
+  "rows": [
+    {
+      "id": "row-l13-49",
+      "position": 0,
+      "category": "Where a lion might live",
+      "tiles": [
+        {
+          "id": "tile-l13-193",
+          "text": "Zoo",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l13-194",
+          "text": "Aquarium",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l13-195",
+          "text": "Savanna",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l13-196",
+          "text": "Reserve",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l13-50",
+      "position": 1,
+      "category": "Dollars in 'Man with No Name' trilogy titles",
+      "tiles": [
+        {
+          "id": "tile-l13-197",
+          "text": "Blue",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l13-198",
+          "text": "Downcast",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l13-199",
+          "text": "Ice cold",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l13-200",
+          "text": "Gloomy",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l13-51",
+      "position": 2,
+      "category": "____ Line",
+      "tiles": [
+        {
+          "id": "tile-l13-201",
+          "text": "Finish",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l13-202",
+          "text": "Dead",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l13-203",
+          "text": "Touch",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l13-204",
+          "text": "Seal",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l13-52",
+      "position": 3,
+      "category": "Contain Greek gods",
+      "tiles": [
+        {
+          "id": "tile-l13-205",
+          "text": "Heliosphere",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l13-206",
+          "text": "Apollo 11",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l13-207",
+          "text": "Cyanogen",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l13-208",
+          "text": "Shades",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Science",
+            "History"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Science"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Blue",
+        "source": "grid",
+        "sourceRowId": "row-l13-50"
+      },
+      {
+        "text": "Shades",
+        "source": "grid",
+        "sourceRowId": "row-l13-52"
+      }
+    ],
+    "answer": "Start with shades of blue",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Hidden word"
+        ],
+        "abstraction": [
+          "Shared property"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-7",
+      "tileIds": [
+        "tile-l13-194",
+        "tile-l13-193",
+        "tile-l13-196",
+        "tile-l13-195"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Shared property"
+        ],
+        "description": "Places with animals - hides that lions specifically would not live in an aquarium"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 1,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

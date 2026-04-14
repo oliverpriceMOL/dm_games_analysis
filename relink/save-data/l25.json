@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "id": "l25",
+  "date": "2026-04-02",
+  "name": "Royal flush",
+  "rows": [
+    {
+      "id": "row-l25-97",
+      "position": 0,
+      "category": "Prime numbers",
+      "tiles": [
+        {
+          "id": "tile-l25-385",
+          "text": "Two",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l25-386",
+          "text": "Seven",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l25-387",
+          "text": "Ten",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l25-388",
+          "text": "Eleven",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Maths"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Maths"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l25-98",
+      "position": 1,
+      "category": "Reactions to being embarrassed",
+      "tiles": [
+        {
+          "id": "tile-l25-389",
+          "text": "Flush",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l25-390",
+          "text": "Ramble",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l25-391",
+          "text": "Jack",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l25-392",
+          "text": "Laugh",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l25-99",
+      "position": 2,
+      "category": "Split words ending 'king'",
+      "tiles": [
+        {
+          "id": "tile-l25-393",
+          "text": "Mock King",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l25-394",
+          "text": "Queen King",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l25-395",
+          "text": "Duck King",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l25-396",
+          "text": "Snack King",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Word split"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l25-100",
+      "position": 3,
+      "category": "Seals",
+      "tiles": [
+        {
+          "id": "tile-l25-397",
+          "text": "Ace of Spades",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l25-398",
+          "text": "Royal",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l25-399",
+          "text": "Aquatic mammal",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l25-400",
+          "text": "Approval",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Royal",
+        "source": "grid",
+        "sourceRowId": "row-l25-100"
+      },
+      {
+        "text": "Flush",
+        "source": "grid",
+        "sourceRowId": "row-l25-98"
+      }
+    ],
+    "answer": "Royal flush",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-33",
+      "tileIds": [
+        "tile-l25-391",
+        "tile-l25-389"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Poker terms - makes you think the row is about poker not reactions to embarrassment"
+      }
+    },
+    {
+      "id": "decoy-1776089211-34",
+      "tileIds": [
+        "tile-l25-397",
+        "tile-l25-398"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Cards/poker - makes you think the row is about cards not seals"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

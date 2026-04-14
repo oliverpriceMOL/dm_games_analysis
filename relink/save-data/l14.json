@@ -1,0 +1,314 @@
+{
+  "schemaVersion": 1,
+  "id": "l14",
+  "date": "",
+  "name": "Associated with volcanic eruptions",
+  "rows": [
+    {
+      "id": "row-l14-53",
+      "position": 0,
+      "category": "Synonyms for 'cowardly'",
+      "tiles": [
+        {
+          "id": "tile-l14-209",
+          "text": "Yellow",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l14-210",
+          "text": "Chicken",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l14-211",
+          "text": "Sulphur",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l14-212",
+          "text": "Craven",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l14-54",
+      "position": 1,
+      "category": "80s frontmen",
+      "tiles": [
+        {
+          "id": "tile-l14-213",
+          "text": "Mercury",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l14-214",
+          "text": "George",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l14-215",
+          "text": "Ash",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l14-216",
+          "text": "Rose",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l14-55",
+      "position": 2,
+      "category": "The Canary Islands",
+      "tiles": [
+        {
+          "id": "tile-l14-217",
+          "text": "Volcanic",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l14-218",
+          "text": "Pompeii",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l14-219",
+          "text": "Spain",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l14-220",
+          "text": "Bananas",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "Geography"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Geography"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l14-56",
+      "position": 3,
+      "category": "Famous guitar solos",
+      "tiles": [
+        {
+          "id": "tile-l14-221",
+          "text": "Hotel California",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l14-222",
+          "text": "Ring of Fire",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l14-223",
+          "text": "Eruption",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l14-224",
+          "text": "Freebird",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Music"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Volcanic",
+        "source": "grid",
+        "sourceRowId": "row-l14-55"
+      },
+      {
+        "text": "Eruption",
+        "source": "grid",
+        "sourceRowId": "row-l14-56"
+      }
+    ],
+    "answer": "Associated with volcanic eruptions",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "knowledgeDomain": [
+          "Geography",
+          "Science"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-8",
+      "tileIds": [
+        "tile-l14-211",
+        "tile-l14-209"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Shared property"
+        ],
+        "description": "Yellow things - makes you think the row is about yellow"
+      }
+    },
+    {
+      "id": "decoy-1776089211-9",
+      "tileIds": [
+        "tile-l14-218",
+        "tile-l14-217"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Volcanic destruction - makes you think the row is about volcanoes not Canary Islands"
+      }
+    },
+    {
+      "id": "decoy-1776089211-10",
+      "tileIds": [
+        "tile-l14-222",
+        "tile-l14-223"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Fire/volcanic - makes you think the row is about volcanoes not famous guitar solos"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 1,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

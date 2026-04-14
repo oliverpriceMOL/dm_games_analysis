@@ -1,0 +1,255 @@
+{
+  "schemaVersion": 1,
+  "id": "l30",
+  "date": "2026-04-13",
+  "name": "Dramatic pause",
+  "rows": [
+    {
+      "id": "row-l30-117",
+      "position": 0,
+      "category": "Spotify features",
+      "tiles": [
+        {
+          "id": "tile-l30-465",
+          "text": "DJ",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l30-466",
+          "text": "Record scratch",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l30-467",
+          "text": "Library",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l30-468",
+          "text": "Podcasts",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Technology"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l30-118",
+      "position": 1,
+      "category": "Things that go up",
+      "tiles": [
+        {
+          "id": "tile-l30-469",
+          "text": "Northbound train",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l30-470",
+          "text": "Eastenders doofs",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l30-471",
+          "text": "Lift cabin",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l30-472",
+          "text": "Sunrise",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l30-119",
+      "position": 2,
+      "category": "Two parallel lines",
+      "tiles": [
+        {
+          "id": "tile-l30-473",
+          "text": "Ellipsis",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l30-474",
+          "text": "Pause",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l30-475",
+          "text": "Equals",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l30-476",
+          "text": "Two",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l30-120",
+      "position": 3,
+      "category": "Start with 'gossip' synonyms",
+      "tiles": [
+        {
+          "id": "tile-l30-477",
+          "text": "Teapot",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l30-478",
+          "text": "Dirtbag",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l30-479",
+          "text": "Suspense",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l30-480",
+          "text": "Dramatic",
+          "isImpostor": false,
+          "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Dramatic",
+        "source": "grid",
+        "sourceRowId": "row-l30-120"
+      },
+      {
+        "text": "Pause",
+        "source": "grid",
+        "sourceRowId": "row-l30-119"
+      }
+    ],
+    "answer": "Dramatic pause",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "General"
+        ]
+      }
+    }
+  },
+  "decoys": [],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

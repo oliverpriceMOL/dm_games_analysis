@@ -1,0 +1,313 @@
+{
+  "schemaVersion": 1,
+  "id": "l9",
+  "date": "",
+  "name": "Silent letter",
+  "rows": [
+    {
+      "id": "row-l9-33",
+      "position": 0,
+      "category": "____head",
+      "tiles": [
+        {
+          "id": "tile-l9-129",
+          "text": "Crumb",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l9-130",
+          "text": "Mast",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l9-131",
+          "text": "Letter",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l9-132",
+          "text": "A",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Language"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l9-34",
+      "position": 1,
+      "category": "Ending in Christian traditions",
+      "tiles": [
+        {
+          "id": "tile-l9-133",
+          "text": "Silent",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l9-134",
+          "text": "Amass",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l9-135",
+          "text": "Dough",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l9-136",
+          "text": "Black Sabbath",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "Hidden word"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Religion"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Food"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l9-35",
+      "position": 2,
+      "category": "Used in baking",
+      "tiles": [
+        {
+          "id": "tile-l9-137",
+          "text": "Cocoa",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l9-138",
+          "text": "Salmon",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l9-139",
+          "text": "Scales",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l9-140",
+          "text": "Eggs",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Food"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Food"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l9-36",
+      "position": 3,
+      "category": "Homophones for Valentine's gifts",
+      "tiles": [
+        {
+          "id": "tile-l9-141",
+          "text": "Knead",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l9-142",
+          "text": "Flours",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l9-143",
+          "text": "Suites",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l9-144",
+          "text": "Wring",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Homophone"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Language"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Silent",
+        "source": "grid",
+        "sourceRowId": "row-l9-34"
+      },
+      {
+        "text": "Letter",
+        "source": "grid",
+        "sourceRowId": "row-l9-33"
+      }
+    ],
+    "answer": "Silent letter",
+    "pdl": {
+      "metaConnection": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "Compound"
+        ],
+        "abstraction": [
+          "Shared property"
+        ],
+        "knowledgeDomain": [
+          "Language"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1776089211-60",
+      "tileIds": [
+        "tile-l9-138",
+        "tile-l9-139",
+        "tile-l9-140"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Fish - Salmon + Scales + Eggs all relate to fish, making Cocoa look like the impostor"
+      }
+    },
+    {
+      "id": "decoy-1776089211-61",
+      "tileIds": [
+        "tile-l9-141",
+        "tile-l9-142"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Baking - makes you think the row is baking not homophones for Valentine gifts"
+      }
+    },
+    {
+      "id": "decoy-1776089211-62",
+      "tileIds": [
+        "tile-l9-144"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "description": "Wring has a silent W - fits the silent letter impostor theme, player may pick Wring instead of Knead"
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 2,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}
