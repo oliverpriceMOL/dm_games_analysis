@@ -12,13 +12,17 @@ import * as decoys from './decoys.js';
 import * as relinkPhase from './relink.js';
 import * as clustering from './clustering.js';
 import * as predictions from './predictions.js';
+import * as transitions from './transitions.js';
+import * as failures from './failures.js';
+import * as simulator from './simulator.js';
 
 const DATA_DIR = '/outputs/data';
 
 const FILES = [
     'overview', 'crosstabs', 'heatmap', 'impostor-domain',
     'correlations', 'regression', 'vertical', 'decoys',
-    'relink', 'clustering', 'predictions'
+    'relink', 'clustering', 'predictions',
+    'transitions', 'failures', 'simulator'
 ];
 
 async function loadData() {
@@ -60,6 +64,9 @@ async function main() {
         relinkPhase.render(data.relink);
         clustering.render(data.clustering);
         predictions.render(data.predictions, data.clustering);
+        transitions.render(data.transitions);
+        failures.render(data.failures);
+        simulator.render(data.simulator);
 
         // Nav highlighting
         document.querySelectorAll('nav a').forEach(link => {

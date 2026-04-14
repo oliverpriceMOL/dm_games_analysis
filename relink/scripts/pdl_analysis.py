@@ -108,6 +108,44 @@ print(f"  IPW: {ipw_data['diagnostics'].get('n_trajectories', 0)} trajectories, 
       f"mean weight={ipw_data['diagnostics'].get('mean_weight', 0)}, "
       f"p95={ipw_data['diagnostics'].get('p95_weight', 0)}")
 
+# 12. Transition probabilities (B1)
+transition_data = model.compute_transition_probs(
+    players_by_date, pdl_rows, pdl_puzzle_features, date_to_level, ipw_data)
+print(f"  Transitions: {transition_data['n_observations']} observations")
+
+# 13. Correlated failures (B2)
+failure_data = model.compute_correlated_failures(
+    players_by_date, date_to_level, pdl_puzzle_features, pdl_rows)
+print(f"  Correlated failures: {failure_data['n_pairs']} row pairs across "
+      f"{len(failure_data['per_puzzle'])} puzzles")
+
+# 14. Monte Carlo simulator (C)
+# Run simulation using per-puzzle empirical distributions + pooled fallback
+sim_results = {}
+for d in overlap_dates:
+    lid = date_to_level[d]
+    ds = date_summaries[d]
+    rows_for_puzzle = [pr for pr in pdl_rows if pr['lid'] == lid]
+    pf = pdl_puzzle_features[lid]
+    pp = players_by_date[d]
+    per_puzzle_dists = model.build_per_puzzle_dists(pp)
+    result = model.simulate_puzzle(
+        transition_data, rows_for_puzzle, pf,
+        n_sims=10000, per_puzzle_obs=per_puzzle_dists)
+    result['actual_solve_rate'] = round(ds['solve_rate'] * 100, 1)
+    result['name'] = ds['name']
+    result['date'] = d
+    result['label'] = ds['label']
+    sim_results[d] = result
+
+# Simulation validation
+sim_preds = [sim_results[d]['solve_rate'] * 100 for d in overlap_dates]
+actual_rates = [date_summaries[d]['solve_rate'] * 100 for d in overlap_dates]
+from lib.stats import pearson as _pearson
+sim_r, _ = _pearson(sim_preds, actual_rates) if len(sim_preds) >= 3 else (0, 1)
+sim_mae = safe_mean([abs(sim_preds[i] - actual_rates[i]) for i in range(len(sim_preds))])
+print(f"  Simulator: r={sim_r:.3f}, MAE={sim_mae:.1f}pp")
+
 
 # ══════════════════════════════════════════════════════════════════════
 #  Write JSON files
@@ -130,6 +168,12 @@ files = {
     'relink.json': relink_chart_data,
     'clustering.json': cluster_chart_data,
     'predictions.json': pred_chart_data,
+    'transitions.json': transition_data,
+    'failures.json': failure_data,
+    'simulator.json': {
+        'puzzles': {d: {k: v for k, v in r.items()} for d, r in sim_results.items()},
+        'validation': {'r': round(sim_r, 3), 'mae': round(sim_mae, 1)},
+    },
 }
 
 print(f"\nWriting {len(files)} JSON files to {OUT_DIR}/")

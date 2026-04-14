@@ -22,6 +22,9 @@
     <a href="#relink">Relink Phase</a>
     <a href="#clusters">Clustering</a>
     <a href="#predictions">Predictions</a>
+    <a href="#transitions">Transition Model</a>
+    <a href="#failures">Correlated Failures</a>
+    <a href="#simulator">Game Simulator</a>
 </nav>
 <main>
 
@@ -169,6 +172,56 @@
     <table id="pred-table">
         <thead><tr><th>Puzzle</th><th>Date</th><th>Predicted</th><th>Actual</th><th>Delta</th>
                    <th>Manip. Complexity</th><th>Cluster</th></tr></thead>
+        <tbody></tbody>
+    </table>
+</div>
+</div>
+
+<!-- TRANSITION MODEL -->
+<div class="section" id="transitions">
+<h2>Transition Probability Model</h2>
+<p id="trans-n" style="color:var(--muted);margin-bottom:15px;"></p>
+<div class="card">
+    <h3>Error Rate by Position &times; Lives Remaining (IPW-weighted)</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">Cell shows first-try correct %. Green = easy, red = hard. Darker cells are harder.</p>
+    <div class="heatmap-grid" id="pos-lives-grid"></div>
+</div>
+<div class="two-col" id="trans-pdl-charts"></div>
+<div class="card">
+    <h3>Decoy Group Effect on Error Rate</h3>
+    <div class="chart-container"><canvas id="trans-chart-decoy"></canvas></div>
+</div>
+</div>
+
+<!-- CORRELATED FAILURES -->
+<div class="section" id="failures">
+<h2>Correlated Failures</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Which rows tend to be failed together? Phi coefficient (φ) measures pairwise failure correlation. Blue = independent, red = correlated.</p>
+<p id="failures-n" style="color:var(--muted);font-size:13px;margin-bottom:15px;"></p>
+<div class="card" style="margin-bottom:20px;">
+    <h3>Aggregate: Does Feature Similarity Predict Correlated Failure?</h3>
+    <div id="failure-aggregate"></div>
+</div>
+<div class="two-col" id="failure-puzzles"></div>
+</div>
+
+<!-- GAME SIMULATOR -->
+<div class="section" id="simulator">
+<h2>Game Simulator</h2>
+<p id="sim-validation" style="color:var(--muted);margin-bottom:15px;"></p>
+<div class="card" style="margin-bottom:20px;">
+    <h3>Simulated vs Actual Solve Rate</h3>
+    <div class="chart-container"><canvas id="chart-sim-scatter"></canvas></div>
+</div>
+<div class="card" style="margin-bottom:20px;">
+    <h3>Simulated Rows Completed Distribution</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">Stacked bars show what proportion of simulated players complete 0, 1, 2, 3, or all 4 rows (+ relink).</p>
+    <div class="chart-container tall"><canvas id="chart-sim-dist"></canvas></div>
+</div>
+<div class="card">
+    <h3>Puzzle-by-Puzzle Comparison</h3>
+    <table id="sim-table">
+        <thead><tr><th>Puzzle</th><th>Date</th><th>Simulated</th><th>Actual</th><th>Delta</th><th>Mean Lives at Win</th><th>Sims</th></tr></thead>
         <tbody></tbody>
     </table>
 </div>
