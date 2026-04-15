@@ -21,7 +21,6 @@
     <a href="#decoys">Decoy Analysis</a>
     <a href="#relink">Relink Phase</a>
     <a href="#clusters">Clustering</a>
-    <a href="#predictions">Predictions</a>
     <a href="#transitions">Transition Model</a>
     <a href="#failures">Correlated Failures</a>
     <a href="#simulator">Game Simulator</a>
@@ -159,24 +158,6 @@
 </div>
 </div>
 
-<!-- PREDICTIONS -->
-<div class="section" id="predictions">
-<h2>Difficulty Predictions</h2>
-<p class="subtitle" id="pred-subtitle" style="color:var(--muted);margin-bottom:15px;"></p>
-<div class="card" style="margin-bottom:20px;">
-    <h3>Predicted vs Actual (Dated Puzzles)</h3>
-    <div class="chart-container"><canvas id="chart-pred-scatter"></canvas></div>
-</div>
-<div class="card">
-    <h3>All Puzzles — Predicted Difficulty</h3>
-    <table id="pred-table">
-        <thead><tr><th>Puzzle</th><th>Date</th><th>Predicted</th><th>Actual</th><th>Delta</th>
-                   <th>Manip. Complexity</th><th>Cluster</th></tr></thead>
-        <tbody></tbody>
-    </table>
-</div>
-</div>
-
 <!-- TRANSITION MODEL -->
 <div class="section" id="transitions">
 <h2>Transition Probability Model</h2>
@@ -221,7 +202,7 @@
 <div class="card">
     <h3>Puzzle-by-Puzzle Comparison</h3>
     <table id="sim-table">
-        <thead><tr><th>Puzzle</th><th>Date</th><th>Simulated</th><th>Actual</th><th>Delta</th><th>Mean Lives at Win</th><th>Sims</th></tr></thead>
+        <thead><tr><th>Puzzle</th><th>Date</th><th>Simulated</th><th>Actual</th><th>Delta</th><th>Manip.</th><th>Abstr.</th><th>P2 Tiles</th><th>Mean Lives</th></tr></thead>
         <tbody></tbody>
     </table>
 </div>

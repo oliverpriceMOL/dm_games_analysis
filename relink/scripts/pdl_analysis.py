@@ -75,8 +75,7 @@ ct_result = metrics.compute_crosstabs(row_joined)
 scatter_data = metrics.compute_correlations(puzzle_data, overlap_dates, date_summaries)
 
 # 3. Regression
-regression_data, row_coefs, manip_cats, abstr_cats, know_cats = \
-    metrics.compute_regression(puzzle_data, row_joined, overlap_dates, date_summaries)
+regression_data = metrics.compute_regression(puzzle_data, row_joined, overlap_dates, date_summaries)
 
 # 4. Vertical inference
 vi_chart_data, transparency_scores = metrics.compute_vertical_inference(
@@ -93,12 +92,7 @@ relink_chart_data = metrics.compute_relink(overlap_dates, date_summaries, pdl_pu
 cluster_chart_data, cluster_assignments = metrics.compute_clustering(
     pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date, date_summaries, row_joined)
 
-# 9. Predictions
-pred_chart_data = metrics.compute_predictions(
-    pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date, date_summaries,
-    row_coefs, manip_cats, abstr_cats, know_cats, cluster_assignments)
-
-# 10. Overview
+# 9. Overview
 overview_data = metrics.compute_overview(
     date_summaries, pdl_puzzle_features, pdl_puzzles, overlap_dates, aggregate_timing)
 
@@ -136,6 +130,10 @@ for d in overlap_dates:
     result['name'] = ds['name']
     result['date'] = d
     result['label'] = ds['label']
+    result['manipulationComplexity'] = pf['manipulationComplexity']
+    result['abstractionComplexity'] = pf['abstractionComplexity']
+    result['phase2TileCount'] = pf['phase2TileCount']
+    result['cluster'] = cluster_assignments.get(lid, -1)
     sim_results[d] = result
 
 # Simulation validation (dated only)
@@ -178,6 +176,10 @@ for lid, pdata in pdl_puzzles.items():
     result['name'] = pf['name']
     result['date'] = d  # may be None for undated, or a date without player data
     result['label'] = pf['name']  # use puzzle name as label for undated
+    result['manipulationComplexity'] = pf['manipulationComplexity']
+    result['abstractionComplexity'] = pf['abstractionComplexity']
+    result['phase2TileCount'] = pf['phase2TileCount']
+    result['cluster'] = cluster_assignments.get(lid, -1)
     sim_undated[lid] = result
 
 print(f"  Simulator (undated/no-data): {len(sim_undated)} puzzles simulated")
@@ -203,7 +205,6 @@ files = {
     'decoys.json': decoy_chart,
     'relink.json': relink_chart_data,
     'clustering.json': cluster_chart_data,
-    'predictions.json': pred_chart_data,
     'transitions.json': transition_data,
     'failures.json': failure_data,
     'simulator.json': {

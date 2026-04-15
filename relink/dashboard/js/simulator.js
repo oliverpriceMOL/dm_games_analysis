@@ -132,8 +132,10 @@ function renderSummaryTable(puzzles) {
             <td>${simPct}%</td>
             <td>${actPct}%</td>
             <td><span class="badge ${cls}">${delta > 0 ? '+' : ''}${delta}pp</span></td>
+            <td>${p.manipulationComplexity ?? '—'}</td>
+            <td>${p.abstractionComplexity ?? '—'}</td>
+            <td>${p.phase2TileCount ?? '—'}</td>
             <td>${p.mean_lives_at_win ? p.mean_lives_at_win.toFixed(1) : '—'}</td>
-            <td>${p.n_sims.toLocaleString()}</td>
         </tr>`;
     }
 }
@@ -147,7 +149,7 @@ function renderUndatedTable(undated) {
     const keys = Object.keys(undated);
     keys.sort((a, b) => undated[a].solve_rate - undated[b].solve_rate);
 
-    let html = '<table><thead><tr><th>Puzzle</th><th>Date</th><th>Predicted Solve Rate</th><th>Mean Lives at Win</th><th>Rows Completed Distribution</th></tr></thead><tbody>';
+    let html = '<table><thead><tr><th>Puzzle</th><th>Date</th><th>Predicted Solve Rate</th><th>Manip.</th><th>Abstr.</th><th>P2 Tiles</th><th>Mean Lives</th><th>Rows Completed Distribution</th></tr></thead><tbody>';
 
     for (const lid of keys) {
         const p = undated[lid];
@@ -172,6 +174,9 @@ function renderUndatedTable(undated) {
             <td>${p.name}</td>
             <td>${dateStr}</td>
             <td><span class="badge ${badge}">${simPct}%</span></td>
+            <td>${p.manipulationComplexity ?? '—'}</td>
+            <td>${p.abstractionComplexity ?? '—'}</td>
+            <td>${p.phase2TileCount ?? '—'}</td>
             <td>${p.mean_lives_at_win ? p.mean_lives_at_win.toFixed(1) : '—'}</td>
             <td>${bar}</td>
         </tr>`;

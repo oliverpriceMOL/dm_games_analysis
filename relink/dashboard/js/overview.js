@@ -2,7 +2,7 @@
  * Key Findings / Overview section.
  */
 
-export function render(overview, regression, predictions) {
+export function render(overview, regression, simulator) {
     const el = document.getElementById('subtitle');
     el.textContent = `${overview.n_puzzles} puzzles analysed · ${overview.n_dated} with player data · ${overview.total_completions} total completions`;
 
@@ -17,8 +17,8 @@ export function render(overview, regression, predictions) {
     }
 
     const findings = [
-        { value: predictions.validation.r.toFixed(2), label: 'Prediction Correlation (r)' },
-        { value: predictions.validation.mae + 'pp', label: 'Prediction MAE' },
+        { value: simulator.validation.r.toFixed(2), label: 'Simulator Correlation (r)' },
+        { value: simulator.validation.mae + 'pp', label: 'Simulator MAE' },
         { value: regression.row.r2, label: 'Row Regression R²' },
         { value: maxCoef.replace('manip:','').replace('abstr:','').replace('know:',''),
            label: 'Strongest Predictor' },

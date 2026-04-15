@@ -231,7 +231,7 @@ def compute_regression(puzzle_data, row_joined, overlap_dates, date_summaries):
         }
     }
 
-    return regression_data, row_coefs, manip_cats, abstr_cats, know_cats
+    return regression_data
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -652,77 +652,6 @@ def compute_clustering(pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date
         }
 
     return cluster_chart_data, cluster_assignments
-
-
-# ══════════════════════════════════════════════════════════════════════
-#  PREDICTIONS
-# ══════════════════════════════════════════════════════════════════════
-
-def compute_predictions(pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date,
-                        date_summaries, row_coefs, manip_cats, abstr_cats, know_cats,
-                        cluster_assignments):
-    """Compute difficulty predictions for all puzzles. Returns pred_chart_data dict."""
-    def predict_row_difficulty(r):
-        features = one_hot(r['manipulation'], manip_cats) + \
-                   one_hot(r['abstraction'], abstr_cats) + \
-                   one_hot(r['knowledge'], know_cats) + \
-                   [1 if r.get('same_domain', False) else 0]
-        if len(row_coefs) != len(features) + 1:
-            return 0.5
-        return row_coefs[0] + sum(row_coefs[i + 1] * features[i] for i in range(len(features)))
-
-    def predict_puzzle_solve_rate(lid):
-        rows = [r for r in pdl_rows if r['lid'] == lid]
-        if not rows:
-            return 0.5
-        row_diffs = [predict_row_difficulty(r) for r in rows]
-        avg_row = safe_mean(row_diffs)
-        return max(0, min(1, avg_row))
-
-    predictions = []
-    for lid in pdl_puzzles:
-        pf = pdl_puzzle_features[lid]
-        pred = predict_puzzle_solve_rate(lid)
-        actual = None
-        if lid in level_to_date and level_to_date[lid] in date_summaries:
-            actual = date_summaries[level_to_date[lid]]['solve_rate']
-        predictions.append({
-            'lid': lid,
-            'name': pf['name'],
-            'date': pf['date'],
-            'predicted': pred,
-            'actual': actual,
-            'phase2TileCount': pf['phase2TileCount'],
-            'manipulationComplexity': pf['manipulationComplexity'],
-            'abstractionComplexity': pf['abstractionComplexity'],
-            'cluster': cluster_assignments.get(lid, -1),
-        })
-
-    predictions.sort(key=lambda p: p['predicted'])
-
-    dated_preds = [p for p in predictions if p['actual'] is not None]
-    pred_vs_actual_r, _ = pearson([p['predicted'] for p in dated_preds],
-                                   [p['actual'] for p in dated_preds]) if dated_preds else (0, 1)
-    pred_mae = safe_mean([abs(p['predicted'] - p['actual']) for p in dated_preds]) if dated_preds else 0
-
-    pred_chart_data = {
-        'all': [{
-            'name': p['name'],
-            'date': p['date'],
-            'predicted': round(p['predicted'] * 100, 1),
-            'actual': round(p['actual'] * 100, 1) if p['actual'] is not None else None,
-            'cluster': p['cluster'],
-            'manipComplexity': p['manipulationComplexity'],
-            'abstrComplexity': p['abstractionComplexity'],
-            'phase2Tiles': p['phase2TileCount'],
-        } for p in predictions],
-        'validation': {
-            'r': round(pred_vs_actual_r, 3),
-            'mae': round(pred_mae * 100, 1),
-        }
-    }
-
-    return pred_chart_data
 
 
 # ══════════════════════════════════════════════════════════════════════

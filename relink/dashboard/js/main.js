@@ -11,7 +11,6 @@ import * as vertical from './vertical.js';
 import * as decoys from './decoys.js';
 import * as relinkPhase from './relink.js';
 import * as clustering from './clustering.js';
-import * as predictions from './predictions.js';
 import * as transitions from './transitions.js';
 import * as failures from './failures.js';
 import * as simulator from './simulator.js';
@@ -21,7 +20,7 @@ const DATA_DIR = '../outputs/data';
 const FILES = [
     'overview', 'crosstabs', 'heatmap', 'impostor-domain',
     'correlations', 'regression', 'vertical', 'decoys',
-    'relink', 'clustering', 'predictions',
+    'relink', 'clustering',
     'transitions', 'failures', 'simulator'
 ];
 
@@ -53,7 +52,7 @@ async function main() {
         contentEl.style.display = 'block';
 
         // Render each section
-        overview.render(data.overview, data.regression, data.predictions);
+        overview.render(data.overview, data.regression, data.simulator);
         crosstabs.render(data.crosstabs);
         renderHeatmap(data.heatmap);
         renderImpostorDomain(data.impostorDomain);
@@ -63,7 +62,6 @@ async function main() {
         decoys.render(data.decoys);
         relinkPhase.render(data.relink);
         clustering.render(data.clustering);
-        predictions.render(data.predictions, data.clustering);
         transitions.render(data.transitions);
         failures.render(data.failures);
         simulator.render(data.simulator);
