@@ -14,9 +14,14 @@ Analysis of player behaviour data from internal tests of Daily Mail puzzle games
 ```
 ├── raw/                        # Source CSVs (gitignored)
 ├── relink/
-│   ├── scripts/                # 7 analysis scripts
-│   ├── outputs/                # Text reports + interactive HTML
-│   └── save-data/              # Puzzle design files (PDL JSON)
+│   ├── scripts/
+│   │   ├── lib/                # Shared library (data, metrics, model, stats)
+│   │   └── pdl_analysis.py     # Main pipeline → 14 JSON files
+│   ├── dashboard/              # Interactive Chart.js dashboard
+│   ├── outputs/
+│   │   ├── data/               # 14 JSON files (generated)
+│   │   └── *.txt               # Legacy text reports
+│   └── save-data/              # 39 puzzle design files (PDL JSON)
 ├── trace/
 │   ├── scripts/                # 6 analysis scripts
 │   └── outputs/                # Text reports + interactive HTML
@@ -48,13 +53,25 @@ The `raw/` directory is gitignored as it contains potentially sensitive player d
 
 ```bash
 # From the data/ directory:
-python3 relink/scripts/pdl_analysis.py      # Generates interactive HTML report
-python3 trace/scripts/trace_analysis.py      # Generates text analysis
+
+# Relink — generate 14 JSON data files (~2-3 min):
+python3 relink/scripts/pdl_analysis.py
+
+# Relink — serve interactive dashboard (http://localhost:8000):
+python3 -m http.server 8000 -d relink
+
+# Trace — generate text analysis:
+python3 trace/scripts/trace_analysis.py
 ```
 
 Each script is self-contained and can be run independently.
 
+## Key Findings
+
+- **Relink**: Solve rates vary 17–82% across 20 puzzle dates. Manipulation type is the strongest difficulty driver. Monte Carlo simulator achieves r=0.84 on dated puzzles and predicts 59–77% solve rates for 19 undated puzzles. See [relink/README.md](relink/README.md) for full details.
+- **Trace**: Median solve times range from 18s to 164s across 12 puzzles. 7-letter words take ~3× longer than 5-letter words. Hard puzzles reduce next-day retention by ~12pp. See [trace/README.md](trace/README.md) for full details.
+
 ## See Also
 
-- [Relink documentation](relink/README.md) — Game rules, scripts, key findings
-- [Trace documentation](trace/README.md) — Game rules, scripts, key findings
+- [Relink documentation](relink/README.md) — Game rules, PDL system, analysis pipeline, 14 dashboard sections, key findings
+- [Trace documentation](trace/README.md) — Game rules, scripts, difficulty & retention findings
