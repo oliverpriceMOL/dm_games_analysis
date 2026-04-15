@@ -25,6 +25,10 @@ function renderPerPuzzle(perPuzzle) {
 
         let html = `<h3>${pz.name} <span style="color:var(--muted);font-weight:400">(${label}, n=${pz.n_players})</span></h3>`;
 
+        // Row names from category data
+        const cats = pz.row_categories || {};
+        const rowName = (r) => cats[r] || `Row ${r + 1}`;
+
         // Row failure rates as small badges
         html += '<div style="margin-bottom:12px;font-size:12px;">';
         for (let r = 0; r < 4; r++) {
@@ -32,17 +36,17 @@ function renderPerPuzzle(perPuzzle) {
             if (rate === undefined) continue;
             const pct = (rate * 100).toFixed(0);
             const cls = rate > 0.5 ? 'badge-red' : rate > 0.3 ? 'badge-amber' : 'badge-green';
-            html += `<span class="badge ${cls}" style="margin-right:6px">Row ${r + 1}: ${pct}% fail</span>`;
+            html += `<span class="badge ${cls}" style="margin-right:6px">${rowName(r)}: ${pct}% fail</span>`;
         }
         html += '</div>';
 
         // 4×4 phi matrix
-        html += '<div class="confusion-grid" style="grid-template-columns: 60px repeat(4, 60px);">';
+        html += '<div class="confusion-grid" style="grid-template-columns: 90px repeat(4, 90px);">';
         html += '<div class="confusion-cell confusion-header"></div>';
-        for (let c = 0; c < 4; c++) html += `<div class="confusion-cell confusion-header">Row ${c + 1}</div>`;
+        for (let c = 0; c < 4; c++) html += `<div class="confusion-cell confusion-header" title="${rowName(c)}">${rowName(c)}</div>`;
 
         for (let r = 0; r < 4; r++) {
-            html += `<div class="confusion-cell confusion-header">Row ${r + 1}</div>`;
+            html += `<div class="confusion-cell confusion-header" title="${rowName(r)}">${rowName(r)}</div>`;
             for (let c = 0; c < 4; c++) {
                 if (r === c) {
                     html += '<div class="confusion-cell" style="background:#f8f9fa;color:var(--muted)">—</div>';

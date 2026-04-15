@@ -120,7 +120,7 @@ print(f"  Correlated failures: {failure_data['n_pairs']} row pairs across "
       f"{len(failure_data['per_puzzle'])} puzzles")
 
 # 14. Monte Carlo simulator (C)
-# Run simulation using per-puzzle empirical distributions + pooled fallback
+# Run simulation on dated puzzles (per-puzzle empirical distributions + pooled fallback)
 sim_results = {}
 for d in overlap_dates:
     lid = date_to_level[d]
@@ -138,13 +138,49 @@ for d in overlap_dates:
     result['label'] = ds['label']
     sim_results[d] = result
 
-# Simulation validation
+# Simulation validation (dated only)
 sim_preds = [sim_results[d]['solve_rate'] * 100 for d in overlap_dates]
 actual_rates = [date_summaries[d]['solve_rate'] * 100 for d in overlap_dates]
 from lib.stats import pearson as _pearson
 sim_r, _ = _pearson(sim_preds, actual_rates) if len(sim_preds) >= 3 else (0, 1)
 sim_mae = safe_mean([abs(sim_preds[i] - actual_rates[i]) for i in range(len(sim_preds))])
-print(f"  Simulator: r={sim_r:.3f}, MAE={sim_mae:.1f}pp")
+print(f"  Simulator (dated, empirical): r={sim_r:.3f}, MAE={sim_mae:.1f}pp")
+
+# Cross-validation: run feature-based model on dated puzzles (no per_puzzle_obs)
+# This measures how well the feature model alone predicts known puzzles.
+feat_preds = []
+for d in overlap_dates:
+    lid = date_to_level[d]
+    rows_for_puzzle = [pr for pr in pdl_rows if pr['lid'] == lid]
+    pf = pdl_puzzle_features[lid]
+    result = model.simulate_puzzle(
+        transition_data, rows_for_puzzle, pf, n_sims=10000)
+    feat_preds.append(result['solve_rate'] * 100)
+feat_r, _ = _pearson(feat_preds, actual_rates) if len(feat_preds) >= 3 else (0, 1)
+feat_mae = safe_mean([abs(feat_preds[i] - actual_rates[i]) for i in range(len(feat_preds))])
+print(f"  Simulator (dated, feature-only): r={feat_r:.3f}, MAE={feat_mae:.1f}pp")
+
+# Run simulation on ALL puzzles without player data (pooled model only)
+sim_undated = {}
+for lid, pdata in pdl_puzzles.items():
+    if lid not in pdl_puzzle_features:
+        continue
+    pf = pdl_puzzle_features[lid]
+    d = level_to_date.get(lid)
+    if d and d in overlap_dates:
+        continue  # already simulated above
+    rows_for_puzzle = [pr for pr in pdl_rows if pr['lid'] == lid]
+    if len(rows_for_puzzle) < 4:
+        continue
+    result = model.simulate_puzzle(
+        transition_data, rows_for_puzzle, pf, n_sims=10000)
+    result['actual_solve_rate'] = None
+    result['name'] = pf['name']
+    result['date'] = d  # may be None for undated, or a date without player data
+    result['label'] = pf['name']  # use puzzle name as label for undated
+    sim_undated[lid] = result
+
+print(f"  Simulator (undated/no-data): {len(sim_undated)} puzzles simulated")
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -172,7 +208,9 @@ files = {
     'failures.json': failure_data,
     'simulator.json': {
         'puzzles': {d: {k: v for k, v in r.items()} for d, r in sim_results.items()},
+        'undated': {lid: {k: v for k, v in r.items()} for lid, r in sim_undated.items()},
         'validation': {'r': round(sim_r, 3), 'mae': round(sim_mae, 1)},
+        'feature_validation': {'r': round(feat_r, 3), 'mae': round(feat_mae, 1)},
     },
 }
 

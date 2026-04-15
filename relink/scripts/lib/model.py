@@ -237,7 +237,7 @@ def compute_transition_probs(players_by_date, pdl_rows, pdl_puzzle_features,
             'wrong_dist': {str(k): round(v, 3) for k, v in sorted(wrong_dist.items())},
         }
 
-    # ── By PDL feature (IPW-weighted) ──
+    # ── By PDL feature (IPW-weighted) — with full wrong_dist ──
     by_pdl = {}
     for axis in ['manipulation', 'abstraction', 'knowledge']:
         groups = defaultdict(lambda: {'wrongs': [], 'weights': []})
@@ -250,10 +250,16 @@ def compute_transition_probs(players_by_date, pdl_rows, pdl_puzzle_features,
             w_sum = sum(wts)
             w_mean = sum(wts[i] * ww[i] for i in range(len(ww))) / w_sum if w_sum else 0
             w_ft = sum(wts[i] for i in range(len(ww)) if ww[i] == 0) / w_sum if w_sum else 0
+            wrong_dist = defaultdict(float)
+            for i in range(len(ww)):
+                wrong_dist[ww[i]] += wts[i]
+            for k in wrong_dist:
+                wrong_dist[k] /= w_sum
             result[label] = {
                 'n': len(ww),
                 'weighted_mean_wrong': round(w_mean, 3),
                 'weighted_first_try': round(w_ft, 3),
+                'wrong_dist': {str(k): round(v, 3) for k, v in sorted(wrong_dist.items())},
             }
         by_pdl[axis] = result
 
@@ -268,10 +274,16 @@ def compute_transition_probs(players_by_date, pdl_rows, pdl_puzzle_features,
         w_sum = sum(wts)
         w_mean = sum(wts[i] * ww[i] for i in range(len(ww))) / w_sum if w_sum else 0
         w_ft = sum(wts[i] for i in range(len(ww)) if ww[i] == 0) / w_sum if w_sum else 0
+        wrong_dist = defaultdict(float)
+        for i in range(len(ww)):
+            wrong_dist[ww[i]] += wts[i]
+        for k in wrong_dist:
+            wrong_dist[k] /= w_sum
         sd_result[str(label)] = {
             'n': len(ww),
             'weighted_mean_wrong': round(w_mean, 3),
             'weighted_first_try': round(w_ft, 3),
+            'wrong_dist': {str(k): round(v, 3) for k, v in sorted(wrong_dist.items())},
         }
     by_pdl['same_domain'] = sd_result
 
@@ -286,10 +298,41 @@ def compute_transition_probs(players_by_date, pdl_rows, pdl_puzzle_features,
         w_sum = sum(wts)
         w_mean = sum(wts[i] * ww[i] for i in range(len(ww))) / w_sum if w_sum else 0
         w_ft = sum(wts[i] for i in range(len(ww)) if ww[i] == 0) / w_sum if w_sum else 0
+        wrong_dist = defaultdict(float)
+        for i in range(len(ww)):
+            wrong_dist[ww[i]] += wts[i]
+        for k in wrong_dist:
+            wrong_dist[k] /= w_sum
         by_decoy[str(label)] = {
             'n': len(ww),
             'weighted_mean_wrong': round(w_mean, 3),
             'weighted_first_try': round(w_ft, 3),
+            'wrong_dist': {str(k): round(v, 3) for k, v in sorted(wrong_dist.items())},
+        }
+
+    # ── By feature combo: (manipulation, has_decoy) — full distributions ──
+    # This powers the feature-based simulator for undated puzzles.
+    combo_groups = defaultdict(lambda: {'wrongs': [], 'weights': []})
+    for obs in observations:
+        key = (obs['manipulation'], obs['has_decoy'])
+        combo_groups[key]['wrongs'].append(obs['wrong'])
+        combo_groups[key]['weights'].append(obs['weight'])
+    by_feature_combo = {}
+    for (manip, decoy), data in sorted(combo_groups.items()):
+        ww, wts = data['wrongs'], data['weights']
+        w_sum = sum(wts)
+        w_mean = sum(wts[i] * ww[i] for i in range(len(ww))) / w_sum if w_sum else 0
+        w_ft = sum(wts[i] for i in range(len(ww)) if ww[i] == 0) / w_sum if w_sum else 0
+        wrong_dist = defaultdict(float)
+        for i in range(len(ww)):
+            wrong_dist[ww[i]] += wts[i]
+        for k in wrong_dist:
+            wrong_dist[k] /= w_sum
+        by_feature_combo[f'{manip}|{decoy}'] = {
+            'n': len(ww),
+            'weighted_mean_wrong': round(w_mean, 3),
+            'weighted_first_try': round(w_ft, 3),
+            'wrong_dist': {str(k): round(v, 3) for k, v in sorted(wrong_dist.items())},
         }
 
     # ── Intrinsic difficulty: position=0, lives=4 only ──
@@ -313,10 +356,27 @@ def compute_transition_probs(players_by_date, pdl_rows, pdl_puzzle_features,
             }
         intrinsic[axis] = result
 
+    # ── Global baseline (all rows, all positions) ──
+    all_wrongs = [obs['wrong'] for obs in observations]
+    all_weights = [obs['weight'] for obs in observations]
+    global_w_sum = sum(all_weights)
+    global_dist = defaultdict(float)
+    for i in range(len(all_wrongs)):
+        global_dist[all_wrongs[i]] += all_weights[i]
+    for k in global_dist:
+        global_dist[k] /= global_w_sum
+    global_baseline = {
+        'n': len(observations),
+        'weighted_mean_wrong': round(sum(all_weights[i] * all_wrongs[i] for i in range(len(all_wrongs))) / global_w_sum, 3) if global_w_sum else 0,
+        'wrong_dist': {str(k): round(v, 3) for k, v in sorted(global_dist.items())},
+    }
+
     return {
         'by_position_lives': pos_lives_table,
         'by_pdl_feature': by_pdl,
         'by_decoy': by_decoy,
+        'by_feature_combo': by_feature_combo,
+        'global_baseline': global_baseline,
         'intrinsic_difficulty': intrinsic,
         'n_observations': len(observations),
     }
@@ -414,6 +474,10 @@ def compute_correlated_failures(players_by_date, date_to_level, pdl_puzzle_featu
                 rp: round(sum(v[rp] for v in failure_vectors) / len(failure_vectors), 3)
                 for rp in row_positions
             },
+            'row_categories': {
+                rp: row_pdl[rp].get('category', f'Row {rp}')
+                for rp in row_positions if rp in row_pdl
+            },
         }
 
     # Aggregate: mean phi by feature similarity
@@ -479,22 +543,91 @@ def _sample_wrong_guesses(wrong_dist, rng_state):
     return max(int(k) for k in wrong_dist) if wrong_dist else 0
 
 
+def predict_row_dist(row_pdl, has_decoy, transition_probs):
+    """Predict wrong-guess distribution for a row based on its PDL features.
+
+    Lookup priority:
+    1. (manipulation, has_decoy) combo if n >= 20
+    2. manipulation-only dist (from by_pdl_feature) if n >= 20
+    3. Global baseline distribution
+
+    Returns dict {wrong_count_str: probability}.
+    """
+    MIN_N = 20
+    combo_table = transition_probs.get('by_feature_combo', {})
+    pdl_table = transition_probs.get('by_pdl_feature', {})
+    baseline = transition_probs.get('global_baseline', {})
+
+    manip = row_pdl.get('manipulation', 'None')
+
+    # 1. Try (manipulation, has_decoy) combo
+    combo_key = f'{manip}|{has_decoy}'
+    combo = combo_table.get(combo_key)
+    if combo and combo.get('n', 0) >= MIN_N:
+        return combo['wrong_dist']
+
+    # 2. Try manipulation-only
+    manip_data = pdl_table.get('manipulation', {}).get(manip)
+    if manip_data and manip_data.get('n', 0) >= MIN_N:
+        dist = dict(manip_data['wrong_dist'])
+        # If row has a decoy, shift distribution harder using decoy multiplier
+        if has_decoy:
+            dist = _apply_decoy_shift(dist, transition_probs)
+        return dist
+
+    # 3. Global baseline
+    dist = dict(baseline.get('wrong_dist', {'0': 0.65, '1': 0.2, '2': 0.1, '3': 0.05}))
+    if has_decoy:
+        dist = _apply_decoy_shift(dist, transition_probs)
+    return dist
+
+
+def _apply_decoy_shift(dist, transition_probs):
+    """Shift a wrong_dist harder based on the decoy effect ratio.
+
+    Uses the ratio of decoy vs non-decoy mean_wrong to redistribute
+    probability mass from 0-wrong toward higher wrong counts.
+    """
+    by_decoy = transition_probs.get('by_decoy', {})
+    no_decoy = by_decoy.get('False', {})
+    yes_decoy = by_decoy.get('True', {})
+    nd_mean = no_decoy.get('weighted_mean_wrong', 0.5)
+    yd_mean = yes_decoy.get('weighted_mean_wrong', 0.6)
+    if nd_mean <= 0:
+        return dist
+
+    # Ratio of how much harder decoy rows are
+    ratio = yd_mean / nd_mean  # e.g. 1.48
+
+    # Reweight: multiply P(wrong=k) by ratio^k, then renormalise
+    new_dist = {}
+    total = 0
+    for k_str, prob in dist.items():
+        k = int(k_str)
+        w = prob * (ratio ** k)
+        new_dist[k_str] = w
+        total += w
+    if total > 0:
+        for k_str in new_dist:
+            new_dist[k_str] = round(new_dist[k_str] / total, 4)
+    return new_dist
+
+
 def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
                     n_sims=10000, seed=42, per_puzzle_obs=None):
     """Monte Carlo simulator for a single Relink puzzle.
 
     For each simulated player:
-    1. Start at position=0, lives=4
-    2. Attempt each row in order (position 0,1,2,3)
-    3. For each row, sample wrong_guesses from empirical distribution
+    1. Start with 4 lives
+    2. Attempt rows sorted easiest-first (modelling player strategy)
+    3. For each row, sample wrong_guesses from:
+       a. per_puzzle_obs (empirical, for dated puzzles), or
+       b. predict_row_dist() (feature-based, for undated puzzles)
     4. Deduct lives. If lives <= 0: LOST.
     5. Survivors enter relink phase.
 
     per_puzzle_obs: list of per-position wrong-guess distributions for this puzzle.
-      Each is a dict {wrong_count: probability}. If None, uses pooled model.
-
-    Returns:
-        dict with outcome distribution, lives distribution, etc.
+      Each is a dict {wrong_count: probability}. If None, uses feature-based model.
     """
     from .stats import safe_mean
 
@@ -507,9 +640,43 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
         if len(parts) == 2 and parts[0] == '4':
             relink_dists[int(parts[1])] = data.get('wrong_dist', {'0': 1.0})
 
+    # Build decoy set for this puzzle
+    decoy_tile_ids = set()
+    for dec in puzzle_features.get('decoys', []):
+        for tid in dec.get('tileIds', []):
+            decoy_tile_ids.add(tid)
+
+    # For each row, determine its wrong-guess distribution
+    row_dists = []
+    for row in pdl_rows_for_puzzle:
+        has_decoy = any(tid in decoy_tile_ids for tid in row.get('tile_ids', []))
+        if per_puzzle_obs:
+            # Use empirical per-position dists (mapped by solve order)
+            row_dists.append({
+                'row': row,
+                'has_decoy': has_decoy,
+                'dist': None,  # will use per_puzzle_obs by position
+            })
+        else:
+            # Feature-based prediction
+            dist = predict_row_dist(row, has_decoy, transition_probs)
+            row_dists.append({
+                'row': row,
+                'has_decoy': has_decoy,
+                'dist': dist,
+            })
+
+    # Sort rows by predicted difficulty (easiest first) for undated puzzles.
+    # For dated puzzles with per_puzzle_obs, keep original position order.
+    if not per_puzzle_obs:
+        def _row_difficulty(rd):
+            d = rd['dist']
+            return sum(int(k) * v for k, v in d.items())  # expected wrong guesses
+        row_dists.sort(key=_row_difficulty)
+
     rng = [seed]
     results = {
-        'rows_completed': [0] * 5,  # 0, 1, 2, 3, 4 rows
+        'rows_completed': [0] * 5,
         'won': 0,
         'lost': 0,
         'lives_at_end': [],
@@ -520,23 +687,24 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
         lives = 4
         rows_done = 0
 
-        for pos in range(4):
-            # Try per-puzzle distribution first, then fall back to pooled
+        for pos, rd in enumerate(row_dists):
             dist = None
+
+            # For dated puzzles, use per-puzzle empirical distributions
             if per_puzzle_obs and pos < len(per_puzzle_obs):
                 dist = per_puzzle_obs[pos]
 
+            # For undated (or if per_puzzle_obs missing for this position),
+            # use the feature-based distribution
+            if not dist:
+                dist = rd['dist']
+
+            # Final fallback: pooled (position, lives)
             if not dist:
                 key = f'{pos},{lives}'
                 dist = pos_lives_table.get(key, {}).get('wrong_dist')
             if not dist:
-                for l in range(4, 0, -1):
-                    fallback_key = f'{pos},{l}'
-                    dist = pos_lives_table.get(fallback_key, {}).get('wrong_dist')
-                    if dist:
-                        break
-            if not dist:
-                dist = {'0': 0.7, '1': 0.2, '2': 0.1}
+                dist = {'0': 0.65, '1': 0.2, '2': 0.1, '3': 0.05}
 
             wrong = _sample_wrong_guesses(dist, rng)
             lives -= wrong
@@ -571,6 +739,6 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
     results['n_sims'] = n_sims
     results['rows_completed_pct'] = [round(c / n_sims * 100, 1) for c in results['rows_completed']]
     results['mean_lives_at_win'] = round(safe_mean(results['lives_at_end']), 2) if results['lives_at_end'] else 0
-    del results['lives_at_end']  # Don't serialize all 10k values
+    del results['lives_at_end']
 
     return results

@@ -318,44 +318,45 @@ def build_players(sessions, event_sessions):
         # ── Build state trajectory ──
         # Track position (which solve this is: 0th, 1st, 2nd, 3rd row solved),
         # lives before each row attempt, wrong guesses per row, survival.
+        # wrongs_by_row persists across row switches so that if a player
+        # fails row 0, tries row 1, then comes back to row 0, the earlier
+        # miss is still counted.
         trajectory = []
         sorted_rg = sorted(real_guesses, key=lambda g: g['ts'])
         lives = 4
         solved_so_far = set()
-        current_row = None
-        wrong_in_row = 0
+        wrongs_by_row = {}          # row_index -> total wrong guesses
+        lives_at_row_start = {}     # row_index -> lives when first attempted
 
         for g in sorted_rg:
             if len(solved_so_far) >= 4:
                 break  # All 4 rows solved — rest is relink phase
             row = g['row']
-            if row != current_row:
-                # Starting a new row attempt
-                current_row = row
-                wrong_in_row = 0
+            if row not in wrongs_by_row:
+                wrongs_by_row[row] = 0
+            if row not in lives_at_row_start:
+                lives_at_row_start[row] = lives
 
             if g['is_correct']:
                 pos = len(solved_so_far)
                 trajectory.append({
                     'position': pos,
-                    'lives_before': lives,
+                    'lives_before': lives_at_row_start[row],
                     'row': row,
-                    'wrong_count': wrong_in_row,
+                    'wrong_count': wrongs_by_row[row],
                     'survived': True,
                 })
                 solved_so_far.add(row)
-                current_row = None
-                wrong_in_row = 0
             else:
-                wrong_in_row += 1
+                wrongs_by_row[row] += 1
                 lives -= 1
                 if lives <= 0:
                     pos = len(solved_so_far)
                     trajectory.append({
                         'position': pos,
-                        'lives_before': lives + 1,
+                        'lives_before': lives_at_row_start[row],
                         'row': row,
-                        'wrong_count': wrong_in_row,
+                        'wrong_count': wrongs_by_row[row],
                         'survived': False,
                     })
                     break
