@@ -52,14 +52,52 @@ th { background: #f8f9fa; font-weight: 600; position: sticky; top: 0; }
 .collapse-content { display: none; padding-top: 10px; }
 .collapse-content.show { display: block; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media (max-width: 900px) {
-    nav { display: none; }
-    main { margin-left: 0; }
-    .two-col { grid-template-columns: 1fr; }
-}
 .confusion-grid { display: inline-grid; gap: 1px; background: var(--border); border-radius: 8px;
                     overflow: hidden; margin: 10px 0; }
 .confusion-cell { padding: 10px; text-align: center; background: var(--card); min-width: 60px; font-size: 13px; }
 .confusion-header { background: #f8f9fa; font-weight: 600; font-size: 11px; }
 #loading { text-align: center; padding: 60px; color: var(--muted); font-size: 18px; }
 #loading.error { color: var(--danger); }
+
+/* ── Pages ────────────────────────────────────────── */
+.page { display: none; }
+.page-intro { color: var(--muted); margin-bottom: 25px; font-size: 15px; line-height: 1.6; }
+
+/* ── Hamburger menu ───────────────────────────────── */
+.hamburger { display: none; position: fixed; top: 12px; left: 12px; z-index: 1100;
+             background: #2d3436; color: #fff; border: none; font-size: 22px;
+             width: 40px; height: 40px; border-radius: 8px; cursor: pointer;
+             line-height: 40px; text-align: center; }
+.nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 999; }
+
+/* ── Back-to-top ──────────────────────────────────── */
+.back-to-top { display: none; position: fixed; bottom: 24px; right: 24px; z-index: 900;
+               background: var(--accent); color: #fff; border: none; font-size: 20px;
+               width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
+               box-shadow: 0 2px 8px rgba(0,0,0,0.2); line-height: 42px; text-align: center; }
+.back-to-top:hover { background: #5b4bd5; }
+
+/* ── Glossary ─────────────────────────────────────── */
+#page-glossary main, #page-glossary { max-width: 900px; }
+.glossary-category { margin-bottom: 35px; }
+.glossary-category h2 { font-size: 18px; margin-bottom: 14px; padding-bottom: 6px;
+                         border-bottom: 2px solid var(--accent); }
+.glossary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 28px; }
+.glossary-term { line-height: 1.7; }
+.glossary-term dt { font-weight: 700; font-size: 15px; color: var(--text); margin-bottom: 2px; }
+.glossary-term dd { font-size: 14px; color: var(--muted); margin: 0 0 0 0; }
+.glossary-link { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 8px;
+                 background: var(--accent); color: #fff; text-decoration: none;
+                 margin-left: 4px; vertical-align: middle; font-weight: 600; }
+.glossary-link:hover { background: #5b4bd5; }
+
+/* ── Mobile overrides ─────────────────────────────── */
+@media (max-width: 900px) {
+    .hamburger { display: block; }
+    nav { display: none; z-index: 1000; }
+    body.nav-open nav { display: block; }
+    body.nav-open .nav-overlay { display: block; }
+    main { margin-left: 0; }
+    .two-col { grid-template-columns: 1fr; }
+    .glossary-grid { grid-template-columns: 1fr; }
+}

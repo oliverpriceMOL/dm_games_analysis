@@ -8,39 +8,41 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<button class="hamburger" id="hamburger" aria-label="Toggle navigation">&#9776;</button>
+<div class="nav-overlay" id="nav-overlay"></div>
 <div class="layout">
-<nav>
+<nav id="nav">
     <h2>PDL Analysis</h2>
-    <a href="#findings">Key Findings</a>
-    <a href="#crosstabs">PDL Cross-tabs</a>
-    <a href="#heatmap">Difficulty Heatmap</a>
-    <a href="#impostor">Impostor Domain</a>
-    <a href="#correlations">Puzzle Correlations</a>
-    <a href="#regression">Regression Models</a>
-    <a href="#vertical">Vertical Inference</a>
-    <a href="#decoys">Decoy Analysis</a>
-    <a href="#relink">Relink Phase</a>
-    <a href="#clusters">Clustering</a>
-    <a href="#transitions">Transition Model</a>
-    <a href="#failures">Correlated Failures</a>
-    <a href="#simulator">Game Simulator</a>
+    <a href="#overview" data-page="overview">Overview</a>
+    <a href="#difficulty" data-page="difficulty">Difficulty Drivers</a>
+    <a href="#behaviour" data-page="behaviour">Player Behaviour</a>
+    <a href="#relink" data-page="relink">Relink Phase</a>
+    <a href="#model" data-page="model">Statistical Model</a>
+    <a href="#simulator" data-page="simulator">Simulator</a>
+    <a href="#clustering" data-page="clustering">Clustering</a>
+    <a href="#glossary" data-page="glossary">Glossary</a>
 </nav>
 <main>
 
 <div id="loading">Loading data…</div>
 
-<div id="content" style="display:none;">
-
+<!-- ============ OVERVIEW ============ -->
+<div class="page" id="page-overview">
 <h1>Relink PDL &times; Behaviour Analysis</h1>
 <p class="subtitle" id="subtitle"></p>
+<p class="page-intro">Summary of the dataset and headline findings. How many puzzles, how many players, and how well does the simulator predict real outcomes?</p>
 
-<!-- KEY FINDINGS -->
 <div class="section" id="findings">
 <h2>Key Findings</h2>
 <div class="stats-grid" id="stats-grid"></div>
 </div>
+</div>
 
-<!-- CROSS-TABS -->
+<!-- ============ DIFFICULTY DRIVERS ============ -->
+<div class="page" id="page-difficulty">
+<h1>Difficulty Drivers</h1>
+<p class="page-intro">What makes a puzzle hard? These analyses break down row-level and puzzle-level difficulty by PDL design parameters — manipulation type, abstraction, knowledge level, domain, and their interactions.</p>
+
 <div class="section" id="crosstabs">
 <h2>PDL Axis Breakdown</h2>
 <p style="color:var(--muted);margin-bottom:15px;">Mean first-try correct % and average wrong guesses per row, grouped by each PDL axis.</p>
@@ -52,14 +54,12 @@
 </div>
 </div>
 
-<!-- HEATMAP -->
 <div class="section" id="heatmap">
 <h2>Manipulation &times; Abstraction Heatmap</h2>
 <p style="color:var(--muted);margin-bottom:15px;">Mean first-try correct % for each combination. Darker red = harder.</p>
 <div class="card" id="heatmap-container"></div>
 </div>
 
-<!-- IMPOSTOR DOMAIN -->
 <div class="section" id="impostor">
 <h2>Impostor Domain Analysis</h2>
 <p style="color:var(--muted);margin-bottom:15px;">Do impostors from the same knowledge domain as the group fool players more?</p>
@@ -69,14 +69,12 @@
 </div>
 </div>
 
-<!-- CORRELATIONS -->
 <div class="section" id="correlations">
 <h2>Puzzle-Level Correlations</h2>
 <p style="color:var(--muted);margin-bottom:15px;">Board-level design parameters vs solve rate. Each point is one puzzle date.</p>
 <div class="two-col" id="scatter-container"></div>
 </div>
 
-<!-- REGRESSION -->
 <div class="section" id="regression">
 <h2>Regression Models</h2>
 <div class="two-col" id="regression-tables"></div>
@@ -86,11 +84,16 @@
     <div class="chart-container tall"><canvas id="chart-forest"></canvas></div>
 </div>
 </div>
+</div>
 
-<!-- VERTICAL INFERENCE -->
+<!-- ============ PLAYER BEHAVIOUR ============ -->
+<div class="page" id="page-behaviour">
+<h1>Player Behaviour</h1>
+<p class="page-intro">How do players learn during a game, and how do designed traps affect them? Vertical inference tracks speed and accuracy across row positions; decoy analysis measures how often players fall for planted false groupings.</p>
+
 <div class="section" id="vertical">
 <h2>Vertical Inference</h2>
-<p style="color:var(--muted);margin-bottom:15px;">How do speed and accuracy change as players solve more rows? Both metrics use center of mass (CoM): where does the weight concentrate? Below 1.5 = front-loaded. Above 1.5 = back-loaded.</p>
+<p style="color:var(--muted);margin-bottom:15px;">How do speed and accuracy change as players solve more rows? Both metrics use centre of mass (CoM): where does the weight concentrate? Below 1.5 = front-loaded. Above 1.5 = back-loaded.</p>
 <div class="card" style="margin-bottom:20px;">
     <h3>Summary</h3>
     <div id="vi-summary"></div>
@@ -103,15 +106,16 @@
     <div id="vi-curve-charts"></div>
 </div>
 <div class="card">
-    <h3>Per-Puzzle Detail</h3>
+    <h3 class="collapsible" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('show')">Per-Puzzle Detail</h3>
+    <div class="collapse-content">
     <table id="vi-puzzle-table">
         <thead><tr><th>Puzzle</th><th>Date</th><th>Timing Curve</th><th>Timing CoM</th><th>Error Curve</th><th>Error CoM</th><th>Solve Rate</th></tr></thead>
         <tbody></tbody>
     </table>
+    </div>
 </div>
 </div>
 
-<!-- DECOYS -->
 <div class="section" id="decoys">
 <h2>Decoy Analysis</h2>
 <div class="two-col">
@@ -126,9 +130,14 @@
     </div>
 </div>
 </div>
+</div>
 
-<!-- RELINK PHASE -->
-<div class="section" id="relink">
+<!-- ============ RELINK PHASE ============ -->
+<div class="page" id="page-relink">
+<h1>Relink Phase</h1>
+<p class="page-intro">Phase 2 of the game: after finding all four impostors, players must identify the hidden connection between them. This section analyses Phase 2 difficulty by connection identification method, answer construction type, and the number of tiles to fill.</p>
+
+<div class="section" id="relink-section">
 <h2>Relink Phase PDL</h2>
 <div class="two-col">
     <div class="card">
@@ -147,24 +156,13 @@
     </div>
 </div>
 </div>
-
-<!-- CLUSTERING -->
-<div class="section" id="clusters">
-<h2>Puzzle &amp; Row Archetypes</h2>
-<div class="two-col">
-    <div class="card">
-        <h3>Puzzle Clusters (k=3)</h3>
-        <div class="chart-container"><canvas id="chart-puzzle-cluster"></canvas></div>
-        <div id="cluster-members" style="margin-top:15px;"></div>
-    </div>
-    <div class="card">
-        <h3>Row Archetypes (k=4)</h3>
-        <div class="chart-container"><canvas id="chart-row-cluster"></canvas></div>
-    </div>
-</div>
 </div>
 
-<!-- TRANSITION MODEL -->
+<!-- ============ STATISTICAL MODEL ============ -->
+<div class="page" id="page-model">
+<h1>Statistical Model</h1>
+<p class="page-intro">The IPW-weighted transition probability model and correlated failure analysis. These sections model how error rates change across game positions and lives, and whether failing one row predicts failing another.</p>
+
 <div class="section" id="transitions">
 <h2>Transition Probability Model</h2>
 <p id="trans-n" style="color:var(--muted);margin-bottom:15px;"></p>
@@ -180,21 +178,30 @@
 </div>
 </div>
 
-<!-- CORRELATED FAILURES -->
 <div class="section" id="failures">
 <h2>Correlated Failures</h2>
-<p style="color:var(--muted);margin-bottom:15px;">Which rows tend to be failed together? Phi coefficient (φ) measures pairwise failure correlation. Blue = independent, red = correlated.</p>
+<p style="color:var(--muted);margin-bottom:15px;">Which rows tend to be failed together? Phi coefficient (&phi;) measures pairwise failure correlation. Blue = independent, red = correlated.</p>
 <p id="failures-n" style="color:var(--muted);font-size:13px;margin-bottom:15px;"></p>
 <div class="card" style="margin-bottom:20px;">
     <h3>Aggregate: Does Feature Similarity Predict Correlated Failure?</h3>
     <div id="failure-aggregate"></div>
 </div>
-<div class="two-col" id="failure-puzzles"></div>
+<div class="card">
+    <h3 class="collapsible" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('show')">Per-Puzzle Failure Matrices</h3>
+    <div class="collapse-content">
+    <div class="two-col" id="failure-puzzles"></div>
+    </div>
+</div>
+</div>
 </div>
 
-<!-- GAME SIMULATOR -->
-<div class="section" id="simulator">
-<h2>Game Simulator</h2>
+<!-- ============ SIMULATOR ============ -->
+<div class="page" id="page-simulator">
+<h1>Game Simulator</h1>
+<p class="page-intro">Monte Carlo simulation of game outcomes using the learned transition model. Compares simulated solve rates against real player data and predicts difficulty for puzzles without player data.</p>
+
+<div class="section" id="simulator-section">
+<h2>Simulator Validation &amp; Predictions</h2>
 <p id="sim-validation" style="color:var(--muted);margin-bottom:15px;"></p>
 <div class="card" style="margin-bottom:20px;">
     <h3>Simulated vs Actual Solve Rate</h3>
@@ -218,10 +225,40 @@
     <div id="sim-undated"></div>
 </div>
 </div>
+</div>
 
-</div><!-- /content -->
+<!-- ============ CLUSTERING ============ -->
+<div class="page" id="page-clustering">
+<h1>Clustering</h1>
+<p class="page-intro">k-means clustering groups puzzles and rows into archetypes based on their PDL features and observed difficulty. Puzzle clusters (k=3) reveal broad difficulty tiers; row archetypes (k=4) identify common feature combinations.</p>
+
+<div class="section" id="clusters">
+<h2>Puzzle &amp; Row Archetypes</h2>
+<div class="two-col">
+    <div class="card">
+        <h3>Puzzle Clusters (k=3)</h3>
+        <div class="chart-container"><canvas id="chart-puzzle-cluster"></canvas></div>
+        <div id="cluster-members" style="margin-top:15px;"></div>
+    </div>
+    <div class="card">
+        <h3>Row Archetypes (k=4)</h3>
+        <div class="chart-container"><canvas id="chart-row-cluster"></canvas></div>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- ============ GLOSSARY ============ -->
+<div class="page" id="page-glossary">
+<h1>Glossary</h1>
+<p class="page-intro">Plain-English definitions of all key terms used across the dashboard. Click any page link to jump to where the term is used.</p>
+<div id="glossary-content"></div>
+</div>
+
 </main>
 </div>
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">&uarr;</button>
 
 <script type="module" src="js/main.js"></script>
 </body>
