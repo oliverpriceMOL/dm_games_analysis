@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l2",
   "date": "2026-04-01",
   "name": "London Underground stations",
@@ -233,18 +233,26 @@
     ],
     "answer": "London Underground stations",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "Common cultural"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "None"
+        ],
+        "knowledge": [
+          "Common cultural"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "Geography"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

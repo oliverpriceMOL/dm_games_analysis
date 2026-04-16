@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l29",
   "date": "2026-04-11",
   "name": "Precious metals",
@@ -228,18 +228,26 @@
     ],
     "answer": "Precious metals",
     "pdl": {
-      "metaConnection": {
+      "connectionIdentification": {
+        "manipulation": [
+          "None"
+        ],
         "knowledge": [
           "General vocabulary"
-        ],
-        "manipulation": [
-          "Compound"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "General"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

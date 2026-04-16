@@ -31,10 +31,10 @@ The 4 impostors share a hidden **meta-connection**. Players select tiles from th
 
 ## Data
 
-- **Period**: Mar 25 – Apr 13, 2026 (20 puzzle dates)
+- **Period**: Mar 31 – Apr 13, 2026 (14 puzzle dates with player data)
 - **Player counts**: Grew from ~40/day early on to ~100/day by Apr 10
 - **Total completions**: ~496
-- **Puzzle design files**: 39 puzzles in `save-data/` (PDL JSON format), 20 with matching player data ("dated"), 19 design-only ("undated")
+- **Puzzle design files**: 39 puzzles in `save-data/` (PDL JSON format), 14 with matching player data (“dated”), 25 without player data (3 dated Apr 14–16 with no analytics yet, plus 22 undated design-only)
 
 ### Filters Applied
 
@@ -89,16 +89,16 @@ Some puzzles include designed **decoy groupings** — sets of tiles across rows 
 
 ### Architecture
 
-The main analysis is `scripts/pdl_analysis.py`, which cross-references puzzle design parameters (PDL) with player behaviour data. It produces 14 JSON data files consumed by an interactive dashboard.
+The main analysis is `scripts/pdl_analysis.py`, which cross-references puzzle design parameters (PDL) with player behaviour data. It produces 13 JSON data files consumed by an interactive dashboard.
 
 ```
 pdl_analysis.py (orchestrator)
 ├── lib/data.py     → load CSVs + PDL, build player trajectories
-├── lib/metrics.py  → 9 analysis functions (crosstabs, regression, VI, clustering, etc.)
-├── lib/model.py    → IPW weights, transition probs, correlated failures, simulator
+├── lib/metrics.py  → 8 analysis functions (crosstabs, regression, VI, clustering, etc.)
+├── lib/model.py    → IPW weights, transition probs, correlated failures, full-feature simulator
 └── lib/stats.py    → mean, median, percentile, pearson, spearman, ols_multi, kmeans
 
-Outputs: 14 JSON files → outputs/data/
+Outputs: 13 JSON files → outputs/data/
 Dashboard: dashboard/ (Chart.js v4 + ES modules)
 ```
 
@@ -107,11 +107,11 @@ Dashboard: dashboard/ (Chart.js v4 + ES modules)
 | Module | Purpose |
 |--------|---------|
 | `lib/data.py` | Load CSVs (sessions + events), load PDL files, match events to sessions, build per-player trajectories (imposters phase + relink phase), compute date summaries with row metrics and timing |
-| `lib/metrics.py` | 9 analysis compute functions: crosstabs, correlations, regression, vertical inference, decoys, relink phase, clustering, predictions, overview |
-| `lib/model.py` | IPW weights for survivorship correction, transition probability distributions (by position/lives, PDL features, feature combos), correlated failure analysis (phi coefficients), Monte Carlo game simulator |
+| `lib/metrics.py` | 8 analysis compute functions: crosstabs, correlations, regression, vertical inference, decoys, relink phase, clustering, overview |
+| `lib/model.py` | IPW weights for survivorship correction, transition probability distributions (by position/lives, PDL features, feature combos), correlated failure analysis (phi coefficients), full-feature Monte Carlo game simulator with ratio-shift model |
 | `lib/stats.py` | Utility functions: mean, median, percentile, Pearson/Spearman correlation, OLS regression, k-means clustering, one-hot encoding |
 
-### 14 JSON Outputs
+### 13 JSON Outputs
 
 | # | File | Analysis | Question Answered |
 |---|------|----------|-------------------|
@@ -123,12 +123,11 @@ Dashboard: dashboard/ (Chart.js v4 + ES modules)
 | 6 | `regression.json` | OLS regression | Feature coefficients on solve rate, LOO cross-validation |
 | 7 | `vertical.json` | Vertical inference | Speed/accuracy improvement across positions 0→3 |
 | 8 | `decoys.json` | Decoy analysis | Decoy presence effect on solve rate; hit rates |
-| 9 | `relink.json` | Relink phase | Phase 2 by meta-connection type and tile count |
+| 9 | `relink.json` | Relink phase | Phase 2 by connection identification, answer construction, and tile count |
 | 10 | `clustering.json` | k-means | Puzzle archetypes (k=3) and row archetypes (k=4) |
-| 11 | `predictions.json` | Difficulty prediction | Predicted vs actual solve rates for all 39 puzzles |
-| 12 | `transitions.json` | Transition model | IPW-weighted wrong-guess distributions by features |
-| 13 | `failures.json` | Correlated failures | Row-pair phi coefficients; PDL similarity effects |
-| 14 | `simulator.json` | Monte Carlo | Simulated solve rates; undated puzzle predictions |
+| 11 | `transitions.json` | Transition model | IPW-weighted wrong-guess distributions by features |
+| 12 | `failures.json` | Correlated failures | Row-pair phi coefficients; PDL similarity effects |
+| 13 | `simulator.json` | Monte Carlo | Simulated solve rates; undated puzzle predictions |
 
 ### Key Derived Structures (from lib/data.py)
 
@@ -142,11 +141,11 @@ Dashboard: dashboard/ (Chart.js v4 + ES modules)
 The Monte Carlo simulator (`lib/model.py`) plays 10,000 trials per puzzle:
 
 - **Dated puzzles** (with player data): uses empirical per-puzzle wrong-guess distributions observed from real players at each position.
-- **Undated puzzles** (design-only): uses feature-based distributions from `predict_row_dist()`, which looks up wrong-guess probabilities by `(manipulation, has_decoy)` combination with a fallback chain (combo → manipulation-only with decoy shift → global baseline). Rows are sorted easiest-first to model typical player strategy.
+- **Undated puzzles** (design-only): uses a full-feature ratio-shift model via `predict_row_dist()`. For each row, starts from a base distribution looked up by `(manipulation, has_decoy)`, then applies multiplicative ratio-shift adjustments for abstraction, knowledge, same_domain, and position. For the relink phase, uses construction manipulation as base with ratio shifts for identification manipulation, construction knowledge, and tile count. Rows are sorted easiest-first to model typical player strategy.
 
 The simulator captures cascading life-loss dynamics that simpler models (like regression) cannot — a hard early row drains lives, making later rows and the relink phase more likely to fail.
 
-Validation: empirical model r=0.84, MAE=18pp; feature-only model r=0.47, MAE=20pp.
+Validation: empirical model r=0.934, MAE=12.7pp; feature-only model r=0.655, MAE=15.1pp. Spearman rank correlation ρ=0.938 with 91% pairwise ordering accuracy.
 
 ### IPW (Inverse Probability Weighting)
 
@@ -158,7 +157,7 @@ Row-level statistics are biased by survivorship — players who reach later rows
 
 | Script | Output | Description |
 |--------|--------|-------------|
-| `pdl_analysis.py` | 14 JSON files in `outputs/data/` | Main pipeline — generates all dashboard data |
+| `pdl_analysis.py` | 13 JSON files in `outputs/data/` | Main pipeline — generates all dashboard data |
 
 ### Standalone Text Analyses
 
@@ -181,7 +180,7 @@ python3 -m http.server 8000 -d relink
 # Then visit http://localhost:8000
 ```
 
-Built with Chart.js v4 (CDN) and ES modules. 14 JavaScript renderers in `dashboard/js/` — one per analysis section — orchestrated by `main.js`.
+Built with Chart.js v4 (CDN) and ES modules. 13 JavaScript renderers in `dashboard/js/` — one per analysis section — orchestrated by `main.js`.
 
 ## Key Findings
 

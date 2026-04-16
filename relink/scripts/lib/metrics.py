@@ -286,8 +286,8 @@ def compute_vertical_inference(overlap_dates, date_summaries, players_by_date,
             'pos_means': {p: round(pos_means[p], 3) if pos_means[p] is not None else None for p in range(4)},
             'pos_ns': pos_ns,
             'transparency': round(transp, 3) if transp is not None else None,
-            'relink_manipulation': pf['relink_manipulation'],
-            'relink_abstraction': pf['relink_abstraction'],
+            'relink_id_manipulation': pf['relink_id_manipulation'],
+            'relink_con_manipulation': pf['relink_con_manipulation'],
         }
 
     # Per-puzzle VI data
@@ -323,8 +323,8 @@ def compute_vertical_inference(overlap_dates, date_summaries, players_by_date,
             'knowledgeBreadth': pf['knowledgeBreadth'],
             'phase2TileCount': pf['phase2TileCount'],
             'decoyCount': pf['decoyCount'],
-            'relink_manipulation': pf['relink_manipulation'],
-            'relink_abstraction': pf['relink_abstraction'],
+            'relink_id_manipulation': pf['relink_id_manipulation'],
+            'relink_con_manipulation': pf['relink_con_manipulation'],
             'hasSpecialist': pf['hasSpecialist'],
         })
 
@@ -335,8 +335,8 @@ def compute_vertical_inference(overlap_dates, date_summaries, players_by_date,
         ('knowledgeBreadth', 'Knowledge Breadth'),
         ('phase2TileCount', 'Phase 2 Tile Count'),
         ('decoyCount', 'Decoy Count'),
-        ('relink_manipulation', 'Relink Manipulation'),
-        ('relink_abstraction', 'Relink Abstraction'),
+        ('relink_id_manipulation', 'Relink Identification'),
+        ('relink_con_manipulation', 'Relink Construction'),
         ('hasSpecialist', 'Has Specialist Knowledge'),
     ]
 
@@ -482,21 +482,25 @@ def compute_decoys(overlap_dates, date_summaries, pdl_puzzle_features, pdl_puzzl
 
 def compute_relink(overlap_dates, date_summaries, pdl_puzzle_features):
     """Compute relink phase analysis. Returns relink_chart_data dict."""
-    relink_by_manip = defaultdict(list)
+    relink_by_id_manip = defaultdict(list)
+    relink_by_con_manip = defaultdict(list)
     relink_by_tiles = defaultdict(list)
     for d in overlap_dates:
         ds = date_summaries[d]
         pf = pdl_puzzle_features[ds['lid']]
-        relink_by_manip[pf['relink_manipulation']].append(ds)
+        relink_by_id_manip[pf['relink_id_manipulation']].append(ds)
+        relink_by_con_manip[pf['relink_con_manipulation']].append(ds)
         relink_by_tiles[pf['phase2TileCount']].append(ds)
 
-    relink_manip_stats = {}
-    for manip, dss in sorted(relink_by_manip.items()):
-        relink_manip_stats[manip] = {
-            'n': len(dss),
-            'mean_first_try': safe_mean([ds['relink_first_try_pct'] for ds in dss]),
-            'mean_attempts': safe_mean([ds['relink_avg_attempts'] for ds in dss]),
-        }
+    def _manip_stats(groups):
+        out = {}
+        for manip, dss in sorted(groups.items()):
+            out[manip] = {
+                'n': len(dss),
+                'mean_first_try': safe_mean([ds['relink_first_try_pct'] for ds in dss]),
+                'mean_attempts': safe_mean([ds['relink_avg_attempts'] for ds in dss]),
+            }
+        return out
 
     relink_tile_stats = {}
     for tc, dss in sorted(relink_by_tiles.items()):
@@ -508,7 +512,8 @@ def compute_relink(overlap_dates, date_summaries, pdl_puzzle_features):
         }
 
     return {
-        'by_manip': relink_manip_stats,
+        'by_id_manip': _manip_stats(relink_by_id_manip),
+        'by_con_manip': _manip_stats(relink_by_con_manip),
         'by_tiles': {str(k): v for k, v in relink_tile_stats.items()},
     }
 

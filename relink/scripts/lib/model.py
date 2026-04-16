@@ -503,24 +503,49 @@ def compute_correlated_failures(players_by_date, date_to_level, pdl_puzzle_featu
 # ══════════════════════════════════════════════════════════════════════
 
 def build_per_puzzle_dists(players):
-    """Build empirical wrong-guess distributions per row position for one puzzle.
+    """Build empirical wrong-guess distributions per solve position for one puzzle.
 
-    Returns list of 4 dicts: [{wrong_count_str: probability}, ...] for positions 0-3.
-    Uses the trajectory data: each step gives (position, wrong_count).
+    Returns list of 5 dicts: [{wrong_count_str: probability}, ...]
+      positions 0-3 (imposters) + position 4 (relink).
+
+    Counts total lives consumed between consecutive row solves (not per-row
+    wrongs), so that abandoned-row wrongs (from row switching) are captured.
+    Also builds a per-puzzle relink wrong-guess distribution.
     """
     from collections import Counter
-    pos_counts = [Counter() for _ in range(4)]
-    pos_totals = [0] * 4
+    pos_counts = [Counter() for _ in range(5)]  # 0-3 imposters, 4 relink
+    pos_totals = [0] * 5
+
     for p in players:
-        traj = p.get('trajectory', [])
-        for step in traj:
-            pos = step['position']
-            if 0 <= pos < 4:
-                pos_counts[pos][step['wrong_count']] += 1
-                pos_totals[pos] += 1
+        # -- Imposters phase: count wrongs between consecutive solves --
+        sorted_rg = sorted(p.get('real_guesses', []), key=lambda g: g['ts'])
+        wrongs_since_last_solve = 0
+        solve_position = 0
+
+        for g in sorted_rg:
+            if solve_position >= 4:
+                break  # all 4 rows solved
+            if g['is_correct']:
+                pos_counts[solve_position][wrongs_since_last_solve] += 1
+                pos_totals[solve_position] += 1
+                solve_position += 1
+                wrongs_since_last_solve = 0
+            else:
+                wrongs_since_last_solve += 1
+
+        # Death case: player died trying to solve position `solve_position`
+        if solve_position < 4 and wrongs_since_last_solve > 0:
+            pos_counts[solve_position][wrongs_since_last_solve] += 1
+            pos_totals[solve_position] += 1
+
+        # -- Relink phase --
+        rt = p.get('relink_trajectory')
+        if rt:
+            pos_counts[4][rt['wrong_count']] += 1
+            pos_totals[4] += 1
 
     dists = []
-    for pos in range(4):
+    for pos in range(5):
         total = pos_totals[pos]
         if total >= 5:  # minimum observations
             dist = {str(k): round(v / total, 4) for k, v in sorted(pos_counts[pos].items())}
@@ -543,13 +568,89 @@ def _sample_wrong_guesses(wrong_dist, rng_state):
     return max(int(k) for k in wrong_dist) if wrong_dist else 0
 
 
-def predict_row_dist(row_pdl, has_decoy, transition_probs):
-    """Predict wrong-guess distribution for a row based on its PDL features.
+def _apply_ratio_shift(dist, ratio):
+    """Shift a wrong_dist by a difficulty ratio using exponential reweighting.
 
-    Lookup priority:
-    1. (manipulation, has_decoy) combo if n >= 20
-    2. manipulation-only dist (from by_pdl_feature) if n >= 20
-    3. Global baseline distribution
+    P(k) -> P(k) * ratio^k, then renormalize.
+    ratio > 1.0 = harder (more wrongs), ratio < 1.0 = easier.
+    Clamped to [0.5, 2.0] to prevent runaway adjustments.
+    """
+    ratio = max(0.5, min(2.0, ratio))
+    if abs(ratio - 1.0) < 0.02:
+        return dist  # negligible adjustment
+    new_dist = {}
+    total = 0
+    for k_str, prob in dist.items():
+        k = int(k_str)
+        w = prob * (ratio ** k)
+        new_dist[k_str] = w
+        total += w
+    if total > 0:
+        for k_str in new_dist:
+            new_dist[k_str] = round(new_dist[k_str] / total, 4)
+    return new_dist
+
+
+def _compute_feature_ratios(transition_probs):
+    """Compute mean_wrong ratios per feature category relative to global baseline.
+
+    Returns dict: {axis: {category: ratio}} for axes with sufficient data.
+    ratio > 1.0 means harder than average, < 1.0 means easier.
+    """
+    MIN_N = 20
+    global_mean = transition_probs.get('global_baseline', {}).get('weighted_mean_wrong', 0)
+    if global_mean <= 0:
+        return {}
+    pdl_table = transition_probs.get('by_pdl_feature', {})
+    ratios = {}
+    for axis in ('abstraction', 'knowledge', 'same_domain'):
+        axis_data = pdl_table.get(axis, {})
+        axis_ratios = {}
+        for cat, data in axis_data.items():
+            if data.get('n', 0) >= MIN_N and data.get('weighted_mean_wrong') is not None:
+                axis_ratios[cat] = data['weighted_mean_wrong'] / global_mean
+        if axis_ratios:
+            ratios[axis] = axis_ratios
+    return ratios
+
+
+def _compute_position_ratios(transition_probs):
+    """Compute mean_wrong ratio per solve-position relative to global baseline.
+
+    Aggregates across all lives states for each position, weighted by count.
+    Returns dict: {position_int: ratio}.
+    """
+    global_mean = transition_probs.get('global_baseline', {}).get('weighted_mean_wrong', 0)
+    if global_mean <= 0:
+        return {}
+    pos_lives = transition_probs.get('by_position_lives', {})
+    pos_totals = defaultdict(float)  # weighted sum of mean_wrong
+    pos_counts = defaultdict(int)
+    for key, data in pos_lives.items():
+        parts = key.split(',')
+        if len(parts) != 2:
+            continue
+        pos = int(parts[0])
+        if pos > 3:  # only imposters positions
+            continue
+        n = data.get('n', 0)
+        if n > 0:
+            pos_totals[pos] += data.get('weighted_mean_wrong', 0) * n
+            pos_counts[pos] += n
+    ratios = {}
+    for pos in range(4):
+        if pos_counts[pos] > 0:
+            pos_mean = pos_totals[pos] / pos_counts[pos]
+            ratios[pos] = pos_mean / global_mean
+    return ratios
+
+
+def predict_row_dist(row_pdl, has_decoy, transition_probs, position=None):
+    """Predict wrong-guess distribution for a row based on all PDL features.
+
+    Starts from a manipulation+decoy base distribution, then applies
+    multiplicative ratio-shift adjustments for abstraction, knowledge,
+    same_domain, and position.
 
     Returns dict {wrong_count_str: probability}.
     """
@@ -560,25 +661,50 @@ def predict_row_dist(row_pdl, has_decoy, transition_probs):
 
     manip = row_pdl.get('manipulation', 'None')
 
-    # 1. Try (manipulation, has_decoy) combo
+    # Step 1: Get base distribution from manipulation+decoy
+    dist = None
     combo_key = f'{manip}|{has_decoy}'
     combo = combo_table.get(combo_key)
     if combo and combo.get('n', 0) >= MIN_N:
-        return combo['wrong_dist']
+        dist = dict(combo['wrong_dist'])
+    else:
+        manip_data = pdl_table.get('manipulation', {}).get(manip)
+        if manip_data and manip_data.get('n', 0) >= MIN_N:
+            dist = dict(manip_data['wrong_dist'])
+            if has_decoy:
+                dist = _apply_decoy_shift(dist, transition_probs)
+        else:
+            dist = dict(baseline.get('wrong_dist', {'0': 0.65, '1': 0.2, '2': 0.1, '3': 0.05}))
+            if has_decoy:
+                dist = _apply_decoy_shift(dist, transition_probs)
 
-    # 2. Try manipulation-only
-    manip_data = pdl_table.get('manipulation', {}).get(manip)
-    if manip_data and manip_data.get('n', 0) >= MIN_N:
-        dist = dict(manip_data['wrong_dist'])
-        # If row has a decoy, shift distribution harder using decoy multiplier
-        if has_decoy:
-            dist = _apply_decoy_shift(dist, transition_probs)
-        return dist
+    # Step 2: Apply feature ratio-shift adjustments
+    feature_ratios = _compute_feature_ratios(transition_probs)
 
-    # 3. Global baseline
-    dist = dict(baseline.get('wrong_dist', {'0': 0.65, '1': 0.2, '2': 0.1, '3': 0.05}))
-    if has_decoy:
-        dist = _apply_decoy_shift(dist, transition_probs)
+    # Abstraction adjustment
+    abstr = row_pdl.get('abstraction', 'Direct membership')
+    abstr_ratios = feature_ratios.get('abstraction', {})
+    if abstr in abstr_ratios:
+        dist = _apply_ratio_shift(dist, abstr_ratios[abstr])
+
+    # Knowledge adjustment
+    know = row_pdl.get('knowledge', 'General vocabulary')
+    know_ratios = feature_ratios.get('knowledge', {})
+    if know in know_ratios:
+        dist = _apply_ratio_shift(dist, know_ratios[know])
+
+    # Same-domain adjustment
+    same_dom = str(row_pdl.get('same_domain', False))
+    sd_ratios = feature_ratios.get('same_domain', {})
+    if same_dom in sd_ratios:
+        dist = _apply_ratio_shift(dist, sd_ratios[same_dom])
+
+    # Step 3: Apply position adjustment
+    if position is not None:
+        pos_ratios = _compute_position_ratios(transition_probs)
+        if position in pos_ratios:
+            dist = _apply_ratio_shift(dist, pos_ratios[position])
+
     return dist
 
 
@@ -614,7 +740,8 @@ def _apply_decoy_shift(dist, transition_probs):
 
 
 def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
-                    n_sims=10000, seed=42, per_puzzle_obs=None):
+                    n_sims=10000, seed=42, per_puzzle_obs=None,
+                    relink_feature_dists=None):
     """Monte Carlo simulator for a single Relink puzzle.
 
     For each simulated player:
@@ -622,12 +749,15 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
     2. Attempt rows sorted easiest-first (modelling player strategy)
     3. For each row, sample wrong_guesses from:
        a. per_puzzle_obs (empirical, for dated puzzles), or
-       b. predict_row_dist() (feature-based, for undated puzzles)
+       b. predict_row_dist() (feature-based with all PDL adjustments)
     4. Deduct lives. If lives <= 0: LOST.
     5. Survivors enter relink phase.
 
     per_puzzle_obs: list of per-position wrong-guess distributions for this puzzle.
       Each is a dict {wrong_count: probability}. If None, uses feature-based model.
+    relink_feature_dists: dict with keys 'by_con_manip', 'by_id_manip',
+      'by_con_knowledge', 'by_tiles' — each mapping category to wrong_dist.
+      Used for feature-based relink prediction when per_puzzle_obs unavailable.
     """
     from .stats import safe_mean
 
@@ -658,8 +788,8 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
                 'dist': None,  # will use per_puzzle_obs by position
             })
         else:
-            # Feature-based prediction
-            dist = predict_row_dist(row, has_decoy, transition_probs)
+            # Feature-based prediction (position applied after sorting)
+            dist = predict_row_dist(row, has_decoy, transition_probs, position=None)
             row_dists.append({
                 'row': row,
                 'has_decoy': has_decoy,
@@ -673,6 +803,11 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
             d = rd['dist']
             return sum(int(k) * v for k, v in d.items())  # expected wrong guesses
         row_dists.sort(key=_row_difficulty)
+        # Re-apply position adjustments now that solve order is known
+        pos_ratios = _compute_position_ratios(transition_probs)
+        for pos, rd in enumerate(row_dists):
+            if pos in pos_ratios:
+                rd['dist'] = _apply_ratio_shift(rd['dist'], pos_ratios[pos])
 
     rng = [seed]
     results = {
@@ -715,7 +850,41 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
         if rows_done == 4 and lives > 0:
             # Relink phase
             results['relink_reached'] += 1
-            rl_dist = relink_dists.get(lives)
+
+            # Prefer per-puzzle relink distribution (captures puzzle-specific
+            # difficulty); fall back to feature-based prediction, then pooled.
+            rl_dist = None
+            if per_puzzle_obs and len(per_puzzle_obs) > 4 and per_puzzle_obs[4]:
+                rl_dist = per_puzzle_obs[4]
+            if not rl_dist and relink_feature_dists:
+                # Build relink dist from features: start with con_manipulation base,
+                # then apply ratio shifts for id_manipulation, con_knowledge, tiles.
+                con_manip = puzzle_features.get('relink_con_manipulation', 'None')
+                by_cm = relink_feature_dists.get('by_con_manip', {})
+                base_entry = by_cm.get(con_manip)
+                if base_entry and base_entry.get('dist'):
+                    rl_dist = dict(base_entry['dist'])
+                    # Compute global relink mean for ratio baseline
+                    gl = relink_feature_dists.get('global', {})
+                    gl_mean = gl.get('mean_wrong', 0)
+                    if gl_mean > 0:
+                        # id_manipulation adjustment
+                        id_manip = puzzle_features.get('relink_id_manipulation', 'None')
+                        id_entry = relink_feature_dists.get('by_id_manip', {}).get(id_manip)
+                        if id_entry and id_entry.get('mean_wrong') is not None:
+                            rl_dist = _apply_ratio_shift(rl_dist, id_entry['mean_wrong'] / gl_mean)
+                        # con_knowledge adjustment
+                        con_know = puzzle_features.get('relink_con_knowledge', 'None')
+                        ck_entry = relink_feature_dists.get('by_con_knowledge', {}).get(con_know)
+                        if ck_entry and ck_entry.get('mean_wrong') is not None:
+                            rl_dist = _apply_ratio_shift(rl_dist, ck_entry['mean_wrong'] / gl_mean)
+                        # phase2TileCount adjustment
+                        tiles = str(puzzle_features.get('phase2TileCount', 1))
+                        t_entry = relink_feature_dists.get('by_tiles', {}).get(tiles)
+                        if t_entry and t_entry.get('mean_wrong') is not None:
+                            rl_dist = _apply_ratio_shift(rl_dist, t_entry['mean_wrong'] / gl_mean)
+            if not rl_dist:
+                rl_dist = relink_dists.get(lives)
             if not rl_dist:
                 for l in range(4, 0, -1):
                     rl_dist = relink_dists.get(l)

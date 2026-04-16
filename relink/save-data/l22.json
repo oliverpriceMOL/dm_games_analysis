@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l22",
   "date": "",
   "name": "Named after US Presidents",
@@ -239,12 +239,12 @@
     ],
     "answer": "Named after US Presidents",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "Common cultural"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "None"
+        ],
+        "knowledge": [
+          "Common cultural"
         ],
         "abstraction": [
           "Association"
@@ -252,6 +252,14 @@
         "knowledgeDomain": [
           "History",
           "Geography"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l18",
   "date": "2026-04-06",
   "name": "Video game mascots",
@@ -233,18 +233,26 @@
     ],
     "answer": "Video game mascots",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "Common cultural"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "None"
+        ],
+        "knowledge": [
+          "Common cultural"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "Technology"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

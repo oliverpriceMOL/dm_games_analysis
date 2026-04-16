@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l37",
   "date": "",
   "name": "Chocolate bars",
@@ -228,18 +228,26 @@
     ],
     "answer": "Chocolate bars",
     "pdl": {
-      "metaConnection": {
+      "connectionIdentification": {
+        "manipulation": [
+          "None"
+        ],
         "knowledge": [
           "Common cultural"
-        ],
-        "manipulation": [
-          "Compound"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "Food"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

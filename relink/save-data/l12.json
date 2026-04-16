@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l12",
   "date": "2026-04-03",
   "name": "End in imperial units",
@@ -228,18 +228,26 @@
     ],
     "answer": "End in imperial units",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "General vocabulary"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "Hidden word"
+        ],
+        "knowledge": [
+          "General vocabulary"
         ],
         "abstraction": [
           "Shared property"
         ],
         "knowledgeDomain": [
           "Science"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

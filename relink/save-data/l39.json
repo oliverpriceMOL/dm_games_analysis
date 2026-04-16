@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l39",
   "date": "",
   "name": "Evergreen trees",
@@ -228,18 +228,26 @@
     ],
     "answer": "Evergreen trees",
     "pdl": {
-      "metaConnection": {
+      "connectionIdentification": {
+        "manipulation": [
+          "None"
+        ],
         "knowledge": [
           "General vocabulary"
-        ],
-        "manipulation": [
-          "Compound"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "General"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

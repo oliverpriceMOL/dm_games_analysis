@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l13",
   "date": "",
   "name": "Start with shades of blue",
@@ -229,18 +229,26 @@
     ],
     "answer": "Start with shades of blue",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "General vocabulary"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "Hidden word"
+        ],
+        "knowledge": [
+          "General vocabulary"
         ],
         "abstraction": [
           "Shared property"
         ],
         "knowledgeDomain": [
           "General"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

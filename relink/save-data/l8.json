@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l8",
   "date": "",
   "name": "____graph",
@@ -223,18 +223,26 @@
     ],
     "answer": "____graph",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "General vocabulary"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "Compound"
+        ],
+        "knowledge": [
+          "General vocabulary"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "Language"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

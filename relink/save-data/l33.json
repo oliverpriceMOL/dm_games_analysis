@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l33",
   "date": "",
   "name": "The Beatles members",
@@ -228,18 +228,26 @@
     ],
     "answer": "The Beatles members",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "Common cultural"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "None"
+        ],
+        "knowledge": [
+          "Common cultural"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "Music"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

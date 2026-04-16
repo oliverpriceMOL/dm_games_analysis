@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l34",
   "date": "",
   "name": "21ˢᵗ Century Popes",
@@ -228,18 +228,26 @@
     ],
     "answer": "21ˢᵗ Century Popes",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "Common cultural"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "None"
+        ],
+        "knowledge": [
+          "Common cultural"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "Religion"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

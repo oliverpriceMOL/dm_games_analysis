@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l1",
   "date": "2026-04-15",
   "name": "Something old, new, borrowed and blue",
@@ -240,18 +240,26 @@
     ],
     "answer": "Something old, new, borrowed and blue",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "Common cultural"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "None"
+        ],
+        "knowledge": [
+          "Common cultural"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "General"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "Phrase"
+        ],
+        "knowledge": [
+          "Common cultural"
         ]
       }
     }

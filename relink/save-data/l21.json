@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l21",
   "date": "",
   "name": "Spaceships",
@@ -229,18 +229,26 @@
     ],
     "answer": "Spaceships",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "General vocabulary"
-        ],
+      "connectionIdentification": {
         "manipulation": [
-          "Compound"
+          "None"
+        ],
+        "knowledge": [
+          "Common cultural"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "General"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "Compound"
+        ],
+        "knowledge": [
+          "General vocabulary"
         ]
       }
     }

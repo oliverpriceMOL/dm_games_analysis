@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l11",
   "date": "2026-03-31",
   "name": "Newspaper sections",
@@ -228,18 +228,26 @@
     ],
     "answer": "Newspaper sections",
     "pdl": {
-      "metaConnection": {
+      "connectionIdentification": {
+        "manipulation": [
+          "None"
+        ],
         "knowledge": [
           "General vocabulary"
-        ],
-        "manipulation": [
-          "Compound"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "General"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

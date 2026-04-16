@@ -6,7 +6,7 @@ Analysis of player behaviour data from internal tests of Daily Mail puzzle games
 
 | Game | Internal ID | Data Period | Completions |
 |------|------------|-------------|-------------|
-| [Relink](relink/) | `relink` | Mar 25 – Apr 13, 2026 | ~496 |
+| [Relink](relink/) | `relink` | Mar 31 – Apr 13, 2026 | ~496 |
 | [Trace](trace/) | `word-flow` | Mar 26 – Apr 6, 2026 | ~74,000 |
 
 ## Project Structure
@@ -16,10 +16,11 @@ Analysis of player behaviour data from internal tests of Daily Mail puzzle games
 ├── relink/
 │   ├── scripts/
 │   │   ├── lib/                # Shared library (data, metrics, model, stats)
-│   │   └── pdl_analysis.py     # Main pipeline → 14 JSON files
+│   │   └── pdl_analysis.py     # Main pipeline → 13 JSON files
 │   ├── dashboard/              # Interactive Chart.js dashboard
+│   ├── docs/                   # 6 documentation files (architecture, data, analysis, model, simulator, dashboard)
 │   ├── outputs/
-│   │   ├── data/               # 14 JSON files (generated)
+│   │   ├── data/               # 13 JSON files (generated)
 │   │   └── *.txt               # Legacy text reports
 │   └── save-data/              # 39 puzzle design files (PDL JSON)
 ├── trace/
@@ -54,7 +55,7 @@ The `raw/` directory is gitignored as it contains potentially sensitive player d
 ```bash
 # From the data/ directory:
 
-# Relink — generate 14 JSON data files (~2-3 min):
+# Relink — generate 13 JSON data files (~5-8 min):
 python3 relink/scripts/pdl_analysis.py
 
 # Relink — serve interactive dashboard (http://localhost:8000):
@@ -68,10 +69,11 @@ Each script is self-contained and can be run independently.
 
 ## Key Findings
 
-- **Relink**: Solve rates vary 17–82% across 20 puzzle dates. Manipulation type is the strongest difficulty driver. Monte Carlo simulator achieves r=0.84 on dated puzzles and predicts 59–77% solve rates for 19 undated puzzles. See [relink/README.md](relink/README.md) for full details.
+- **Relink**: Solve rates vary 17–83% across 14 dated puzzles. Manipulation type is the strongest difficulty driver. Full-feature Monte Carlo simulator achieves r=0.934 (empirical) / r=0.655 (feature-only) with Spearman ρ=0.938 rank correlation. Predicts solve rates for 25 puzzles without player data. See [relink/README.md](relink/README.md) for full details.
 - **Trace**: Median solve times range from 18s to 164s across 12 puzzles. 7-letter words take ~3× longer than 5-letter words. Hard puzzles reduce next-day retention by ~12pp. See [trace/README.md](trace/README.md) for full details.
 
 ## See Also
 
-- [Relink documentation](relink/README.md) — Game rules, PDL system, analysis pipeline, 14 dashboard sections, key findings
+- [Relink documentation](relink/README.md) — Game rules, PDL system, analysis pipeline, 13 dashboard sections, key findings
+- [Relink detailed docs](relink/docs/) — 6-document architecture guide
 - [Trace documentation](trace/README.md) — Game rules, scripts, difficulty & retention findings

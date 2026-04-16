@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l32",
   "date": "",
   "name": "This puzzle is hard",
@@ -238,18 +238,26 @@
     ],
     "answer": "This puzzle is hard",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "General vocabulary"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "None"
+        ],
+        "knowledge": [
+          "General vocabulary"
         ],
         "abstraction": [
           "Loose thematic"
         ],
         "knowledgeDomain": [
           "General"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

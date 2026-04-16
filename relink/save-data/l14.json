@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l14",
   "date": "",
   "name": "Associated with volcanic eruptions",
@@ -228,12 +228,12 @@
     ],
     "answer": "Associated with volcanic eruptions",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "General vocabulary"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "None"
+        ],
+        "knowledge": [
+          "General vocabulary"
         ],
         "abstraction": [
           "Association"
@@ -241,6 +241,14 @@
         "knowledgeDomain": [
           "Geography",
           "Science"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

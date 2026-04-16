@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l31",
   "date": "2026-04-12",
   "name": "PlayStation buttons",
@@ -233,18 +233,26 @@
     ],
     "answer": "PlayStation buttons",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "Common cultural"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "None"
+        ],
+        "knowledge": [
+          "Common cultural"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "Technology"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "Compound"
+        ],
+        "knowledge": [
+          "Common cultural"
         ]
       }
     }

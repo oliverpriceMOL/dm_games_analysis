@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l26",
   "date": "2026-04-08",
   "name": "Renewable energy",
@@ -59,7 +59,7 @@
     {
       "id": "row-l26-102",
       "position": 1,
-      "category": "E = mc\u00b2",
+      "category": "E = mc²",
       "tiles": [
         {
           "id": "tile-l26-405",
@@ -238,18 +238,26 @@
     ],
     "answer": "Renewable energy",
     "pdl": {
-      "metaConnection": {
+      "connectionIdentification": {
+        "manipulation": [
+          "None"
+        ],
         "knowledge": [
           "Common cultural"
-        ],
-        "manipulation": [
-          "Compound"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "Science"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "Word split"
+        ],
+        "knowledge": [
+          "General vocabulary"
         ]
       }
     }

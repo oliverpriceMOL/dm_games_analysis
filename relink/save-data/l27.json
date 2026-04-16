@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l27",
   "date": "2026-04-14",
   "name": "Types of bean",
@@ -223,18 +223,26 @@
     ],
     "answer": "Types of bean",
     "pdl": {
-      "metaConnection": {
-        "knowledge": [
-          "General vocabulary"
-        ],
+      "connectionIdentification": {
         "manipulation": [
           "Compound"
+        ],
+        "knowledge": [
+          "General vocabulary"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "Food"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "None"
         ]
       }
     }

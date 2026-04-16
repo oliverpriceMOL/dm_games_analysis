@@ -96,11 +96,16 @@ def load_pdl(save_dir):
                 domains.add(kd)
             knowledge_types.add(know)
 
-        rpdl_meta = relink.get('pdl', {}).get('metaConnection', {})
-        relink_manipulation = rpdl_meta.get('manipulation', ['None'])[0] if rpdl_meta.get('manipulation') else 'None'
-        relink_abstraction = rpdl_meta.get('abstraction', ['Direct membership'])[0] if rpdl_meta.get('abstraction') else 'Direct membership'
-        relink_knowledge = rpdl_meta.get('knowledge', ['General vocabulary'])[0] if rpdl_meta.get('knowledge') else 'General vocabulary'
-        relink_domain = rpdl_meta.get('knowledgeDomain', ['General'])[0] if rpdl_meta.get('knowledgeDomain') else 'General'
+        rpdl = relink.get('pdl', {})
+        conn_id = rpdl.get('connectionIdentification', {})
+        ans_con = rpdl.get('answerConstruction', {})
+
+        relink_id_manipulation = conn_id.get('manipulation', ['None'])[0] if conn_id.get('manipulation') else 'None'
+        relink_id_knowledge = conn_id.get('knowledge', ['General vocabulary'])[0] if conn_id.get('knowledge') else 'General vocabulary'
+        relink_id_abstraction = conn_id.get('abstraction', ['Direct membership'])[0] if conn_id.get('abstraction') else 'Direct membership'
+        relink_id_domain = conn_id.get('knowledgeDomain', ['General'])[0] if conn_id.get('knowledgeDomain') else 'General'
+        relink_con_manipulation = ans_con.get('manipulation', ['None'])[0] if ans_con.get('manipulation') else 'None'
+        relink_con_knowledge = ans_con.get('knowledge', ['None'])[0] if ans_con.get('knowledge') else 'None'
 
         pf = {
             'lid': lid,
@@ -114,10 +119,12 @@ def load_pdl(save_dir):
             'abstractionComplexity': abstr_count,
             'knowledgeBreadth': len(domains),
             'hasSpecialist': 'Specialist cultural' in knowledge_types,
-            'relink_manipulation': relink_manipulation,
-            'relink_abstraction': relink_abstraction,
-            'relink_knowledge': relink_knowledge,
-            'relink_domain': relink_domain,
+            'relink_id_manipulation': relink_id_manipulation,
+            'relink_id_knowledge': relink_id_knowledge,
+            'relink_id_abstraction': relink_id_abstraction,
+            'relink_id_domain': relink_id_domain,
+            'relink_con_manipulation': relink_con_manipulation,
+            'relink_con_knowledge': relink_con_knowledge,
             'relink_answer': relink.get('answer', ''),
             'decoys': decoys,
         }

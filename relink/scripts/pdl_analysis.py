@@ -114,6 +114,69 @@ print(f"  Correlated failures: {failure_data['n_pairs']} row pairs across "
       f"{len(failure_data['per_puzzle'])} puzzles")
 
 # 14. Monte Carlo simulator (C)
+# Build enriched relink feature distributions from pooled player data.
+# Groups relink outcomes by multiple feature axes for ratio-shift adjustments.
+from collections import Counter, defaultdict as _dd
+
+_rl_axis_counts = {
+    'con_manip': _dd(Counter), 'id_manip': _dd(Counter),
+    'con_knowledge': _dd(Counter), 'tiles': _dd(Counter),
+}
+_rl_axis_totals = {k: _dd(int) for k in _rl_axis_counts}
+_rl_all_wrongs = []
+
+for d in overlap_dates:
+    lid = date_to_level[d]
+    pf = pdl_puzzle_features[lid]
+    pp = players_by_date[d]
+    for p in pp:
+        rt = p.get('relink_trajectory')
+        if rt:
+            wc = rt['wrong_count']
+            _rl_all_wrongs.append(wc)
+            mappings = {
+                'con_manip': pf['relink_con_manipulation'],
+                'id_manip': pf['relink_id_manipulation'],
+                'con_knowledge': pf['relink_con_knowledge'],
+                'tiles': str(pf['phase2TileCount']),
+            }
+            for axis, cat in mappings.items():
+                _rl_axis_counts[axis][cat][wc] += 1
+                _rl_axis_totals[axis][cat] += 1
+
+# Global relink baseline
+_rl_global_total = len(_rl_all_wrongs)
+_rl_global_mean = sum(_rl_all_wrongs) / _rl_global_total if _rl_global_total else 0
+
+# Build per-axis distributions + mean_wrong for ratio computation
+MIN_RL_N = 5
+relink_feature_dists = {'global': {'mean_wrong': round(_rl_global_mean, 4), 'n': _rl_global_total}}
+_axis_to_key = {'con_manip': 'by_con_manip', 'id_manip': 'by_id_manip',
+                'con_knowledge': 'by_con_knowledge', 'tiles': 'by_tiles'}
+for axis, out_key in _axis_to_key.items():
+    dists = {}
+    for cat, counts in _rl_axis_counts[axis].items():
+        total = _rl_axis_totals[axis][cat]
+        if total >= MIN_RL_N:
+            cat_wrongs = []
+            for wc, n in counts.items():
+                cat_wrongs.extend([wc] * n)
+            dists[cat] = {
+                'dist': {str(k): round(v / total, 4) for k, v in sorted(counts.items())},
+                'mean_wrong': round(sum(cat_wrongs) / len(cat_wrongs), 4) if cat_wrongs else 0,
+            }
+    relink_feature_dists[out_key] = dists
+
+# Log
+_cm = relink_feature_dists.get('by_con_manip', {})
+_cm_axis = _rl_axis_totals['con_manip']
+_cm_summary = ', '.join(f'{k}(n={_cm_axis[k]})' for k in sorted(_cm))
+print(f"  Relink feature dists: con_manip={_cm_summary}"
+      f", id_manip={len(relink_feature_dists.get('by_id_manip', {}))} types"
+      f", con_know={len(relink_feature_dists.get('by_con_knowledge', {}))} types"
+      f", tiles={len(relink_feature_dists.get('by_tiles', {}))} types"
+      f", global n={_rl_global_total}")
+
 # Run simulation on dated puzzles (per-puzzle empirical distributions + pooled fallback)
 sim_results = {}
 for d in overlap_dates:
@@ -125,7 +188,8 @@ for d in overlap_dates:
     per_puzzle_dists = model.build_per_puzzle_dists(pp)
     result = model.simulate_puzzle(
         transition_data, rows_for_puzzle, pf,
-        n_sims=10000, per_puzzle_obs=per_puzzle_dists)
+        n_sims=10000, per_puzzle_obs=per_puzzle_dists,
+        relink_feature_dists=relink_feature_dists)
     result['actual_solve_rate'] = round(ds['solve_rate'] * 100, 1)
     result['name'] = ds['name']
     result['date'] = d
@@ -152,7 +216,8 @@ for d in overlap_dates:
     rows_for_puzzle = [pr for pr in pdl_rows if pr['lid'] == lid]
     pf = pdl_puzzle_features[lid]
     result = model.simulate_puzzle(
-        transition_data, rows_for_puzzle, pf, n_sims=10000)
+        transition_data, rows_for_puzzle, pf, n_sims=10000,
+        relink_feature_dists=relink_feature_dists)
     feat_preds.append(result['solve_rate'] * 100)
 feat_r, _ = _pearson(feat_preds, actual_rates) if len(feat_preds) >= 3 else (0, 1)
 feat_mae = safe_mean([abs(feat_preds[i] - actual_rates[i]) for i in range(len(feat_preds))])
@@ -171,7 +236,8 @@ for lid, pdata in pdl_puzzles.items():
     if len(rows_for_puzzle) < 4:
         continue
     result = model.simulate_puzzle(
-        transition_data, rows_for_puzzle, pf, n_sims=10000)
+        transition_data, rows_for_puzzle, pf, n_sims=10000,
+        relink_feature_dists=relink_feature_dists)
     result['actual_solve_rate'] = None
     result['name'] = pf['name']
     result['date'] = d  # may be None for undated, or a date without player data

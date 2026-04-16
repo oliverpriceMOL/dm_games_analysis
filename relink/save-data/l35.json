@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "l35",
   "date": "",
   "name": "Friends characters",
@@ -233,18 +233,26 @@
     ],
     "answer": "Friends characters",
     "pdl": {
-      "metaConnection": {
+      "connectionIdentification": {
+        "manipulation": [
+          "None"
+        ],
         "knowledge": [
           "Common cultural"
-        ],
-        "manipulation": [
-          "Hidden word"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
           "Film-TV"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "Word split"
+        ],
+        "knowledge": [
+          "Common cultural"
         ]
       }
     }
