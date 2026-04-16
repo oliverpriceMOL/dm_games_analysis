@@ -5,6 +5,19 @@ import { drawSparkline } from './charts.js';
 
 const CURVE_COLORS = ['#6c5ce7', '#00b894', '#d63031', '#fdcb6e', '#0984e3', '#e17055', '#00cec9', '#636e72'];
 
+/** Centre of mass: weighted position average (0-indexed). Lower = front-loaded. */
+function com(curve) {
+    if (!curve || curve.length === 0) return null;
+    let wSum = 0, total = 0;
+    for (let i = 0; i < curve.length; i++) {
+        const v = curve[i];
+        if (v == null) continue;
+        wSum += v * i;
+        total += v;
+    }
+    return total > 0 ? wSum / total : null;
+}
+
 export function render(viData) {
     const ct = viData.crosstabs;
     const summ = viData.summary;
@@ -36,12 +49,33 @@ export function render(viData) {
     // Build DOM first
     features.forEach((feat, fi) => {
         const axis = ct[feat];
+        const cats = Object.keys(axis.categories);
+
+        // Build CoM rows
+        let comRows = '';
+        cats.forEach(cat => {
+            const info = axis.categories[cat];
+            const tCoM = com(info.timing_curve);
+            const eCoM = com(info.error_curve);
+            const fmtT = tCoM !== null ? tCoM.toFixed(2) : '—';
+            const fmtE = eCoM !== null ? eCoM.toFixed(2) : '—';
+            const tColor = tCoM !== null ? (tCoM < 1.5 ? '#00b894' : '#d63031') : 'inherit';
+            const eColor = eCoM !== null ? (eCoM < 1.5 ? '#00b894' : '#d63031') : 'inherit';
+            comRows += `<tr><td>${cat}</td><td style="text-align:center;">${info.n}</td>
+                <td style="text-align:center;color:${tColor};font-weight:600;">${fmtT}</td>
+                <td style="text-align:center;color:${eColor};font-weight:600;">${fmtE}</td></tr>`;
+        });
+
         container.innerHTML += `<div style="margin-bottom:25px;">
             <h4 style="color:var(--text);margin-bottom:8px;">${axis.label}</h4>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
                 <div class="chart-container" style="height:200px;"><canvas id="vi-tc-${fi}"></canvas></div>
                 <div class="chart-container" style="height:200px;"><canvas id="vi-ec-${fi}"></canvas></div>
             </div>
+            <table style="margin-top:10px;font-size:13px;max-width:500px;">
+                <thead><tr><th>Category</th><th style="text-align:center;">n</th><th style="text-align:center;">Timing CoM</th><th style="text-align:center;">Error CoM</th></tr></thead>
+                <tbody>${comRows}</tbody>
+            </table>
         </div>`;
     });
 
