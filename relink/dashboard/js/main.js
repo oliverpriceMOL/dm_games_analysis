@@ -16,6 +16,7 @@ import * as transitions from './transitions.js';
 import * as failures from './failures.js';
 import * as simulator from './simulator.js';
 import * as glossary from './glossary.js';
+import * as explorer from './explorer.js';
 
 const DATA_DIR = '../outputs/data';
 
@@ -63,6 +64,10 @@ const PAGE_CONFIG = {
     clustering: {
         files: ['clustering'],
         render(d) { clustering.render(d.clustering); }
+    },
+    explorer: {
+        files: ['puzzle-explorer'],
+        render(d) { explorer.render(d); }
     },
     glossary: {
         files: [],

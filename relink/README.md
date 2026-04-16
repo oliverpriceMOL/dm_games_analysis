@@ -89,16 +89,16 @@ Some puzzles include designed **decoy groupings** — sets of tiles across rows 
 
 ### Architecture
 
-The main analysis is `scripts/pdl_analysis.py`, which cross-references puzzle design parameters (PDL) with player behaviour data. It produces 13 JSON data files consumed by an interactive dashboard.
+The main analysis is `scripts/pdl_analysis.py`, which cross-references puzzle design parameters (PDL) with player behaviour data. It produces 14 JSON data files consumed by an interactive dashboard.
 
 ```
 pdl_analysis.py (orchestrator)
 ├── lib/data.py     → load CSVs + PDL, build player trajectories
-├── lib/metrics.py  → 8 analysis functions (crosstabs, regression, VI, clustering, etc.)
+├── lib/metrics.py  → 9 analysis functions (crosstabs, regression, VI, clustering, explorer, etc.)
 ├── lib/model.py    → IPW weights, transition probs, correlated failures, full-feature simulator
 └── lib/stats.py    → mean, median, percentile, pearson, spearman, ols_multi, kmeans
 
-Outputs: 13 JSON files → outputs/data/
+Outputs: 14 JSON files → outputs/data/
 Dashboard: dashboard/ (Chart.js v4 + ES modules)
 ```
 
@@ -107,11 +107,11 @@ Dashboard: dashboard/ (Chart.js v4 + ES modules)
 | Module | Purpose |
 |--------|---------|
 | `lib/data.py` | Load CSVs (sessions + events), load PDL files, match events to sessions, build per-player trajectories (imposters phase + relink phase), compute date summaries with row metrics and timing |
-| `lib/metrics.py` | 8 analysis compute functions: crosstabs, correlations, regression, vertical inference, decoys, relink phase, clustering, overview |
+| `lib/metrics.py` | 9 analysis compute functions: crosstabs, correlations, regression, vertical inference, decoys, relink phase, clustering, overview, puzzle explorer |
 | `lib/model.py` | IPW weights for survivorship correction, transition probability distributions (by position/lives, PDL features, feature combos), correlated failure analysis (phi coefficients), full-feature Monte Carlo game simulator with ratio-shift model |
 | `lib/stats.py` | Utility functions: mean, median, percentile, Pearson/Spearman correlation, OLS regression, k-means clustering, one-hot encoding |
 
-### 13 JSON Outputs
+### 14 JSON Outputs
 
 | # | File | Analysis | Question Answered |
 |---|------|----------|-------------------|
@@ -128,6 +128,7 @@ Dashboard: dashboard/ (Chart.js v4 + ES modules)
 | 11 | `transitions.json` | Transition model | IPW-weighted wrong-guess distributions by features |
 | 12 | `failures.json` | Correlated failures | Row-pair phi coefficients; PDL similarity effects |
 | 13 | `simulator.json` | Monte Carlo | Simulated solve rates; undated puzzle predictions |
+| 14 | `puzzle-explorer.json` | Puzzle Explorer | Per-puzzle deep-dive with outcome-split wrong distributions, timing curves, PDL features |
 
 ### Key Derived Structures (from lib/data.py)
 
@@ -157,7 +158,7 @@ Row-level statistics are biased by survivorship — players who reach later rows
 
 | Script | Output | Description |
 |--------|--------|-------------|
-| `pdl_analysis.py` | 13 JSON files in `outputs/data/` | Main pipeline — generates all dashboard data |
+| `pdl_analysis.py` | 14 JSON files in `outputs/data/` | Main pipeline — generates all dashboard data |
 
 ### Standalone Text Analyses
 
@@ -180,7 +181,7 @@ python3 -m http.server 8000 -d relink
 # Then visit http://localhost:8000
 ```
 
-Built with Chart.js v4 (CDN) and ES modules. 13 JavaScript renderers in `dashboard/js/` — one per analysis section — orchestrated by `main.js`.
+Built with Chart.js v4 (CDN) and ES modules. 15 JavaScript renderers in `dashboard/js/` — one per analysis section — orchestrated by `main.js` with hash-based routing.
 
 ## Key Findings
 

@@ -2,7 +2,7 @@
 
 > **Directory:** `relink/dashboard/`
 > **Entry point:** `dashboard/index.html`
-> **Data source:** 13 JSON files in `relink/outputs/data/`
+> **Data source:** 14 JSON files in `relink/outputs/data/`
 > **Technology:** Chart.js v4 (CDN), vanilla JS ES modules
 
 ## Architecture
@@ -14,10 +14,12 @@ Browser loads index.html
        │
        └── js/main.js (ES module entry point)
               │
-              ├── Fetches 13 JSON files in parallel
+              ├── Hash-based routing (#overview, #difficulty, etc.)
               │
-              └── Calls 13 render functions
-                  (one per dashboard section)
+              ├── Lazy-loads JSON files per page on first visit
+              │
+              └── Calls render functions for the active page
+                  (each page groups 1-5 analysis sections)
 ```
 
 ### Why Two Script Loading Strategies?
@@ -31,31 +33,29 @@ This hybrid approach means Chart.js is available globally to all renderer module
 
 ## Data Loading (`main.js`)
 
-On page load, `main.js` fetches all 13 JSON files in parallel:
+The dashboard uses hash-based routing with lazy JSON loading. Each page only fetches the JSON files it needs on first visit. A `PAGE_CONFIG` object maps page names to their required files and render functions:
 
 ```javascript
-const FILES = [
-    'overview', 'crosstabs', 'heatmap', 'impostor-domain',
-    'correlations', 'regression', 'vertical', 'decoys',
-    'relink', 'clustering',
-    'transitions', 'failures', 'simulator'
-];
-
-// All fetched simultaneously via Promise.all
-const results = await Promise.all(
-    FILES.map(f => fetch(`../outputs/data/${f}.json`).then(r => r.json()))
-);
+const PAGE_CONFIG = {
+    overview:   { files: ['overview', 'regression', 'simulator'], ... },
+    difficulty: { files: ['crosstabs', 'heatmap', 'impostor-domain', 'correlations', 'regression'], ... },
+    behaviour:  { files: ['vertical', 'decoys'], ... },
+    relink:     { files: ['relink'], ... },
+    model:      { files: ['transitions', 'failures'], ... },
+    simulator:  { files: ['simulator'], ... },
+    clustering: { files: ['clustering'], ... },
+    explorer:   { files: ['puzzle-explorer'], ... },
+    glossary:   { files: [], ... }
+};
 ```
 
-File names are normalised to camelCase keys (e.g. `impostor-domain` → `impostorDomain`) so renderers can access `data.impostorDomain`.
-
-Once all data is loaded, the loading spinner is hidden and each section renderer is called with its slice of the data.
+File names are normalised to camelCase keys (e.g. `impostor-domain` → `impostorDomain`, `puzzle-explorer` → `puzzleExplorer`) so renderers can access them cleanly. Previously-loaded data is cached in memory — navigating back to an already-visited page reuses the cached data without re-fetching.
 
 ---
 
-## The 13 Sections
+## The 15 Sections
 
-Each section corresponds to one or more JSON files and is rendered by a dedicated JS module.
+Each section corresponds to one or more JSON files and is rendered by a dedicated JS module. Sections are grouped into 9 pages accessible via hash-based navigation.
 
 ### 1. Key Findings (`overview.js`)
 **Canvas/Elements:** `#stats-grid`, `#subtitle`
@@ -164,6 +164,30 @@ Three bar charts:
 - Undated puzzle predictions table (sorted by predicted difficulty)
 - Validation metrics (r, MAE) for both empirical and feature-only modes
 
+### 14. Puzzle Explorer (`explorer.js`)
+**Page:** `#explorer`
+**Data:** `puzzle-explorer.json`
+
+Per-puzzle deep-dive with:
+- Dropdown selector for any dated puzzle
+- PDL feature summary table
+- Wrong-guess distribution chart using **compound keys** that split by row outcome:
+  - Filled bars = row was solved with N wrongs
+  - Striped bars = row was unsolved and player lost the game
+  - Hollow bars = row was unsolved and player abandoned (incomplete)
+- Toggle between Actual data, Predicted (simulator) data, or Both overlaid
+- Include/exclude abandoned players toggle
+- Timing curve charts (impostor phase + relink phase)
+- Simulator prediction badge with predicted solve rate
+
+The compound key format (`0_solved`, `1_lost`, `2_incomplete`, `no_attempt_lost`, etc.) is shared between actual data from `lib/metrics.py` and predicted data from the Monte Carlo simulator in `lib/model.py`.
+
+### 15. Glossary (`glossary.js`)
+**Page:** `#glossary`
+**Data:** None (static content)
+
+Defines key terms used throughout the dashboard (PDL axes, game mechanics, statistical measures). Rendered as a searchable definition list.
+
 ---
 
 ## Page Layout
@@ -173,19 +197,19 @@ Three bar charts:
 │          │                                           │
 │   NAV    │            MAIN CONTENT                   │
 │          │                                           │
-│  Fixed   │   Scrollable                              │
+│  Fixed   │   Shows one page at a time (hash routing) │
 │  sidebar │                                           │
-│          │   ┌─────────────────────────────────────┐ │
-│  Links   │   │ Section 1: Key Findings             │ │
-│  to all  │   │ (stats grid)                        │ │
-│  13      │   └─────────────────────────────────────┘ │
-│  sections│                                           │
-│          │   ┌─────────────────────────────────────┐ │
-│          │   │ Section 2: PDL Cross-tabs           │ │
-│          │   │ (4 horizontal bar charts)           │ │
-│          │   └─────────────────────────────────────┘ │
-│          │                                           │
-│          │   ... (11 more sections) ...              │
+│          │   Pages:                                  │
+│  Links   │   #overview   — Key Findings              │
+│  to 9    │   #difficulty — Cross-tabs, Heatmap,      │
+│  pages   │                 Correlations, Regression   │
+│          │   #behaviour  — Vertical, Decoys          │
+│          │   #relink     — Relink Phase              │
+│          │   #model      — Transitions, Failures     │
+│          │   #simulator  — Monte Carlo               │
+│          │   #clustering — k-means                   │
+│          │   #explorer   — Puzzle Explorer            │
+│          │   #glossary   — Glossary                   │
 │          │                                           │
 └──────────┴───────────────────────────────────────────┘
 ```
@@ -241,7 +265,7 @@ relink/dashboard/
 ├── css/
 │   └── styles.css      ← Layout, cards, heatmap colours
 └── js/
-    ├── main.js          ← Entry point: load data, dispatch to renderers
+    ├── main.js          ← Entry point: hash routing, lazy data loading
     ├── charts.js        ← Shared Chart.js config / colours
     ├── overview.js      ← Section 1: Key Findings
     ├── crosstabs.js     ← Section 2: PDL Cross-tabs
@@ -254,7 +278,9 @@ relink/dashboard/
     ├── clustering.js    ← Section 10: k-means archetypes
     ├── transitions.js   ← Section 11: Transition model
     ├── failures.js      ← Section 12: Phi matrices
-    └── simulator.js     ← Section 13: Monte Carlo results
+    ├── simulator.js     ← Section 13: Monte Carlo results
+    ├── explorer.js      ← Section 14: Puzzle Explorer
+    └── glossary.js      ← Section 15: Glossary
 ```
 
 Each `.js` renderer module follows the same pattern:

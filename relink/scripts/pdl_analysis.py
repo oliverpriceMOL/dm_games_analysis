@@ -210,7 +210,9 @@ print(f"  Simulator (dated, empirical): r={sim_r:.3f}, MAE={sim_mae:.1f}pp")
 
 # Cross-validation: run feature-based model on dated puzzles (no per_puzzle_obs)
 # This measures how well the feature model alone predicts known puzzles.
+# Also captures full results (including distribution predictions) for the explorer.
 feat_preds = []
+feat_sim_results = {}
 for d in overlap_dates:
     lid = date_to_level[d]
     rows_for_puzzle = [pr for pr in pdl_rows if pr['lid'] == lid]
@@ -219,6 +221,7 @@ for d in overlap_dates:
         transition_data, rows_for_puzzle, pf, n_sims=10000,
         relink_feature_dists=relink_feature_dists)
     feat_preds.append(result['solve_rate'] * 100)
+    feat_sim_results[d] = result
 feat_r, _ = _pearson(feat_preds, actual_rates) if len(feat_preds) >= 3 else (0, 1)
 feat_mae = safe_mean([abs(feat_preds[i] - actual_rates[i]) for i in range(len(feat_preds))])
 print(f"  Simulator (dated, feature-only): r={feat_r:.3f}, MAE={feat_mae:.1f}pp")
@@ -250,6 +253,22 @@ for lid, pdata in pdl_puzzles.items():
 
 print(f"  Simulator (undated/no-data): {len(sim_undated)} puzzles simulated")
 
+# 15. Puzzle Explorer
+explorer_data = metrics.compute_puzzle_explorer(
+    overlap_dates, date_summaries, players_by_date,
+    pdl_puzzle_features, pdl_rows, transparency_scores,
+    sim_results, failure_data,
+    feat_sim_results=feat_sim_results,
+    sim_undated=sim_undated,
+    transition_data=transition_data,
+    relink_feature_dists=relink_feature_dists,
+    pdl_puzzles=pdl_puzzles,
+    level_to_date=level_to_date,
+    date_to_level=date_to_level,
+    row_joined=row_joined)
+print(f"  Puzzle Explorer: {len(explorer_data['puzzles'])} dated, "
+      f"{len(explorer_data.get('undated_puzzles', {}))} undated")
+
 
 # ══════════════════════════════════════════════════════════════════════
 #  Write JSON files
@@ -262,7 +281,7 @@ def write_json(filename, obj):
 
 files = {
     'overview.json': overview_data,
-    'crosstabs.json': ct_result['chart_data'],
+    'crosstabs.json': {**ct_result['chart_data'], 'pdl_aggregates': explorer_data.get('pdl_aggregates', {})},
     'heatmap.json': ct_result['heatmap'],
     'impostor-domain.json': ct_result['impostor_domain'],
     'correlations.json': scatter_data,
@@ -279,6 +298,7 @@ files = {
         'validation': {'r': round(sim_r, 3), 'mae': round(sim_mae, 1)},
         'feature_validation': {'r': round(feat_r, 3), 'mae': round(feat_mae, 1)},
     },
+    'puzzle-explorer.json': explorer_data,
 }
 
 print(f"\nWriting {len(files)} JSON files to {OUT_DIR}/")

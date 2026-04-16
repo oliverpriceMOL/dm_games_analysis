@@ -16,11 +16,11 @@ Analysis of player behaviour data from internal tests of Daily Mail puzzle games
 ├── relink/
 │   ├── scripts/
 │   │   ├── lib/                # Shared library (data, metrics, model, stats)
-│   │   └── pdl_analysis.py     # Main pipeline → 13 JSON files
+│   │   └── pdl_analysis.py     # Main pipeline → 14 JSON files
 │   ├── dashboard/              # Interactive Chart.js dashboard
 │   ├── docs/                   # 6 documentation files (architecture, data, analysis, model, simulator, dashboard)
 │   ├── outputs/
-│   │   ├── data/               # 13 JSON files (generated)
+│   │   ├── data/               # 14 JSON files (generated)
 │   │   └── *.txt               # Legacy text reports
 │   └── save-data/              # 39 puzzle design files (PDL JSON)
 ├── trace/

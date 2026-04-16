@@ -1,5 +1,6 @@
 """Analysis computations. Each function takes loaded data, returns JSON-serialisable dicts."""
 
+import math
 from collections import defaultdict, Counter
 
 from .stats import (safe_mean, safe_median, pearson, spearman, ols_multi,
@@ -681,4 +682,454 @@ def compute_overview(date_summaries, pdl_puzzle_features, pdl_puzzles, overlap_d
             'median_time': round(ds['median_time'], 1),
         } for ds in (date_summaries[d] for d in overlap_dates)],
         'aggregate_timing': aggregate_timing,
+    }
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  PUZZLE EXPLORER
+# ══════════════════════════════════════════════════════════════════════
+
+def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
+                            pdl_puzzle_features, pdl_rows, transparency_scores,
+                            sim_results, failure_data,
+                            feat_sim_results=None, sim_undated=None,
+                            transition_data=None, relink_feature_dists=None,
+                            pdl_puzzles=None, level_to_date=None,
+                            date_to_level=None, row_joined=None):
+    """Build per-puzzle deep-dive data for the Puzzle Explorer page.
+
+    Returns dict with:
+      - puzzles: keyed by date, with actual + predicted distributions
+      - undated_puzzles: keyed by lid, with predicted-only distributions
+      - pdl_aggregates: average dist shapes grouped by PDL category
+    """
+    puzzles = {}
+
+    for d in overlap_dates:
+        ds = date_summaries[d]
+        lid = ds['lid']
+        pf = pdl_puzzle_features[lid]
+        pp = players_by_date[d]
+        ts = transparency_scores.get(d, {})
+
+        # --- Row-level data ---
+        rows_data = {}
+        puzzle_pdl_rows = {str(pr['row_position']): pr
+                          for pr in pdl_rows if pr['lid'] == lid}
+
+        for row_pos in range(4):
+            rp = str(row_pos)
+            pr = puzzle_pdl_rows.get(rp, {})
+            rm = ds['row_metrics'].get(row_pos, {})
+
+            # Build wrong-guess distribution from player trajectories
+            # Split by row outcome: solved (got it right), lost (died elsewhere),
+            # incomplete (abandoned). Each key is e.g. '1_solved', '2_lost'.
+            solved_dist = Counter()
+            lost_dist = Counter()
+            incomplete_dist = Counter()
+            no_attempt_lost = 0
+            no_attempt_incomplete = 0
+
+            for p in pp:
+                row_guesses = [g for g in p['real_guesses'] if g['row'] == rp]
+                if not row_guesses:
+                    # Player has no guess events for this row.
+                    # WON players with missing events are a data gap (events
+                    # not logged), not evidence of 0 wrongs — skip them.
+                    if p['outcome'] == 'LOST':
+                        no_attempt_lost += 1
+                    elif p['outcome'] == 'INCOMPLETE':
+                        no_attempt_incomplete += 1
+                    continue
+                row_wrongs = sum(1 for g in row_guesses if not g['is_correct'])
+                # Cap at 3 (mechanical max per row; extras are duplicate events)
+                row_wrongs = min(row_wrongs, 3)
+                row_solved = any(g['is_correct'] for g in row_guesses)
+                if row_solved:
+                    solved_dist[row_wrongs] += 1
+                elif p['outcome'] == 'LOST':
+                    lost_dist[row_wrongs] += 1
+                else:  # INCOMPLETE
+                    incomplete_dist[row_wrongs] += 1
+
+            # Attempt order distribution
+            attempt_order_dist = Counter()
+            if rm.get('attempt_positions'):
+                for pos in rm['attempt_positions']:
+                    attempt_order_dist[pos] += 1
+
+            rows_data[rp] = {
+                'category': pr.get('category', f'Row {rp}'),
+                'manipulation': pr.get('manipulation', 'None'),
+                'abstraction': pr.get('abstraction', 'Direct membership'),
+                'knowledge': pr.get('knowledge', 'General vocabulary'),
+                'knowledgeDomain': pr.get('knowledgeDomain', 'General'),
+                'impostor_word': pr.get('impostor_word', ''),
+                'non_impostor_words': pr.get('non_impostor_words', []),
+                'same_domain': pr.get('same_domain', False),
+                'attempts': rm.get('attempts', 0),
+                'first_try_pct': round(rm.get('first_try_pct', 0), 3),
+                'avg_wrong': round(rm.get('avg_wrong', 0), 2),
+                'never_correct_pct': round(rm.get('never_correct_pct', 0), 3),
+                'wrong_dist': {
+                    '0_solved': solved_dist.get(0, 0),
+                    '1_solved': solved_dist.get(1, 0),
+                    '1_lost': lost_dist.get(1, 0),
+                    '1_incomplete': incomplete_dist.get(1, 0),
+                    '2_solved': solved_dist.get(2, 0),
+                    '2_lost': lost_dist.get(2, 0),
+                    '2_incomplete': incomplete_dist.get(2, 0),
+                    '3_solved': solved_dist.get(3, 0),
+                    '3_lost': lost_dist.get(3, 0),
+                    '3_incomplete': incomplete_dist.get(3, 0),
+                    'no_attempt_lost': no_attempt_lost,
+                    'no_attempt_incomplete': no_attempt_incomplete,
+                },
+                'wrong_dist_completed': {
+                    '0_solved': solved_dist.get(0, 0),
+                    '1_solved': solved_dist.get(1, 0),
+                    '1_lost': lost_dist.get(1, 0),
+                    '2_solved': solved_dist.get(2, 0),
+                    '2_lost': lost_dist.get(2, 0),
+                    '3_solved': solved_dist.get(3, 0),
+                    '3_lost': lost_dist.get(3, 0),
+                    'no_attempt_lost': no_attempt_lost,
+                },
+                'top_wrong': rm.get('top_wrong', [])[:5],
+                'attempt_order_dist': {str(k): v for k, v in sorted(attempt_order_dist.items())},
+            }
+
+        # --- Relink wrong-guess distribution ---
+        # Relink phase: if you won you solved all rows + relink. If you lost at relink,
+        # you had all impostors but failed the connection. Split by outcome.
+        relink_solved_dist = Counter()      # WON at relink
+        relink_lost_dist = Counter()        # LOST at relink
+        relink_incomplete_dist = Counter()  # Abandoned at relink
+        relink_no_attempt_lost = 0
+        relink_no_attempt_incomplete = 0
+        relink_total = 0
+        relink_total_completed = 0
+
+        for p in pp:
+            is_completed = p['outcome'] in ('WON', 'LOST')
+            rt = p.get('relink_trajectory')
+            if rt:
+                relink_total += 1
+                wc = rt['wrong_count']
+                if p['outcome'] == 'WON':
+                    relink_solved_dist[wc] += 1
+                elif p['outcome'] == 'LOST':
+                    relink_lost_dist[wc] += 1
+                else:
+                    relink_incomplete_dist[wc] += 1
+                if is_completed:
+                    relink_total_completed += 1
+            else:
+                # No relink trajectory — WON players with missing events
+                # are a data gap, not 0-wrong evidence; skip them.
+                if p['outcome'] == 'LOST':
+                    relink_no_attempt_lost += 1
+                elif p['outcome'] == 'INCOMPLETE':
+                    relink_no_attempt_incomplete += 1
+
+        relink_data = {
+            'first_try_pct': round(ds['relink_first_try_pct'], 3),
+            'avg_attempts': round(ds['relink_avg_attempts'], 2),
+            'total': relink_total,
+            'wrong_dist': {
+                '0_solved': relink_solved_dist.get(0, 0),
+                '0_lost': relink_lost_dist.get(0, 0),
+                '0_incomplete': relink_incomplete_dist.get(0, 0),
+                '1_solved': relink_solved_dist.get(1, 0),
+                '1_lost': relink_lost_dist.get(1, 0),
+                '1_incomplete': relink_incomplete_dist.get(1, 0),
+                '2_solved': relink_solved_dist.get(2, 0),
+                '2_lost': relink_lost_dist.get(2, 0),
+                '2_incomplete': relink_incomplete_dist.get(2, 0),
+                '3_solved': relink_solved_dist.get(3, 0),
+                '3_lost': relink_lost_dist.get(3, 0),
+                '3_incomplete': relink_incomplete_dist.get(3, 0),
+                '4_solved': relink_solved_dist.get(4, 0),
+                '4_lost': relink_lost_dist.get(4, 0),
+                '4_incomplete': relink_incomplete_dist.get(4, 0),
+                'no_attempt_lost': relink_no_attempt_lost,
+                'no_attempt_incomplete': relink_no_attempt_incomplete,
+            },
+            'wrong_dist_completed': {
+                '0_solved': relink_solved_dist.get(0, 0),
+                '0_lost': relink_lost_dist.get(0, 0),
+                '1_solved': relink_solved_dist.get(1, 0),
+                '1_lost': relink_lost_dist.get(1, 0),
+                '2_solved': relink_solved_dist.get(2, 0),
+                '2_lost': relink_lost_dist.get(2, 0),
+                '3_solved': relink_solved_dist.get(3, 0),
+                '3_lost': relink_lost_dist.get(3, 0),
+                '4_solved': relink_solved_dist.get(4, 0),
+                '4_lost': relink_lost_dist.get(4, 0),
+                'no_attempt_lost': relink_no_attempt_lost,
+            },
+            'answer': pf.get('relink_answer', ''),
+        }
+
+        # --- Timing & error curves ---
+        intervals_by_pos = defaultdict(list)
+        for pos, iv in ds['inter_correct_intervals']:
+            intervals_by_pos[pos].append(iv)
+        timing_curve = [round(safe_median(intervals_by_pos.get(p, [])), 2)
+                        if intervals_by_pos.get(p) else None for p in range(4)]
+        error_curve = [ts.get('pos_means', {}).get(p) for p in range(4)]
+
+        def _com(curve):
+            indexed = [(i, v) for i, v in enumerate(curve) if v is not None]
+            total = sum(v for _, v in indexed)
+            if len(indexed) >= 2 and total > 0:
+                return round(sum(i * v for i, v in indexed) / total, 3)
+            return None
+
+        timing_data = {
+            'timing_curve': timing_curve,
+            'error_curve': error_curve,
+            'timing_com': _com(timing_curve),
+            'error_com': _com(error_curve),
+        }
+
+        # --- Whole-puzzle mistake distribution ---
+        # Total wrong guesses across both imposters + relink phases.
+        # LOST = 4 wrongs by definition (all lives consumed).
+        # WON: use relink_trajectory.lives_before to derive imposters wrongs,
+        #       falling back to trajectory step sums if relink data is missing.
+        #       Capped at 3 since winners must have ≥1 life remaining.
+        # INCOMPLETE: best-effort from available trajectory data.
+        mistake_dist = Counter()
+        mistake_dist_completed = Counter()
+        for p in pp:
+            is_completed = p['outcome'] in ('WON', 'LOST')
+            if p['outcome'] == 'LOST':
+                total_wrongs = 4
+            elif p['outcome'] == 'WON':
+                rt = p.get('relink_trajectory')
+                if rt:
+                    total_wrongs = (4 - rt['lives_before']) + rt['wrong_count']
+                else:
+                    traj = p.get('trajectory', [])
+                    total_wrongs = sum(step['wrong_count'] for step in traj)
+                total_wrongs = min(total_wrongs, 3)  # winners always have ≥1 life
+            else:
+                rt = p.get('relink_trajectory')
+                if rt:
+                    total_wrongs = (4 - rt['lives_before']) + rt['wrong_count']
+                else:
+                    traj = p.get('trajectory', [])
+                    total_wrongs = sum(step['wrong_count'] for step in traj)
+            mistake_dist[total_wrongs] += 1
+            if is_completed:
+                mistake_dist_completed[total_wrongs] += 1
+
+        # --- Failure correlations (from pre-computed failure_data) ---
+        fd_puzzle = failure_data.get('per_puzzle', {}).get(d, {})
+        failure_corr = {
+            'phi_matrix': fd_puzzle.get('phi_matrix', {}),
+            'row_failure_rates': fd_puzzle.get('row_failure_rates', {}),
+        }
+
+        # --- Simulator (from pre-computed sim_results) ---
+        sr = sim_results.get(d, {})
+        simulator_data = {
+            'simulated_solve_rate': round(sr['solve_rate'] * 100, 1) if 'solve_rate' in sr else None,
+            'actual_solve_rate': round(ds['solve_rate'] * 100, 1),
+        }
+
+        puzzles[d] = {
+            'name': ds['name'],
+            'label': ds['label'],
+            'date': d,
+            'lid': lid,
+            'players': ds['players'],
+            'wins': ds['wins'],
+            'losses': ds['losses'],
+            'incomplete': ds['incomplete'],
+            'solve_rate': round(ds['solve_rate'], 3),
+            'median_time': round(ds['median_time'], 1),
+            'has_player_data': True,
+            'pdl': {
+                'manipulationComplexity': pf['manipulationComplexity'],
+                'abstractionComplexity': pf['abstractionComplexity'],
+                'knowledgeBreadth': pf['knowledgeBreadth'],
+                'phase2TileCount': pf['phase2TileCount'],
+                'decoyCount': pf['decoyCount'],
+                'relink_id_manipulation': pf['relink_id_manipulation'],
+                'relink_con_manipulation': pf['relink_con_manipulation'],
+            },
+            'rows': rows_data,
+            'relink': relink_data,
+            'mistake_dist': {str(k): v for k, v in sorted(mistake_dist.items())},
+            'mistake_dist_completed': {str(k): v for k, v in sorted(mistake_dist_completed.items())},
+            'timing': timing_data,
+            'failure_correlations': failure_corr,
+            'simulator': simulator_data,
+            'mean_lives_at_win': round(sr.get('mean_lives_at_win', 0), 2) if sr else None,
+            'rows_completed_pct': sr.get('rows_completed_pct', []) if sr else [],
+        }
+
+    # --- Attach predicted distributions to dated puzzles ---
+    if feat_sim_results:
+        for d, fsr in feat_sim_results.items():
+            if d not in puzzles:
+                continue
+            puzzles[d]['predicted_wrong_dist'] = fsr.get('sim_row_dists', {})
+            puzzles[d]['predicted_mistake_dist'] = fsr.get('sim_mistake_dist', {})
+            puzzles[d]['predicted_row_labels'] = fsr.get('row_labels', [])
+            puzzles[d]['predicted_solve_rate'] = round(fsr.get('solve_rate', 0) * 100, 1)
+
+    # --- Build undated puzzle entries (predicted-only) ---
+    undated_puzzles = {}
+    if sim_undated and pdl_puzzle_features:
+        for lid, sr in sim_undated.items():
+            pf = pdl_puzzle_features.get(lid, {})
+            if not pf:
+                continue
+            puzzle_pdl_rows = {str(pr['row_position']): pr
+                               for pr in pdl_rows if pr['lid'] == lid}
+
+            # Build row metadata from PDL (no actual distributions)
+            rows_meta = {}
+            for rp in range(4):
+                pr = puzzle_pdl_rows.get(str(rp), {})
+                rows_meta[str(rp)] = {
+                    'category': pr.get('category', f'Row {rp}'),
+                    'manipulation': pr.get('manipulation', 'None'),
+                    'abstraction': pr.get('abstraction', 'Direct membership'),
+                    'knowledge': pr.get('knowledge', 'General vocabulary'),
+                    'knowledgeDomain': pr.get('knowledgeDomain', 'General'),
+                    'impostor_word': pr.get('impostor_word', ''),
+                    'same_domain': pr.get('same_domain', False),
+                }
+
+            d = sr.get('date')
+            undated_puzzles[lid] = {
+                'name': pf.get('name', lid),
+                'label': sr.get('label', pf.get('name', lid)),
+                'date': d,
+                'lid': lid,
+                'has_player_data': False,
+                'pdl': {
+                    'manipulationComplexity': pf.get('manipulationComplexity', 0),
+                    'abstractionComplexity': pf.get('abstractionComplexity', 0),
+                    'knowledgeBreadth': pf.get('knowledgeBreadth', 0),
+                    'phase2TileCount': pf.get('phase2TileCount', 1),
+                    'decoyCount': pf.get('decoyCount', 0),
+                    'relink_id_manipulation': pf.get('relink_id_manipulation', 'None'),
+                    'relink_con_manipulation': pf.get('relink_con_manipulation', 'None'),
+                },
+                'rows': rows_meta,
+                'relink': {
+                    'answer': pf.get('relink_answer', ''),
+                },
+                'predicted_wrong_dist': sr.get('sim_row_dists', {}),
+                'predicted_mistake_dist': sr.get('sim_mistake_dist', {}),
+                'predicted_row_labels': sr.get('row_labels', []),
+                'predicted_solve_rate': round(sr.get('solve_rate', 0) * 100, 1),
+                'simulator': {
+                    'simulated_solve_rate': round(sr['solve_rate'] * 100, 1),
+                    'actual_solve_rate': None,
+                },
+                'mean_lives_at_win': round(sr.get('mean_lives_at_win', 0), 2),
+                'rows_completed_pct': sr.get('rows_completed_pct', []),
+            }
+
+    # --- Aggregate PDL distributions ---
+    # For each PDL axis, group rows by category and compute average
+    # actual wrong-dist shape (from dated puzzles) and a count.
+    pdl_aggregates = {}
+    if row_joined:
+        from collections import defaultdict as _dd
+        axes = {
+            'manipulation': 'manipulation',
+            'abstraction': 'abstraction',
+            'knowledge': 'knowledge',
+        }
+        for axis_name, field in axes.items():
+            buckets = _dd(lambda: {'dists': [], 'n': 0})
+            for rj in row_joined:
+                cat = rj.get(field, 'Unknown')
+                # Row wrong-dist from per-puzzle data: first-try, 1-wrong, etc.
+                ft = rj.get('first_try_pct', 0)
+                avg_wrong = rj.get('avg_wrong', 0)
+                buckets[cat]['dists'].append({
+                    'first_try_pct': ft,
+                    'avg_wrong': avg_wrong,
+                })
+                buckets[cat]['n'] += 1
+
+            axis_data = {}
+            for cat, bkt in sorted(buckets.items()):
+                n = bkt['n']
+                if n == 0:
+                    continue
+                avg_ft = sum(d['first_try_pct'] for d in bkt['dists']) / n
+                avg_aw = sum(d['avg_wrong'] for d in bkt['dists']) / n
+                axis_data[cat] = {
+                    'avg_first_try_pct': round(avg_ft, 3),
+                    'avg_wrong': round(avg_aw, 3),
+                    'n_rows': n,
+                }
+            pdl_aggregates[axis_name] = axis_data
+
+        # Same-domain aggregate
+        sd_buckets = _dd(lambda: {'dists': [], 'n': 0})
+        for rj in row_joined:
+            sd = 'Same' if rj.get('same_domain', False) else 'Different'
+            sd_buckets[sd]['dists'].append({
+                'first_try_pct': rj.get('first_try_pct', 0),
+                'avg_wrong': rj.get('avg_wrong', 0),
+            })
+            sd_buckets[sd]['n'] += 1
+        sd_data = {}
+        for cat, bkt in sorted(sd_buckets.items()):
+            n = bkt['n']
+            if n == 0:
+                continue
+            sd_data[cat] = {
+                'avg_first_try_pct': round(sum(d['first_try_pct'] for d in bkt['dists']) / n, 3),
+                'avg_wrong': round(sum(d['avg_wrong'] for d in bkt['dists']) / n, 3),
+                'n_rows': n,
+            }
+        pdl_aggregates['same_domain'] = sd_data
+
+    # Build actual aggregate wrong-dist from all dated puzzle row data
+    # For each PDL axis × category, average the row-level wrong-dist counts
+    # (across all dated puzzles) into a probability distribution.
+    if puzzles:
+        from collections import defaultdict as _dd
+        for axis_name in ['manipulation', 'abstraction', 'knowledge', 'same_domain']:
+            if axis_name not in pdl_aggregates:
+                pdl_aggregates[axis_name] = {}
+            cat_totals = _dd(lambda: _dd(int))
+            cat_n = _dd(int)
+            for d, puz in puzzles.items():
+                for rp_str, rdata in puz['rows'].items():
+                    if axis_name == 'same_domain':
+                        cat = 'Same' if rdata.get('same_domain', False) else 'Different'
+                    else:
+                        cat = rdata.get(axis_name, 'Unknown')
+                    wd = rdata.get('wrong_dist', {})
+                    # Sum solved+lost+incomplete into single wrong-count buckets
+                    for n in range(4):
+                        total_n = sum(wd.get(f'{n}_{s}', 0) for s in ('solved', 'lost', 'incomplete'))
+                        cat_totals[cat][str(n)] += total_n
+                    cat_totals[cat]['no_attempt_lost'] += wd.get('no_attempt_lost', 0)
+                    cat_totals[cat]['no_attempt_incomplete'] += wd.get('no_attempt_incomplete', 0)
+                    cat_n[cat] += 1
+            for cat in cat_totals:
+                total = sum(cat_totals[cat].values())
+                if total > 0 and cat in pdl_aggregates.get(axis_name, {}):
+                    pdl_aggregates[axis_name][cat]['actual_wrong_dist'] = {
+                        k: round(v / total, 4) for k, v in sorted(cat_totals[cat].items())
+                    }
+
+    return {
+        'puzzles': puzzles,
+        'undated_puzzles': undated_puzzles,
+        'pdl_aggregates': pdl_aggregates,
     }

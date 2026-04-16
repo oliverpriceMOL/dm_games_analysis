@@ -241,6 +241,8 @@ Result: 5 distributions (positions 0-3 + relink)
 
 **Important nuance:** This counts lives consumed between solves, not per-row wrongs. If a player guesses wrong on row 2, switches to row 1 to solve it, those wrongs count against position 0 (the first solve). This matches what the simulator needs — it doesn't model row-switching, just total wrongs per solve.
 
+**Note:** Although these input distributions use plain integer keys (`{0: 0.65, 1: 0.20, ...}`), the simulator's *output* uses compound keys that split by outcome (`0_solved`, `1_lost`, etc.) — see the Output Structure section below.
+
 ---
 
 ## Relink Phase Prediction
@@ -358,6 +360,13 @@ Each dated puzzle is simulated using ONLY the feature model (no per-puzzle obser
       "relink_reached": 8450,
       "rows_completed_pct": [0.5, 2.1, 5.8, 6.6, 85.0],
       "mean_lives_at_win": 2.34,
+      "sim_row_dists": {
+        "0": {"0_solved": 7200, "1_solved": 1800, "1_lost": 50, "2_solved": 600, ...},
+        "1": {"0_solved": 6800, "1_solved": 2000, ...},
+        "2": {"0_solved": 6500, ...},
+        "3": {"0_solved": 6000, "no_attempt_lost": 400, ...},
+        "4": {"0_solved": 5500, "1_solved": 1200, "1_lost": 300, "4_lost": 50, ...}
+      },
       "manipulationComplexity": 1,
       "abstractionComplexity": 0,
       "phase2TileCount": 2,
@@ -373,6 +382,26 @@ Each dated puzzle is simulated using ONLY the feature model (no per-puzzle obser
   "feature_validation": { "r": 0.655, "mae": 15.1 }
 }
 ```
+
+### Compound Wrong-Distribution Keys
+
+The `sim_row_dists` field uses **compound keys** that encode both the number of wrong guesses and the outcome for that row:
+
+| Key Format | Meaning |
+|------------|---------|
+| `0_solved` | Row solved with 0 wrong guesses |
+| `1_solved` | Row solved with 1 wrong guess |
+| `1_lost` | Player died on this row after 1 wrong guess |
+| `2_solved`, `2_lost` | 2 wrongs, solved or lost |
+| `3_solved`, `3_lost` | 3 wrongs, solved or lost |
+| `4_lost` | Player lost on relink phase after 4 wrong guesses (arrived with all 4 lives) |
+| `no_attempt_lost` | Player never reached this row (died earlier) |
+
+**Key details:**
+- Positions 0–3 are impostor rows (max 3 wrongs per row). Wrongs are counted between consecutive solves, not per-row.
+- Position 4 is the relink phase (max 4 wrongs — a player can arrive with all 4 lives and lose them all).
+- Values are raw simulation counts (out of 10,000).
+- This format matches the actual player data compound keys produced by `lib/metrics.py`, enabling direct visual comparison in the dashboard's Puzzle Explorer.
 
 ---
 

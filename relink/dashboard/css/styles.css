@@ -77,6 +77,42 @@ th { background: #f8f9fa; font-weight: 600; position: sticky; top: 0; }
                box-shadow: 0 2px 8px rgba(0,0,0,0.2); line-height: 42px; text-align: center; }
 .back-to-top:hover { background: #5b4bd5; }
 
+/* ── Puzzle Explorer ──────────────────────────────── */
+.explorer-controls { display: flex; gap: 8px; margin-bottom: 12px; }
+.explorer-btn { padding: 5px 14px; border-radius: 6px; border: 1px solid var(--border);
+                background: var(--card); color: var(--text); font-size: 12px;
+                cursor: pointer; font-weight: 600; }
+.explorer-btn:hover { background: #f0f0f5; }
+.explorer-heading-btns { display: inline-flex; gap: 4px; }
+.explorer-btn-sm { padding: 1px 8px; border-radius: 4px; border: 1px solid var(--border);
+                   background: var(--card); color: var(--muted); font-size: 11px;
+                   cursor: pointer; font-weight: 500; text-transform: none; letter-spacing: 0; }
+.explorer-btn-sm:hover { background: #f0f0f5; color: var(--text); }
+.explorer-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.explorer-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px;
+                 border-radius: 8px; border: 1px solid var(--border); background: #f8f9fa;
+                 cursor: pointer; font-size: 13px; user-select: none; }
+.explorer-chip:hover { background: #eef0f5; }
+.explorer-chip input { accent-color: var(--accent); }
+.explorer-chip-text { max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.explorer-chip-predicted { border-style: dashed; background: #fefefe; }
+.explorer-picker-heading { width: 100%; font-size: 12px; font-weight: 600; color: var(--muted); display: flex; align-items: center; justify-content: space-between;
+                           text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px; }
+.explorer-pred-tag { display: inline-block; font-size: 10px; font-weight: 700; color: #6c5ce7;
+                     background: #6c5ce71a; border-radius: 4px; padding: 1px 5px; vertical-align: middle; }
+.chart-label { font-size: 11px; font-weight: 600; color: var(--muted); text-align: center;
+               margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+.chart-label-pred { color: #6c5ce7; }
+.explorer-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 20px; }
+.explorer-puzzle-card { background: #f8f9fa; border-radius: 10px; padding: 16px;
+                        border: 1px solid var(--border); }
+.explorer-puzzle-card h4 { font-size: 14px; margin-bottom: 10px; color: var(--accent); }
+.toggle-group { display: inline-flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.toggle-btn { padding: 3px 12px; border: none; background: var(--card); color: var(--muted);
+              font-size: 12px; font-weight: 600; cursor: pointer; }
+.toggle-btn.active { background: var(--accent); color: #fff; }
+.toggle-btn:hover:not(.active) { background: #f0f0f5; }
+
 /* ── Glossary ─────────────────────────────────────── */
 #page-glossary main, #page-glossary { max-width: 900px; }
 .glossary-category { margin-bottom: 35px; }
@@ -100,4 +136,5 @@ th { background: #f8f9fa; font-weight: 600; position: sticky; top: 0; }
     main { margin-left: 0; }
     .two-col { grid-template-columns: 1fr; }
     .glossary-grid { grid-template-columns: 1fr; }
+    .explorer-cards { grid-template-columns: 1fr; }
 }

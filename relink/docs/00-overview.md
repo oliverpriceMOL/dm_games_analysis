@@ -43,7 +43,7 @@ The pipeline cross-references these two sources to answer: *which design feature
 │                                                             │
 │  ┌──────────────────┐  ┌──────────────────────────────┐    │
 │  │  lib/metrics.py   │  │  lib/model.py                │    │
-│  │  8 analyses       │  │  Statistical modelling       │    │
+│  │  9 analyses       │  │  Statistical modelling       │    │
 │  │                   │  │                              │    │
 │  │  • Crosstabs      │  │  • IPW survivorship          │    │
 │  │  • Heatmap        │  │    correction                │    │
@@ -57,7 +57,7 @@ The pipeline cross-references these two sources to answer: *which design feature
 │  └────────┬─────────┘  └──────────────┬───────────────┘    │
 │           │                            │                    │
 │           ▼                            ▼                    │
-│  8 JSON data files            5 JSON data files             │
+│  9 JSON data files            5 JSON data files             │
 └──────────┬─────────────────────────────┬────────────────────┘
            │                             │
            ▼                             ▼
@@ -65,8 +65,8 @@ The pipeline cross-references these two sources to answer: *which design feature
 │                    DASHBOARD                                │
 │                    dashboard/                               │
 │                                                             │
-│  13 JSON files loaded in parallel                           │
-│  → 13 interactive chart sections                            │
+│  14 JSON files loaded in parallel                           │
+│  → 15 interactive chart sections                            │
 │  → Served as static HTML at localhost:8000                  │
 └─────────────────────────────────────────────────────────────┘
 ```

@@ -809,6 +809,39 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
             if pos in pos_ratios:
                 rd['dist'] = _apply_ratio_shift(rd['dist'], pos_ratios[pos])
 
+    # Capture the feature-based input distributions for each row (pre-sampling)
+    predicted_row_dists = []
+    for pos, rd in enumerate(row_dists):
+        if rd['dist']:
+            predicted_row_dists.append({k: round(v, 4) for k, v in rd['dist'].items()})
+        else:
+            predicted_row_dists.append(None)
+
+    # Build the relink feature-based distribution (same logic as in the sim loop,
+    # but captured once before sampling for output)
+    predicted_relink_dist = None
+    if relink_feature_dists:
+        con_manip = puzzle_features.get('relink_con_manipulation', 'None')
+        by_cm = relink_feature_dists.get('by_con_manip', {})
+        base_entry = by_cm.get(con_manip)
+        if base_entry and base_entry.get('dist'):
+            predicted_relink_dist = dict(base_entry['dist'])
+            gl = relink_feature_dists.get('global', {})
+            gl_mean = gl.get('mean_wrong', 0)
+            if gl_mean > 0:
+                id_manip = puzzle_features.get('relink_id_manipulation', 'None')
+                id_entry = relink_feature_dists.get('by_id_manip', {}).get(id_manip)
+                if id_entry and id_entry.get('mean_wrong') is not None:
+                    predicted_relink_dist = _apply_ratio_shift(predicted_relink_dist, id_entry['mean_wrong'] / gl_mean)
+                con_know = puzzle_features.get('relink_con_knowledge', 'None')
+                ck_entry = relink_feature_dists.get('by_con_knowledge', {}).get(con_know)
+                if ck_entry and ck_entry.get('mean_wrong') is not None:
+                    predicted_relink_dist = _apply_ratio_shift(predicted_relink_dist, ck_entry['mean_wrong'] / gl_mean)
+                tiles = str(puzzle_features.get('phase2TileCount', 1))
+                t_entry = relink_feature_dists.get('by_tiles', {}).get(tiles)
+                if t_entry and t_entry.get('mean_wrong') is not None:
+                    predicted_relink_dist = _apply_ratio_shift(predicted_relink_dist, t_entry['mean_wrong'] / gl_mean)
+
     rng = [seed]
     results = {
         'rows_completed': [0] * 5,
@@ -818,9 +851,20 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
         'relink_reached': 0,
     }
 
+    # Per-row simulated wrong-guess tallies, split by outcome:
+    #   sim_row_solved[pos][wrong_count] = count of sims where row was solved with N wrongs
+    #   sim_row_lost[pos][wrong_count] = count of sims where player died on this row
+    sim_row_solved = [defaultdict(int) for _ in range(5)]   # 0-3 imposters, 4 relink
+    sim_row_lost = [defaultdict(int) for _ in range(5)]
+    sim_row_no_attempt = [0] * 5  # count of sims where row was never reached
+    # Total mistakes per sim
+    sim_mistake_counts = defaultdict(int)
+
     for _ in range(n_sims):
         lives = 4
         rows_done = 0
+        total_wrongs = 0
+        death_pos = -1  # track which row killed the player
 
         for pos, rd in enumerate(row_dists):
             dist = None
@@ -842,9 +886,20 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
                 dist = {'0': 0.65, '1': 0.2, '2': 0.1, '3': 0.05}
 
             wrong = _sample_wrong_guesses(dist, rng)
+            wrong = min(wrong, lives)  # can't lose more lives than you have
+            total_wrongs += wrong
             lives -= wrong
             if lives <= 0:
+                # Player died on this row
+                death_pos = pos
+                sim_row_lost[pos][wrong] += 1
+                # Mark remaining rows as not attempted
+                for remaining in range(pos + 1, 4):
+                    sim_row_no_attempt[remaining] += 1
+                sim_row_no_attempt[4] += 1  # relink not reached
                 break
+            # Survived this row
+            sim_row_solved[pos][wrong] += 1
             rows_done += 1
 
         if rows_done == 4 and lives > 0:
@@ -857,28 +912,22 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
             if per_puzzle_obs and len(per_puzzle_obs) > 4 and per_puzzle_obs[4]:
                 rl_dist = per_puzzle_obs[4]
             if not rl_dist and relink_feature_dists:
-                # Build relink dist from features: start with con_manipulation base,
-                # then apply ratio shifts for id_manipulation, con_knowledge, tiles.
                 con_manip = puzzle_features.get('relink_con_manipulation', 'None')
                 by_cm = relink_feature_dists.get('by_con_manip', {})
                 base_entry = by_cm.get(con_manip)
                 if base_entry and base_entry.get('dist'):
                     rl_dist = dict(base_entry['dist'])
-                    # Compute global relink mean for ratio baseline
                     gl = relink_feature_dists.get('global', {})
                     gl_mean = gl.get('mean_wrong', 0)
                     if gl_mean > 0:
-                        # id_manipulation adjustment
                         id_manip = puzzle_features.get('relink_id_manipulation', 'None')
                         id_entry = relink_feature_dists.get('by_id_manip', {}).get(id_manip)
                         if id_entry and id_entry.get('mean_wrong') is not None:
                             rl_dist = _apply_ratio_shift(rl_dist, id_entry['mean_wrong'] / gl_mean)
-                        # con_knowledge adjustment
                         con_know = puzzle_features.get('relink_con_knowledge', 'None')
                         ck_entry = relink_feature_dists.get('by_con_knowledge', {}).get(con_know)
                         if ck_entry and ck_entry.get('mean_wrong') is not None:
                             rl_dist = _apply_ratio_shift(rl_dist, ck_entry['mean_wrong'] / gl_mean)
-                        # phase2TileCount adjustment
                         tiles = str(puzzle_features.get('phase2TileCount', 1))
                         t_entry = relink_feature_dists.get('by_tiles', {}).get(tiles)
                         if t_entry and t_entry.get('mean_wrong') is not None:
@@ -893,15 +942,20 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
             if not rl_dist:
                 rl_dist = {'0': 0.85, '1': 0.1, '2': 0.05}
             rl_wrong = _sample_wrong_guesses(rl_dist, rng)
+            rl_wrong = min(rl_wrong, lives)  # can't lose more lives than you have
+            total_wrongs += rl_wrong
             lives -= rl_wrong
             if lives > 0:
+                sim_row_solved[4][rl_wrong] += 1
                 results['won'] += 1
                 results['lives_at_end'].append(lives)
             else:
+                sim_row_lost[4][rl_wrong] += 1
                 results['lost'] += 1
         else:
             results['lost'] += 1
 
+        sim_mistake_counts[total_wrongs] += 1
         results['rows_completed'][min(rows_done, 4)] += 1
 
     results['solve_rate'] = round(results['won'] / n_sims, 4)
@@ -909,5 +963,31 @@ def simulate_puzzle(transition_probs, pdl_rows_for_puzzle, puzzle_features,
     results['rows_completed_pct'] = [round(c / n_sims * 100, 1) for c in results['rows_completed']]
     results['mean_lives_at_win'] = round(safe_mean(results['lives_at_end']), 2) if results['lives_at_end'] else 0
     del results['lives_at_end']
+
+    # Per-row simulated wrong-guess distributions with outcome split
+    # Uses compound keys matching actual data: '0_solved', '1_lost', etc.
+    results['sim_row_dists'] = {}
+    for pos in range(5):
+        d = {}
+        all_wrongs = set(sim_row_solved[pos].keys()) | set(sim_row_lost[pos].keys())
+        for w in sorted(all_wrongs):
+            if sim_row_solved[pos][w]:
+                d[f'{w}_solved'] = sim_row_solved[pos][w]
+            if sim_row_lost[pos][w]:
+                d[f'{w}_lost'] = sim_row_lost[pos][w]
+        d['no_attempt_lost'] = sim_row_no_attempt[pos]
+        results['sim_row_dists'][str(pos)] = d
+
+    # Total mistakes distribution (count format)
+    results['sim_mistake_dist'] = {str(k): v for k, v in sorted(sim_mistake_counts.items())}
+
+    # Feature-based predicted distributions (probability format)
+    results['predicted_row_dists'] = predicted_row_dists
+    results['predicted_relink_dist'] = (
+        {k: round(v, 4) for k, v in predicted_relink_dist.items()}
+        if predicted_relink_dist else None)
+
+    # Row labels (from PDL) to identify which row is which in sorted order
+    results['row_labels'] = [rd['row'].get('category', f'Row {i}') for i, rd in enumerate(row_dists)]
 
     return results
