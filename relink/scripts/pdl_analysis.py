@@ -273,7 +273,8 @@ print(f"  Puzzle Explorer: {len(explorer_data['puzzles'])} dated, "
 difficulty_data = metrics.compute_difficulty(
     date_summaries, pdl_puzzle_features, pdl_rows,
     sim_results, sim_undated, overlap_dates,
-    level_to_date, date_to_level, explorer_data)
+    level_to_date, date_to_level, explorer_data,
+    transparency_scores=transparency_scores)
 print(f"  Difficulty: {len(difficulty_data['puzzles'])} dated, "
       f"{len(difficulty_data['undated'])} undated, "
       f"validation ρ={difficulty_data['validation']['spearman_rho']:.3f}")
@@ -286,6 +287,9 @@ for d, dd in difficulty_data['puzzles'].items():
             'composite': dd['composite'],
             'rating': dd['rating'],
             'row_scores': dd['row_scores'],
+            'predicted_profile': dd.get('predicted_profile'),
+            'predicted_composite': dd.get('predicted_composite'),
+            'predicted_rating': dd.get('predicted_rating'),
         }
 for lid, dd in difficulty_data['undated'].items():
     if lid in explorer_data.get('undated_puzzles', {}):

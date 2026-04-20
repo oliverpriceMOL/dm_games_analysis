@@ -7,20 +7,23 @@
 import { COLORS, hsl, hsla, nearestInteraction } from './charts.js';
 
 const DIM_COLORS = {
-    impostor_deception:   hsl(0, 70, 50),
-    knowledge_demand:     hsl(35, 90, 55),
-    punishment_risk:      hsl(145, 60, 45),
-    connection_challenge: hsl(210, 70, 50),
-    volatility:           hsl(270, 60, 55),
+    manipulation:      hsl(0, 70, 50),
+    abstraction:       hsl(35, 90, 55),
+    domain_mismatch:   hsl(145, 60, 45),
+    knowledge:         hsl(210, 70, 50),
+    relink_challenge:  hsl(270, 60, 55),
 };
 const DIM_COLORS_A = {
-    impostor_deception:   hsla(0, 70, 50, 0.25),
-    knowledge_demand:     hsla(35, 90, 55, 0.25),
-    punishment_risk:      hsla(145, 60, 45, 0.25),
-    connection_challenge: hsla(210, 70, 50, 0.25),
-    volatility:           hsla(270, 60, 55, 0.25),
+    manipulation:      hsla(0, 70, 50, 0.25),
+    abstraction:       hsla(35, 90, 55, 0.25),
+    domain_mismatch:   hsla(145, 60, 45, 0.25),
+    knowledge:         hsla(210, 70, 50, 0.25),
+    relink_challenge:  hsla(270, 60, 55, 0.25),
 };
 const TIER_COLORS = ['#27ae60', '#2ecc71', '#f39c12', '#e74c3c', '#c0392b'];
+
+// Toggle state: 'actual' or 'predicted'
+let profileMode = 'actual';
 
 function stars(rating) {
     let s = '';
@@ -57,25 +60,71 @@ function createConicGradient(ctx2d, cx, cy, dims) {
     return grad;
 }
 
+/** Get the active profile for a puzzle depending on profileMode. */
+function activeProfile(p) {
+    if (profileMode === 'predicted' && p.predicted_profile) return p.predicted_profile;
+    return p.profile;
+}
+function activeComposite(p) {
+    if (profileMode === 'predicted' && p.predicted_composite != null) return p.predicted_composite;
+    return p.composite;
+}
+function activeRating(p) {
+    if (profileMode === 'predicted' && p.predicted_rating != null) return p.predicted_rating;
+    return p.rating;
+}
+
 /* ── Main render ─────────────────────────────────────────── */
 
-export function render(data) {
-    const diff = data.difficulty;
-    if (!diff) return;
+let _diff = null;
 
-    // Merge dated + undated into one list
+export function render(data) {
+    _diff = data.difficulty;
+    if (!_diff) return;
+    profileMode = 'actual';
+    buildAll();
+}
+
+function buildAll() {
+    const diff = _diff;
     const all = [];
     for (const [key, p] of Object.entries(diff.puzzles || {})) {
-        all.push({ ...p, _key: key, _sort: p.composite });
+        all.push({ ...p, _key: key, _sort: activeComposite(p) });
     }
     for (const [key, p] of Object.entries(diff.undated || {})) {
-        all.push({ ...p, _key: key, _sort: p.composite });
+        all.push({ ...p, _key: key, _sort: activeComposite(p) });
     }
     all.sort((a, b) => a._sort - b._sort);
 
+    renderToggle(diff);
     renderValidation(diff);
     renderTable(all, diff);
     renderDimRankings(all, diff);
+}
+
+/* ── Actual / Predicted toggle ───────────────────────────── */
+
+function renderToggle(diff) {
+    const anchor = document.getElementById('ratings-validation-stats');
+    if (!anchor) return;
+    let wrap = document.getElementById('ratings-mode-toggle');
+    if (!wrap) {
+        wrap = document.createElement('div');
+        wrap.id = 'ratings-mode-toggle';
+        wrap.className = 'dp-toggle';
+        anchor.parentElement.insertBefore(wrap, anchor);
+    }
+    wrap.innerHTML = `
+        <button class="dp-toggle-btn${profileMode === 'actual' ? ' active' : ''}" data-mode="actual">Actual</button>
+        <button class="dp-toggle-btn${profileMode === 'predicted' ? ' active' : ''}" data-mode="predicted">Predicted</button>`;
+    wrap.querySelectorAll('.dp-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const mode = btn.dataset.mode;
+            if (mode === profileMode) return;
+            profileMode = mode;
+            buildAll();
+        });
+    });
 }
 
 /* ── Validation stats ────────────────────────────────────── */
@@ -84,11 +133,17 @@ function renderValidation(diff) {
     const v = diff.validation || {};
     const grid = document.getElementById('ratings-validation-stats');
     if (!grid) return;
+
+    const isPred = profileMode === 'predicted';
+    const rho = isPred ? Math.abs(v.predicted_spearman_rho || 0) : Math.abs(v.spearman_rho || 0);
+    const r = isPred ? Math.abs(v.predicted_pearson_r || 0) : Math.abs(v.pearson_r || 0);
+    const modeLabel = isPred ? '(predicted)' : '(actual)';
+
     grid.innerHTML = `
-        <div class="stat-card"><div class="value">${Math.abs(v.spearman_rho || 0).toFixed(2)}</div>
-            <div class="label">Spearman |ρ|</div></div>
-        <div class="stat-card"><div class="value">${Math.abs(v.pearson_r || 0).toFixed(2)}</div>
-            <div class="label">Pearson |r|</div></div>
+        <div class="stat-card"><div class="value">${rho.toFixed(2)}</div>
+            <div class="label">Spearman |ρ| ${modeLabel}</div></div>
+        <div class="stat-card"><div class="value">${r.toFixed(2)}</div>
+            <div class="label">Pearson |r| ${modeLabel}</div></div>
         <div class="stat-card"><div class="value">${v.n_dated || 0}</div>
             <div class="label">Dated puzzles</div></div>
         <div class="stat-card"><div class="value">${Object.keys(diff.puzzles || {}).length + Object.keys(diff.undated || {}).length}</div>
@@ -100,21 +155,33 @@ function renderValidation(diff) {
     if (!canvas) return;
     const pts = (v.composite_vs_solve_rate || []);
     if (!pts.length) return;
-    new Chart(canvas.getContext('2d'), {
+    // Destroy previous scatter if exists
+    if (canvas._chartInstance) { canvas._chartInstance.destroy(); }
+    const isPred2 = profileMode === 'predicted';
+    const chart = new Chart(canvas.getContext('2d'), {
         type: 'scatter',
         data: {
             datasets: [{
                 label: 'Dated puzzles',
-                data: pts.map(p => ({ x: p.composite, y: p.solve_rate })),
-                backgroundColor: pts.map(p => TIER_COLORS[p.rating - 1]),
-                borderColor: pts.map(p => TIER_COLORS[p.rating - 1]),
+                data: pts.map(p => ({
+                    x: isPred2 ? (p.predicted_composite ?? p.composite) : p.composite,
+                    y: p.solve_rate
+                })),
+                backgroundColor: pts.map(p => {
+                    const r = isPred2 ? (p.predicted_rating ?? p.rating) : p.rating;
+                    return TIER_COLORS[r - 1];
+                }),
+                borderColor: pts.map(p => {
+                    const r = isPred2 ? (p.predicted_rating ?? p.rating) : p.rating;
+                    return TIER_COLORS[r - 1];
+                }),
                 pointRadius: 7,
             }]
         },
         options: {
             interaction: nearestInteraction,
             scales: {
-                x: { title: { display: true, text: 'Composite difficulty' }, min: 0.2, max: 0.6 },
+                x: { title: { display: true, text: `Composite difficulty (${isPred2 ? 'predicted' : 'actual'})` }, min: 0.1, max: 0.6 },
                 y: { title: { display: true, text: 'Actual solve rate %' }, min: 0, max: 100 },
             },
             plugins: {
@@ -127,10 +194,12 @@ function renderValidation(diff) {
                         },
                         label: (ctx) => {
                             const p = pts[ctx.dataIndex];
+                            const comp = isPred2 ? (p.predicted_composite ?? p.composite) : p.composite;
+                            const rating = isPred2 ? (p.predicted_rating ?? p.rating) : p.rating;
                             return [
                                 `Solve rate: ${p.solve_rate}%`,
-                                `Composite: ${p.composite.toFixed(3)}`,
-                                `Rating: ${'★'.repeat(p.rating)}${'☆'.repeat(5 - p.rating)} (${p.rating}/5)`,
+                                `Composite: ${comp.toFixed(3)}`,
+                                `Rating: ${'★'.repeat(rating)}${'☆'.repeat(5 - rating)} (${rating}/5)`,
                             ];
                         }
                     }
@@ -139,6 +208,7 @@ function renderValidation(diff) {
             }
         }
     });
+    canvas._chartInstance = chart;
 }
 
 /* ── Sortable table ──────────────────────────────────────── */
@@ -169,11 +239,11 @@ function renderTable(all, diff) {
         const sorted = [...all].sort((a, b) => {
             let av, bv;
             if (sortCol === 'name') { av = a.name; bv = b.name; return sortDir * av.localeCompare(bv); }
-            if (sortCol === 'rating') { av = a.rating; bv = b.rating; }
+            if (sortCol === 'rating') { av = activeRating(a); bv = activeRating(b); }
             else if (sortCol === 'solve_rate') { av = a.solve_rate; bv = b.solve_rate; }
-            else if (sortCol === 'composite') { av = a.composite; bv = b.composite; }
-            else if (dims.includes(sortCol)) { av = a.profile[sortCol]; bv = b.profile[sortCol]; }
-            else { av = a.composite; bv = b.composite; }
+            else if (sortCol === 'composite') { av = activeComposite(a); bv = activeComposite(b); }
+            else if (dims.includes(sortCol)) { av = activeProfile(a)[sortCol]; bv = activeProfile(b)[sortCol]; }
+            else { av = activeComposite(a); bv = activeComposite(b); }
             return sortDir * ((av || 0) - (bv || 0));
         });
 
@@ -200,11 +270,13 @@ function renderTable(all, diff) {
                 ? `${(p.solve_rate * 100).toFixed(0)}%`
                 : `~${p.predicted_solve_rate}%`;
             const canvasId = `tbl-radar-${i}`;
-            html += `<tr${pred} class="${tierClass(p.rating)}">
+            const rating = activeRating(p);
+            const comp = activeComposite(p);
+            html += `<tr${pred} class="${tierClass(rating)}">
                 <td>${p.name}${p.has_player_data ? '' : ' <span class="explorer-pred-tag">PRED</span>'}</td>
-                <td>${stars(p.rating)}</td>
+                <td>${stars(rating)}</td>
                 <td>${sr}</td>
-                <td>${p.composite.toFixed(3)}</td>
+                <td>${comp.toFixed(3)}</td>
                 <td><div class="table-radar-wrap"><canvas id="${canvasId}" width="140" height="140"></canvas></div></td>
             </tr>`;
         }
@@ -227,7 +299,7 @@ function renderTable(all, diff) {
                 data: {
                     labels: radarLabelsShort,
                     datasets: [{
-                        data: dims.map(d => p.profile[d]),
+                        data: dims.map(d => activeProfile(p)[d]),
                         backgroundColor: grad,
                         borderWidth: 1.5,
                         segment: { borderColor: (ctx) => ptColors[ctx.p0DataIndex] },
@@ -295,24 +367,27 @@ function showRadarModal(p, dims, dimLabels) {
     let overlay = document.getElementById('radar-modal-overlay');
     if (overlay) overlay.remove();
 
-    // Labels with values baked in: ["Impostor", "Deception", "72%"]
+    // Labels with values baked in: ["Manipulation", "72%"]
+    const prof = activeProfile(p);
     const labels = dims.map(d => {
         const words = (dimLabels[d] || d).split(' ');
-        words.push(`${Math.round(p.profile[d] * 100)}%`);
+        words.push(`${Math.round(prof[d] * 100)}%`);
         return words;
     });
-    const color = TIER_COLORS[p.rating - 1];
+    const rating = activeRating(p);
+    const color = TIER_COLORS[rating - 1];
     const sr = p.has_player_data
         ? `${(p.solve_rate * 100).toFixed(0)}%`
         : `~${p.predicted_solve_rate}% (predicted)`;
+    const comp = activeComposite(p);
 
     overlay = document.createElement('div');
     overlay.id = 'radar-modal-overlay';
     overlay.className = 'radar-modal-overlay';
     overlay.innerHTML = `<div class="radar-modal">
         <button class="radar-modal-close">&times;</button>
-        <h3>${p.name} ${stars(p.rating)}</h3>
-        <p class="radar-modal-meta">Solve rate: ${sr} · Composite: ${p.composite.toFixed(3)}</p>
+        <h3>${p.name} ${stars(rating)}</h3>
+        <p class="radar-modal-meta">Solve rate: ${sr} · Composite: ${comp.toFixed(3)}</p>
         <div class="radar-modal-body">
             <div class="radar-modal-chart"><canvas id="modal-radar-canvas" width="300" height="300"></canvas></div>
         </div>
@@ -338,7 +413,7 @@ function showRadarModal(p, dims, dimLabels) {
         data: {
             labels: labels,
             datasets: [{
-                data: dims.map(d => p.profile[d]),
+                data: dims.map(d => prof[d]),
                 backgroundColor: grad,
                 borderWidth: 2,
                 segment: { borderColor: (ctx) => dimColors[ctx.p0DataIndex] },
@@ -398,7 +473,7 @@ function renderDimRankings(all, diff) {
 
     let html = '';
     for (const dim of dims) {
-        const sorted = [...all].sort((a, b) => b.profile[dim] - a.profile[dim]).slice(0, 10);
+        const sorted = [...all].sort((a, b) => activeProfile(b)[dim] - activeProfile(a)[dim]).slice(0, 10);
         const color = DIM_COLORS[dim] || '#636e72';
         html += `<div class="card">
             <h3 style="color:${color}">${dimLabels[dim] || dim}</h3>
@@ -407,8 +482,8 @@ function renderDimRankings(all, diff) {
             html += `<tr>
                 <td>${i + 1}</td>
                 <td>${p.name}${p.has_player_data ? '' : ' <span class="explorer-pred-tag">PRED</span>'}</td>
-                <td>${dimBar(p.profile[dim], dim)}</td>
-                <td>${stars(p.rating)}</td>
+                <td>${dimBar(activeProfile(p)[dim], dim)}</td>
+                <td>${stars(activeRating(p))}</td>
             </tr>`;
         });
         html += `</tbody></table></div>`;
