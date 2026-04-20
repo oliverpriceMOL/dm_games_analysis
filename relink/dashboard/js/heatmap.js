@@ -1,7 +1,7 @@
 /**
  * Heatmap + Impostor Domain sections.
  */
-import { hsl, hsla, COLORS, nearestInteraction } from './charts.js';
+import { hsl, hsla, COLORS, nearestInteraction, horizontalInteraction } from './charts.js';
 
 export function renderHeatmap(heatmap) {
     const container = document.getElementById('heatmap-container');
@@ -65,6 +65,7 @@ export function renderImpostorDomain(data) {
         },
         options: {
             indexAxis: 'y',
+            interaction: horizontalInteraction,
             plugins: {
                 tooltip: {
                     callbacks: {

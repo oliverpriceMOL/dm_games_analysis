@@ -1,7 +1,7 @@
 /**
  * Regression tables + forest plot.
  */
-import { hsl, hsla } from './charts.js';
+import { hsl, hsla, horizontalInteraction } from './charts.js';
 
 function makeRegTable(container, title, data, footer) {
     let html = `<div class="card"><h3>${title}</h3>`;
@@ -56,6 +56,7 @@ export function render(regressionData) {
         },
         options: {
             indexAxis: 'y',
+            interaction: horizontalInteraction,
             plugins: { legend: { display: false } },
             scales: {
                 x: { title: { display: true, text: 'Effect on first-try correct % (pp)' },

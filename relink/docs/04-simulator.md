@@ -12,8 +12,8 @@ There are two modes:
 
 | Mode | When Used | Data Source | Accuracy |
 |------|-----------|-------------|----------|
-| **Empirical** | 14 puzzles with player data | Per-puzzle observed distributions + pooled fallback | r = 0.934, MAE = 12.7pp |
-| **Feature-only** | 25 puzzles without player data | PDL feature-based distributions only | r = 0.655, MAE = 15.1pp |
+| **Empirical** | 17 puzzles with player data | Per-puzzle observed distributions + pooled fallback | r = 0.929, MAE = 11.1pp |
+| **Feature-only** | 22 puzzles without player data | PDL feature-based distributions only | Used for predictions |
 
 ---
 
@@ -328,14 +328,12 @@ and a random draw r = 0.73:
 ## Simulator Validation
 
 ### Empirical Mode (dated puzzles)
-Each of the 14 dated puzzles is simulated using its own observed distributions, with the feature model as fallback. Comparing simulated vs actual solve rate:
-- **Pearson r = 0.934** — very strong correlation
-- **MAE = 12.7 percentage points** — average prediction error
+Each of the 17 dated puzzles is simulated using its own observed distributions, with the feature model as fallback. Comparing simulated vs actual solve rate:
+- **Pearson r = 0.929** — very strong correlation
+- **MAE = 11.1 percentage points** — average prediction error
 
 ### Feature-Only Mode (cross-validation on dated puzzles)
-Each dated puzzle is simulated using ONLY the feature model (no per-puzzle observations). This tests how well the model generalises:
-- **Pearson r = 0.655** — moderate correlation
-- **MAE = 15.1 percentage points** — reasonable for pure prediction
+Each dated puzzle is simulated using ONLY the feature model (no per-puzzle observations). This tests how well the model generalises.
 
 ### Improvement History
 | Version | Feature-Only r | Feature-Only MAE |
@@ -378,7 +376,7 @@ Each dated puzzle is simulated using ONLY the feature model (no per-puzzle obser
     "l1": { ... same structure but actual_solve_rate: null ... },
     ...
   },
-  "validation": { "r": 0.934, "mae": 12.7 },
+  "validation": { "r": 0.929, "mae": 11.1 },
   "feature_validation": { "r": 0.655, "mae": 15.1 }
 }
 ```

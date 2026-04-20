@@ -74,7 +74,7 @@ For each player's trajectory:
 
 **Safety cap:** Weights are capped at 20× to prevent extreme observations (players who barely survived through many unlikely states) from dominating the estimates.
 
-**Pooling:** IPW is computed by pooling trajectories across all 14 dated puzzles. This gives stable survival estimates even for rare states (e.g., position 3 with 1 life).
+**Pooling:** IPW is computed by pooling trajectories across all 17 dated puzzles. This gives stable survival estimates even for rare states (e.g., position 3 with 1 life).
 
 ### Output
 
@@ -238,7 +238,7 @@ failure_data = {
         'same_abstraction': { ... },
         'same_domain': { ... },
     },
-    'n_pairs': 84,  # 14 puzzles × 6 pairs
+    'n_pairs': 102,  # 17 puzzles × 6 pairs
 }
 ```
 

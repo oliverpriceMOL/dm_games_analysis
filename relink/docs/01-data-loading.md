@@ -11,7 +11,7 @@ Data loading takes raw files (puzzle designs + player logs) and produces clean, 
 ```
 ┌──────────────┐     ┌──────────────────┐
 │  save-data/  │     │  raw/            │
-│  39 JSON     │     │  6 CSV files     │
+│  39 JSON     │     │  8 CSV files     │
 │  puzzle      │     │  (sessions +     │
 │  designs     │     │   events)        │
 └──────┬───────┘     └────────┬─────────┘
@@ -32,7 +32,7 @@ Data loading takes raw files (puzzle designs + player logs) and produces clean, 
                   ▼
             Joined data
          (PDL + behaviour
-          for 14 puzzles)
+          for 17 puzzles)
 ```
 
 ---
@@ -125,10 +125,10 @@ The relink (phase 2) has its own PDL tags, split into two concerns:
 
 ### Source Files
 
-Three pairs of CSVs (original + two subsequent exports covering overlapping date ranges):
+Three pairs of CSVs (original + three subsequent exports covering overlapping date ranges):
 
-- `daily-mail-sessions.csv`, `-2.csv`, `-3.csv` — session-level data
-- `daily-mail-events.csv`, `-2.csv`, `-3.csv` — event-level data
+- `daily-mail-sessions.csv`, `-2.csv`, `-3.csv`, `-4.csv` — session-level data
+- `daily-mail-events.csv`, `-2.csv`, `-3.csv`, `-4.csv` — event-level data
 
 ### Multi-File Loading
 
@@ -157,7 +157,7 @@ Raw events
     └── Tester filter: INCOMPLETE outcomes with 0 wrong guesses
     │
     ▼
-Clean events (~496 completions across 14 dated puzzles)
+Clean events (~900+ completions across 17 dated puzzles)
 ```
 
 ### Event-Session Matching (`match_events`)

@@ -5,7 +5,7 @@
  * and predicted distributions from the Monte Carlo model.
  */
 
-import { COLORS, hsl, hsla, nearestInteraction } from './charts.js';
+import { COLORS, hsl, hsla, nearestInteraction, horizontalInteraction } from './charts.js';
 
 // Base colors by wrong count
 const BASE_COLORS = {
@@ -937,6 +937,7 @@ function renderWrongDistChart(canvasId, puzzle, asPercent, mode) {
         data: { labels, datasets },
         options: {
             indexAxis: 'y',
+            interaction: horizontalInteraction,
             scales: {
                 x: {
                     stacked: true,
@@ -1033,6 +1034,7 @@ function renderMistakeDistChart(canvasId, puzzle, asPercent, mode) {
         data: { labels, datasets },
         options: {
             indexAxis: 'y',
+            interaction: horizontalInteraction,
             scales: {
                 x: {
                     beginAtZero: true,

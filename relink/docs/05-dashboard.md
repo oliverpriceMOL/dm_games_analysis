@@ -2,7 +2,7 @@
 
 > **Directory:** `relink/dashboard/`
 > **Entry point:** `dashboard/index.html`
-> **Data source:** 14 JSON files in `relink/outputs/data/`
+> **Data source:** 15 JSON files in `relink/outputs/data/`
 > **Technology:** Chart.js v4 (CDN), vanilla JS ES modules
 
 ## Architecture
@@ -53,7 +53,7 @@ File names are normalised to camelCase keys (e.g. `impostor-domain` → `imposto
 
 ---
 
-## The 15 Sections
+## The 16 Sections
 
 Each section corresponds to one or more JSON files and is rendered by a dedicated JS module. Sections are grouped into 9 pages accessible via hash-based navigation.
 
@@ -182,7 +182,23 @@ Per-puzzle deep-dive with:
 
 The compound key format (`0_solved`, `1_lost`, `2_incomplete`, `no_attempt_lost`, etc.) is shared between actual data from `lib/metrics.py` and predicted data from the Monte Carlo simulator in `lib/model.py`.
 
-### 15. Glossary (`glossary.js`)
+### 15. Difficulty Ratings (`ratings.js`)
+**Page:** `#ratings`
+**Data:** `difficulty.json`
+
+A 5-axis difficulty rating system with:
+- **Actual/Predicted toggle** — for dated puzzles, switch between profiles derived from real player data vs simulator predictions
+- **Validation stat cards** — Spearman ρ, Pearson r, and puzzle counts for the active profile mode
+- **Scatter chart** — composite difficulty vs actual solve rate, colour-coded by star rating tier
+- **Sortable table** — all 39 puzzles with star ratings, solve rates, composites, and inline mini radar charts showing the 5-dimension profile
+- **Radar modal** — click any mini radar to expand it into a full-size modal with per-dimension labels and values
+- **Per-dimension rankings** — top 10 puzzles for each dimension, with coloured score bars
+
+The five dimensions (manipulation, abstraction, domain mismatch, knowledge, relink challenge) each have a distinct colour drawn from `DIM_COLORS`. Radar chart fills use a conic gradient that sweeps through the dimension colours.
+
+Undated puzzles appear in the table with an italic style and "PRED" tag. Their profiles are always predicted (no actual data available).
+
+### 16. Glossary (`glossary.js`)
 **Page:** `#glossary`
 **Data:** None (static content)
 
@@ -209,6 +225,7 @@ Defines key terms used throughout the dashboard (PDL axes, game mechanics, stati
 │          │   #simulator  — Monte Carlo               │
 │          │   #clustering — k-means                   │
 │          │   #explorer   — Puzzle Explorer            │
+│          │   #ratings    — Difficulty Ratings          │
 │          │   #glossary   — Glossary                   │
 │          │                                           │
 └──────────┴───────────────────────────────────────────┘
@@ -223,10 +240,14 @@ Sections use a `.two-col` CSS grid layout for side-by-side cards, with `.card` c
 Common Chart.js configuration shared across renderers:
 
 | Export | Purpose |
-|--------|---------|
-| `COLOURS` | Consistent palette across all charts |
-| `defaultBarOpts()` | Standard horizontal bar chart options |
-| `tooltipFormat()` | Standard tooltip formatting |
+|--------|--------|
+| `COLORS` | Consistent palette across all charts |
+| `hsl()`, `hsla()` | CSS colour helpers |
+| `nearestInteraction` | Interaction config for scatter/radar charts (point-level targeting) |
+| `horizontalInteraction` | Interaction config for horizontal bar charts (trigger by row, `axis: 'y'`) |
+| `makeBarChart()` | Shared dual-axis bar chart factory (used by crosstabs) |
+
+Additionally, `charts.js` registers a **crosshair plugin** that draws a dashed guide line at the hover position — vertical for standard charts, horizontal for charts with `indexAxis: 'y'`. It is automatically skipped for radar charts.
 
 ---
 
@@ -280,7 +301,8 @@ relink/dashboard/
     ├── failures.js      ← Section 12: Phi matrices
     ├── simulator.js     ← Section 13: Monte Carlo results
     ├── explorer.js      ← Section 14: Puzzle Explorer
-    └── glossary.js      ← Section 15: Glossary
+    ├── ratings.js       ← Section 15: Difficulty Ratings
+    └── glossary.js      ← Section 16: Glossary
 ```
 
 Each `.js` renderer module follows the same pattern:

@@ -8,8 +8,8 @@ This project analyses player behaviour data from internal tests of Daily Mail pu
 
 ### Raw CSVs
 
-- `raw/daily-mail-sessions*.csv` — Session-level data. Three files: original, `-2`, `-3` covering overlapping date ranges. Columns: id, created_at, ended_at, is_bounce, duration, screen_view_count, event_count, entry_path, exit_path, referrer, country, city, region, device, browser, browser_version, os, os_version, utm fields, properties.
-- `raw/daily-mail-events*.csv` — Event-level data. Three files: original, `-2`, `-3` covering overlapping date ranges. Columns: id, name, created_at, country, city, region, properties.
+- `raw/daily-mail-sessions*.csv` — Session-level data. Four files: original, `-2`, `-3`, `-4` covering overlapping date ranges. Columns: id, created_at, ended_at, is_bounce, duration, screen_view_count, event_count, entry_path, exit_path, referrer, country, city, region, device, browser, browser_version, os, os_version, utm fields, properties.
+- `raw/daily-mail-events*.csv` — Event-level data. Four files: original, `-2`, `-3`, `-4` covering overlapping date ranges. Columns: id, name, created_at, country, city, region, properties.
 - The `properties` column in both files contains stringified Python dicts (single quotes). Parse with `ast.literal_eval()`.
 - **Multi-file loading**: Scripts use `glob.glob()` to discover all matching CSVs, load them in sorted order (alphabetical), and deduplicate by row ID (last file wins). This ensures full date coverage without duplicates.
 
@@ -17,7 +17,7 @@ This project analyses player behaviour data from internal tests of Daily Mail pu
 
 - `relink/save-data/puzzles-index.json` — Lists all 39 puzzles with `id` and `date`.
 - `relink/save-data/l{id}.json` — Per-puzzle design file. Contains 4 rows (each with tiles, impostor flags, PDL metadata: manipulation, abstraction, knowledge, knowledgeDomain), relink answer with split PDL (connectionIdentification + answerConstruction), decoy groupings, board metadata (`phase2TileCount`, `specialistGroupCount`, `isThemed`).
-- 14 of the 39 puzzles have matching player behaviour data (Mar 31 – Apr 13); the remaining 25 are without player data (3 dated Apr 14–16 with no analytics yet, plus 22 undated design-only puzzles).
+- 17 of the 39 puzzles have matching player behaviour data (Mar 31 – Apr 16); the remaining 22 are undated design-only puzzles without player data.
 
 ## Games
 
@@ -44,7 +44,7 @@ A word puzzle played on a 4×4 grid with two phases:
 - `relink_guess_submitted` (imposters phase): `row_index`, `selected_word`, `is_correct`, `attempts_remaining`, `phase: 'imposters'`
 - `relink_guess_submitted` (relink phase): `selected_tile_ids` (e.g. `r3w0,r0w1`), `is_correct`, `phase: 'relink'`
 - `level_completed`: `is_won`, `puzzle_date`
-- Data covers Mar 31 – Apr 13, 2026 (14 puzzle dates with player data). Player counts grew from ~40/day to ~100/day over the period. ~496 total completions.
+- Data covers Mar 31 – Apr 16, 2026 (17 puzzle dates with player data). Player counts grew from ~40/day to ~100/day over the period. ~900+ total completions.
 
 ### Trace (`game_id: 'word-flow'`)
 - A word-tracing puzzle. No guess-level events — only `level_started`, `level_completed`, `tutorial_started/completed/skipped`, `level_result_shared`, `final_board_viewed`, `session_started`.
@@ -69,17 +69,19 @@ data/
 │   ├── daily-mail-events.csv
 │   ├── daily-mail-events-2.csv
 │   ├── daily-mail-events-3.csv
+│   ├── daily-mail-events-4.csv
 │   ├── daily-mail-sessions.csv
 │   ├── daily-mail-sessions-2.csv
-│   └── daily-mail-sessions-3.csv
+│   ├── daily-mail-sessions-3.csv
+│   └── daily-mail-sessions-4.csv
 ├── relink/
 │   ├── scripts/
 │   │   ├── lib/                      # Shared library modules
 │   │   │   ├── data.py               # Data loading, trajectory building
-│   │   │   ├── metrics.py            # 9 analysis compute functions
+│   │   │   ├── metrics.py            # 10 analysis compute functions (incl. difficulty ratings)
 │   │   │   ├── model.py              # IPW, transitions, full-feature simulator
 │   │   │   └── stats.py              # Stats utilities (OLS, k-means, correlations)
-│   │   ├── pdl_analysis.py           # Main pipeline → 14 JSON files + HTML dashboard
+│   │   ├── pdl_analysis.py           # Main pipeline → 15 JSON files + HTML dashboard
 │   │   ├── relink_analysis.py        # Comprehensive per-puzzle text analysis
 │   │   ├── compare_dates.py          # Side-by-side comparison of all puzzle dates
 │   │   ├── failure_analysis.py       # Deep-dive into what causes losses
@@ -89,7 +91,7 @@ data/
 │   ├── dashboard/                    # Static HTML dashboard (served via http.server)
 │   │   ├── index.html
 │   │   ├── css/
-│   │   └── js/                       # ES modules: main.js + charts.js + 14 section renderers
+│   │   └── js/                       # ES modules: main.js + charts.js + 15 section renderers
 │   ├── docs/                         # 6 comprehensive documentation files
 │   │   ├── 00-overview.md
 │   │   ├── 01-data-loading.md
@@ -98,7 +100,7 @@ data/
 │   │   ├── 04-simulator.md
 │   │   └── 05-dashboard.md
 │   ├── outputs/
-│   │   ├── data/                     # 14 JSON files (generated by pdl_analysis.py)
+│   │   ├── data/                     # 15 JSON files (generated by pdl_analysis.py)
 │   │   ├── pdl-analysis.html         # Standalone HTML report (legacy)
 │   │   ├── relink-analysis.txt
 │   │   ├── compare-all-dates.txt
@@ -129,22 +131,22 @@ data/
 
 ## Relink PDL Analysis Pipeline
 
-The main analysis is `relink/scripts/pdl_analysis.py`, which cross-references puzzle design parameters (PDL) with player behaviour data. It produces 14 JSON data files consumed by an interactive dashboard.
+The main analysis is `relink/scripts/pdl_analysis.py`, which cross-references puzzle design parameters (PDL) with player behaviour data. It produces 15 JSON data files consumed by an interactive dashboard.
 
 ### Architecture
 
 ```
 pdl_analysis.py (orchestrator)
 ├── lib/data.py     → load CSVs + PDL, build player trajectories
-├── lib/metrics.py  → 9 analysis functions (crosstabs, regression, VI, clustering, explorer, etc.)
+├── lib/metrics.py  → 10 analysis functions (crosstabs, regression, VI, clustering, difficulty, etc.)
 ├── lib/model.py    → IPW weights, transition probs, correlated failures, full-feature simulator
 └── lib/stats.py    → mean, median, percentile, pearson, spearman, ols_multi, kmeans
 
-Outputs: 14 JSON files → relink/outputs/data/
+Outputs: 15 JSON files → relink/outputs/data/
 Dashboard: relink/dashboard/ (Chart.js v4 + ES modules)
 ```
 
-### 14 JSON Outputs
+### 15 JSON Outputs
 
 | File | Analysis | What It Answers |
 |------|----------|-----------------|
@@ -162,6 +164,7 @@ Dashboard: relink/dashboard/ (Chart.js v4 + ES modules)
 | `transitions.json` | Transition model | IPW-weighted wrong-guess distributions by features |
 | `failures.json` | Correlated failures | Row-pair phi coefficients; PDL similarity effects |
 | `simulator.json` | Monte Carlo | Simulated solve rates; undated puzzle predictions |
+| `difficulty.json` | Difficulty ratings | 5-axis profiles, composites, star ratings, validation |
 
 ### Key Derived Structures (from lib/data.py)
 
@@ -173,7 +176,7 @@ Dashboard: relink/dashboard/ (Chart.js v4 + ES modules)
 ### Running
 
 ```bash
-# Generate all 14 JSON data files (~5-8 min, CSV loading dominates):
+# Generate all 15 JSON data files (~5-8 min, CSV loading dominates):
 python3 relink/scripts/pdl_analysis.py
 
 # Serve dashboard (then visit http://localhost:8000):
@@ -196,5 +199,5 @@ python3 -m http.server 8000 -d relink
 
 ## Key Findings
 
-- **Relink**: Solve rates vary widely across 14 dated puzzles (17%–83%). Mar 31 was easiest (83%); Apr 13 hardest (17%). Player counts grew from ~40/day to ~100/day by Apr 10. The full-feature Monte Carlo simulator uses a ratio-shift model stacking adjustments for manipulation, abstraction, knowledge, same_domain, position (imposters phase) and identification manipulation, construction knowledge, tile count (relink phase). Empirical mode: r=0.934, MAE=12.7pp. Feature-only mode: r=0.655, MAE=15.1pp. Spearman rank correlation ρ=0.938 with 91% pairwise ordering accuracy. Predicts solve rates for 25 puzzles without player data.
+- **Relink**: Solve rates vary widely across 17 dated puzzles (17%–83%). Mar 31 was easiest (83%); Apr 13 hardest (17%). Player counts grew from ~40/day to ~100/day by Apr 10. The full-feature Monte Carlo simulator uses a ratio-shift model stacking adjustments for manipulation, abstraction, knowledge, same_domain, position (imposters phase) and identification manipulation, construction knowledge, tile count (relink phase). Empirical mode: r=0.929, MAE=11.1pp. Spearman rank ρ = −0.782. Predicts solve rates for 22 puzzles without player data. A 5-axis difficulty rating system (manipulation 10%, abstraction 30%, domain mismatch 10%, knowledge 10%, relink challenge 40%) produces 1–5 star ratings with severity-based scoring (avg_wrong/3) and a vertical inference discount.
 - **Trace**: Puzzle difficulty varies hugely — median solve times range from 18s to 164s. 7-letter words take ~3× longer than 5-letter words but completion rates are similar (~80% vs ~88%). Sharing rate is flat at 1%. Hard puzzles reduce next-day retention by ~12pp.

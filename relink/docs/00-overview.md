@@ -16,7 +16,7 @@ The pipeline cross-references these two sources to answer: *which design feature
 │                     INPUT DATA                              │
 │                                                             │
 │  save-data/           raw/                                  │
-│  39 puzzle PDL files  3 session CSVs + 3 event CSVs         │
+│  39 puzzle PDL files  4 session CSVs + 4 event CSVs         │
 │  (design tags)        (player behaviour logs)               │
 └──────────┬─────────────────────────┬────────────────────────┘
            │                         │
@@ -35,7 +35,7 @@ The pipeline cross-references these two sources to answer: *which design feature
            │                         │
      PDL features            Player trajectories
      156 rows                + date summaries
-     39 puzzles              for 14 dated puzzles
+     39 puzzles              for 17 dated puzzles
            │                         │
            ▼                         ▼
 ┌─────────────────────────────────────────────────────────────┐
@@ -43,7 +43,7 @@ The pipeline cross-references these two sources to answer: *which design feature
 │                                                             │
 │  ┌──────────────────┐  ┌──────────────────────────────┐    │
 │  │  lib/metrics.py   │  │  lib/model.py                │    │
-│  │  9 analyses       │  │  Statistical modelling       │    │
+│  │  10 analyses      │  │  Statistical modelling       │    │
 │  │                   │  │                              │    │
 │  │  • Crosstabs      │  │  • IPW survivorship          │    │
 │  │  • Heatmap        │  │    correction                │    │
@@ -53,11 +53,13 @@ The pipeline cross-references these two sources to answer: *which design feature
 │  │    inference       │  │    analysis                  │    │
 │  │  • Decoys         │  │  • Monte Carlo game          │    │
 │  │  • Relink phase   │  │    simulator                 │    │
-│  │  • Clustering     │  │                              │    │
+│  │  • Clustering     │  │  • Monte Carlo game          │    │
+│  │  • Difficulty     │  │    simulator                 │    │
+│  │    ratings        │  │                              │    │
 │  └────────┬─────────┘  └──────────────┬───────────────┘    │
 │           │                            │                    │
 │           ▼                            ▼                    │
-│  9 JSON data files            5 JSON data files             │
+│  10 JSON data files           5 JSON data files             │
 └──────────┬─────────────────────────────┬────────────────────┘
            │                             │
            ▼                             ▼
@@ -65,8 +67,8 @@ The pipeline cross-references these two sources to answer: *which design feature
 │                    DASHBOARD                                │
 │                    dashboard/                               │
 │                                                             │
-│  14 JSON files loaded in parallel                           │
-│  → 15 interactive chart sections                            │
+│  15 JSON files loaded in parallel                           │
+│  → 16 interactive chart sections                            │
 │  → Served as static HTML at localhost:8000                  │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -84,14 +86,14 @@ python3 -m http.server 8000 -d relink
 
 ## Files Changed By The Pipeline
 
-The pipeline reads from `save-data/` and `raw/` (never modifies them) and writes 13 JSON files to `relink/outputs/data/`. The dashboard reads these JSON files.
+The pipeline reads from `save-data/` and `raw/` (never modifies them) and writes 15 JSON files to `relink/outputs/data/`. The dashboard reads these JSON files.
 
 ## Document Index
 
 | Document | What It Covers |
 |----------|---------------|
 | [01-data-loading.md](01-data-loading.md) | How raw data is parsed, filtered, matched, and shaped into analysis-ready structures |
-| [02-analysis-phases.md](02-analysis-phases.md) | The 8 feature analyses (crosstabs through clustering) — what each measures and why |
+| [02-analysis-phases.md](02-analysis-phases.md) | The 9 feature analyses (crosstabs through difficulty ratings) — what each measures and why |
 | [03-statistical-modelling.md](03-statistical-modelling.md) | IPW correction, transition probabilities, correlated failures |
 | [04-simulator.md](04-simulator.md) | The Monte Carlo game simulator — how it predicts puzzle difficulty |
 | [05-dashboard.md](05-dashboard.md) | How the interactive dashboard works and what each section shows |
@@ -101,8 +103,8 @@ The pipeline reads from `save-data/` and `raw/` (never modifies them) and writes
 | Metric | Value |
 |--------|-------|
 | Puzzles with design data | 39 |
-| Puzzles with player data | 14 |
-| Puzzles without player data | 25 |
-| Total player completions analysed | ~496 |
-| Simulator accuracy (with player data) | r = 0.934, MAE = 12.7pp |
-| Simulator accuracy (design features only) | r = 0.655, MAE = 15.1pp |
+| Puzzles with player data | 17 |
+| Puzzles without player data | 22 |
+| Total player completions analysed | ~900+ |
+| Simulator accuracy (with player data) | r = 0.929, MAE = 11.1pp |
+| Difficulty rating correlation | Spearman ρ = −0.782 |

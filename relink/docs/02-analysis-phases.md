@@ -1,12 +1,12 @@
 # 02 — Analysis Phases
 
 > **File:** `relink/scripts/lib/metrics.py`
-> **Called by:** `pdl_analysis.py` as steps 1–9
-> **Output:** 8 JSON data files consumed by the dashboard
+> **Called by:** `pdl_analysis.py` as steps 1–10
+> **Output:** 9 JSON data files consumed by the dashboard
 
 ## What Happens
 
-After data loading produces joined structures (PDL features + player behaviour), the pipeline runs 8 independent analyses. Each takes a slice of the joined data and produces a JSON file that answers a specific question about puzzle difficulty.
+After data loading produces joined structures (PDL features + player behaviour), the pipeline runs 9 independent analyses. Each takes a slice of the joined data and produces a JSON file that answers a specific question about puzzle difficulty.
 
 ```
                         Joined Data
@@ -15,7 +15,7 @@ After data loading produces joined structures (PDL features + player behaviour),
             │               │               │
     ┌───────┴────┐  ┌───────┴───────┐  ┌────┴────────┐
     │ row_joined │  │ puzzle_data   │  │ players_by  │
-    │ ~56 rows   │  │ 14 puzzles    │  │ _date       │
+    │ ~68 rows   │  │ 17 puzzles    │  │ _date       │
     │ (row PDL   │  │ (puzzle PDL   │  │ (raw player │
     │ + row      │  │ + puzzle-     │  │ trajectories│
     │ behaviour) │  │  level stats) │  │ per date)   │
@@ -31,7 +31,7 @@ After data loading produces joined structures (PDL features + player behaviour),
   └──────────┘   └───────────┘    └──────────────┘
         │              │                    │
         ▼              ▼                    ▼
-  5 JSON files    2 JSON files        2 JSON files
+  6 JSON files    2 JSON files        2 JSON files
 ```
 
 ---
@@ -245,7 +245,40 @@ Creates a one-hot feature vector per row (manipulation, abstraction, knowledge, 
 
 ---
 
-## Analysis 10: Overview (`overview.json`)
+## Analysis 10: Difficulty Ratings (`difficulty.json`)
+
+**Question:** Can we assign each puzzle a 1–5 star difficulty rating based on its design features and player outcomes?
+
+**Method:** A 5-axis difficulty profile is computed for each puzzle, blending actual player outcomes (where available) with inherent PDL design scores. The five dimensions, with grid-search-derived weights:
+
+| Dimension | Weight | What It Measures |
+|-----------|--------|------------------|
+| Manipulation | 10% | How the connection is encoded (e.g., hidden word, compound) |
+| Abstraction | 30% | How abstract the grouping is (e.g., shared property vs direct membership) |
+| Domain Mismatch | 10% | Whether the impostor comes from a different knowledge domain (harder to spot same-domain impostors) |
+| Knowledge | 10% | What knowledge is required (e.g., specialist cultural vs general vocabulary) |
+| Relink Challenge | 40% | How hard the relink phase is (connection identification + answer construction + tile count) |
+
+**Scoring approach:** Each dimension uses a severity-based score: `avg_wrong / 3` (the expected wrongs out of the maximum 3, not a binary first-try rate). This captures *how many lives* a feature costs on average, not just whether players get it right first try.
+
+For each dimension:
+- If player data exists: blend 60% empirical wrong rate + 40% inherent PDL type score
+- If no player data: use simulator-predicted distributions to compute expected wrongs, then blend the same way
+
+**Vertical Inference (VI) discount:** The composite score is reduced by up to 10% for puzzles where vertical inference helps. The discount is based on a center-of-mass formula: `Σ(pos × mean_wrongs_pos) / Σ(mean_wrongs_pos)`. If errors are front-loaded (players improve as they go), the discount is larger.
+
+**Star ratings:** Composite scores are mapped to 1–5 stars via thresholds: [0.15, 0.25, 0.35, 0.45].
+
+**Dated vs undated puzzles:**
+- Dated puzzles get both an `actual` profile (from real player data) and a `predicted` profile (from simulator distributions)
+- Undated puzzles get only a predicted profile
+- The dashboard includes an Actual/Predicted toggle to switch between views
+
+**Validation:** Against actual solve rates, the difficulty composite achieves Spearman ρ = −0.782 (negative because higher difficulty = lower solve rate).
+
+---
+
+## Analysis 11: Overview (`overview.json`)
 
 **Question:** What are the headline numbers?
 
@@ -260,10 +293,14 @@ This data populates the dashboard's "Key Findings" section.
 
 ## How Analyses Feed Together
 
-The 8 analyses are mostly independent — they each take a slice of the joined data and produce their own JSON file. But there are two connections:
+The 9 analyses are mostly independent — they each take a slice of the joined data and produce their own JSON file. But there are a few connections:
 
 1. **Clustering → Simulator:** The cluster assignment for each puzzle is included in the simulator results, so the dashboard can colour-code predicted solve rates by archetype.
 
 2. **Regression → Cross-validation:** The regression coefficients aren't used by the simulator. They're a separate linear model for comparison; the simulator uses a non-parametric approach (transition probabilities) instead.
 
-The analyses in `metrics.py` are purely descriptive — they measure what happened. The statistical modelling in `model.py` (next document) is predictive — it builds a model that can simulate what *would* happen for unseen puzzles.
+3. **Vertical Inference → Difficulty Ratings:** The transparency scores (center-of-mass of error curves) are passed to the difficulty rating computation, where they reduce the composite score via a VI discount.
+
+4. **Simulator → Difficulty Ratings:** For undated puzzles (and for the "predicted" profile of dated puzzles), the simulator's position-adjusted row distributions are used to compute predicted difficulty profiles.
+
+The analyses in `metrics.py` are mostly descriptive — they measure what happened. The statistical modelling in `model.py` (next document) is predictive — it builds a model that can simulate what *would* happen for unseen puzzles.

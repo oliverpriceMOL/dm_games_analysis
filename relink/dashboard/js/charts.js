@@ -40,17 +40,23 @@ Chart.register({
     id: 'crosshair',
     afterDraw(chart) {
         const tt = chart.tooltip;
-        if (!tt || tt.opacity === 0 || !tt.caretX) return;
+        if (!tt || tt.opacity === 0) return;
         // Skip crosshair for radar charts
         if (chart.config.type === 'radar') return;
-        const { ctx, chartArea: { top, bottom } } = chart;
+        const { ctx, chartArea: { top, bottom, left, right } } = chart;
+        const isHorizontal = chart.options.indexAxis === 'y';
         ctx.save();
         ctx.strokeStyle = '#b2bec3';
         ctx.lineWidth = 1;
         ctx.setLineDash([4, 3]);
         ctx.beginPath();
-        ctx.moveTo(tt.caretX, top);
-        ctx.lineTo(tt.caretX, bottom);
+        if (isHorizontal && tt.caretY) {
+            ctx.moveTo(left, tt.caretY);
+            ctx.lineTo(right, tt.caretY);
+        } else if (tt.caretX) {
+            ctx.moveTo(tt.caretX, top);
+            ctx.lineTo(tt.caretX, bottom);
+        }
         ctx.stroke();
         ctx.restore();
     }
@@ -58,6 +64,9 @@ Chart.register({
 
 /** Interaction config for scatter/radar charts that need point-level targeting. */
 export const nearestInteraction = { mode: 'nearest', intersect: true };
+
+/** Interaction config for horizontal bar charts — trigger by row. */
+export const horizontalInteraction = { mode: 'index', axis: 'y', intersect: false };
 
 /* ── Shared chart factories ───────────────────────────────────────── */
 
@@ -89,6 +98,7 @@ export function makeBarChart(canvasId, data, horizontal) {
         data: { labels: data.labels, datasets: [ds1, ds2] },
         options: {
             indexAxis,
+            interaction: horizontal ? horizontalInteraction : undefined,
             plugins: {
                 tooltip: {
                     callbacks: {

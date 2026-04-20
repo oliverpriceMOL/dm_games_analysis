@@ -111,13 +111,13 @@ function renderToggle(diff) {
     if (!wrap) {
         wrap = document.createElement('div');
         wrap.id = 'ratings-mode-toggle';
-        wrap.className = 'dp-toggle';
+        wrap.className = 'toggle-group';
         anchor.parentElement.insertBefore(wrap, anchor);
     }
     wrap.innerHTML = `
-        <button class="dp-toggle-btn${profileMode === 'actual' ? ' active' : ''}" data-mode="actual">Actual</button>
-        <button class="dp-toggle-btn${profileMode === 'predicted' ? ' active' : ''}" data-mode="predicted">Predicted</button>`;
-    wrap.querySelectorAll('.dp-toggle-btn').forEach(btn => {
+        <button class="toggle-btn${profileMode === 'actual' ? ' active' : ''}" data-mode="actual">Actual</button>
+        <button class="toggle-btn${profileMode === 'predicted' ? ' active' : ''}" data-mode="predicted">Predicted</button>`;
+    wrap.querySelectorAll('.toggle-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const mode = btn.dataset.mode;
             if (mode === profileMode) return;
