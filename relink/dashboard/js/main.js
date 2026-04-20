@@ -17,6 +17,7 @@ import * as failures from './failures.js';
 import * as simulator from './simulator.js';
 import * as glossary from './glossary.js';
 import * as explorer from './explorer.js';
+import * as ratings from './ratings.js';
 
 const DATA_DIR = '../outputs/data';
 
@@ -68,6 +69,10 @@ const PAGE_CONFIG = {
     explorer: {
         files: ['puzzle-explorer'],
         render(d) { explorer.render(d); }
+    },
+    ratings: {
+        files: ['difficulty'],
+        render(d) { ratings.render(d); }
     },
     glossary: {
         files: [],

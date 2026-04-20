@@ -59,6 +59,19 @@ const TERMS = [
             { name: 'Feature Combo', page: 'difficulty', definition: 'A specific combination of PDL values (e.g., Association + Concept-level + General knowledge). The unique fingerprint of a row\'s design.' },
             { name: 'Pairwise Ordering Accuracy', page: 'simulator', definition: 'The percentage of puzzle pairs where the simulator correctly predicts which one is harder. 91% means for 91 out of 100 random pairs, the simulator gets the relative ordering right.' },
         ]
+    },
+    {
+        category: 'Difficulty Rating Terms',
+        terms: [
+            { name: 'Difficulty Rating (1–5)', page: 'ratings', definition: 'A star rating from 1 (easiest) to 5 (hardest), derived from a weighted blend of five difficulty dimensions. Rated for all 39 puzzles — empirical for dated puzzles, simulator-predicted for undated.' },
+            { name: 'Composite Score', page: 'ratings', definition: 'The weighted sum of the five difficulty dimensions (each 0–1), producing a single 0–1 number. Mapped to star ratings via calibrated thresholds. Correlates with actual solve rates at |ρ| ≈ 0.89.' },
+            { name: 'Impostor Deception', page: 'ratings', definition: 'Difficulty dimension measuring how hard it is to spot the impostor in each row. Computed as mean (1 − first-try rate) across all 4 rows. High deception = players frequently guess wrong before finding the impostor. Weight: 30%.' },
+            { name: 'Knowledge Demand', page: 'ratings', definition: 'Difficulty dimension measuring how much specialist or broad knowledge the puzzle requires. Derived from PDL: knowledge breadth (how many distinct domains) and specialist group count. Pure design metric — same for dated and undated puzzles. Weight: 15%.' },
+            { name: 'Punishment Risk', page: 'ratings', definition: 'Difficulty dimension capturing life pressure and tail risk. Blends expected total wrong guesses with the probability of ≥3 wrongs (the "danger zone" where game-over is likely). High punishment = the puzzle drains lives even if individual rows aren\'t terrible. Weight: 25%.' },
+            { name: 'Connection Challenge', page: 'ratings', definition: 'Difficulty dimension for Phase 2 (Relink). Blends (1 − relink first-try rate) with the phase 2 tile count. More tiles and a harder connection both increase this score. Weight: 20%.' },
+            { name: 'Volatility', page: 'ratings', definition: 'Difficulty dimension measuring whether difficulty is concentrated in one killer row or spread evenly. Computed as the coefficient of variation of per-row wrong rates. High volatility = one row is dramatically harder than the others, creating a bottleneck. Weight: 10%.' },
+            { name: 'Difficulty Profile', page: 'ratings', definition: 'The radar chart showing a puzzle\'s scores across all five difficulty dimensions. Different profile shapes indicate different types of difficulty — a puzzle can be hard because of deceptive impostors, specialist knowledge, or a tough relink connection.' },
+        ]
     }
 ];
 
@@ -88,7 +101,8 @@ function formatPageName(page) {
         relink: 'Relink Phase',
         model: 'Statistical Model',
         simulator: 'Simulator',
-        clustering: 'Clustering'
+        clustering: 'Clustering',
+        ratings: 'Difficulty Ratings'
     };
     return names[page] || page;
 }

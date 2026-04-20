@@ -50,12 +50,12 @@ export function render(regressionData) {
         data: {
             labels,
             datasets: [{ label: 'Effect on first-try % (pp)', data: coefs,
-                          backgroundColor: coefs.map(c => c >= 0 ? hsla(150,60,45,0.7) : hsla(0,65,50,0.7)),
-                          borderColor: coefs.map(c => c >= 0 ? hsl(150,60,45) : hsl(0,65,50)),
+                          backgroundColor: coefs.map(c => c >= 0 ? hsla(145,60,45,0.7) : hsla(0,70,55,0.7)),
+                          borderColor: coefs.map(c => c >= 0 ? hsl(145,60,45) : hsl(0,70,55)),
                           borderWidth: 1 }]
         },
         options: {
-            indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+            indexAxis: 'y',
             plugins: { legend: { display: false } },
             scales: {
                 x: { title: { display: true, text: 'Effect on first-try correct % (pp)' },

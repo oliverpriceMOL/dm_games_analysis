@@ -1,7 +1,7 @@
 /**
  * Scatter plot correlations section.
  */
-import { hsla } from './charts.js';
+import { hsla, nearestInteraction } from './charts.js';
 
 export function render(scatterData) {
     const container = document.getElementById('scatter-container');
@@ -45,7 +45,7 @@ export function render(scatterData) {
             type: 'scatter',
             data: {
                 datasets: [
-                    { label: 'Puzzles', data: pts, backgroundColor: hsla(260,70,55,0.8),
+                    { label: 'Puzzles', data: pts, backgroundColor: hsla(210,70,50,0.8),
                        pointRadius: 6, pointHoverRadius: 8 },
                     { label: 'Trend', data: [{x: xMin, y: intercept + slope * xMin},
                                                {x: xMax, y: intercept + slope * xMax}],
@@ -54,17 +54,16 @@ export function render(scatterData) {
                 ]
             },
             options: {
-                responsive: true, maintainAspectRatio: false,
+                interaction: nearestInteraction,
                 plugins: {
                     tooltip: {
+                        filter: (item) => item.datasetIndex === 0,
                         callbacks: {
-                            label: (ctx) => {
-                                if (ctx.datasetIndex === 0) {
-                                    const i = ctx.dataIndex;
-                                    return `${d.labels[i]}: ${d.ys[i]}% solve rate`;
-                                }
-                                return '';
-                            }
+                            title: (items) => d.labels[items[0].dataIndex],
+                            label: (ctx) => [
+                                `${d.label}: ${d.xs[ctx.dataIndex]}`,
+                                `Solve rate: ${d.ys[ctx.dataIndex]}%`
+                            ],
                         }
                     }
                 },

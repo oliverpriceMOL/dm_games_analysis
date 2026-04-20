@@ -21,6 +21,7 @@
     <a href="#simulator" data-page="simulator">Simulator</a>
     <a href="#clustering" data-page="clustering">Clustering</a>
     <a href="#explorer" data-page="explorer">Puzzle Explorer</a>
+    <a href="#ratings" data-page="ratings">Difficulty Ratings</a>
     <a href="#glossary" data-page="glossary">Glossary</a>
 </nav>
 <main>
@@ -265,6 +266,41 @@
     <div class="explorer-grid" id="explorer-grid"></div>
 </div>
 <div id="explorer-content"></div>
+</div>
+</div>
+
+<!-- ============ DIFFICULTY RATINGS ============ -->
+<div class="page" id="page-ratings">
+<h1>Difficulty Ratings</h1>
+<p class="page-intro">A 5-axis difficulty profile and 1–5 star rating for every puzzle — empirical for dated puzzles, simulator-predicted for undated. Dimensions: Impostor Deception (row accuracy), Knowledge Demand (specialist knowledge), Punishment Risk (life pressure), Connection Challenge (Phase 2), and Volatility (killer row vs even spread).</p>
+
+<div class="section" id="ratings-validation">
+<h2>Rating Model</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Composite score correlated with actual solve rate across 14 dated puzzles. Higher composite = harder puzzle = lower solve rate.</p>
+<div class="two-col">
+    <div class="card">
+        <h3>Validation</h3>
+        <div id="ratings-validation-stats" class="stats-grid"></div>
+    </div>
+    <div class="card">
+        <h3>Composite vs Solve Rate</h3>
+        <div class="chart-container"><canvas id="chart-ratings-scatter"></canvas></div>
+    </div>
+</div>
+</div>
+
+<div class="section" id="ratings-all">
+<h2>All Puzzles</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Click column headers to sort. Dated puzzles use empirical data; undated use simulator predictions (shown with dashed border).</p>
+<div class="card">
+    <div id="ratings-table-container"></div>
+</div>
+</div>
+
+<div class="section" id="ratings-dimensions">
+<h2>Dimension Rankings</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Top 10 hardest puzzles per dimension.</p>
+<div class="two-col" id="ratings-dim-rankings"></div>
 </div>
 </div>
 

@@ -3,7 +3,7 @@
  */
 import { drawSparkline } from './charts.js';
 
-const CURVE_COLORS = ['#6c5ce7', '#00b894', '#d63031', '#fdcb6e', '#0984e3', '#e17055', '#00cec9', '#636e72'];
+const CURVE_COLORS = ['#e74c3c', '#f39c12', '#27ae60', '#2980b9', '#8e44ad', '#e67e22', '#1abc9c', '#636e72'];
 
 /** Centre of mass: weighted position average (0-indexed). Lower = front-loaded. */
 function com(curve) {
@@ -59,8 +59,8 @@ export function render(viData) {
             const eCoM = com(info.error_curve);
             const fmtT = tCoM !== null ? tCoM.toFixed(2) : '—';
             const fmtE = eCoM !== null ? eCoM.toFixed(2) : '—';
-            const tColor = tCoM !== null ? (tCoM < 1.5 ? '#00b894' : '#d63031') : 'inherit';
-            const eColor = eCoM !== null ? (eCoM < 1.5 ? '#00b894' : '#d63031') : 'inherit';
+            const tColor = tCoM !== null ? (tCoM < 1.5 ? '#27ae60' : '#e74c3c') : 'inherit';
+            const eColor = eCoM !== null ? (eCoM < 1.5 ? '#27ae60' : '#e74c3c') : 'inherit';
             comRows += `<tr><td>${cat}</td><td style="text-align:center;">${info.n}</td>
                 <td style="text-align:center;color:${tColor};font-weight:600;">${fmtT}</td>
                 <td style="text-align:center;color:${eColor};font-weight:600;">${fmtE}</td></tr>`;
@@ -97,11 +97,10 @@ export function render(viData) {
                 type: 'line',
                 data: { labels: timingLabels, datasets },
                 options: {
-                    responsive: true, maintainAspectRatio: false,
                     plugins: {
                         title: { display: true, text: 'Timing (seconds)', color: '#636e72', font: { size: 12 } },
                         legend: { display: true, position: 'top', labels: { boxWidth: 12, font: { size: 11 } } },
-                        tooltip: { callbacks: { afterBody: (items) => {
+                        tooltip: { callbacks: { footer: (items) => {
                             const cat = cats[items[0].datasetIndex];
                             const info = axis.categories[cat];
                             return `Puzzles: ${info.puzzles.join(', ')}`;
@@ -125,11 +124,10 @@ export function render(viData) {
                 type: 'line',
                 data: { labels: errorLabels, datasets },
                 options: {
-                    responsive: true, maintainAspectRatio: false,
                     plugins: {
                         title: { display: true, text: 'Errors (wrong guesses)', color: '#636e72', font: { size: 12 } },
                         legend: { display: true, position: 'top', labels: { boxWidth: 12, font: { size: 11 } } },
-                        tooltip: { callbacks: { afterBody: (items) => {
+                        tooltip: { callbacks: { footer: (items) => {
                             const cat = cats[items[0].datasetIndex];
                             const info = axis.categories[cat];
                             return `Puzzles: ${info.puzzles.join(', ')}`;
@@ -147,9 +145,9 @@ export function render(viData) {
     let si = 0;
     sorted.forEach(p => {
         const tauc = p.timing_auc !== null ? p.timing_auc.toFixed(2) : '—';
-        const tColor = p.timing_auc !== null ? (p.timing_auc < 1.5 ? 'color:#00b894' : 'color:#d63031') : '';
+        const tColor = p.timing_auc !== null ? (p.timing_auc < 1.5 ? 'color:#27ae60' : 'color:#e74c3c') : '';
         const eauc = p.error_auc !== null ? p.error_auc.toFixed(2) : '—';
-        const eColor = p.error_auc !== null ? (p.error_auc < 1.5 ? 'color:#00b894' : 'color:#d63031') : '';
+        const eColor = p.error_auc !== null ? (p.error_auc < 1.5 ? 'color:#27ae60' : 'color:#e74c3c') : '';
         const tsId = `sp-t-${si}`, esId = `sp-e-${si}`;
         si++;
         tbody.innerHTML += `<tr>

@@ -1,7 +1,7 @@
 /**
  * Monte Carlo Simulator section — simulated vs actual, rows completed distributions.
  */
-import { COLORS, hsla, hsl } from './charts.js';
+import { COLORS, hsla, hsl, nearestInteraction } from './charts.js';
 
 export function render(data) {
     renderValidation(data.validation);
@@ -32,7 +32,7 @@ function renderScatter(puzzles) {
                 {
                     label: 'Puzzles',
                     data: items.map(p => ({ x: p.solve_rate * 100, y: p.actual_solve_rate })),
-                    backgroundColor: hsla(160, 70, 40, 0.8),
+                    backgroundColor: hsla(210, 70, 50, 0.8),
                     pointRadius: 8,
                     pointHoverRadius: 10,
                 },
@@ -48,16 +48,20 @@ function renderScatter(puzzles) {
             ]
         },
         options: {
-            responsive: true, maintainAspectRatio: false,
+            interaction: nearestInteraction,
             plugins: {
                 tooltip: {
+                    filter: (item) => item.datasetIndex === 0,
                     callbacks: {
+                        title: (items) => items[0].dataIndex < dates.length ? items[items.length - 1].raw ? items[0].label : '' : '',
                         label: (ctx) => {
-                            if (ctx.datasetIndex === 0) {
-                                const p = items[ctx.dataIndex];
-                                return `${p.name}: simulated ${(p.solve_rate * 100).toFixed(1)}%, actual ${p.actual_solve_rate.toFixed(1)}%`;
-                            }
-                            return '';
+                            if (ctx.datasetIndex !== 0) return '';
+                            const p = items[ctx.dataIndex];
+                            return [
+                                p.name,
+                                `Simulated: ${(p.solve_rate * 100).toFixed(1)}%`,
+                                `Actual: ${p.actual_solve_rate.toFixed(1)}%`,
+                            ];
                         }
                     }
                 }
@@ -76,11 +80,11 @@ function renderDistributions(puzzles) {
     const labels = dates.map(d => puzzles[d].label || d);
 
     const colors = [
-        hsla(0, 70, 50, 0.8),    // 0 rows - red
-        hsla(30, 70, 50, 0.8),   // 1 row - orange
-        hsla(50, 70, 50, 0.8),   // 2 rows - yellow
-        hsla(90, 50, 45, 0.8),   // 3 rows - light green
-        hsla(160, 70, 40, 0.8),  // 4 rows (won) - green
+        '#e74c3c',    // 0 rows - red
+        '#f39c12',    // 1 row - orange
+        '#27ae60',    // 2 rows - green
+        '#2980b9',    // 3 rows - blue
+        '#8e44ad',    // 4 rows (won) - purple
     ];
 
     const datasets = [];
@@ -97,7 +101,6 @@ function renderDistributions(puzzles) {
         type: 'bar',
         data: { labels, datasets },
         options: {
-            responsive: true, maintainAspectRatio: false,
             plugins: {
                 tooltip: {
                     callbacks: {
@@ -159,7 +162,7 @@ function renderUndatedTable(undated) {
 
         // Mini distribution bar
         const dist = p.rows_completed_pct || [];
-        const colors = ['#d63031', '#e17055', '#fdcb6e', '#a8cc8c', '#00b894'];
+        const colors = ['#e74c3c', '#f39c12', '#27ae60', '#2980b9', '#8e44ad'];
         let bar = '<div style="display:flex;height:16px;border-radius:3px;overflow:hidden;min-width:120px;" title="';
         bar += dist.map((v, i) => `${i === 4 ? 'Won' : i + ' rows'}: ${v.toFixed(1)}%`).join(', ');
         bar += '">';

@@ -15,12 +15,21 @@ export function render(clusterData) {
                 { label: 'Puzzles', data: cNames.map(c => pc[c].n_total),
                    backgroundColor: cNames.map((_, i) => COLORS[i]) },
                 { label: 'Mean Solve Rate %', data: cNames.map(c => pc[c].mean_solve_rate),
-                   type: 'line', borderColor: '#d63031', backgroundColor: 'transparent',
+                   type: 'line', borderColor: '#e74c3c', backgroundColor: 'transparent',
                    yAxisID: 'y1', pointRadius: 6, borderWidth: 2 },
             ]
         },
         options: {
-            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        footer: (items) => {
+                            const c = cNames[items[0].dataIndex];
+                            return `${pc[c].n_dated} dated · Members: ${pc[c].members.slice(0, 4).join(', ')}${pc[c].members.length > 4 ? '…' : ''}`;
+                        }
+                    }
+                }
+            },
             scales: {
                 y: { beginAtZero: true, title: { display: true, text: 'Count' } },
                 y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false },
@@ -51,13 +60,12 @@ export function render(clusterData) {
             ]
         },
         options: {
-            responsive: true, maintainAspectRatio: false,
             plugins: {
                 tooltip: {
                     callbacks: {
-                        afterBody: (items) => {
+                        footer: (items) => {
                             const r = rNames[items[0].dataIndex];
-                            return `n = ${rc[r].n} rows\nAvg wrong: ${rc[r].mean_avg_wrong}`;
+                            return `n = ${rc[r].n} rows · Avg wrong: ${rc[r].mean_avg_wrong}`;
                         }
                     }
                 }

@@ -8,13 +8,13 @@ export function render(relinkData) {
     _renderManipChart(
         relinkData.by_id_manip,
         document.getElementById('chart-relink-id-manip'),
-        'Relink first-try %', hsla(260, 70, 55, 0.7));
+        'Relink first-try %', hsla(210, 70, 50, 0.7));
 
     // Answer Construction manipulation chart
     _renderManipChart(
         relinkData.by_con_manip,
         document.getElementById('chart-relink-con-manip'),
-        'Relink first-try %', hsla(200, 70, 50, 0.7));
+        'Relink first-try %', hsla(270, 60, 55, 0.7));
 
     // By tile count chart
     const byT = relinkData.by_tiles;
@@ -26,20 +26,19 @@ export function render(relinkData) {
             labels: tLabels.map(t => t + ' tile' + (t === '1' ? '' : 's')),
             datasets: [
                 { label: 'Relink first-try %', data: tLabels.map(t => (byT[t].mean_first_try * 100).toFixed(1)),
-                   backgroundColor: hsla(260, 70, 55, 0.7), yAxisID: 'y' },
+                   backgroundColor: hsla(210, 70, 50, 0.7), yAxisID: 'y' },
                 { label: 'Puzzle solve rate %', data: tLabels.map(t => (byT[t].mean_solve_rate * 100).toFixed(1)),
-                   backgroundColor: hsla(170, 70, 45, 0.7), yAxisID: 'y' },
+                   backgroundColor: hsla(145, 60, 45, 0.7), yAxisID: 'y' },
             ]
         },
         options: {
-            responsive: true, maintainAspectRatio: false,
             scales: { y: { beginAtZero: true, title: { display: true, text: '%' } } },
             plugins: {
                 tooltip: {
                     callbacks: {
-                        afterBody: (items) => {
+                        footer: (items) => {
                             const t = tLabels[items[0].dataIndex];
-                            return `n = ${byT[t].n} puzzles\nAvg attempts: ${byT[t].mean_attempts.toFixed(1)}`;
+                            return `n = ${byT[t].n} puzzles · Avg attempts: ${byT[t].mean_attempts.toFixed(1)}`;
                         }
                     }
                 }
@@ -61,13 +60,12 @@ function _renderManipChart(byM, canvas, yLabel, color) {
             ]
         },
         options: {
-            responsive: true, maintainAspectRatio: false,
             plugins: {
                 tooltip: {
                     callbacks: {
-                        afterBody: (items) => {
+                        footer: (items) => {
                             const l = items[0].label;
-                            return `n = ${byM[l].n} puzzles\nAvg attempts: ${byM[l].mean_attempts.toFixed(1)}`;
+                            return `n = ${byM[l].n} puzzles · Avg attempts: ${byM[l].mean_attempts.toFixed(1)}`;
                         }
                     }
                 }

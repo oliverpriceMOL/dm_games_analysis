@@ -1,7 +1,7 @@
 /**
  * Heatmap + Impostor Domain sections.
  */
-import { hsl, hsla, COLORS } from './charts.js';
+import { hsl, hsla, COLORS, nearestInteraction } from './charts.js';
 
 export function renderHeatmap(heatmap) {
     const container = document.getElementById('heatmap-container');
@@ -35,17 +35,16 @@ export function renderImpostorDomain(data) {
             datasets: [
                 { label: 'First-try %', data: [data.same_domain.mean_first_try,
                    data.diff_domain.mean_first_try],
-                   backgroundColor: [hsla(260,70,55,0.7), hsla(170,70,45,0.7)] },
+                   backgroundColor: [hsla(210,70,50,0.7), hsla(35,90,55,0.7)] },
             ]
         },
         options: {
-            responsive: true, maintainAspectRatio: false,
             plugins: {
                 tooltip: {
                     callbacks: {
-                        afterBody: (items) => {
+                        footer: (items) => {
                             const d = items[0].dataIndex === 0 ? data.same_domain : data.diff_domain;
-                            return `n = ${d.n} rows\nAvg wrong: ${d.mean_avg_wrong}`;
+                            return `n = ${d.n} rows · Avg wrong: ${d.mean_avg_wrong}`;
                         }
                     }
                 }
@@ -65,13 +64,13 @@ export function renderImpostorDomain(data) {
                           backgroundColor: labels.map((_, i) => COLORS[i % COLORS.length]) }]
         },
         options: {
-            indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+            indexAxis: 'y',
             plugins: {
                 tooltip: {
                     callbacks: {
-                        afterBody: (items) => {
+                        footer: (items) => {
                             const l = items[0].label;
-                            return `n = ${bd[l].n} rows\nAvg wrong: ${bd[l].mean_avg_wrong}`;
+                            return `n = ${bd[l].n} rows · Avg wrong: ${bd[l].mean_avg_wrong}`;
                         }
                     }
                 }

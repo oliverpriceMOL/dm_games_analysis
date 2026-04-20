@@ -5,16 +5,16 @@
  * and predicted distributions from the Monte Carlo model.
  */
 
-import { COLORS, hsl, hsla } from './charts.js';
+import { COLORS, hsl, hsla, nearestInteraction } from './charts.js';
 
 // Base colors by wrong count
 const BASE_COLORS = {
-    '0': '#00b894',   // green — first try
-    '1': '#fdcb6e',   // amber — 1 wrong
-    '2': '#e17055',   // orange — 2 wrong
-    '3': '#d63031',   // red — 3 wrong
-    '4': '#b71c1c',   // dark red — 4 wrong (sim only, positional wrongs)
-    'no_attempt': '#6d2c2c', // dark red — never attempted
+    '0': '#e74c3c',   // red — first try
+    '1': '#f39c12',   // orange — 1 wrong
+    '2': '#27ae60',   // green — 2 wrong
+    '3': '#2980b9',   // blue — 3 wrong
+    '4': '#8e44ad',   // purple — 4 wrong (sim only, positional wrongs)
+    'no_attempt': '#c0392b', // dark red — never attempted
 };
 
 // Compound keys for the split wrong_dist (actual data)
@@ -280,11 +280,20 @@ function updateContent() {
     const limits = getAxisLimits();
     let html = '';
 
+    // ── Solve Rate Distribution ──
+    html += '<div class="card" style="margin-top:20px;">';
+    html += '<h3>Solve Rate Distribution</h3>';
+    html += '<p style="color:var(--muted);font-size:13px;margin-bottom:12px;">';
+    html += 'Distribution of solve rates across selected puzzles. Empirical rates shown solid, predicted rates shown striped.</p>';
+    html += '<div class="chart-container" style="height:260px;"><canvas id="sr-dist-chart"></canvas></div>';
+    html += '<div id="sr-dist-stats" style="text-align:center;margin-top:8px;font-size:13px;color:var(--muted);"></div>';
+    html += '</div>';
+
     // ── Summary comparison table ──
     html += '<div class="card" style="margin-top:20px;"><h3>Summary</h3>';
     html += '<div style="overflow-x:auto;"><table><thead><tr>';
     html += '<th>Puzzle</th><th>Date</th><th>Players</th><th>W / L / I</th>';
-    html += '<th>Solve Rate</th><th>Median Time</th>';
+    html += '<th>Solve Rate</th><th>Rating</th><th>Median Time</th>';
     html += '<th>Manip.</th><th>Abstr.</th><th>P2 Tiles</th>';
     html += '<th>Predicted</th><th>&Delta;</th><th>Mean Lives</th><th>Rows Completed</th>';
     html += '</tr></thead><tbody>';
@@ -299,6 +308,15 @@ function updateContent() {
         html += `<td>${isDated ? p.players : '—'}</td>`;
         html += `<td>${isDated ? `${p.wins} / ${p.losses} / ${p.incomplete}` : '—'}</td>`;
         html += `<td>${isDated ? badge(sr + '%') : '—'}</td>`;
+        // Difficulty rating
+        const diff = p.difficulty;
+        if (diff) {
+            const starHtml = Array.from({length: 5}, (_, i) =>
+                `<span style="color:${i < diff.rating ? '#f39c12' : '#dfe6e9'}">★</span>`).join('');
+            html += `<td><span style="font-size:14px;letter-spacing:1px">${starHtml}</span></td>`;
+        } else {
+            html += '<td>—</td>';
+        }
         html += `<td>${isDated ? p.median_time.toFixed(1) + 's' : '—'}</td>`;
         html += `<td>${p.pdl.manipulationComplexity}</td><td>${p.pdl.abstractionComplexity}</td>`;
         html += `<td>${p.pdl.phase2TileCount}</td>`;
@@ -310,7 +328,7 @@ function updateContent() {
         // Rows completed distribution mini bar
         const dist = p.rows_completed_pct || [];
         if (dist.length) {
-            const rcColors = ['#d63031', '#e17055', '#fdcb6e', '#a8cc8c', '#00b894'];
+            const rcColors = ['#e74c3c', '#f39c12', '#27ae60', '#2980b9', '#8e44ad'];
             let bar = '<div style="display:flex;height:16px;border-radius:3px;overflow:hidden;min-width:120px;" title="';
             bar += dist.map((v, i) => `${i === 4 ? 'Won' : i + ' rows'}: ${v.toFixed(1)}%`).join(', ');
             bar += '">';
@@ -350,9 +368,9 @@ function updateContent() {
     html += '<p style="color:var(--muted);font-size:13px;margin-bottom:8px;">';
     html += 'Stacked bars show wrong guesses per row. Fill style indicates row outcome:</p>';
     html += '<div style="display:flex;gap:16px;margin-bottom:15px;font-size:12px;color:var(--muted);flex-wrap:wrap;">';
-    html += '<span><span style="display:inline-block;width:14px;height:14px;background:#fdcb6e;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> Solved</span>';
-    html += '<span><span style="display:inline-block;width:14px;height:14px;background:repeating-linear-gradient(-45deg,#fdcb6e,#fdcb6e 2px,rgba(255,255,255,0.55) 2px,rgba(255,255,255,0.55) 5px);border-radius:2px;vertical-align:middle;margin-right:4px;"></span> Row unsolved (lost)</span>';
-    html += '<span><span style="display:inline-block;width:14px;height:14px;background:rgba(253,203,110,0.18);border:1.5px solid #fdcb6e;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> Row unsolved (abandoned)</span>';
+    html += '<span><span style="display:inline-block;width:14px;height:14px;background:#f39c12;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> Solved</span>';
+    html += '<span><span style="display:inline-block;width:14px;height:14px;background:repeating-linear-gradient(-45deg,#f39c12,#f39c12 2px,rgba(255,255,255,0.55) 2px,rgba(255,255,255,0.55) 5px);border-radius:2px;vertical-align:middle;margin-right:4px;"></span> Row unsolved (lost)</span>';
+    html += '<span><span style="display:inline-block;width:14px;height:14px;background:rgba(243,156,18,0.18);border:1.5px solid #f39c12;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> Row unsolved (abandoned)</span>';
     html += '</div>';
     html += '<div class="explorer-cards">';
     for (const { key, puzzle: p, isDated } of selected) {
@@ -403,7 +421,7 @@ function updateContent() {
     html += '<div style="overflow-x:auto;"><table><thead><tr>';
     html += '<th>Puzzle</th><th>Row</th><th>Category</th><th>Manipulation</th><th>Abstraction</th>';
     html += '<th>Knowledge</th><th>Domain</th><th>Impostor</th><th>1st Try</th>';
-    html += '<th>Avg Wrong</th><th>Top Wrong</th>';
+    html += '<th>Avg Wrong</th><th>Diff.</th><th>Top Wrong</th>';
     html += '</tr></thead><tbody>';
     for (const { puzzle: p, isDated } of selected) {
         const rowSpan = isDated ? 5 : 4;
@@ -427,9 +445,19 @@ function updateContent() {
                     .map(tw => `${tw[0]} (${tw[1]})`).join(', ') || '—';
                 html += `<td>${badge((r.first_try_pct * 100).toFixed(0) + '%')}</td>`;
                 html += `<td>${r.avg_wrong.toFixed(2)}</td>`;
+                // Row difficulty score
+                const rs = p.difficulty?.row_scores?.[String(rp)];
+                html += `<td>${rs ? rs.rating + '/5' : '—'}</td>`;
                 html += `<td style="font-size:12px;">${topWrong}</td>`;
+            } else if (r.first_try_pct != null) {
+                // Predicted row stats from simulator
+                html += `<td>${badge('~' + (r.first_try_pct * 100).toFixed(0) + '%')}</td>`;
+                html += `<td>~${r.avg_wrong.toFixed(2)}</td>`;
+                const rs = p.difficulty?.row_scores?.[String(rp)];
+                html += `<td>${rs ? rs.rating + '/5' : '—'}</td>`;
+                html += '<td>—</td>';
             } else {
-                html += '<td>—</td><td>—</td><td>—</td>';
+                html += '<td>—</td><td>—</td><td>—</td><td>—</td>';
             }
             html += '</tr>';
         }
@@ -441,7 +469,7 @@ function updateContent() {
             html += '<td>—</td>';
             html += `<td>${badge((rl.first_try_pct * 100).toFixed(0) + '%')}</td>`;
             html += `<td>${rl.avg_attempts.toFixed(2)}</td>`;
-            html += '<td>—</td>';
+            html += '<td>—</td><td>—</td>';
             html += '</tr>';
         }
     }
@@ -491,6 +519,7 @@ function updateContent() {
     container.innerHTML = html;
 
     // ── Render Chart.js charts ──
+    renderSolveRateDist('sr-dist-chart', selected);
     for (const { key, puzzle: p, isDated } of selected) {
         const safeKey = key.replace(/[^a-zA-Z0-9]/g, '');
         const mode = isDated ? displayMode : 'predicted';
@@ -557,6 +586,7 @@ function syncToggle(containerId, mode) {
 function rebuildAllCharts(selected, limits) {
     chartInstances.forEach(c => c.destroy());
     chartInstances = [];
+    renderSolveRateDist('sr-dist-chart', selected);
     for (const { key, puzzle: p, isDated } of selected) {
         const safeKey = key.replace(/[^a-zA-Z0-9]/g, '');
         const mode = isDated ? displayMode : 'predicted';
@@ -565,6 +595,248 @@ function rebuildAllCharts(selected, limits) {
         if (isDated) {
             renderDualCurveChart(`curve-${safeKey}`, p, limits);
         }
+    }
+}
+
+/* ── Solve Rate Distribution chart (KDE bell curve) ──────────────── */
+
+function gaussianKDE(values, bandwidth, xMin, xMax, nPoints) {
+    const xs = [];
+    const ys = [];
+    const step = (xMax - xMin) / (nPoints - 1);
+    const n = values.length;
+    if (n === 0) return { xs, ys };
+    const bw = bandwidth || Math.max(
+        1.06 * Math.sqrt(values.reduce((s, v) => s + (v - values.reduce((a, b) => a + b, 0) / n) ** 2, 0) / n) * Math.pow(n, -0.2),
+        3
+    );
+    for (let i = 0; i < nPoints; i++) {
+        const x = xMin + i * step;
+        let density = 0;
+        for (const v of values) {
+            const z = (x - v) / bw;
+            density += Math.exp(-0.5 * z * z) / (bw * Math.sqrt(2 * Math.PI));
+        }
+        density /= n;
+        xs.push(x);
+        ys.push(density);
+    }
+    return { xs, ys };
+}
+
+function renderSolveRateDist(canvasId, selected) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    // Collect solve rates
+    const points = selected.map(({ puzzle: p, isDated }) => ({
+        rate: isDated ? p.solve_rate * 100 : (p.predicted_solve_rate ?? 0),
+        name: p.name,
+        label: p.label || p.name,
+        isDated,
+    }));
+
+    const datedRates = points.filter(p => p.isDated).map(p => p.rate);
+    const predRates = points.filter(p => !p.isDated).map(p => p.rate);
+    const allRates = points.map(p => p.rate);
+
+    // KDE curves — sample 200 points from 0 to 100
+    const N_PTS = 200;
+    const allKDE = gaussianKDE(allRates, null, 0, 100, N_PTS);
+    const datedKDE = datedRates.length >= 2 ? gaussianKDE(datedRates, null, 0, 100, N_PTS) : null;
+    const predKDE = predRates.length >= 2 ? gaussianKDE(predRates, null, 0, 100, N_PTS) : null;
+
+    // Helper: look up density on a KDE curve at a given x
+    function densityAt(kde, x) {
+        if (!kde || !kde.xs.length) return 0;
+        const step = (100 - 0) / (N_PTS - 1);
+        const idx = Math.min(Math.max(Math.round(x / step), 0), N_PTS - 1);
+        return kde.ys[idx];
+    }
+
+    // Summary stats
+    const mean = allRates.length ? allRates.reduce((s, v) => s + v, 0) / allRates.length : 0;
+    const sorted = [...allRates].sort((a, b) => a - b);
+    const median = sorted.length === 0 ? 0
+        : sorted.length % 2 === 0
+            ? (sorted[sorted.length / 2 - 1] + sorted[sorted.length / 2]) / 2
+            : sorted[Math.floor(sorted.length / 2)];
+
+    // Place dots on the curve at their density height
+    const datedScatter = points.filter(p => p.isDated)
+        .map(p => ({ x: p.rate, y: densityAt(datedKDE || allKDE, p.rate), name: p.label + ': ' + p.name }));
+    const predScatter = points.filter(p => !p.isDated)
+        .map(p => ({ x: p.rate, y: densityAt(predKDE || allKDE, p.rate), name: p.label }));
+
+    const datasets = [];
+    const hasBothGroups = datedRates.length >= 2 && predRates.length >= 2;
+
+    // Combined KDE curve (only when both groups present)
+    if (hasBothGroups && allRates.length >= 2) {
+        datasets.push({
+            label: 'All selected',
+            data: allKDE.xs.map((x, i) => ({ x, y: allKDE.ys[i] })),
+            type: 'line',
+            borderColor: hsl(0, 0, 65),
+            backgroundColor: hsla(0, 0, 50, 0.06),
+            borderWidth: 1.5,
+            borderDash: [5, 3],
+            fill: true,
+            pointRadius: 0,
+            tension: 0.4,
+            order: 4,
+        });
+    }
+
+    // Empirical KDE curve
+    if (datedKDE) {
+        datasets.push({
+            label: 'Empirical',
+            data: datedKDE.xs.map((x, i) => ({ x, y: datedKDE.ys[i] })),
+            type: 'line',
+            borderColor: hsl(210, 70, 50),
+            backgroundColor: hsla(210, 70, 50, 0.15),
+            borderWidth: 2,
+            fill: true,
+            pointRadius: 0,
+            tension: 0.4,
+            order: 3,
+        });
+    }
+
+    // Predicted KDE curve
+    if (predKDE) {
+        datasets.push({
+            label: 'Predicted',
+            data: predKDE.xs.map((x, i) => ({ x, y: predKDE.ys[i] })),
+            type: 'line',
+            borderColor: hsl(270, 60, 55),
+            backgroundColor: hsla(270, 60, 55, 0.12),
+            borderWidth: 2,
+            fill: true,
+            pointRadius: 0,
+            tension: 0.4,
+            order: 3,
+        });
+    }
+
+    // Scatter dots on the curve — empirical
+    if (datedScatter.length) {
+        datasets.push({
+            label: datedKDE ? '_emp_dots' : 'Empirical',
+            data: datedScatter,
+            type: 'scatter',
+            backgroundColor: hsl(210, 70, 50),
+            borderColor: '#fff',
+            borderWidth: 1.5,
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            order: 1,
+        });
+    }
+
+    // Scatter dots on the curve — predicted
+    if (predScatter.length) {
+        datasets.push({
+            label: predKDE ? '_pred_dots' : 'Predicted',
+            data: predScatter,
+            type: 'scatter',
+            backgroundColor: hsl(270, 60, 55),
+            borderColor: '#fff',
+            borderWidth: 1.5,
+            pointRadius: 5,
+            pointStyle: 'triangle',
+            pointHoverRadius: 7,
+            order: 1,
+        });
+    }
+
+    // Custom plugin: mean & median vertical lines inside chart area
+    const verticalLines = {
+        id: 'verticalLines',
+        afterDatasetsDraw(chart) {
+            if (!allRates.length) return;
+            const { ctx: c, chartArea: { top, bottom, height }, scales: { x: xAxis } } = chart;
+            const drawLine = (val, color, dashPattern, labelText, labelY) => {
+                const xPx = xAxis.getPixelForValue(val);
+                c.save();
+                c.strokeStyle = color;
+                c.lineWidth = 1.5;
+                c.setLineDash(dashPattern);
+                c.beginPath(); c.moveTo(xPx, top); c.lineTo(xPx, bottom); c.stroke();
+                c.setLineDash([]);
+                // Label inside chart, rotated
+                c.fillStyle = color;
+                c.font = 'bold 10px sans-serif';
+                c.textAlign = 'left';
+                c.translate(xPx + 4, top + 12);
+                c.fillText(labelText, 0, 0);
+                c.restore();
+            };
+            drawLine(mean, hsl(0, 70, 50), [5, 3], `Mean ${mean.toFixed(0)}%`, top + 14);
+            if (Math.abs(mean - median) > 2) {
+                drawLine(median, hsl(145, 60, 45), [3, 3], `Median ${median.toFixed(0)}%`, top + 14);
+            }
+        },
+    };
+
+    const ctx = canvas.getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'scatter',
+        data: { datasets },
+        options: {
+            interaction: nearestInteraction,
+            plugins: {
+                tooltip: {
+                    filter(item) {
+                        return item.raw && item.raw.name;
+                    },
+                    callbacks: {
+                        title(items) { return items[0]?.raw?.name || ''; },
+                        label(item) {
+                            return `Solve rate: ${item.raw.x.toFixed(1)}%`;
+                        },
+                    },
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        boxWidth: 10,
+                        filter(item) {
+                            // Hide internal dot datasets (prefixed with _)
+                            return !item.text.startsWith('_');
+                        },
+                    },
+                },
+            },
+            scales: {
+                x: {
+                    type: 'linear',
+                    min: 0,
+                    max: 100,
+                    title: { display: true, text: 'Solve Rate (%)' },
+                    ticks: { callback: v => v + '%', stepSize: 10 },
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: { display: false },
+                    grid: { display: false },
+                    border: { display: false },
+                },
+            },
+        },
+        plugins: [verticalLines],
+    });
+    chartInstances.push(chart);
+
+    // Stats line below chart
+    const statsEl = document.getElementById('sr-dist-stats');
+    if (statsEl) {
+        const sd = allRates.length > 1
+            ? Math.sqrt(allRates.reduce((s, v) => s + (v - mean) ** 2, 0) / (allRates.length - 1)) : 0;
+        statsEl.textContent = `${allRates.length} puzzles · Mean ${mean.toFixed(1)}% · Median ${median.toFixed(1)}% · SD ${sd.toFixed(1)}pp · Range ${sorted.length ? sorted[0].toFixed(0) : 0}–${sorted.length ? sorted[sorted.length - 1].toFixed(0) : 0}%`;
     }
 }
 
@@ -664,8 +936,6 @@ function renderWrongDistChart(canvasId, puzzle, asPercent, mode) {
         type: 'bar',
         data: { labels, datasets },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
             indexAxis: 'y',
             scales: {
                 x: {
@@ -721,10 +991,11 @@ function renderMistakeDistChart(canvasId, puzzle, asPercent, mode) {
     for (let i = 0; i <= cap; i++) labels.push(String(i));
 
     const colorForIdx = (i) => {
-        if (i === 0) return '#00b894';
-        if (i <= 2) return '#fdcb6e';
-        if (i <= 3) return '#e17055';
-        return '#d63031';
+        if (i === 0) return '#27ae60';  // green — 0 mistakes (best)
+        if (i === 1) return '#2980b9';  // blue
+        if (i === 2) return '#f39c12';  // orange
+        if (i === 3) return '#e74c3c';  // red
+        return '#c0392b';               // dark red — 4 mistakes (worst)
     };
 
     const datasets = [];
@@ -762,8 +1033,6 @@ function renderMistakeDistChart(canvasId, puzzle, asPercent, mode) {
         data: { labels, datasets },
         options: {
             indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
             scales: {
                 x: {
                     beginAtZero: true,
@@ -805,7 +1074,7 @@ function renderDualCurveChart(canvasId, puzzle, limits) {
                     label: 'Median time (s)',
                     data: tm.timing_curve,
                     borderColor: COLORS[0],
-                    backgroundColor: hsla(260, 70, 55, 0.12),
+                    backgroundColor: hsla(0, 70, 55, 0.12),
                     fill: true,
                     tension: 0.3,
                     pointRadius: 4,
@@ -815,7 +1084,7 @@ function renderDualCurveChart(canvasId, puzzle, limits) {
                     label: 'Mean wrong guesses',
                     data: tm.error_curve,
                     borderColor: COLORS[2],
-                    backgroundColor: hsla(15, 70, 55, 0.12),
+                    backgroundColor: hsla(145, 60, 45, 0.12),
                     fill: true,
                     tension: 0.3,
                     pointRadius: 4,
@@ -824,9 +1093,6 @@ function renderDualCurveChart(canvasId, puzzle, limits) {
             ],
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            interaction: { mode: 'index', intersect: false },
             scales: {
                 y: {
                     type: 'linear',

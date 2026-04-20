@@ -13,18 +13,17 @@ export function render(decoyData) {
                 { label: 'Mean Solve Rate %', data: [
                     (decoyData.no_decoys.mean_solve_rate * 100).toFixed(1),
                     (decoyData.has_decoys.mean_solve_rate * 100).toFixed(1)],
-                   backgroundColor: [hsla(260,70,55,0.7), hsla(170,70,45,0.7)] },
+                   backgroundColor: [hsla(210,70,50,0.7), hsla(35,90,55,0.7)] },
             ]
         },
         options: {
-            responsive: true, maintainAspectRatio: false,
             plugins: {
                 tooltip: {
                     callbacks: {
-                        afterBody: (items) => {
+                        footer: (items) => {
                             const i = items[0].dataIndex;
                             const d = i === 0 ? decoyData.no_decoys : decoyData.has_decoys;
-                            return `n = ${d.n} puzzles\nAvg wrong/row: ${d.mean_avg_wrong.toFixed(2)}`;
+                            return `n = ${d.n} puzzles · Avg wrong/row: ${d.mean_avg_wrong.toFixed(2)}`;
                         }
                     }
                 }
@@ -42,19 +41,18 @@ export function render(decoyData) {
                 labels: hits.map(h => h.label + ' ' + h.name.substring(0, 15)),
                 datasets: [
                     { label: 'Decoy-matching wrong guesses', data: hits.map(h => h.decoy_wrong),
-                       backgroundColor: hsla(0,65,50,0.7) },
+                       backgroundColor: hsla(0,70,55,0.7) },
                     { label: 'Other wrong guesses', data: hits.map(h => h.total_wrong - h.decoy_wrong),
-                       backgroundColor: hsla(220,30,70,0.5) },
+                       backgroundColor: hsla(210,50,70,0.5) },
                 ]
             },
             options: {
-                responsive: true, maintainAspectRatio: false,
                 scales: { x: { stacked: true }, y: { stacked: true,
                     title: { display: true, text: 'Wrong guesses' } } },
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            afterBody: (items) => {
+                            footer: (items) => {
                                 const i = items[0].dataIndex;
                                 return `Hit rate: ${(hits[i].hit_rate * 100).toFixed(0)}%\nDecoys: ${hits[i].descriptions.join('; ')}`;
                             }

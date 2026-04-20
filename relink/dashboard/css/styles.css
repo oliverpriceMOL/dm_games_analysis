@@ -1,6 +1,6 @@
 :root {
     --bg: #f5f6fa; --card: #fff; --text: #2d3436; --muted: #636e72;
-    --accent: #6c5ce7; --accent2: #00b894; --danger: #d63031; --warn: #fdcb6e;
+    --accent: #2980b9; --accent2: #27ae60; --danger: #e74c3c; --warn: #f39c12;
     --border: #dfe6e9;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,9 +43,9 @@ th { background: #f8f9fa; font-weight: 600; position: sticky; top: 0; }
               color: var(--muted); }
 .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px;
           font-weight: 600; }
-.badge-green { background: #00b89420; color: #00b894; }
-.badge-amber { background: #fdcb6e30; color: #e17055; }
-.badge-red { background: #d6303120; color: #d63031; }
+.badge-green { background: #27ae6020; color: #27ae60; }
+.badge-amber { background: #f39c1230; color: #e67e22; }
+.badge-red { background: #e74c3c20; color: #e74c3c; }
 .collapsible { cursor: pointer; user-select: none; }
 .collapsible::before { content: '▸ '; color: var(--muted); }
 .collapsible.open::before { content: '▾ '; }
@@ -98,11 +98,11 @@ th { background: #f8f9fa; font-weight: 600; position: sticky; top: 0; }
 .explorer-chip-predicted { border-style: dashed; background: #fefefe; }
 .explorer-picker-heading { width: 100%; font-size: 12px; font-weight: 600; color: var(--muted); display: flex; align-items: center; justify-content: space-between;
                            text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px; }
-.explorer-pred-tag { display: inline-block; font-size: 10px; font-weight: 700; color: #6c5ce7;
-                     background: #6c5ce71a; border-radius: 4px; padding: 1px 5px; vertical-align: middle; }
+.explorer-pred-tag { display: inline-block; font-size: 10px; font-weight: 700; color: #8e44ad;
+                     background: #8e44ad1a; border-radius: 4px; padding: 1px 5px; vertical-align: middle; }
 .chart-label { font-size: 11px; font-weight: 600; color: var(--muted); text-align: center;
                margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
-.chart-label-pred { color: #6c5ce7; }
+.chart-label-pred { color: #8e44ad; }
 .explorer-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 20px; }
 .explorer-puzzle-card { background: #f8f9fa; border-radius: 10px; padding: 16px;
                         border: 1px solid var(--border); }
@@ -126,6 +126,42 @@ th { background: #f8f9fa; font-weight: 600; position: sticky; top: 0; }
                  background: var(--accent); color: #fff; text-decoration: none;
                  margin-left: 4px; vertical-align: middle; font-weight: 600; }
 .glossary-link:hover { background: #5b4bd5; }
+
+/* ── Difficulty Ratings ────────────────────────────── */
+.star-rating { display: inline-block; font-size: 14px; letter-spacing: 1px; }
+.star-rating .star-on { color: #f39c12; }
+.star-rating .star-off { color: #dfe6e9; }
+.dim-bar-wrap { display: flex; align-items: center; gap: 6px; }
+.dim-bar { height: 8px; border-radius: 4px; min-width: 2px; }
+.dim-bar-label { font-size: 11px; color: var(--muted); min-width: 28px; text-align: right; }
+.table-radar-wrap { width: 140px; height: 140px; }
+.radar-legend { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+/* Radar modal */
+.radar-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+    display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.radar-modal { background: #fff; border-radius: 12px; padding: 28px 32px; max-width: 420px;
+    width: 90%; position: relative; box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+.radar-modal h3 { margin: 0 0 4px; font-size: 18px; }
+.radar-modal-meta { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+.radar-modal-close { position: absolute; top: 12px; right: 16px; background: none;
+    border: none; font-size: 24px; cursor: pointer; color: var(--muted); line-height: 1; }
+.radar-modal-close:hover { color: var(--text); }
+.radar-modal-body { display: flex; flex-direction: column; align-items: center; }
+.radar-modal-chart { width: 300px; height: 300px; }
+.radar-card { background: #f8f9fa; border-radius: 10px; padding: 14px;
+              border: 1px solid var(--border); text-align: center; min-width: 220px; }
+.radar-card.predicted { border-style: dashed; }
+.radar-card h4 { font-size: 13px; margin-bottom: 4px; color: var(--accent); }
+.radar-card .radar-meta { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+.radar-canvas-wrap { width: 100%; max-width: 220px; margin: 0 auto; }
+.rating-tier-1 { border-left: 3px solid #27ae60; }
+.rating-tier-2 { border-left: 3px solid #2ecc71; }
+.rating-tier-3 { border-left: 3px solid #f39c12; }
+.rating-tier-4 { border-left: 3px solid #e74c3c; }
+.rating-tier-5 { border-left: 3px solid #c0392b; }
+.sortable-th { cursor: pointer; user-select: none; }
+.sortable-th:hover { color: var(--accent); }
+.sortable-th .sort-arrow { font-size: 10px; margin-left: 3px; }
 
 /* ── Mobile overrides ─────────────────────────────── */
 @media (max-width: 900px) {

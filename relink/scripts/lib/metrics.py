@@ -3,8 +3,8 @@
 import math
 from collections import defaultdict, Counter
 
-from .stats import (safe_mean, safe_median, pearson, spearman, ols_multi,
-                    one_hot, kmeans)
+from .stats import (safe_mean, safe_median, safe_stdev, pearson, spearman,
+                    ols_multi, one_hot, kmeans)
 from .data import date_label
 
 
@@ -994,10 +994,21 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
 
             # Build row metadata from PDL (no actual distributions)
             rows_meta = {}
+            # Predicted per-row distributions from the simulator
+            pred_dists = sr.get('predicted_row_dists', [])
+            row_labels = sr.get('row_labels', [])
+            # Map sim position -> original row position using category match
+            # (sim sorts rows easiest-first, so position != original row index)
+            sim_by_category = {}
+            for si, dist in enumerate(pred_dists):
+                cat = row_labels[si] if si < len(row_labels) else None
+                if cat and dist:
+                    sim_by_category[cat] = dist
             for rp in range(4):
                 pr = puzzle_pdl_rows.get(str(rp), {})
-                rows_meta[str(rp)] = {
-                    'category': pr.get('category', f'Row {rp}'),
+                cat = pr.get('category', f'Row {rp}')
+                row_entry = {
+                    'category': cat,
                     'manipulation': pr.get('manipulation', 'None'),
                     'abstraction': pr.get('abstraction', 'Direct membership'),
                     'knowledge': pr.get('knowledge', 'General vocabulary'),
@@ -1005,6 +1016,14 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
                     'impostor_word': pr.get('impostor_word', ''),
                     'same_domain': pr.get('same_domain', False),
                 }
+                # Add predicted first_try_pct and avg_wrong from simulator dist
+                dist = sim_by_category.get(cat)
+                if dist:
+                    ft = float(dist.get('0', 0))
+                    avg_w = sum(int(k) * v for k, v in dist.items())
+                    row_entry['first_try_pct'] = round(ft, 3)
+                    row_entry['avg_wrong'] = round(avg_w, 3)
+                rows_meta[str(rp)] = row_entry
 
             d = sr.get('date')
             undated_puzzles[lid] = {
@@ -1132,4 +1151,342 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
         'puzzles': puzzles,
         'undated_puzzles': undated_puzzles,
         'pdl_aggregates': pdl_aggregates,
+    }
+
+
+# ══════════════════════════════════════════════════════════════════════
+#  DIFFICULTY RATINGS
+# ══════════════════════════════════════════════════════════════════════
+
+# Knowledge tier mapping (row-level)
+_KNOWLEDGE_SCORE = {
+    'General vocabulary': 0.0,
+    'Common cultural': 0.3,
+    'Specialist cultural': 1.0,
+}
+
+# Dimension weights for the composite score
+_DIM_WEIGHTS = {
+    'impostor_deception': 0.30,
+    'punishment_risk':    0.25,
+    'connection_challenge': 0.20,
+    'knowledge_demand':   0.15,
+    'volatility':         0.10,
+}
+
+# Rating thresholds: composite → 1-5 stars
+# Calibrated against empirical composite range (~0.24–0.55 across 39 puzzles).
+# Boundaries chosen so each tier covers a proportional band.
+_RATING_THRESHOLDS = [0.28, 0.35, 0.42, 0.48]  # boundaries between 1/2, 2/3, 3/4, 4/5
+
+
+def _clamp01(v):
+    return max(0.0, min(1.0, v))
+
+
+def _composite_to_rating(composite):
+    """Map a 0-1 composite score to a 1-5 integer rating."""
+    for i, thresh in enumerate(_RATING_THRESHOLDS):
+        if composite < thresh:
+            return i + 1
+    return 5
+
+
+def _row_deception_empirical(row_metrics):
+    """Compute per-row deception from empirical row_metrics (dated puzzles)."""
+    scores = []
+    for rp in range(4):
+        rm = row_metrics.get(rp, {})
+        ft = rm.get('first_try_pct', 1.0)
+        scores.append(1.0 - ft)
+    return scores
+
+
+def _row_deception_predicted(predicted_row_dists):
+    """Compute per-row deception from simulator predicted_row_dists (undated)."""
+    scores = []
+    for dist in (predicted_row_dists or []):
+        if dist is None:
+            scores.append(0.0)
+        else:
+            # P(any wrong) = 1 - P(0 wrongs)
+            scores.append(1.0 - float(dist.get('0', dist.get(0, 1.0))))
+    return scores
+
+
+def _knowledge_demand(pdl_features):
+    """Compute knowledge demand from PDL features (works for all puzzles)."""
+    kb = pdl_features.get('knowledgeBreadth', 1)
+    sgc = pdl_features.get('specialistGroupCount', 0)
+    norm_breadth = (kb - 1) / 4.0  # 1-5 → 0-1
+    norm_specialist = sgc / 2.0     # 0-2 → 0-1
+    return _clamp01(0.5 * norm_breadth + 0.5 * norm_specialist)
+
+
+def _row_knowledge_score(row_knowledge):
+    """Row-level knowledge score from the knowledge type string."""
+    return _KNOWLEDGE_SCORE.get(row_knowledge, 0.3)
+
+
+def _punishment_risk_from_dist(mistake_dist, is_simulated=False):
+    """Compute punishment risk from a mistake distribution (total wrongs across game).
+    mistake_dist: {str(wrongs): count} — keys are '0','1','2','3','4'.
+    """
+    total = sum(mistake_dist.values())
+    if total == 0:
+        return 0.0
+    # Expected wrongs / 4 (max is 4 = all lives lost)
+    e_wrongs = sum(int(k) * v for k, v in mistake_dist.items()) / total
+    # P(≥3 wrongs) — danger zone
+    p_gte3 = sum(v for k, v in mistake_dist.items() if int(k) >= 3) / total
+    return _clamp01(0.6 * (e_wrongs / 4.0) + 0.4 * p_gte3)
+
+
+def _connection_challenge_empirical(relink_first_try, phase2_tiles):
+    """Connection challenge for dated puzzles."""
+    tile_factor = (phase2_tiles - 1) / 3.0
+    return _clamp01(0.7 * (1.0 - relink_first_try) + 0.3 * tile_factor)
+
+
+def _connection_challenge_predicted(predicted_relink_dist, phase2_tiles):
+    """Connection challenge for undated puzzles."""
+    if not predicted_relink_dist:
+        tile_factor = (phase2_tiles - 1) / 3.0
+        return _clamp01(0.3 * tile_factor)
+    p_first = float(predicted_relink_dist.get('0', predicted_relink_dist.get(0, 1.0)))
+    tile_factor = (phase2_tiles - 1) / 3.0
+    return _clamp01(0.7 * (1.0 - p_first) + 0.3 * tile_factor)
+
+
+def _volatility_from_row_wrongs(row_wrong_vals):
+    """Coefficient of variation of per-row wrong rates, normalised to 0-1."""
+    if len(row_wrong_vals) < 2:
+        return 0.0
+    m = safe_mean(row_wrong_vals)
+    sd = safe_stdev(row_wrong_vals)
+    if m < 0.01:
+        return 0.0
+    cv = sd / m
+    # Cap at 2.0 (empirically reasonable max) and normalise
+    return _clamp01(cv / 2.0)
+
+
+def _row_punishment(row_avg_wrong):
+    """Row-level punishment contribution: avg_wrong / 3 (max 3 per row)."""
+    return _clamp01(row_avg_wrong / 3.0)
+
+
+def compute_difficulty(date_summaries, pdl_puzzle_features, pdl_rows,
+                       sim_results, sim_undated, overlap_dates,
+                       level_to_date, date_to_level, explorer_data):
+    """Compute 5-axis difficulty profile + 1-5 rating for all 39 puzzles.
+
+    Returns a dict with:
+      - puzzles: {date: {profile, row_scores, ...}} for dated puzzles
+      - undated: {lid: {profile, row_scores, ...}} for undated puzzles
+      - validation: {spearman_rho, composite_vs_solve_rate} for dated puzzles
+      - thresholds: the 1-5 rating boundaries used
+      - weights: the dimension weights used
+    """
+    all_profiles = []  # collect (key, profile, solve_rate_or_none) for calibration
+    puzzle_results = {}
+    undated_results = {}
+
+    # ── Dated puzzles (empirical data) ──
+    for d in overlap_dates:
+        ds = date_summaries[d]
+        lid = ds['lid']
+        pf = pdl_puzzle_features.get(lid, {})
+
+        # 1. Impostor Deception
+        row_deception = _row_deception_empirical(ds['row_metrics'])
+        deception = safe_mean(row_deception)
+
+        # 2. Knowledge Demand
+        knowledge = _knowledge_demand(pf)
+
+        # 3. Punishment Risk — from actual mistake_dist in explorer_data
+        ep = explorer_data.get('puzzles', {}).get(d, {})
+        md = ep.get('mistake_dist', {})
+        punishment = _punishment_risk_from_dist(md)
+
+        # 4. Connection Challenge
+        relink_ft = ds.get('relink_first_try_pct', 1.0)
+        p2_tiles = pf.get('phase2TileCount', 1)
+        connection = _connection_challenge_empirical(relink_ft, p2_tiles)
+
+        # 5. Volatility
+        row_wrongs = [ds['row_metrics'].get(rp, {}).get('avg_wrong', 0) for rp in range(4)]
+        volatility = _volatility_from_row_wrongs(row_wrongs)
+
+        profile = {
+            'impostor_deception': round(deception, 3),
+            'knowledge_demand': round(knowledge, 3),
+            'punishment_risk': round(punishment, 3),
+            'connection_challenge': round(connection, 3),
+            'volatility': round(volatility, 3),
+        }
+
+        composite = sum(profile[dim] * w for dim, w in _DIM_WEIGHTS.items())
+        rating = _composite_to_rating(composite)
+
+        # Row-level scores
+        puzzle_pdl_rows = {str(pr['row_position']): pr for pr in pdl_rows if pr['lid'] == lid}
+        row_scores = {}
+        for rp in range(4):
+            pr = puzzle_pdl_rows.get(str(rp), {})
+            rm = ds['row_metrics'].get(rp, {})
+            r_deception = row_deception[rp] if rp < len(row_deception) else 0
+            r_knowledge = _row_knowledge_score(pr.get('knowledge', 'General vocabulary'))
+            r_punishment = _row_punishment(rm.get('avg_wrong', 0))
+            r_composite = 0.45 * r_deception + 0.30 * r_punishment + 0.25 * r_knowledge
+            row_scores[str(rp)] = {
+                'deception': round(r_deception, 3),
+                'knowledge': round(r_knowledge, 3),
+                'punishment': round(r_punishment, 3),
+                'composite': round(r_composite, 3),
+                'rating': _composite_to_rating(r_composite),
+            }
+
+        puzzle_results[d] = {
+            'name': ds['name'],
+            'label': ds['label'],
+            'date': d,
+            'lid': lid,
+            'has_player_data': True,
+            'solve_rate': round(ds['solve_rate'], 3),
+            'profile': profile,
+            'composite': round(composite, 3),
+            'rating': rating,
+            'row_scores': row_scores,
+        }
+        all_profiles.append((d, profile, composite, ds['solve_rate']))
+
+    # ── Undated puzzles (simulator-predicted) ──
+    all_lids = set()
+    for lid, pf in pdl_puzzle_features.items():
+        d = level_to_date.get(lid)
+        if d and d in overlap_dates:
+            continue
+        all_lids.add(lid)
+
+    for lid in sorted(all_lids):
+        pf = pdl_puzzle_features[lid]
+        sr = sim_undated.get(lid) or {}
+        if not sr:
+            continue
+
+        # 1. Impostor Deception — from predicted_row_dists
+        pred_dists = sr.get('predicted_row_dists', [])
+        row_deception = _row_deception_predicted(pred_dists)
+        # Pad to 4 if needed
+        while len(row_deception) < 4:
+            row_deception.append(0.0)
+        deception = safe_mean(row_deception[:4])
+
+        # 2. Knowledge Demand
+        knowledge = _knowledge_demand(pf)
+
+        # 3. Punishment Risk — from sim_mistake_dist
+        smd = sr.get('sim_mistake_dist', {})
+        punishment = _punishment_risk_from_dist(smd, is_simulated=True)
+
+        # 4. Connection Challenge
+        pred_relink = sr.get('predicted_relink_dist', {})
+        p2_tiles = pf.get('phase2TileCount', 1)
+        connection = _connection_challenge_predicted(pred_relink, p2_tiles)
+
+        # 5. Volatility — from predicted row distributions
+        row_exp_wrongs = []
+        for dist in (pred_dists or []):
+            if dist is None:
+                row_exp_wrongs.append(0)
+            else:
+                ew = sum(int(k) * float(v) for k, v in dist.items())
+                row_exp_wrongs.append(ew)
+        volatility = _volatility_from_row_wrongs(row_exp_wrongs[:4])
+
+        profile = {
+            'impostor_deception': round(deception, 3),
+            'knowledge_demand': round(knowledge, 3),
+            'punishment_risk': round(punishment, 3),
+            'connection_challenge': round(connection, 3),
+            'volatility': round(volatility, 3),
+        }
+
+        composite = sum(profile[dim] * w for dim, w in _DIM_WEIGHTS.items())
+        rating = _composite_to_rating(composite)
+
+        # Row-level scores
+        puzzle_pdl_rows = {str(pr['row_position']): pr for pr in pdl_rows if pr['lid'] == lid}
+        row_scores = {}
+        for rp in range(4):
+            pr = puzzle_pdl_rows.get(str(rp), {})
+            r_deception = row_deception[rp] if rp < len(row_deception) else 0
+            r_knowledge = _row_knowledge_score(pr.get('knowledge', 'General vocabulary'))
+            # Row punishment from predicted expected wrongs
+            r_exp_wrong = row_exp_wrongs[rp] if rp < len(row_exp_wrongs) else 0
+            r_punishment = _row_punishment(r_exp_wrong)
+            r_composite = 0.45 * r_deception + 0.30 * r_punishment + 0.25 * r_knowledge
+            row_scores[str(rp)] = {
+                'deception': round(r_deception, 3),
+                'knowledge': round(r_knowledge, 3),
+                'punishment': round(r_punishment, 3),
+                'composite': round(r_composite, 3),
+                'rating': _composite_to_rating(r_composite),
+            }
+
+        d = level_to_date.get(lid)
+        undated_results[lid] = {
+            'name': pf.get('name', lid),
+            'label': pf.get('name', lid),
+            'date': d,
+            'lid': lid,
+            'has_player_data': False,
+            'solve_rate': round(sr.get('solve_rate', 0), 3),
+            'predicted_solve_rate': round(sr.get('solve_rate', 0) * 100, 1),
+            'profile': profile,
+            'composite': round(composite, 3),
+            'rating': rating,
+            'row_scores': row_scores,
+        }
+        all_profiles.append((lid, profile, composite, None))
+
+    # ── Validation: correlate composite with actual solve rate (dated only) ──
+    dated_composites = [p[2] for p in all_profiles if p[3] is not None]
+    dated_srs = [p[3] for p in all_profiles if p[3] is not None]
+    if len(dated_composites) >= 3:
+        rho, p_val = spearman(dated_composites, dated_srs)
+        r_p, _ = pearson(dated_composites, dated_srs)
+    else:
+        rho, p_val, r_p = 0, 1, 0
+
+    validation = {
+        'spearman_rho': round(rho, 3),
+        'spearman_p': round(p_val, 4),
+        'pearson_r': round(r_p, 3),
+        'n_dated': len(dated_composites),
+        'composite_vs_solve_rate': [
+            {'label': puzzle_results[d]['name'], 'composite': puzzle_results[d]['composite'],
+             'solve_rate': round(date_summaries[d]['solve_rate'] * 100, 1),
+             'rating': puzzle_results[d]['rating']}
+            for d in overlap_dates
+        ],
+    }
+
+    return {
+        'puzzles': puzzle_results,
+        'undated': undated_results,
+        'validation': validation,
+        'thresholds': _RATING_THRESHOLDS,
+        'weights': _DIM_WEIGHTS,
+        'dimensions': ['impostor_deception', 'knowledge_demand', 'punishment_risk',
+                       'connection_challenge', 'volatility'],
+        'dimension_labels': {
+            'impostor_deception': 'Impostor Deception',
+            'knowledge_demand': 'Knowledge Demand',
+            'punishment_risk': 'Punishment Risk',
+            'connection_challenge': 'Connection Challenge',
+            'volatility': 'Volatility',
+        },
     }

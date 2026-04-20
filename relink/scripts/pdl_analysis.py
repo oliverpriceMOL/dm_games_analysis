@@ -269,6 +269,33 @@ explorer_data = metrics.compute_puzzle_explorer(
 print(f"  Puzzle Explorer: {len(explorer_data['puzzles'])} dated, "
       f"{len(explorer_data.get('undated_puzzles', {}))} undated")
 
+# 16. Difficulty ratings
+difficulty_data = metrics.compute_difficulty(
+    date_summaries, pdl_puzzle_features, pdl_rows,
+    sim_results, sim_undated, overlap_dates,
+    level_to_date, date_to_level, explorer_data)
+print(f"  Difficulty: {len(difficulty_data['puzzles'])} dated, "
+      f"{len(difficulty_data['undated'])} undated, "
+      f"validation ρ={difficulty_data['validation']['spearman_rho']:.3f}")
+
+# Inject difficulty profiles into puzzle-explorer entries
+for d, dd in difficulty_data['puzzles'].items():
+    if d in explorer_data['puzzles']:
+        explorer_data['puzzles'][d]['difficulty'] = {
+            'profile': dd['profile'],
+            'composite': dd['composite'],
+            'rating': dd['rating'],
+            'row_scores': dd['row_scores'],
+        }
+for lid, dd in difficulty_data['undated'].items():
+    if lid in explorer_data.get('undated_puzzles', {}):
+        explorer_data['undated_puzzles'][lid]['difficulty'] = {
+            'profile': dd['profile'],
+            'composite': dd['composite'],
+            'rating': dd['rating'],
+            'row_scores': dd['row_scores'],
+        }
+
 
 # ══════════════════════════════════════════════════════════════════════
 #  Write JSON files
@@ -299,6 +326,7 @@ files = {
         'feature_validation': {'r': round(feat_r, 3), 'mae': round(feat_mae, 1)},
     },
     'puzzle-explorer.json': explorer_data,
+    'difficulty.json': difficulty_data,
 }
 
 print(f"\nWriting {len(files)} JSON files to {OUT_DIR}/")

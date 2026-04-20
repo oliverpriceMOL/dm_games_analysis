@@ -76,17 +76,16 @@ function renderPdlFeatures(byFeature) {
                 labels,
                 datasets: [
                     { label: 'First-try correct %', data: firstTry.map(v => v.toFixed(1)),
-                      backgroundColor: hsla(260, 70, 55, 0.7), yAxisID: 'y' },
+                      backgroundColor: hsla(210, 70, 50, 0.7), yAxisID: 'y' },
                     { label: 'Avg wrong guesses', data: meanWrong.map(v => v.toFixed(2)),
-                      backgroundColor: hsla(15, 70, 55, 0.7), yAxisID: 'y1' },
+                      backgroundColor: hsla(0, 70, 55, 0.7), yAxisID: 'y1' },
                 ]
             },
             options: {
-                responsive: true, maintainAspectRatio: false,
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            afterBody: (items) => `n = ${ns[items[0].dataIndex]} observations`
+                            footer: (items) => `n = ${ns[items[0].dataIndex]} observations`
                         }
                     }
                 },
@@ -114,17 +113,16 @@ function renderDecoyEffect(byDecoy) {
             datasets: [
                 { label: 'First-try correct %',
                   data: [(noDecoy.weighted_first_try * 100).toFixed(1), (hasDecoy.weighted_first_try * 100).toFixed(1)],
-                  backgroundColor: [hsla(160, 70, 40, 0.7), hsla(0, 70, 50, 0.7)] },
+                  backgroundColor: [hsla(145, 60, 45, 0.7), hsla(0, 70, 55, 0.7)] },
             ]
         },
         options: {
-            responsive: true, maintainAspectRatio: false,
             plugins: {
                 tooltip: {
                     callbacks: {
-                        afterBody: (items) => {
+                        footer: (items) => {
                             const d = items[0].dataIndex === 0 ? noDecoy : hasDecoy;
-                            return `n = ${d.n} obs, mean wrong = ${d.weighted_mean_wrong.toFixed(2)}`;
+                            return `n = ${d.n} obs · mean wrong = ${d.weighted_mean_wrong.toFixed(2)}`;
                         }
                     }
                 }
