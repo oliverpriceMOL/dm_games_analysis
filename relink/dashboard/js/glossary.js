@@ -2,7 +2,7 @@
  * Glossary page renderer. Builds a categorised term list with cross-links to dashboard pages.
  */
 
-const TERMS = [
+export const TERMS = [
     {
         category: 'Game Terms',
         terms: [
@@ -10,7 +10,7 @@ const TERMS = [
             { name: 'Relink Phase', page: 'relink', definition: 'Phase 2 of the game. After finding all four impostors, players discover the impostors share their own hidden connection and must spell it out by selecting tiles from the resolved grid.' },
             { name: 'Row', page: 'difficulty', definition: 'One of the four colour-coded groups of 4 tiles on the board. Each row has 3 connected tiles and 1 impostor.' },
             { name: 'Tile', page: 'difficulty', definition: 'A single word on the 4\u00d74 grid. Players select tiles to make guesses.' },
-            { name: 'Lives', page: 'model', definition: 'Players start with 4 lives. A wrong guess costs one life. Losing all lives ends the game.' },
+            { name: 'Lives', page: 'validation', definition: 'Players start with 4 lives. A wrong guess costs one life. Losing all lives ends the game.' },
             { name: 'Solve Rate', page: 'overview', definition: 'The percentage of players who complete the entire puzzle (both phases) successfully.' },
             { name: 'First-Try Rate', page: 'difficulty', definition: 'The percentage of rows where the player identifies the impostor on their first guess — no wrong answers.' },
             { name: 'Wrong Guess', page: 'difficulty', definition: 'Selecting a non-impostor tile. Costs a life and eliminates that tile from future guesses in the row.' },
@@ -29,49 +29,48 @@ const TERMS = [
             { name: 'Connection Identification', page: 'relink', definition: 'A PDL tag for the relink answer describing how players must identify the connection between the four impostors.' },
             { name: 'Answer Construction', page: 'relink', definition: 'A PDL tag for the relink answer describing how players must construct the answer (e.g., selecting whole words vs. combining parts).' },
             { name: 'Same-Domain Impostor', page: 'difficulty', definition: 'An impostor whose knowledge domain matches the row\'s connection domain. These tend to be more deceptive because they "look like they belong".' },
-            { name: 'Decoy Grouping', page: 'behaviour', definition: 'A deliberately designed false connection across rows — tiles from different rows that could plausibly form a group, tricking players into wrong guesses.' },
+            { name: 'Decoy Grouping', page: 'difficulty', definition: 'A deliberately designed false connection across rows — tiles from different rows that could plausibly form a group, tricking players into wrong guesses.' },
         ]
     },
     {
         category: 'Statistical Terms',
         terms: [
-            { name: 'IPW (Inverse Probability Weighting)', page: 'model', definition: 'A technique that corrects for survivorship bias. Players who reach later rows are better-than-average, so their results are weighted to represent what a random player would experience.' },
-            { name: 'Survivorship Bias', page: 'model', definition: 'The distortion that occurs when we only observe players who survived to a given point. Later rows appear easier than they are because only skilled players reach them.' },
-            { name: 'Transition Probability', page: 'model', definition: 'The chance of a specific outcome (correct or wrong) at a given position and lives count. Like a probability map of the game state space.' },
-            { name: 'Wrong-Guess Distribution', page: 'model', definition: 'How wrong guesses are spread across 0, 1, 2, or 3 attempts before finding the impostor. Captures the full shape of difficulty, not just the average.' },
+            { name: 'IPW (Inverse Probability Weighting)', page: 'validation', definition: 'A technique that corrects for survivorship bias. Players who reach later rows are better-than-average, so their results are weighted to represent what a random player would experience.' },
+            { name: 'Survivorship Bias', page: 'validation', definition: 'The distortion that occurs when we only observe players who survived to a given point. Later rows appear easier than they are because only skilled players reach them.' },
+            { name: 'Transition Probability', page: 'validation', definition: 'The chance of a specific outcome (correct or wrong) at a given position and lives count. Like a probability map of the game state space.' },
+            { name: 'Wrong-Guess Distribution', page: 'published', definition: 'How wrong guesses are spread across 0, 1, 2, or 3 attempts before finding the impostor. Captures the full shape of difficulty, not just the average.' },
             { name: 'Pearson r', page: 'difficulty', definition: 'A measure of linear correlation between two variables, ranging from \u22121 (perfect inverse) to +1 (perfect positive). Used here to check if design features predict solve rates.' },
             { name: 'Spearman \u03c1', page: 'difficulty', definition: 'A rank-based correlation. Instead of raw values, it checks whether the rank ordering of puzzles by one measure matches another. More robust to outliers than Pearson.' },
-            { name: 'Phi Coefficient (\u03c6)', page: 'model', definition: 'A correlation measure for binary outcomes — specifically, whether failing row A is associated with failing row B. Ranges from \u22121 to +1; higher values mean failures are correlated.' },
+            { name: 'Phi Coefficient (\u03c6)', page: 'validation', definition: 'A correlation measure for binary outcomes — specifically, whether failing row A is associated with failing row B. Ranges from \u22121 to +1; higher values mean failures are correlated.' },
             { name: 'OLS Regression', page: 'difficulty', definition: 'Ordinary Least Squares regression — a standard method for finding which features best predict an outcome. Fits a linear equation to the data.' },
             { name: 'R\u00b2', page: 'difficulty', definition: 'The fraction of variation in the outcome explained by the model. R\u00b2 = 0.80 means the model explains 80% of the variation in solve rates.' },
             { name: 'LOO Cross-Validation', page: 'difficulty', definition: 'Leave-One-Out cross-validation. Tests the model by removing one puzzle, predicting it from the rest, and repeating for all puzzles. Measures how well the model generalises.' },
-            { name: 'MAE', page: 'simulator', definition: 'Mean Absolute Error — the average gap between predicted and actual values. MAE = 12.7pp means predictions are off by about 12.7 percentage points on average.' },
-            { name: 'Ratio-Shift Model', page: 'simulator', definition: 'The simulator\'s approach to adjusting base transition probabilities. Instead of adding a fixed amount, it shifts the odds ratio — preserving valid probability ranges and respecting floor/ceiling effects.' },
-            { name: 'Monte Carlo Simulation', page: 'simulator', definition: 'Running thousands of simulated games using random sampling. Each simulated player plays through the game using the learned transition probabilities, building up a distribution of outcomes.' },
+            { name: 'MAE', page: 'validation', definition: 'Mean Absolute Error — the average gap between predicted and actual values. MAE = 12.7pp means predictions are off by about 12.7 percentage points on average.' },
+            { name: 'Ratio-Shift Model', page: 'validation', definition: 'The simulator\'s approach to adjusting base transition probabilities. Instead of adding a fixed amount, it shifts the odds ratio — preserving valid probability ranges and respecting floor/ceiling effects.' },
+            { name: 'Monte Carlo Simulation', page: 'validation', definition: 'Running thousands of simulated games using random sampling. Each simulated player plays through the game using the learned transition probabilities, building up a distribution of outcomes.' },
         ]
     },
     {
         category: 'Analysis Terms',
         terms: [
-            { name: 'Vertical Inference', page: 'behaviour', definition: 'Tracking how player performance changes across row positions (1st, 2nd, 3rd, 4th row solved). "Vertical" because it looks down the sequence of rows a player solves.' },
-            { name: 'Centre of Mass (CoM)', page: 'behaviour', definition: 'Weighted average of position (0–3) using timing or error values as weights. Formula: Sum(position × value) / Sum(value). Ranges from 0 (all weight at position 0) to 3 (all weight at position 3), with 1.5 as the midpoint. Error CoM < 1.5 means errors are front-loaded — players make more mistakes early and improve, suggesting they\'re learning. Timing CoM < 1.5 means players are slower early and speed up. Formerly called "transparency score".' },
-            { name: 'Cluster / Archetype', page: 'clustering', definition: 'A group of puzzles or rows that share similar characteristics, identified by k-means clustering. An archetype represents a "typical" member of the group.' },
+            { name: 'Vertical Inference', page: 'difficulty', definition: 'Tracking how player performance changes across row positions (1st, 2nd, 3rd, 4th row solved). "Vertical" because it looks down the sequence of rows a player solves.' },
+            { name: 'Centre of Mass (CoM)', page: 'difficulty', definition: 'Weighted average of position (0–3) using timing or error values as weights. Formula: Sum(position × value) / Sum(value). Ranges from 0 (all weight at position 0) to 3 (all weight at position 3), with 1.5 as the midpoint. Error CoM < 1.5 means errors are front-loaded — players make more mistakes early and improve, suggesting they\'re learning. Timing CoM < 1.5 means players are slower early and speed up. Formerly called "transparency score".' },
+            { name: 'Cluster / Archetype', page: 'validation', definition: 'A group of puzzles or rows that share similar characteristics, identified by k-means clustering. An archetype represents a "typical" member of the group.' },
             { name: 'Feature Combo', page: 'difficulty', definition: 'A specific combination of PDL values (e.g., Association + Concept-level + General knowledge). The unique fingerprint of a row\'s design.' },
-            { name: 'Pairwise Ordering Accuracy', page: 'simulator', definition: 'The percentage of puzzle pairs where the simulator correctly predicts which one is harder. 91% means for 91 out of 100 random pairs, the simulator gets the relative ordering right.' },
+            { name: 'Pairwise Ordering Accuracy', page: 'validation', definition: 'The percentage of puzzle pairs where the simulator correctly predicts which one is harder. 91% means for 91 out of 100 random pairs, the simulator gets the relative ordering right.' },
         ]
     },
     {
         category: 'Difficulty Rating Terms',
         terms: [
-            { name: 'Difficulty Rating (1–5)', page: 'ratings', definition: 'A star rating from 1 (easiest) to 5 (hardest), derived from a weighted blend of five difficulty dimensions. Rated for all 39 puzzles — empirical for dated puzzles, simulator-predicted for undated.' },
-            { name: 'Composite Score', page: 'ratings', definition: 'The weighted sum of the five difficulty dimensions (each 0–1), producing a single 0–1 number. Mapped to star ratings via calibrated thresholds. Correlates with actual solve rates at |ρ| ≈ 0.89.' },
-            { name: 'Manipulation', page: 'ratings', definition: 'Difficulty dimension measuring how how hard each row\'s word manipulation is to decode (e.g. compound words, hidden words, homophones). Blends actual/predicted wrong rates with inherent manipulation type scores. The simulator\'s primary causal driver. Weight: 35%.' },
-            { name: 'Abstraction', page: 'ratings', definition: 'Difficulty dimension capturing how abstract the connection between group members is. "Direct membership" (e.g. types of fruit) is easiest; "shared property" (e.g. things that are round) is hardest. Blends wrong rates with inherent abstraction type scores. Weight: 25%.' },
-            { name: 'Domain Mismatch', page: 'ratings', definition: 'Difficulty dimension measuring whether the impostor comes from a different knowledge domain to the group. A same-domain impostor is more deceptive. Blends wrong rates with PDL same_domain flag. Weight: 10%.' },
-            { name: 'Knowledge', page: 'ratings', definition: 'Difficulty dimension measuring how much specialist or broad knowledge the puzzle requires. Derived purely from PDL: knowledge breadth (how many distinct domains) and specialist group count. Same for actual and predicted profiles. Weight: 10%.' },
-            { name: 'Relink Challenge', page: 'ratings', definition: 'Difficulty dimension for Phase 2 (Relink). Blends relink wrong rate with inherent factors: phase 2 tile count, construction manipulation type, and identification manipulation type. Weight: 20%.' },
-            { name: 'Actual vs Predicted Toggle', page: 'ratings', definition: 'For dated puzzles with player data, switch between "Actual" profiles (from real player outcomes) and "Predicted" profiles (from the Monte Carlo simulator using only PDL design features). Comparing the two shows how well the simulator captures each dimension of difficulty.' },
-            { name: 'Difficulty Profile', page: 'ratings', definition: 'The radar chart showing a puzzle\'s scores across all five difficulty dimensions. Different profile shapes indicate different types of difficulty — a puzzle can be hard because of tricky manipulation, abstract connections, or a tough relink phase.' },
+            { name: 'Difficulty Rating (1–5)', page: 'published', definition: 'A star rating from 1 (easiest) to 5 (hardest), derived from a weighted blend of five difficulty dimensions. Rated for all 39 puzzles — empirical for dated puzzles, simulator-predicted for undated.' },
+            { name: 'Composite Score', page: 'published', definition: 'The weighted sum of the five difficulty dimensions (each 0–1), producing a single 0–1 number. Mapped to star ratings via calibrated thresholds. Correlates with actual solve rates at |ρ| ≈ 0.89.' },
+            { name: 'Manipulation', page: 'published', definition: 'Difficulty dimension measuring how how hard each row\'s word manipulation is to decode (e.g. compound words, hidden words, homophones). Blends actual/predicted wrong rates with inherent manipulation type scores. The simulator\'s primary causal driver. Weight: 35%.' },
+            { name: 'Abstraction', page: 'published', definition: 'Difficulty dimension capturing how abstract the connection between group members is. "Direct membership" (e.g. types of fruit) is easiest; "shared property" (e.g. things that are round) is hardest. Blends wrong rates with inherent abstraction type scores. Weight: 25%.' },
+            { name: 'Domain Mismatch', page: 'published', definition: 'Difficulty dimension measuring whether the impostor comes from a different knowledge domain to the group. A same-domain impostor is more deceptive. Blends wrong rates with PDL same_domain flag. Weight: 10%.' },
+            { name: 'Knowledge', page: 'published', definition: 'Difficulty dimension measuring how much specialist or broad knowledge the puzzle requires. Derived purely from PDL: knowledge breadth (how many distinct domains) and specialist group count. Same for actual and predicted profiles. Weight: 10%.' },
+            { name: 'Relink Challenge', page: 'published', definition: 'Difficulty dimension for Phase 2 (Relink). Blends relink wrong rate with inherent factors: phase 2 tile count, construction manipulation type, and identification manipulation type. Weight: 20%.' },
+            { name: 'Difficulty Profile', page: 'published', definition: 'The radar chart showing a puzzle\'s scores across all five difficulty dimensions. Different profile shapes indicate different types of difficulty — a puzzle can be hard because of tricky manipulation, abstract connections, or a tough relink phase.' },
         ]
     }
 ];
@@ -97,13 +96,12 @@ export function render(container) {
 function formatPageName(page) {
     const names = {
         overview: 'Overview',
+        published: 'Published Puzzles',
+        upcoming: 'Upcoming Puzzles',
         difficulty: 'Difficulty Drivers',
-        behaviour: 'Player Behaviour',
         relink: 'Relink Phase',
-        model: 'Statistical Model',
-        simulator: 'Simulator',
-        clustering: 'Clustering',
-        ratings: 'Difficulty Ratings'
+        validation: 'Model Validation',
+        glossary: 'Glossary'
     };
     return names[page] || page;
 }

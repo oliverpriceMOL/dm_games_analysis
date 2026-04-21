@@ -8,7 +8,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
        background: var(--bg); color: var(--text); line-height: 1.6; }
 .layout { display: flex; min-height: 100vh; }
 nav { width: 240px; background: #2d3436; color: #fff; padding: 20px 0;
-      position: fixed; height: 100vh; overflow-y: auto; }
+      position: fixed; height: 100vh; overflow-y: auto; z-index: 100; }
 nav h2 { padding: 0 20px 15px; font-size: 14px; color: #b2bec3; text-transform: uppercase;
           letter-spacing: 1px; }
 nav a { display: block; padding: 8px 20px; color: #dfe6e9; text-decoration: none;
@@ -128,9 +128,13 @@ th { background: #f8f9fa; font-weight: 600; position: sticky; top: 0; }
 .glossary-link:hover { background: #5b4bd5; }
 
 /* ── Difficulty Ratings ────────────────────────────── */
-.star-rating { display: inline-block; font-size: 14px; letter-spacing: 1px; }
-.star-rating .star-on { color: #f39c12; }
-.star-rating .star-off { color: #dfe6e9; }
+.diff-bar { display: inline-flex; gap: 2px; align-items: center; vertical-align: middle; }
+.diff-seg { width: 14px; height: 16px; border-radius: 2px; background: #dfe6e9; }
+.diff-bar[data-tier="1"] .diff-seg.on { background: #27ae60; }
+.diff-bar[data-tier="2"] .diff-seg.on { background: #2ecc71; }
+.diff-bar[data-tier="3"] .diff-seg.on { background: #f39c12; }
+.diff-bar[data-tier="4"] .diff-seg.on { background: #e74c3c; }
+.diff-bar[data-tier="5"] .diff-seg.on { background: #c0392b; }
 .dim-bar-wrap { display: flex; align-items: center; gap: 6px; }
 .dim-bar { height: 8px; border-radius: 4px; min-width: 2px; }
 .dim-bar-label { font-size: 11px; color: var(--muted); min-width: 28px; text-align: right; }
@@ -162,6 +166,33 @@ th { background: #f8f9fa; font-weight: 600; position: sticky; top: 0; }
 .sortable-th { cursor: pointer; user-select: none; }
 .sortable-th:hover { color: var(--accent); }
 .sortable-th .sort-arrow { font-size: 10px; margin-left: 3px; }
+
+/* ── Puzzle catalogue: expand-row detail ───────────── */
+.catalogue-row { cursor: pointer; transition: background 0.1s; }
+.catalogue-row:hover { background: #f0f4ff; }
+.catalogue-row.expanded { background: #eef2ff; }
+.expand-detail { background: #f8f9fa; border-left: 3px solid var(--accent); }
+.expand-detail td { padding: 20px; }
+.expand-detail .detail-inner { max-width: 100%; }
+.expand-detail .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.expand-arrow { display: inline-block; font-size: 10px; color: var(--muted); margin-right: 6px;
+                transition: transform 0.15s; }
+.catalogue-row.expanded .expand-arrow { transform: rotate(90deg); }
+.badge-predicted { display: inline-block; font-size: 10px; font-weight: 700; color: #8e44ad;
+                   background: #8e44ad1a; border-radius: 4px; padding: 1px 5px; vertical-align: middle; }
+
+/* ── Tooltip system ───────────────────────────────── */
+.tooltip-trigger { display: inline-flex; align-items: center; justify-content: center;
+                   width: 15px; height: 15px; border-radius: 50%; background: var(--border);
+                   color: var(--muted); font-size: 10px; font-weight: 700; cursor: help;
+                   position: relative; vertical-align: middle; margin-left: 3px; }
+.tooltip-trigger:hover .tooltip-content { display: block; }
+.tooltip-content { display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+                   background: #2d3436; color: #fff; padding: 8px 12px; border-radius: 6px;
+                   font-size: 12px; font-weight: 400; line-height: 1.5; width: 260px;
+                   box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 100; pointer-events: none; }
+.tooltip-content::after { content: ''; position: absolute; top: 100%; left: 50%; margin-left: -5px;
+                          border-width: 5px; border-style: solid; border-color: #2d3436 transparent transparent transparent; }
 
 /* ── Mobile overrides ─────────────────────────────── */
 @media (max-width: 900px) {

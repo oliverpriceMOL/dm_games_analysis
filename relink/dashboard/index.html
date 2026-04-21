@@ -12,16 +12,13 @@
 <div class="nav-overlay" id="nav-overlay"></div>
 <div class="layout">
 <nav id="nav">
-    <h2>PDL Analysis</h2>
+    <h2>Relink Analysis</h2>
     <a href="#overview" data-page="overview">Overview</a>
+    <a href="#published" data-page="published">Published Puzzles</a>
+    <a href="#upcoming" data-page="upcoming">Upcoming Puzzles</a>
     <a href="#difficulty" data-page="difficulty">Difficulty Drivers</a>
-    <a href="#behaviour" data-page="behaviour">Player Behaviour</a>
     <a href="#relink" data-page="relink">Relink Phase</a>
-    <a href="#model" data-page="model">Statistical Model</a>
-    <a href="#simulator" data-page="simulator">Simulator</a>
-    <a href="#clustering" data-page="clustering">Clustering</a>
-    <a href="#explorer" data-page="explorer">Puzzle Explorer</a>
-    <a href="#ratings" data-page="ratings">Difficulty Ratings</a>
+    <a href="#validation" data-page="validation">Model Validation</a>
     <a href="#glossary" data-page="glossary">Glossary</a>
 </nav>
 <main>
@@ -32,18 +29,56 @@
 <div class="page" id="page-overview">
 <h1>Relink PDL &times; Behaviour Analysis</h1>
 <p class="subtitle" id="subtitle"></p>
-<p class="page-intro">Summary of the dataset and headline findings. How many puzzles, how many players, and how well does the simulator predict real outcomes?</p>
+<p class="page-intro">How is Relink performing? Headline numbers, solve rate trends, and key takeaways.</p>
 
 <div class="section" id="findings">
-<h2>Key Findings</h2>
+<h2>Headline Stats</h2>
 <div class="stats-grid" id="stats-grid"></div>
+</div>
+
+<div class="section" id="solve-rate-trend">
+<h2>Solve Rate by Date</h2>
+<div class="card">
+    <div class="chart-container"><canvas id="chart-solve-trend"></canvas></div>
+</div>
+</div>
+
+<div class="section" id="key-takeaways">
+<h2>Key Takeaways</h2>
+<div class="card" id="takeaways-content"></div>
+</div>
+</div>
+
+<!-- ============ PUBLISHED PUZZLES ============ -->
+<div class="page" id="page-published">
+<h1>Published Puzzles</h1>
+<p class="page-intro">How did each puzzle actually perform? Sortable table with real player data. Click any row to expand the full breakdown — row detail, wrong-guess distributions, timing curves, and failure correlations.</p>
+
+<div class="section" id="published-section">
+<div class="card">
+    <div id="published-table-container"></div>
+</div>
+<div id="published-detail"></div>
+</div>
+</div>
+
+<!-- ============ UPCOMING PUZZLES ============ -->
+<div class="page" id="page-upcoming">
+<h1>Upcoming Puzzles</h1>
+<p class="page-intro">Which puzzle fits the difficulty you need? Predicted difficulty ratings and solve rates for puzzles without player data yet. Click any row to see the design breakdown.</p>
+
+<div class="section" id="upcoming-section">
+<div class="card">
+    <div id="upcoming-table-container"></div>
+</div>
+<div id="upcoming-detail"></div>
 </div>
 </div>
 
 <!-- ============ DIFFICULTY DRIVERS ============ -->
 <div class="page" id="page-difficulty">
 <h1>Difficulty Drivers</h1>
-<p class="page-intro">What makes a puzzle hard? These analyses break down row-level and puzzle-level difficulty by PDL design parameters — manipulation type, abstraction, knowledge level, domain, and their interactions.</p>
+<p class="page-intro">What design choices make puzzles harder? Row-level and puzzle-level difficulty broken down by PDL parameters, with learning curves and trap analysis.</p>
 
 <div class="section" id="crosstabs">
 <h2>PDL Axis Breakdown</h2>
@@ -87,40 +122,24 @@
     <div class="chart-container tall"><canvas id="chart-forest"></canvas></div>
 </div>
 </div>
-</div>
-
-<!-- ============ PLAYER BEHAVIOUR ============ -->
-<div class="page" id="page-behaviour">
-<h1>Player Behaviour</h1>
-<p class="page-intro">How do players learn during a game, and how do designed traps affect them? Vertical inference tracks speed and accuracy across row positions; decoy analysis measures how often players fall for planted false groupings.</p>
 
 <div class="section" id="vertical">
 <h2>Vertical Inference</h2>
-<p style="color:var(--muted);margin-bottom:15px;">How do speed and accuracy change as players solve more rows? Both metrics use centre of mass (CoM): where does the weight concentrate? Below 1.5 = front-loaded. Above 1.5 = back-loaded.</p>
+<p style="color:var(--muted);margin-bottom:15px;">How do speed and accuracy change as players solve more rows? Centre of mass (CoM) below 1.5 = front-loaded (improves). Above 1.5 = back-loaded (gets harder).</p>
 <div class="card" style="margin-bottom:20px;">
     <h3>Summary</h3>
     <div id="vi-summary"></div>
 </div>
 <div class="card" style="margin-bottom:20px;">
-    <h3>Vertical Inference Curves by PDL Feature</h3>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">
-        Each feature axis shows two panels: timing curve (median seconds between correct guesses) and error curve (mean wrong guesses per row).
-    </p>
+    <h3>Curves by PDL Feature</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">Timing curve (median seconds) and error curve (mean wrong guesses) across solve positions.</p>
     <div id="vi-curve-charts"></div>
-</div>
-<div class="card">
-    <h3 class="collapsible" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('show')">Per-Puzzle Detail</h3>
-    <div class="collapse-content">
-    <table id="vi-puzzle-table">
-        <thead><tr><th>Puzzle</th><th>Date</th><th>Timing Curve</th><th>Timing CoM</th><th>Error Curve</th><th>Error CoM</th><th>Solve Rate</th></tr></thead>
-        <tbody></tbody>
-    </table>
-    </div>
 </div>
 </div>
 
 <div class="section" id="decoys">
 <h2>Decoy Analysis</h2>
+<p style="color:var(--muted);margin-bottom:15px;">Do designed false groupings (decoys) actually trap players?</p>
 <div class="two-col">
     <div class="card">
         <h3>Puzzles With vs Without Decoys</h3>
@@ -138,7 +157,7 @@
 <!-- ============ RELINK PHASE ============ -->
 <div class="page" id="page-relink">
 <h1>Relink Phase</h1>
-<p class="page-intro">Phase 2 of the game: after finding all four impostors, players must identify the hidden connection between them. This section analyses Phase 2 difficulty by connection identification method, answer construction type, and the number of tiles to fill.</p>
+<p class="page-intro">Phase 2 of the game: after finding all four impostors, players must identify the hidden connection between them. Difficulty by connection identification method, answer construction type, and tile count.</p>
 
 <div class="section" id="relink-section">
 <h2>Relink Phase PDL</h2>
@@ -161,17 +180,39 @@
 </div>
 </div>
 
-<!-- ============ STATISTICAL MODEL ============ -->
-<div class="page" id="page-model">
-<h1>Statistical Model</h1>
-<p class="page-intro">The IPW-weighted transition probability model and correlated failure analysis. These sections model how error rates change across game positions and lives, and whether failing one row predicts failing another.</p>
+<!-- ============ MODEL VALIDATION ============ -->
+<div class="page" id="page-validation">
+<h1>Model Validation</h1>
+<p class="page-intro">Can we trust the predictions? Simulator accuracy proof, transition probability methodology, correlated failure analysis, and clustering archetypes.</p>
 
-<div class="section" id="transitions">
-<h2>Transition Probability Model</h2>
+<div class="section" id="sim-accuracy">
+<h2>Simulator Accuracy</h2>
+<div class="stats-grid" id="val-stats-grid"></div>
+<div class="two-col">
+    <div class="card">
+        <h3>Simulated vs Actual Solve Rate</h3>
+        <div class="chart-container"><canvas id="chart-val-scatter"></canvas></div>
+    </div>
+    <div class="card">
+        <h3>Prediction Errors</h3>
+        <div style="overflow-x:auto;" id="val-delta-table"></div>
+    </div>
+</div>
+<div class="card" style="margin-top:20px;">
+    <h3>Simulated Rows Completed Distribution</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">What proportion of simulated players complete 0, 1, 2, 3, or all 4 rows (+ relink).</p>
+    <div class="chart-container tall"><canvas id="chart-val-dist"></canvas></div>
+</div>
+</div>
+
+<div class="section" id="val-transitions">
+<h2 class="collapsible" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('show')">Transition Probability Model</h2>
+<div class="collapse-content">
+<p style="color:var(--muted);margin-bottom:15px;">IPW-weighted error rates by game state. How the simulator decides what happens at each step.</p>
 <p id="trans-n" style="color:var(--muted);margin-bottom:15px;"></p>
 <div class="card">
-    <h3>Error Rate by Position &times; Lives Remaining (IPW-weighted)</h3>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">Cell shows first-try correct %. Green = easy, red = hard. Darker cells are harder.</p>
+    <h3>Error Rate by Position &times; Lives Remaining</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">Cell shows first-try correct %. Green = easy, red = hard.</p>
     <div class="heatmap-grid" id="pos-lives-grid"></div>
 </div>
 <div class="two-col" id="trans-pdl-charts"></div>
@@ -180,10 +221,12 @@
     <div class="chart-container"><canvas id="trans-chart-decoy"></canvas></div>
 </div>
 </div>
+</div>
 
-<div class="section" id="failures">
-<h2>Correlated Failures</h2>
-<p style="color:var(--muted);margin-bottom:15px;">Which rows tend to be failed together? Phi coefficient (&phi;) measures pairwise failure correlation. Blue = independent, red = correlated.</p>
+<div class="section" id="val-failures">
+<h2 class="collapsible" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('show')">Correlated Failures</h2>
+<div class="collapse-content">
+<p style="color:var(--muted);margin-bottom:15px;">Which rows tend to be failed together? Phi coefficient (φ) measures pairwise failure correlation.</p>
 <p id="failures-n" style="color:var(--muted);font-size:13px;margin-bottom:15px;"></p>
 <div class="card" style="margin-bottom:20px;">
     <h3>Aggregate: Does Feature Similarity Predict Correlated Failure?</h3>
@@ -198,45 +241,10 @@
 </div>
 </div>
 
-<!-- ============ SIMULATOR ============ -->
-<div class="page" id="page-simulator">
-<h1>Game Simulator</h1>
-<p class="page-intro">Monte Carlo simulation of game outcomes using the learned transition model. Compares simulated solve rates against real player data and predicts difficulty for puzzles without player data.</p>
-
-<div class="section" id="simulator-section">
-<h2>Simulator Validation &amp; Predictions</h2>
-<p id="sim-validation" style="color:var(--muted);margin-bottom:15px;"></p>
-<div class="card" style="margin-bottom:20px;">
-    <h3>Simulated vs Actual Solve Rate</h3>
-    <div class="chart-container"><canvas id="chart-sim-scatter"></canvas></div>
-</div>
-<div class="card" style="margin-bottom:20px;">
-    <h3>Simulated Rows Completed Distribution</h3>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">Stacked bars show what proportion of simulated players complete 0, 1, 2, 3, or all 4 rows (+ relink).</p>
-    <div class="chart-container tall"><canvas id="chart-sim-dist"></canvas></div>
-</div>
-<div class="card">
-    <h3>Puzzle-by-Puzzle Comparison</h3>
-    <table id="sim-table">
-        <thead><tr><th>Puzzle</th><th>Date</th><th>Simulated</th><th>Actual</th><th>Delta</th><th>Manip.</th><th>Abstr.</th><th>P2 Tiles</th><th>Mean Lives</th></tr></thead>
-        <tbody></tbody>
-    </table>
-</div>
-<div class="card">
-    <h3>Predicted Difficulty — Puzzles Without Player Data</h3>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;">Simulated using the pooled transition model learned from dated puzzles. Sorted hardest-first.</p>
-    <div id="sim-undated"></div>
-</div>
-</div>
-</div>
-
-<!-- ============ CLUSTERING ============ -->
-<div class="page" id="page-clustering">
-<h1>Clustering</h1>
-<p class="page-intro">k-means clustering groups puzzles and rows into archetypes based on their PDL features and observed difficulty. Puzzle clusters (k=3) reveal broad difficulty tiers; row archetypes (k=4) identify common feature combinations.</p>
-
-<div class="section" id="clusters">
-<h2>Puzzle &amp; Row Archetypes</h2>
+<div class="section" id="val-clustering">
+<h2 class="collapsible" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('show')">Clustering Archetypes</h2>
+<div class="collapse-content">
+<p style="color:var(--muted);margin-bottom:15px;">k-means clustering groups puzzles and rows into archetypes based on PDL features and difficulty.</p>
 <div class="two-col">
     <div class="card">
         <h3>Puzzle Clusters (k=3)</h3>
@@ -250,64 +258,12 @@
 </div>
 </div>
 </div>
-
-<!-- ============ PUZZLE EXPLORER ============ -->
-<div class="page" id="page-explorer">
-<h1>Puzzle Explorer</h1>
-<p class="page-intro">Deep-dive into individual puzzles or compare any combination side by side. Select puzzles below to see row-level wrong-guess distributions, PDL features, timing curves, failure correlations, and simulator predictions.</p>
-
-<div class="section" id="explorer-section">
-<div class="card" id="explorer-picker">
-    <h3>Select Puzzles</h3>
-    <div class="explorer-controls">
-        <button class="explorer-btn" id="explorer-select-all">Select All</button>
-        <button class="explorer-btn" id="explorer-clear">Clear</button>
-    </div>
-    <div class="explorer-grid" id="explorer-grid"></div>
-</div>
-<div id="explorer-content"></div>
-</div>
-</div>
-
-<!-- ============ DIFFICULTY RATINGS ============ -->
-<div class="page" id="page-ratings">
-<h1>Difficulty Ratings</h1>
-<p class="page-intro">A 5-axis difficulty profile and 1–5 star rating for every puzzle — empirical for dated puzzles, simulator-predicted for undated. Dimensions: Impostor Deception (row accuracy), Knowledge Demand (specialist knowledge), Punishment Risk (life pressure), Connection Challenge (Phase 2), and Volatility (killer row vs even spread).</p>
-
-<div class="section" id="ratings-validation">
-<h2>Rating Model</h2>
-<p style="color:var(--muted);margin-bottom:15px;">Composite score correlated with actual solve rate across 14 dated puzzles. Higher composite = harder puzzle = lower solve rate.</p>
-<div class="two-col">
-    <div class="card">
-        <h3>Validation</h3>
-        <div id="ratings-validation-stats" class="stats-grid"></div>
-    </div>
-    <div class="card">
-        <h3>Composite vs Solve Rate</h3>
-        <div class="chart-container"><canvas id="chart-ratings-scatter"></canvas></div>
-    </div>
-</div>
-</div>
-
-<div class="section" id="ratings-all">
-<h2>All Puzzles</h2>
-<p style="color:var(--muted);margin-bottom:15px;">Click column headers to sort. Dated puzzles use empirical data; undated use simulator predictions (shown with dashed border).</p>
-<div class="card">
-    <div id="ratings-table-container"></div>
-</div>
-</div>
-
-<div class="section" id="ratings-dimensions">
-<h2>Dimension Rankings</h2>
-<p style="color:var(--muted);margin-bottom:15px;">Top 10 hardest puzzles per dimension.</p>
-<div class="two-col" id="ratings-dim-rankings"></div>
-</div>
 </div>
 
 <!-- ============ GLOSSARY ============ -->
 <div class="page" id="page-glossary">
 <h1>Glossary</h1>
-<p class="page-intro">Plain-English definitions of all key terms used across the dashboard. Click any page link to jump to where the term is used.</p>
+<p class="page-intro">Plain-English definitions of all key terms. Hover over <span class="tooltip-trigger" style="cursor:help;">?</span> icons throughout the dashboard for quick definitions.</p>
 <div id="glossary-content"></div>
 </div>
 

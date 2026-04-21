@@ -4,8 +4,8 @@
 import { makeBarChart } from './charts.js';
 
 const WRONG_COLORS = {
-    '0': '#e74c3c', '1': '#f39c12', '2': '#27ae60',
-    '3': '#2980b9', 'no_attempt_lost': '#c0392b',
+    '0': '#f39c12', '1': '#27ae60', '2': '#2980b9',
+    '3': '#e74c3c', 'no_attempt_lost': '#641e16',
 };
 const WRONG_LABELS = {
     '0': '0 wrong', '1': '1 wrong', '2': '2 wrong',

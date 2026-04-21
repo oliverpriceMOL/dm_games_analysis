@@ -1,7 +1,6 @@
 /**
- * Vertical Inference section: summary cards, curve charts, per-puzzle table with sparklines.
+ * Vertical Inference section: summary cards and curve charts by PDL feature.
  */
-import { drawSparkline } from './charts.js';
 
 const CURVE_COLORS = ['#e74c3c', '#f39c12', '#27ae60', '#2980b9', '#8e44ad', '#e67e22', '#1abc9c', '#636e72'];
 
@@ -139,30 +138,4 @@ export function render(viData) {
         }
     });
 
-    // Per-puzzle detail table with dual sparklines
-    const tbody = document.querySelector('#vi-puzzle-table tbody');
-    const sorted = [...viData.puzzles].sort((a, b) => (a.error_auc ?? 99) - (b.error_auc ?? 99));
-    let si = 0;
-    sorted.forEach(p => {
-        const tauc = p.timing_auc !== null ? p.timing_auc.toFixed(2) : '—';
-        const tColor = p.timing_auc !== null ? (p.timing_auc < 1.5 ? 'color:#27ae60' : 'color:#e74c3c') : '';
-        const eauc = p.error_auc !== null ? p.error_auc.toFixed(2) : '—';
-        const eColor = p.error_auc !== null ? (p.error_auc < 1.5 ? 'color:#27ae60' : 'color:#e74c3c') : '';
-        const tsId = `sp-t-${si}`, esId = `sp-e-${si}`;
-        si++;
-        tbody.innerHTML += `<tr>
-            <td>${p.name}</td><td>${p.label}</td>
-            <td><canvas id="${tsId}" width="120" height="32" style="vertical-align:middle;"></canvas></td>
-            <td style="${tColor};font-weight:600;">${tauc}</td>
-            <td><canvas id="${esId}" width="120" height="32" style="vertical-align:middle;"></canvas></td>
-            <td style="${eColor};font-weight:600;">${eauc}</td>
-            <td>${p.solve_rate}%</td></tr>`;
-    });
-    // Render sparklines
-    si = 0;
-    sorted.forEach(p => {
-        drawSparkline(`sp-t-${si}`, p.timing_curve || [], 4, (p.timing_auc ?? 99) < 1.5);
-        drawSparkline(`sp-e-${si}`, p.error_curve || [], 4, (p.error_auc ?? 99) < 1.5);
-        si++;
-    });
 }

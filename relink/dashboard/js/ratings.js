@@ -28,11 +28,9 @@ let profileMode = 'actual';
 function stars(rating) {
     let s = '';
     for (let i = 1; i <= 5; i++) {
-        s += i <= rating
-            ? '<span class="star-on">★</span>'
-            : '<span class="star-off">★</span>';
+        s += `<span class="diff-seg${i <= rating ? ' on' : ''}"></span>`;
     }
-    return `<span class="star-rating">${s}</span>`;
+    return `<span class="diff-bar" data-tier="${rating}">${s}</span>`;
 }
 
 function dimBar(val, dim) {
@@ -199,7 +197,7 @@ function renderValidation(diff) {
                             return [
                                 `Solve rate: ${p.solve_rate}%`,
                                 `Composite: ${comp.toFixed(3)}`,
-                                `Rating: ${'★'.repeat(rating)}${'☆'.repeat(5 - rating)} (${rating}/5)`,
+                                `Rating: ${'■'.repeat(rating)}${'□'.repeat(5 - rating)} (${rating}/5)`,
                             ];
                         }
                     }

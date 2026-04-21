@@ -311,9 +311,9 @@ function updateContent() {
         // Difficulty rating
         const diff = p.difficulty;
         if (diff) {
-            const starHtml = Array.from({length: 5}, (_, i) =>
-                `<span style="color:${i < diff.rating ? '#f39c12' : '#dfe6e9'}">★</span>`).join('');
-            html += `<td><span style="font-size:14px;letter-spacing:1px">${starHtml}</span></td>`;
+            let segs = '';
+            for (let i = 1; i <= 5; i++) segs += `<span class="diff-seg${i <= diff.rating ? ' on' : ''}"></span>`;
+            html += `<td><span class="diff-bar" data-tier="${diff.rating}">${segs}</span></td>`;
         } else {
             html += '<td>—</td>';
         }

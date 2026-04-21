@@ -1,23 +1,15 @@
 /**
  * Dashboard router. Hash-based navigation with lazy JSON loading.
- * Each page only fetches the JSON files it needs on first visit.
+ * 7 pages: Overview, Published, Upcoming, Difficulty, Relink, Validation, Glossary.
  */
 
 import * as overview from './overview.js';
-import * as crosstabs from './crosstabs.js';
-import { renderHeatmap, renderImpostorDomain } from './heatmap.js';
-import * as correlations from './correlations.js';
-import * as regression from './regression.js';
-import * as vertical from './vertical.js';
-import * as decoys from './decoys.js';
+import * as published from './published.js';
+import * as upcoming from './upcoming.js';
+import * as difficultyDrivers from './difficulty-drivers.js';
 import * as relinkPhase from './relink.js';
-import * as clustering from './clustering.js';
-import * as transitions from './transitions.js';
-import * as failures from './failures.js';
-import * as simulator from './simulator.js';
+import * as validation from './validation.js';
 import * as glossary from './glossary.js';
-import * as explorer from './explorer.js';
-import * as ratings from './ratings.js';
 
 const DATA_DIR = '../outputs/data';
 
@@ -25,60 +17,32 @@ const DATA_DIR = '../outputs/data';
 
 const PAGE_CONFIG = {
     overview: {
-        files: ['overview', 'regression', 'simulator'],
-        render(d) {
-            overview.render(d.overview, d.regression, d.simulator);
-        }
+        files: ['overview'],
+        render(d) { overview.render(d.overview); }
+    },
+    published: {
+        files: ['puzzle-explorer', 'difficulty'],
+        render(d) { published.render(d.puzzleExplorer, d.difficulty); }
+    },
+    upcoming: {
+        files: ['puzzle-explorer', 'difficulty', 'simulator'],
+        render(d) { upcoming.render(d.puzzleExplorer, d.difficulty, d.simulator); }
     },
     difficulty: {
-        files: ['crosstabs', 'heatmap', 'impostor-domain', 'correlations', 'regression'],
-        render(d) {
-            crosstabs.render(d.crosstabs);
-            renderHeatmap(d.heatmap);
-            renderImpostorDomain(d.impostorDomain);
-            correlations.render(d.correlations);
-            regression.render(d.regression);
-        }
-    },
-    behaviour: {
-        files: ['vertical', 'decoys'],
-        render(d) {
-            vertical.render(d.vertical);
-            decoys.render(d.decoys);
-        }
+        files: ['crosstabs', 'heatmap', 'impostor-domain', 'correlations', 'regression', 'vertical', 'decoys'],
+        render(d) { difficultyDrivers.render(d); }
     },
     relink: {
         files: ['relink'],
         render(d) { relinkPhase.render(d.relink); }
     },
-    model: {
-        files: ['transitions', 'failures'],
-        render(d) {
-            transitions.render(d.transitions);
-            failures.render(d.failures);
-        }
-    },
-    simulator: {
-        files: ['simulator'],
-        render(d) { simulator.render(d.simulator); }
-    },
-    clustering: {
-        files: ['clustering'],
-        render(d) { clustering.render(d.clustering); }
-    },
-    explorer: {
-        files: ['puzzle-explorer'],
-        render(d) { explorer.render(d); }
-    },
-    ratings: {
-        files: ['difficulty'],
-        render(d) { ratings.render(d); }
+    validation: {
+        files: ['simulator', 'transitions', 'failures', 'clustering'],
+        render(d) { validation.render(d); }
     },
     glossary: {
         files: [],
-        render() {
-            glossary.render(document.getElementById('glossary-content'));
-        }
+        render() { glossary.render(document.getElementById('glossary-content')); }
     }
 };
 
