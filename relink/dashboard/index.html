@@ -43,6 +43,18 @@
 </div>
 </div>
 
+<div class="section" id="solve-rate-distribution">
+<h2>Solve Rate Distribution</h2>
+<div class="card">
+    <div class="toggle-group" id="dist-toggle" role="radiogroup" style="margin-bottom:12px;">
+        <button data-mode="actual" class="toggle-btn">Actual</button>
+        <button data-mode="predicted" class="toggle-btn">Predicted</button>
+        <button data-mode="both" class="toggle-btn active">Both</button>
+    </div>
+    <div class="chart-container"><canvas id="chart-solve-distribution"></canvas></div>
+</div>
+</div>
+
 <div class="section" id="key-takeaways">
 <h2>Key Takeaways</h2>
 <div class="card" id="takeaways-content"></div>
@@ -89,6 +101,16 @@
     <div class="card"><h3>By Knowledge Level</h3><div class="chart-container"><canvas id="chart-know"></canvas></div></div>
     <div class="card"><h3>By Knowledge Domain</h3><div class="chart-container tall"><canvas id="chart-domain"></canvas></div></div>
 </div>
+
+<h2 style="margin-top:30px;">Solve-Order Distribution</h2>
+<p style="color:var(--muted);margin-bottom:15px;">For each PDL category, what fraction of the time was a row solved 1st, 2nd, 3rd, 4th &mdash; or never (player lost lives before resolving it)? Reads each bar as a 100% stack.</p>
+<div class="two-col">
+    <div class="card"><h3>By Manipulation Type</h3><div class="chart-container"><canvas id="chart-manip-so"></canvas></div></div>
+    <div class="card"><h3>By Abstraction Type</h3><div class="chart-container"><canvas id="chart-abstr-so"></canvas></div></div>
+    <div class="card"><h3>By Knowledge Level</h3><div class="chart-container"><canvas id="chart-know-so"></canvas></div></div>
+    <div class="card"><h3>By Knowledge Domain</h3><div class="chart-container tall"><canvas id="chart-domain-so"></canvas></div></div>
+</div>
+
 <div class="card" id="pdl-agg-table" style="margin-top:20px;"></div>
 </div>
 
@@ -104,6 +126,11 @@
 <div class="two-col">
     <div class="card"><h3>Same vs Different Domain</h3><div class="chart-container"><canvas id="chart-domain-dist"></canvas></div></div>
     <div class="card"><h3>By Impostor Domain</h3><div class="chart-container"><canvas id="chart-imp-domain"></canvas></div></div>
+</div>
+<div class="card" style="margin-top:15px;">
+    <h3>Group Domain &times; Impostor Real Domain</h3>
+    <p style="color:var(--muted);margin-bottom:10px;">First-try % when the row's domain is X (rows) and the impostor's <em>realIdentityDomain</em> is Y (columns). Diagonal = same-domain impostor.</p>
+    <div id="real-domain-breakdown-container"></div>
 </div>
 </div>
 

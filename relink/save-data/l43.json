@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 2,
+  "id": "l43",
+  "date": "",
+  "name": "Films about aliens",
+  "rows": [
+    {
+      "id": "row-1777021089133-27",
+      "position": 0,
+      "category": "Groups of vehicles",
+      "tiles": [
+        {
+          "id": "tile-1777021089133-28",
+          "text": "Fleet",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777021089133-29",
+          "text": "Battleship",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777021089133-30",
+          "text": "Convoy",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777021089133-31",
+          "text": "Train",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1777021089133-22",
+      "position": 1,
+      "category": "Analogue camera components in plural",
+      "tiles": [
+        {
+          "id": "tile-1777021089133-23",
+          "text": "Pixels",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777021089133-24",
+          "text": "Lenses",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777021089133-25",
+          "text": "Films",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-1777021089133-26",
+          "text": "Flashes",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "Plural add-delete"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "Technology"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Technology",
+            "Film-TV"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1777021089133-37",
+      "position": 2,
+      "category": "James Cameron sequels",
+      "tiles": [
+        {
+          "id": "tile-1777021089133-38",
+          "text": "Aliens",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-1777021089133-39",
+          "text": "ET",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777021089133-40",
+          "text": "Judgement Day",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777021089133-41",
+          "text": "Fire and Ash",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Film-TV"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1777021089133-32",
+      "position": 3,
+      "category": "They are framed",
+      "tiles": [
+        {
+          "id": "tile-1777021089133-33",
+          "text": "Spectacles",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777021089133-34",
+          "text": "Patsy",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777021089133-35",
+          "text": "Photo",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777021089133-36",
+          "text": "Contact",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Multi-sense"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "Films",
+        "source": "grid",
+        "sourceRowId": "row-1777021089133-22"
+      },
+      {
+        "text": "about",
+        "source": "fodder"
+      },
+      {
+        "text": "Aliens",
+        "source": "grid",
+        "sourceRowId": "row-1777021089133-37"
+      }
+    ],
+    "answer": "",
+    "pdl": {
+      "connectionIdentification": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "knowledgeDomain": [
+          "Film-TV"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "Phrase"
+        ],
+        "knowledge": [
+          "Common cultural"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1777025045188-1",
+      "tileIds": [
+        "tile-1777021089133-38",
+        "tile-1777021089133-39",
+        "tile-1777021089133-40",
+        "tile-1777021089133-41"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "completeness": null,
+        "groupsSpanned": "",
+        "description": "ET is also a movie about Aliens so it could get confusing. The whole row could also confuse someone when trying to solve vertically."
+      }
+    },
+    {
+      "id": "decoy-1777025096488-2",
+      "tileIds": [
+        "tile-1777021089133-24",
+        "tile-1777021089133-36",
+        "tile-1777021089133-33"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Loose thematic"
+        ],
+        "completeness": null,
+        "groupsSpanned": "",
+        "description": "All things to do with vision correcting."
+      }
+    },
+    {
+      "id": "decoy-1777025160471-3",
+      "tileIds": [
+        "tile-1777021089133-28",
+        "tile-1777021089133-29",
+        "tile-1777021089133-30"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "completeness": null,
+        "groupsSpanned": "",
+        "description": "All military terms - whereas train is civilian infrastructure."
+      }
+    },
+    {
+      "id": "decoy-1777025208488-4",
+      "tileIds": [
+        "tile-1777021089133-23",
+        "tile-1777021089133-25",
+        "tile-1777021089133-26",
+        "tile-1777021089133-24"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Shared property"
+        ],
+        "completeness": null,
+        "groupsSpanned": "",
+        "description": "All appear to be camera/visuals related."
+      }
+    }
+  ],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 0,
+    "isThemed": false,
+    "themeDomain": null
+  }
+}

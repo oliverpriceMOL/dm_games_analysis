@@ -92,10 +92,6 @@ relink_chart_data = metrics.compute_relink(overlap_dates, date_summaries, pdl_pu
 cluster_chart_data, cluster_assignments = metrics.compute_clustering(
     pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date, date_summaries, row_joined)
 
-# 9. Overview
-overview_data = metrics.compute_overview(
-    date_summaries, pdl_puzzle_features, pdl_puzzles, overlap_dates, aggregate_timing)
-
 # 11. IPW weights
 ipw_data = model.compute_ipw_weights(players_by_date)
 print(f"  IPW: {ipw_data['diagnostics'].get('n_trajectories', 0)} trajectories, "
@@ -252,6 +248,11 @@ for lid, pdata in pdl_puzzles.items():
     sim_undated[lid] = result
 
 print(f"  Simulator (undated/no-data): {len(sim_undated)} puzzles simulated")
+
+# 9. Overview (after sim_undated so the SR distribution can include predicted puzzles)
+overview_data = metrics.compute_overview(
+    date_summaries, pdl_puzzle_features, pdl_puzzles, overlap_dates,
+    aggregate_timing, sim_undated=sim_undated)
 
 # 15. Puzzle Explorer
 explorer_data = metrics.compute_puzzle_explorer(

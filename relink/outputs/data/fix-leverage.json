@@ -1,0 +1,694 @@
+{
+  "threshold_pct": 60.0,
+  "generated_at": "2026-04-27 11:12:01",
+  "dated": [
+    {
+      "lid": "l17",
+      "date": "2026-04-09",
+      "date_label": "Apr 9",
+      "name": "Generations",
+      "current_sr": 21.2,
+      "wins": 14,
+      "losses": 52,
+      "completions": 66,
+      "single_row_fix": {
+        "row_position": 3,
+        "row_label": "Start with maths terms",
+        "deaths_at_row": 23,
+        "first_try_pct": 34.8,
+        "avg_wrong": 1.53,
+        "impostor_word": "Greatest",
+        "top_wrong_picks": [
+          [
+            "Rations",
+            63
+          ],
+          [
+            "Delta",
+            57
+          ],
+          [
+            "Equality",
+            18
+          ],
+          [
+            "Is",
+            2
+          ],
+          [
+            "Booze",
+            2
+          ]
+        ],
+        "row_pdl": {
+          "manipulation": "Hidden word",
+          "abstraction": "Shared property",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Maths",
+          "same_domain": false
+        },
+        "projected_sr_upper_bound": 56.1
+      },
+      "two_row_fix": {
+        "rows": [
+          3,
+          0
+        ],
+        "deaths_total": 27,
+        "projected_sr_upper_bound": 62.1,
+        "second_row_label": "The end"
+      }
+    },
+    {
+      "lid": "l20",
+      "date": "2026-04-04",
+      "date_label": "Apr 4",
+      "name": "Cleaning products",
+      "current_sr": 25.0,
+      "wins": 7,
+      "losses": 21,
+      "completions": 28,
+      "single_row_fix": {
+        "row_position": 3,
+        "row_label": "Results of multiplication",
+        "deaths_at_row": 17,
+        "first_try_pct": 24.0,
+        "avg_wrong": 1.04,
+        "impostor_word": "Wipes",
+        "top_wrong_picks": [
+          [
+            "Babies",
+            28
+          ],
+          [
+            "Bananas",
+            12
+          ],
+          [
+            "Products",
+            5
+          ]
+        ],
+        "row_pdl": {
+          "manipulation": "None",
+          "abstraction": "Direct membership",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Maths",
+          "same_domain": false
+        },
+        "projected_sr_upper_bound": 85.7
+      },
+      "two_row_fix": null
+    },
+    {
+      "lid": "l1",
+      "date": "2026-04-15",
+      "date_label": "Apr 15",
+      "name": "Something old, new, borrowed and blue",
+      "current_sr": 25.5,
+      "wins": 12,
+      "losses": 35,
+      "completions": 47,
+      "single_row_fix": {
+        "row_position": 3,
+        "row_label": "Contain watersports",
+        "deaths_at_row": 12,
+        "first_try_pct": 57.4,
+        "avg_wrong": 1.51,
+        "impostor_word": "Depression",
+        "top_wrong_picks": [
+          [
+            "Websurfing",
+            35
+          ],
+          [
+            "Borrowed",
+            23
+          ],
+          [
+            "Assailant",
+            21
+          ],
+          [
+            "Babies",
+            4
+          ],
+          [
+            "Delta",
+            2
+          ]
+        ],
+        "row_pdl": {
+          "manipulation": "Hidden word",
+          "abstraction": "Shared property",
+          "knowledge": "Common cultural",
+          "knowledgeDomain": "Sport",
+          "same_domain": true
+        },
+        "projected_sr_upper_bound": 51.1
+      },
+      "two_row_fix": {
+        "rows": [
+          3,
+          2
+        ],
+        "deaths_total": 22,
+        "projected_sr_upper_bound": 72.3,
+        "second_row_label": "UK _____port cities"
+      }
+    },
+    {
+      "lid": "l30",
+      "date": "2026-04-13",
+      "date_label": "Apr 13",
+      "name": "Dramatic pause",
+      "current_sr": 29.3,
+      "wins": 12,
+      "losses": 29,
+      "completions": 41,
+      "single_row_fix": {
+        "row_position": 3,
+        "row_label": "Start with 'gossip' synonyms",
+        "deaths_at_row": 8,
+        "first_try_pct": 35.3,
+        "avg_wrong": 1.65,
+        "impostor_word": "Suspense",
+        "top_wrong_picks": [
+          [
+            "Teapot",
+            29
+          ],
+          [
+            "Dirtbag",
+            27
+          ],
+          [
+            "Dramatic",
+            22
+          ]
+        ],
+        "row_pdl": {
+          "manipulation": "Hidden word",
+          "abstraction": "Shared property",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Language",
+          "same_domain": false
+        },
+        "projected_sr_upper_bound": 48.8
+      },
+      "two_row_fix": {
+        "rows": [
+          3,
+          0
+        ],
+        "deaths_total": 14,
+        "projected_sr_upper_bound": 63.4,
+        "second_row_label": "Spotify features"
+      }
+    },
+    {
+      "lid": "l15",
+      "date": "2026-04-05",
+      "date_label": "Apr 5",
+      "name": "Collective animals nouns",
+      "current_sr": 35.0,
+      "wins": 7,
+      "losses": 13,
+      "completions": 20,
+      "single_row_fix": {
+        "row_position": 3,
+        "row_label": "Start with types of call",
+        "deaths_at_row": 5,
+        "first_try_pct": 29.4,
+        "avg_wrong": 1.35,
+        "impostor_word": "Murder",
+        "top_wrong_picks": [
+          [
+            "Collective",
+            18
+          ],
+          [
+            "Prankster",
+            10
+          ],
+          [
+            "Cold blooded",
+            7
+          ]
+        ],
+        "row_pdl": {
+          "manipulation": "Hidden word",
+          "abstraction": "Shared property",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Language",
+          "same_domain": false
+        },
+        "projected_sr_upper_bound": 60.0
+      },
+      "two_row_fix": null
+    },
+    {
+      "lid": "l25",
+      "date": "2026-04-02",
+      "date_label": "Apr 2",
+      "name": "Royal flush",
+      "current_sr": 38.6,
+      "wins": 22,
+      "losses": 35,
+      "completions": 57,
+      "single_row_fix": {
+        "row_position": 1,
+        "row_label": "Reactions to being embarrassed",
+        "deaths_at_row": 17,
+        "first_try_pct": 48.2,
+        "avg_wrong": 1.07,
+        "impostor_word": "Jack",
+        "top_wrong_picks": [
+          [
+            "Laugh",
+            39
+          ],
+          [
+            "Flush",
+            25
+          ],
+          [
+            "Ramble",
+            25
+          ]
+        ],
+        "row_pdl": {
+          "manipulation": "None",
+          "abstraction": "Direct membership",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Language",
+          "same_domain": false
+        },
+        "projected_sr_upper_bound": 68.4
+      },
+      "two_row_fix": null
+    },
+    {
+      "lid": "l18",
+      "date": "2026-04-06",
+      "date_label": "Apr 6",
+      "name": "Video game mascots",
+      "current_sr": 48.1,
+      "wins": 13,
+      "losses": 14,
+      "completions": 27,
+      "single_row_fix": {
+        "row_position": 1,
+        "row_label": "Types of microphone",
+        "deaths_at_row": 8,
+        "first_try_pct": 24.1,
+        "avg_wrong": 1.28,
+        "impostor_word": "Crash",
+        "top_wrong_picks": [
+          [
+            "USB",
+            37
+          ],
+          [
+            "Shotgun",
+            12
+          ],
+          [
+            "Boom",
+            10
+          ]
+        ],
+        "row_pdl": {
+          "manipulation": "None",
+          "abstraction": "Direct membership",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Technology",
+          "same_domain": false
+        },
+        "projected_sr_upper_bound": 77.8
+      },
+      "two_row_fix": null
+    },
+    {
+      "lid": "l2",
+      "date": "2026-04-01",
+      "date_label": "Apr 1",
+      "name": "London Underground stations",
+      "current_sr": 54.4,
+      "wins": 31,
+      "losses": 26,
+      "completions": 57,
+      "single_row_fix": {
+        "row_position": 3,
+        "row_label": "Going ____",
+        "deaths_at_row": 11,
+        "first_try_pct": 55.4,
+        "avg_wrong": 0.79,
+        "impostor_word": "Angel",
+        "top_wrong_picks": [
+          [
+            "Going, gone",
+            47
+          ],
+          [
+            "Underground",
+            14
+          ],
+          [
+            "Postal",
+            8
+          ]
+        ],
+        "row_pdl": {
+          "manipulation": "Compound",
+          "abstraction": "Direct membership",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Language",
+          "same_domain": false
+        },
+        "projected_sr_upper_bound": 73.7
+      },
+      "two_row_fix": null
+    },
+    {
+      "lid": "l26",
+      "date": "2026-04-08",
+      "date_label": "Apr 8",
+      "name": "Renewable energy",
+      "current_sr": 59.6,
+      "wins": 31,
+      "losses": 21,
+      "completions": 52,
+      "single_row_fix": {
+        "row_position": 2,
+        "row_label": "_ _ _ Look",
+        "deaths_at_row": 9,
+        "first_try_pct": 62.7,
+        "avg_wrong": 0.82,
+        "impostor_word": "Wind",
+        "top_wrong_picks": [
+          [
+            "New",
+            38
+          ],
+          [
+            "Over",
+            11
+          ],
+          [
+            "Out",
+            11
+          ],
+          [
+            "Cortana",
+            1
+          ]
+        ],
+        "row_pdl": {
+          "manipulation": "Compound",
+          "abstraction": "Direct membership",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Language",
+          "same_domain": true
+        },
+        "projected_sr_upper_bound": 76.9
+      },
+      "two_row_fix": null
+    }
+  ],
+  "undated": [
+    {
+      "lid": "l4",
+      "name": "Squid",
+      "predicted_sr": 7.4,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "Currency nicknames plus a letter",
+        "mean_predicted_wrongs": 2.77,
+        "puzzle_mean_wrongs": 1.47,
+        "relative_burden": 1.89,
+        "predicted_first_try_pct": 2.7,
+        "impostor_word": "Tentacle",
+        "row_pdl": {
+          "manipulation": "Letter add-delete",
+          "abstraction": "Shared property",
+          "knowledge": "Common cultural",
+          "knowledgeDomain": "General",
+          "same_domain": true
+        }
+      }
+    },
+    {
+      "lid": "l21",
+      "name": "Spaceships",
+      "predicted_sr": 34.8,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "Potato dishes with first letter changed to 's'",
+        "mean_predicted_wrongs": 2.04,
+        "puzzle_mean_wrongs": 1.0,
+        "relative_burden": 2.05,
+        "predicted_first_try_pct": 45.3,
+        "impostor_word": "Curiosity",
+        "row_pdl": {
+          "manipulation": "None",
+          "abstraction": "Shared property",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Language",
+          "same_domain": true
+        }
+      }
+    },
+    {
+      "lid": "l33",
+      "name": "The Beatles members",
+      "predicted_sr": 38.2,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "Insects with a letter changed",
+        "mean_predicted_wrongs": 2.58,
+        "puzzle_mean_wrongs": 1.01,
+        "relative_burden": 2.56,
+        "predicted_first_try_pct": 5.0,
+        "impostor_word": "Ringo",
+        "row_pdl": {
+          "manipulation": "Letter add-delete",
+          "abstraction": "Shared property",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Language",
+          "same_domain": false
+        }
+      }
+    },
+    {
+      "lid": "l36",
+      "name": "Batman rogues gallery",
+      "predicted_sr": 40.2,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "Types of boat plus a letter",
+        "mean_predicted_wrongs": 2.58,
+        "puzzle_mean_wrongs": 1.0,
+        "relative_burden": 2.58,
+        "predicted_first_try_pct": 5.0,
+        "impostor_word": "Joker",
+        "row_pdl": {
+          "manipulation": "Letter add-delete",
+          "abstraction": "Shared property",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "General",
+          "same_domain": false
+        }
+      }
+    },
+    {
+      "lid": "l32",
+      "name": "This puzzle is hard",
+      "predicted_sr": 40.7,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "Meta things",
+        "mean_predicted_wrongs": 1.58,
+        "puzzle_mean_wrongs": 1.02,
+        "relative_burden": 1.55,
+        "predicted_first_try_pct": 46.8,
+        "impostor_word": "Liquor",
+        "row_pdl": {
+          "manipulation": "None",
+          "abstraction": "Shared property",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Language",
+          "same_domain": false
+        }
+      }
+    },
+    {
+      "lid": "l6",
+      "name": "Dictionaries",
+      "predicted_sr": 42.5,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "Red things",
+        "mean_predicted_wrongs": 1.72,
+        "puzzle_mean_wrongs": 0.97,
+        "relative_burden": 1.78,
+        "predicted_first_try_pct": 31.2,
+        "impostor_word": "Urban",
+        "row_pdl": {
+          "manipulation": "Hidden word",
+          "abstraction": "Shared property",
+          "knowledge": "Common cultural",
+          "knowledgeDomain": "General",
+          "same_domain": true
+        }
+      }
+    },
+    {
+      "lid": "l45",
+      "name": "The Four Seasons",
+      "predicted_sr": 43.9,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "What falls can refer to",
+        "mean_predicted_wrongs": 1.69,
+        "puzzle_mean_wrongs": 0.87,
+        "relative_burden": 1.94,
+        "predicted_first_try_pct": 66.6,
+        "impostor_word": "Quarters",
+        "row_pdl": {
+          "manipulation": "None",
+          "abstraction": "Shared property",
+          "knowledge": "Specialist cultural",
+          "knowledgeDomain": "Religion",
+          "same_domain": false
+        }
+      }
+    },
+    {
+      "lid": "l8",
+      "name": "____graph",
+      "predicted_sr": 44.7,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "Animals with an added letter",
+        "mean_predicted_wrongs": 2.58,
+        "puzzle_mean_wrongs": 0.94,
+        "relative_burden": 2.73,
+        "predicted_first_try_pct": 5.0,
+        "impostor_word": "Tele",
+        "row_pdl": {
+          "manipulation": "Letter add-delete",
+          "abstraction": "Shared property",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Language",
+          "same_domain": false
+        }
+      }
+    },
+    {
+      "lid": "l41",
+      "name": "Tracks on Fleetwood Mac's Rumours",
+      "predicted_sr": 47.6,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "They can have legs",
+        "mean_predicted_wrongs": 1.75,
+        "puzzle_mean_wrongs": 0.89,
+        "relative_burden": 1.97,
+        "predicted_first_try_pct": 28.6,
+        "impostor_word": "The Chain",
+        "row_pdl": {
+          "manipulation": "None",
+          "abstraction": "Multi-sense",
+          "knowledge": "None",
+          "knowledgeDomain": "General",
+          "same_domain": false
+        }
+      }
+    },
+    {
+      "lid": "l37",
+      "name": "Chocolate bars",
+      "predicted_sr": 47.6,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "First syllable of UK Prime Ministers' surnames",
+        "mean_predicted_wrongs": 1.62,
+        "puzzle_mean_wrongs": 0.89,
+        "relative_burden": 1.83,
+        "predicted_first_try_pct": 11.2,
+        "impostor_word": "Galaxy",
+        "row_pdl": {
+          "manipulation": "Hidden word",
+          "abstraction": "Shared property",
+          "knowledge": "Common cultural",
+          "knowledgeDomain": "History",
+          "same_domain": false
+        }
+      }
+    },
+    {
+      "lid": "l34",
+      "name": "21\u02e2\u1d57 Century Popes",
+      "predicted_sr": 49.3,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "Chicken shops minus a letter",
+        "mean_predicted_wrongs": 2.04,
+        "puzzle_mean_wrongs": 0.88,
+        "relative_burden": 2.32,
+        "predicted_first_try_pct": 80.2,
+        "impostor_word": "Benedict",
+        "row_pdl": {
+          "manipulation": "Compound",
+          "abstraction": "Direct membership",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Language",
+          "same_domain": false
+        }
+      }
+    },
+    {
+      "lid": "l35",
+      "name": "Friends characters",
+      "predicted_sr": 52.3,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "Start with the result of fire",
+        "mean_predicted_wrongs": 1.37,
+        "puzzle_mean_wrongs": 0.83,
+        "relative_burden": 1.64,
+        "predicted_first_try_pct": 29.0,
+        "impostor_word": "Gunther",
+        "row_pdl": {
+          "manipulation": "Hidden word",
+          "abstraction": "Shared property",
+          "knowledge": "General vocabulary",
+          "knowledgeDomain": "Language",
+          "same_domain": false
+        }
+      }
+    },
+    {
+      "lid": "l13",
+      "name": "Start with shades of blue",
+      "predicted_sr": 58.7,
+      "bottleneck_row": {
+        "row_position": 3,
+        "row_label": "Dollars in 'Man with No Name' trilogy titles",
+        "mean_predicted_wrongs": 1.58,
+        "puzzle_mean_wrongs": 0.72,
+        "relative_burden": 2.18,
+        "predicted_first_try_pct": 55.8,
+        "impostor_word": "Cyanogen",
+        "row_pdl": {
+          "manipulation": "Hidden word",
+          "abstraction": "Shared property",
+          "knowledge": "Specialist cultural",
+          "knowledgeDomain": "Science",
+          "same_domain": true
+        }
+      }
+    }
+  ]
+}

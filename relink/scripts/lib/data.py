@@ -16,6 +16,10 @@ from .stats import safe_mean, safe_median
 MONTH_NAMES = {1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun',
                7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'}
 
+_ORDINAL_LABELS = {1: '1st', 2: '2nd', 3: '3rd', 4: '4th'}
+# '5th' covers the Relink phase (post-imposters); always 0 on imposters rows.
+SOLVE_ORDER_BUCKETS = ('1st', '2nd', '3rd', '4th', '5th', 'never')
+
 
 # ── Internal helpers ──
 
@@ -34,6 +38,13 @@ def _parse_props(s):
         return ast.literal_eval(s)
     except Exception:
         return {}
+
+
+def _strip_nuls(f):
+    for line in f:
+        if '\x00' in line:
+            line = line.replace('\x00', '')
+        yield line
 
 
 def date_label(d):
@@ -62,6 +73,8 @@ def load_pdl(save_dir):
             continue
         with open(level_file) as f:
             pdata = json.load(f)
+        if pdata.get('schemaVersion') != 2:
+            print(f"  WARN: {lid} has schemaVersion={pdata.get('schemaVersion')!r}, expected 2")
         pdl_puzzles[lid] = pdata
         pdl_puzzles[lid]['_index'] = entry
         if date:
@@ -135,11 +148,17 @@ def load_pdl(save_dir):
             group = rpdl.get('group', {})
             impostor_pdl = rpdl.get('impostor', {})
 
-            manip = group.get('manipulation', ['None'])[0] if group.get('manipulation') else 'None'
-            abstr = group.get('abstraction', ['Direct membership'])[0] if group.get('abstraction') else 'Direct membership'
-            know = group.get('knowledge', ['General vocabulary'])[0] if group.get('knowledge') else 'General vocabulary'
-            kdom = group.get('knowledgeDomain', ['General'])[0] if group.get('knowledgeDomain') else 'General'
-            imp_dom = impostor_pdl.get('realIdentityDomain', ['General'])[0] if impostor_pdl.get('realIdentityDomain') else 'General'
+            manips = list(group.get('manipulation') or ['None'])
+            abstrs = list(group.get('abstraction') or ['Direct membership'])
+            knows = list(group.get('knowledge') or ['General vocabulary'])
+            kdoms = list(group.get('knowledgeDomain') or ['General'])
+            imp_doms = list(impostor_pdl.get('realIdentityDomain') or ['General'])
+
+            manip = manips[0]
+            abstr = abstrs[0]
+            know = knows[0]
+            kdom = kdoms[0]
+            imp_dom = imp_doms[0]
 
             impostor_word = ''
             relink_words = []
@@ -152,7 +171,8 @@ def load_pdl(save_dir):
                 if tile.get('isRelink'):
                     relink_words.append(tile['text'])
 
-            same_domain = (kdom == imp_dom)
+            same_domain = bool(set(kdoms) & set(imp_doms))
+            cross_domain_impostor = not same_domain
 
             pdl_rows.append({
                 'lid': lid,
@@ -165,8 +185,15 @@ def load_pdl(save_dir):
                 'abstraction': abstr,
                 'knowledge': know,
                 'knowledgeDomain': kdom,
+                'knowledgeDomains': kdoms,
+                'manipulations': manips,
+                'abstractions': abstrs,
+                'knowledges': knows,
+                'realIdentityDomains': imp_doms,
+                'row_domain_breadth': len(set(kdoms)),
                 'impostor_domain': imp_dom,
                 'same_domain': same_domain,
+                'cross_domain_impostor': cross_domain_impostor,
                 'impostor_word': impostor_word,
                 'non_impostor_words': non_impostor_words,
                 'relink_words': relink_words,
@@ -188,7 +215,7 @@ def load_behaviour(raw_dir):
     raw_sessions = {}
     for sf in session_files:
         with open(sf) as f:
-            for row in csv.DictReader(f):
+            for row in csv.DictReader(_strip_nuls(f)):
                 raw_sessions[row['id']] = row
 
     sessions_by_date = defaultdict(dict)
@@ -206,7 +233,7 @@ def load_behaviour(raw_dir):
     raw_events = {}
     for ef in event_files:
         with open(ef) as f:
-            for row in csv.DictReader(f):
+            for row in csv.DictReader(_strip_nuls(f)):
                 raw_events[row['id']] = row
 
     events_by_date = defaultdict(list)
@@ -434,6 +461,8 @@ def build_date_summaries(overlap_dates, players_by_date, date_to_level, pdl_puzz
         solve_rate = wins / completions if completions else 0
         times = [p['solve_time'] for p in pp if p['outcome'] == 'WON' and p['solve_time'] > 0]
 
+        engaged_players = [p for p in pp if p['real_guesses']]
+
         row_metrics = {}
         for row_pos in range(4):
             rp = str(row_pos)
@@ -477,6 +506,22 @@ def build_date_summaries(overlap_dates, players_by_date, date_to_level, pdl_puzz
                 for g in row_wrongs:
                     wrong_words[g['word']] += 1
 
+            # Solve-order distribution: across all engaged players (made any
+            # guess), which solve position (1st/2nd/3rd/4th) did this row land
+            # in for the puzzle, or was it never resolved? Players who never
+            # reached this row contribute to 'never'.
+            solve_order_counts = Counter()
+            for p in engaged_players:
+                solve_pos = None
+                for t in p['trajectory']:
+                    if t['row'] == rp and t['survived']:
+                        solve_pos = t['position'] + 1
+                        break
+                if solve_pos is None:
+                    solve_order_counts['never'] += 1
+                else:
+                    solve_order_counts[_ORDINAL_LABELS[solve_pos]] += 1
+
             row_metrics[row_pos] = {
                 'attempts': attempts,
                 'first_try': first_try,
@@ -488,6 +533,7 @@ def build_date_summaries(overlap_dates, players_by_date, date_to_level, pdl_puzz
                 'top_wrong': wrong_words.most_common(5),
                 'attempt_positions': attempt_positions,
                 'first_try_by_position': dict(first_try_by_position),
+                'solve_order_counts': dict(solve_order_counts),
             }
 
         relink_attempts_list = []

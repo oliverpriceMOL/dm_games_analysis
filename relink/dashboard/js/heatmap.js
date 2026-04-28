@@ -79,4 +79,33 @@ export function renderImpostorDomain(data) {
             scales: { x: { beginAtZero: true, title: { display: true, text: 'First-try %' } } }
         }
     });
+
+    if (data.real_domain_breakdown) {
+        renderRealDomainBreakdown(data.real_domain_breakdown);
+    }
+}
+
+function renderRealDomainBreakdown(bd) {
+    const container = document.getElementById('real-domain-breakdown-container');
+    if (!container) return;
+    const { group_domains, impostor_domains, values, annotations } = bd;
+    let html = `<div class="heatmap-grid" style="grid-template-columns: 140px repeat(${impostor_domains.length}, 1fr);">`;
+    html += '<div class="hm-header" style="font-weight:600;">Group ↓ / Impostor →</div>';
+    impostor_domains.forEach(d => { html += `<div class="hm-header">${d}</div>`; });
+    group_domains.forEach((gd, gi) => {
+        html += `<div class="hm-header" style="text-align:right;padding-right:8px;">${gd}</div>`;
+        values[gi].forEach((v, ii) => {
+            if (v === null) {
+                html += '<div class="hm-cell" style="background:#eee;color:#999;">—</div>';
+            } else {
+                const pct = v;
+                const h = pct < 40 ? 0 : pct < 55 ? 30 : pct < 70 ? 120 : 150;
+                const isDiag = group_domains[gi] === impostor_domains[ii];
+                const border = isDiag ? 'box-shadow:inset 0 0 0 2px #222;' : '';
+                html += `<div class="hm-cell" style="background:${hsl(h,65,42)};${border}">${annotations[gi][ii]}</div>`;
+            }
+        });
+    });
+    html += '</div>';
+    container.innerHTML = html;
 }

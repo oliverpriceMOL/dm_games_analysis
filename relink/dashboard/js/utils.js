@@ -25,9 +25,11 @@ export const TIER_COLORS = ['#27ae60', '#2ecc71', '#f39c12', '#e74c3c', '#c0392b
 
 /* ── Wrong-dist constants ─────────────────────────────────────── */
 
+// Wrong-count palette (project standard). Order: 0 → 4 → no_attempt.
+// orange → green → blue → purple → lighter red → darker red.
 export const BASE_COLORS = {
     '0': '#f39c12', '1': '#27ae60', '2': '#2980b9',
-    '3': '#e74c3c', '4': '#922b21', 'no_attempt': '#641e16',
+    '3': '#8e44ad', '4': '#e74c3c', 'no_attempt': '#641e16',
 };
 
 export const WRONG_KEYS = [

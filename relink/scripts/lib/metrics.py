@@ -5,7 +5,16 @@ from collections import defaultdict, Counter
 
 from .stats import (safe_mean, safe_median, safe_stdev, pearson, spearman,
                     ols_multi, one_hot, kmeans)
-from .data import date_label
+from .data import date_label, SOLVE_ORDER_BUCKETS
+
+
+def _solve_order_dist_from_counts(counts):
+    """Normalise a Counter/dict of solve-order bucket counts to percentages
+    (rounded to 1 dp). Always returns all 5 buckets in canonical order."""
+    total = sum(counts.get(b, 0) for b in SOLVE_ORDER_BUCKETS)
+    if total <= 0:
+        return {b: 0.0 for b in SOLVE_ORDER_BUCKETS}
+    return {b: round(counts.get(b, 0) / total * 100, 1) for b in SOLVE_ORDER_BUCKETS}
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -38,16 +47,39 @@ def compute_crosstabs(row_joined):
     ct_imp_domain = _cross_tab(row_joined, 'impostor_domain')
     ct_same_domain = _cross_tab(row_joined, 'same_domain')
 
+    # Solve-order distribution per axis: pool raw counts across rows in the
+    # category (player-weighted, since rows have very different sample sizes),
+    # then normalise. One distribution per category.
+    def _axis_solve_order(field):
+        cat_counts = defaultdict(Counter)
+        for r in row_joined:
+            cat = r.get(field, 'Unknown')
+            for b, n in r.get('solve_order_counts', {}).items():
+                cat_counts[cat][b] += n
+        return cat_counts
+
+    so_by_axis = {
+        'Manipulation': _axis_solve_order('manipulation'),
+        'Abstraction': _axis_solve_order('abstraction'),
+        'Knowledge': _axis_solve_order('knowledge'),
+        'Knowledge Domain': _axis_solve_order('knowledgeDomain'),
+    }
+
     # Chart data for bar charts
     chart_data = {}
     for axis_name, ct in [('Manipulation', ct_manipulation), ('Abstraction', ct_abstraction),
                            ('Knowledge', ct_knowledge), ('Knowledge Domain', ct_domain)]:
+        labels = list(ct.keys())
         chart_data[axis_name] = {
-            'labels': list(ct.keys()),
+            'labels': labels,
             'first_try': [ct[k]['mean_first_try'] * 100 for k in ct],
             'avg_wrong': [ct[k]['mean_avg_wrong'] for k in ct],
             'never_correct': [ct[k]['mean_never_correct'] * 100 for k in ct],
             'n': [ct[k]['n'] for k in ct],
+            'solve_order_dist': [
+                _solve_order_dist_from_counts(so_by_axis[axis_name].get(k, {}))
+                for k in labels
+            ],
         }
 
     # 2D heatmap: manipulation x abstraction
@@ -96,6 +128,56 @@ def compute_crosstabs(row_joined):
         },
         'by_imp_domain': {k: {'n': v['n'], 'mean_first_try': round(v['mean_first_try'] * 100, 1),
                                'mean_avg_wrong': round(v['mean_avg_wrong'], 2)} for k, v in ct_imp_domain.items()},
+    }
+
+    # Real-identity-domain breakdown: row's group domain × impostor's real domain.
+    # Cell = first-try % when the row is domain X and the impostor's real identity is domain Y.
+    breakdown_cells = defaultdict(lambda: {'first_try_vals': [], 'avg_wrong_vals': [], 'n': 0})
+    for r in row_joined:
+        key = (r['knowledgeDomain'], r['impostor_domain'])
+        breakdown_cells[key]['first_try_vals'].append(r['first_try_pct'])
+        breakdown_cells[key]['avg_wrong_vals'].append(r['avg_wrong'])
+        breakdown_cells[key]['n'] += 1
+    all_group_doms = sorted({k[0] for k in breakdown_cells})
+    all_imp_doms = sorted({k[1] for k in breakdown_cells})
+    breakdown_values = []
+    breakdown_annotations = []
+    for gd in all_group_doms:
+        row_vals = []
+        row_anns = []
+        for idom in all_imp_doms:
+            cell = breakdown_cells.get((gd, idom))
+            if cell and cell['n'] > 0:
+                ft = safe_mean(cell['first_try_vals'])
+                row_vals.append(round(ft * 100, 1))
+                row_anns.append(f"{ft*100:.0f}% (n={cell['n']})")
+            else:
+                row_vals.append(None)
+                row_anns.append('')
+        breakdown_values.append(row_vals)
+        breakdown_annotations.append(row_anns)
+    imp_domain_chart['real_domain_breakdown'] = {
+        'group_domains': all_group_doms,
+        'impostor_domains': all_imp_doms,
+        'values': breakdown_values,
+        'annotations': breakdown_annotations,
+    }
+
+    # Cross-domain impostor cross-tab (same intersection logic, but exposed
+    # explicitly so the dashboard can label it "cross-domain" rather than
+    # making readers mentally invert the same_domain=False bucket).
+    ct_cross = _cross_tab(row_joined, 'cross_domain_impostor')
+    imp_domain_chart['cross_domain_impostor'] = {
+        'cross': {
+            'n': ct_cross.get(True, {'n': 0})['n'],
+            'mean_first_try': round(ct_cross.get(True, {'mean_first_try': 0})['mean_first_try'] * 100, 1),
+            'mean_avg_wrong': round(ct_cross.get(True, {'mean_avg_wrong': 0})['mean_avg_wrong'], 2),
+        },
+        'within': {
+            'n': ct_cross.get(False, {'n': 0})['n'],
+            'mean_first_try': round(ct_cross.get(False, {'mean_first_try': 0})['mean_first_try'] * 100, 1),
+            'mean_avg_wrong': round(ct_cross.get(False, {'mean_avg_wrong': 0})['mean_avg_wrong'], 2),
+        },
     }
 
     return {
@@ -395,10 +477,27 @@ def compute_vertical_inference(overlap_dates, date_summaries, players_by_date,
         'n_total': len(vi_puzzle_data),
     }
 
+    # Inverse cut: by board row index (0..3 of the 4×4 board), pool
+    # solve_order_counts across dated puzzles. Answers "is there a UI
+    # position bias on which row gets solved first?" — distinct from the
+    # solve-position cut elsewhere.
+    by_row_index = {}
+    for row_pos in range(4):
+        pooled = Counter()
+        for d in overlap_dates:
+            rm = date_summaries[d].get('row_metrics', {}).get(row_pos, {})
+            for b, n in rm.get('solve_order_counts', {}).items():
+                pooled[b] += n
+        by_row_index[str(row_pos)] = {
+            'solve_order_dist': _solve_order_dist_from_counts(pooled),
+            'n': sum(pooled.values()),
+        }
+
     vi_chart_data = {
         'puzzles': vi_puzzle_data,
         'crosstabs': dict(vi_crosstabs),
         'summary': vi_summary,
+        'by_row_index': by_row_index,
     }
 
     return vi_chart_data, transparency_scores
@@ -664,8 +763,24 @@ def compute_clustering(pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date
 #  OVERVIEW (Key Findings summary data)
 # ══════════════════════════════════════════════════════════════════════
 
-def compute_overview(date_summaries, pdl_puzzle_features, pdl_puzzles, overlap_dates, aggregate_timing):
+def compute_overview(date_summaries, pdl_puzzle_features, pdl_puzzles, overlap_dates,
+                     aggregate_timing, sim_undated=None):
     """Compute overview/summary data for the Key Findings section."""
+    actual_dist = [{
+        'lid': date_summaries[d]['lid'],
+        'name': date_summaries[d]['name'],
+        'label': date_summaries[d]['label'],
+        'solve_rate': round(date_summaries[d]['solve_rate'] * 100, 1),
+    } for d in overlap_dates]
+    predicted_dist = []
+    if sim_undated:
+        for lid, r in sim_undated.items():
+            predicted_dist.append({
+                'lid': lid,
+                'name': r.get('name') or pdl_puzzle_features.get(lid, {}).get('name', lid),
+                'solve_rate': round(r['solve_rate'] * 100, 1),
+            })
+
     return {
         'n_puzzles': len(pdl_puzzles),
         'n_dated': len(overlap_dates),
@@ -682,6 +797,10 @@ def compute_overview(date_summaries, pdl_puzzle_features, pdl_puzzles, overlap_d
             'median_time': round(ds['median_time'], 1),
         } for ds in (date_summaries[d] for d in overlap_dates)],
         'aggregate_timing': aggregate_timing,
+        'solve_rate_distribution': {
+            'actual': actual_dist,
+            'predicted': predicted_dist,
+        },
     }
 
 
@@ -798,6 +917,8 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
                 },
                 'top_wrong': rm.get('top_wrong', [])[:5],
                 'attempt_order_dist': {str(k): v for k, v in sorted(attempt_order_dist.items())},
+                'solve_order_counts': dict(rm.get('solve_order_counts', {})),
+                'solve_order_dist': _solve_order_dist_from_counts(rm.get('solve_order_counts', {})),
             }
 
         # --- Relink wrong-guess distribution ---
@@ -833,10 +954,28 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
                 elif p['outcome'] == 'INCOMPLETE':
                     relink_no_attempt_incomplete += 1
 
+        # Solve-order for Relink: '5th' (solved relink) or 'never' (anything
+        # else). Denominator matches imposters' engaged-players framing — every
+        # player with at least one imposters guess. WON-without-relink-trajectory
+        # is a data gap; skip rather than count.
+        relink_5th = sum(relink_solved_dist.values())
+        relink_never = (
+            sum(relink_lost_dist.values())
+            + sum(relink_incomplete_dist.values())
+            + relink_no_attempt_lost
+            + relink_no_attempt_incomplete
+        )
+        relink_solve_order_dist = _solve_order_dist_from_counts({
+            '5th': relink_5th,
+            'never': relink_never,
+        })
+
         relink_data = {
             'first_try_pct': round(ds['relink_first_try_pct'], 3),
             'avg_attempts': round(ds['relink_avg_attempts'], 2),
             'total': relink_total,
+            'solve_order_counts': {'5th': relink_5th, 'never': relink_never},
+            'solve_order_dist': relink_solve_order_dist,
             'wrong_dist': {
                 '0_solved': relink_solved_dist.get(0, 0),
                 '0_lost': relink_lost_dist.get(0, 0),
@@ -1146,6 +1285,27 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
                     pdl_aggregates[axis_name][cat]['actual_wrong_dist'] = {
                         k: round(v / total, 4) for k, v in sorted(cat_totals[cat].items())
                     }
+
+    # Solve-order aggregate: pool raw bucket counts across (puzzle, row) cells.
+    if puzzles:
+        from collections import defaultdict as _dd
+        for axis_name in ['manipulation', 'abstraction', 'knowledge', 'same_domain']:
+            if axis_name not in pdl_aggregates:
+                pdl_aggregates[axis_name] = {}
+            cat_so = _dd(Counter)
+            for d, puz in puzzles.items():
+                for rp_str, rdata in puz['rows'].items():
+                    if axis_name == 'same_domain':
+                        cat = 'Same' if rdata.get('same_domain', False) else 'Different'
+                    else:
+                        cat = rdata.get(axis_name, 'Unknown')
+                    for b, n in rdata.get('solve_order_counts', {}).items():
+                        cat_so[cat][b] += n
+            for cat, ctr in cat_so.items():
+                if cat in pdl_aggregates.get(axis_name, {}) and sum(ctr.values()) > 0:
+                    pdl_aggregates[axis_name][cat]['solve_order_dist'] = (
+                        _solve_order_dist_from_counts(ctr)
+                    )
 
     return {
         'puzzles': puzzles,

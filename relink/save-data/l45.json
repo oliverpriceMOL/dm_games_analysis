@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 2,
+  "id": "l45",
+  "date": "2026-04-24",
+  "name": "The Four Seasons",
+  "rows": [
+    {
+      "id": "row-1777029706428-12",
+      "position": 0,
+      "category": "Associated with spring",
+      "tiles": [
+        {
+          "id": "tile-1777029706428-13",
+          "text": "Lamb",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777029706428-14",
+          "text": "Daffodils",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777029706428-15",
+          "text": "Blossom",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777029706428-16",
+          "text": "Pizza",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Food"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1777029706428-7",
+      "position": 1,
+      "category": "___ Summer films",
+      "tiles": [
+        {
+          "id": "tile-1777029706428-8",
+          "text": "(500) Days of",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777029706428-9",
+          "text": "Wet Hot American",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777029706428-10",
+          "text": "I Know What You Did Last",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777029706428-11",
+          "text": "Hotel",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Film-TV"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1777029706428-17",
+      "position": 2,
+      "category": "What falls can refer to",
+      "tiles": [
+        {
+          "id": "tile-1777029706428-18",
+          "text": "Waterfalls",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777029706428-19",
+          "text": "Concertos",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777029706428-20",
+          "text": "Seasons",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-1777029706428-21",
+          "text": "Plunges",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Multi-sense"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Music"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1777029706428-2",
+      "position": 3,
+      "category": "Weeks, days and months of Advent",
+      "tiles": [
+        {
+          "id": "tile-1777029706428-3",
+          "text": "Four",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-1777029706428-4",
+          "text": "24",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777029706428-5",
+          "text": "Three-quarters",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777029706428-6",
+          "text": "Quarters",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Religion"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    }
+  ],
+  "relink": {
+    "tiles": [
+      {
+        "text": "(The)",
+        "source": "fodder"
+      },
+      {
+        "text": "Four",
+        "source": "grid",
+        "sourceRowId": "row-1777029706428-2",
+        "sourceTileId": "tile-1777029706428-3"
+      },
+      {
+        "text": "Seasons",
+        "source": "grid",
+        "sourceRowId": "row-1777029706428-17",
+        "sourceTileId": "tile-1777029706428-20"
+      }
+    ],
+    "answer": "",
+    "pdl": {
+      "connectionIdentification": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Multi-sense"
+        ],
+        "knowledgeDomain": [
+          "Music",
+          "Food",
+          "General"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "General vocabulary",
+          "Common cultural"
+        ]
+      }
+    }
+  },
+  "decoys": [],
+  "board": {
+    "specialistGroupCount": 0,
+    "decoyCount": 0,
+    "phase2TileCount": 0,
+    "isThemed": true,
+    "themeDomain": [
+      "General"
+    ]
+  }
+}

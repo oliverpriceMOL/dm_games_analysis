@@ -1,277 +1,576 @@
 {
   "puzzles": [
     {
+      "id": "l44",
+      "date": "2026-04-24",
+      "name": "Google products",
+      "phase2TileCount": 2,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Google Pixel Apple Tesla Chrome Surfboard Legs Search Snap Tie Drive Hitchhike Solvent Home Half-pipes Products",
+        "categories": "Silicon Valley firms Things you wax Verbs requiring thumbs Ending in types of tube",
+        "answer": "",
+        "decoyDescriptions": "You can wax chrome but chrome is also a Google product, so can interfere with vertical inference."
+      }
+    },
+    {
+      "id": "l45",
+      "date": "2026-04-24",
+      "name": "The Four Seasons",
+      "phase2TileCount": 2,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Lamb Daffodils Blossom Pizza (500) Days of Wet Hot American I Know What You Did Last Hotel Waterfalls Concertos Seasons Plunges Four 24 Three-quarters Quarters",
+        "categories": "Associated with spring ___ Summer films What falls can refer to Weeks, days and months of Advent",
+        "answer": "",
+        "decoyDescriptions": ""
+      }
+    },
+    {
       "id": "l24",
       "date": "2026-04-16",
       "name": "Preparing for battle",
       "phase2TileCount": 1,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Slate Recon Roster Pool Spotlight Strategising Inspecting Search Claude Cortana Gemini Intelligence Preparing for battle Thinking Reading The Art of War Holding a torch",
+        "categories": "Candidate list Represented by a magnifying glass Artificial Intelligences What famous statues do",
+        "answer": "Preparing for battle",
+        "decoyDescriptions": ""
+      }
     },
     {
       "id": "l1",
       "date": "2026-04-15",
       "name": "Something old, new, borrowed and blue",
       "phase2TileCount": 4,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Old Relic Rash Razen Deep Drink Fresh Blue New Stock Book South Borrowed Assailant Diversity Depression",
+        "categories": "Confident' minus 'B' Ocean nicknames UK _____port cities Contain watersports",
+        "answer": "Something old, new, borrowed and blue",
+        "decoyDescriptions": ""
+      }
     },
     {
       "id": "l27",
       "date": "2026-04-14",
       "name": "Types of bean",
       "phase2TileCount": 1,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Skipper Master Navy Captain Jumper Jelly Puffer Mac Hopper Broad Basket Bucket Runner Blackadder English Bean",
+        "categories": "Maritime leaders Warm outerwear Types of container Rowan Atkinson roles",
+        "answer": "Types of bean",
+        "decoyDescriptions": "Naval/maritime - all four are maritime-adjacent making it very hard to spot Navy as the impostor Fish (jellyfish, pufferfish) - makes you think the row is about fish Runner bean - a real type of bean linking these two tiles"
+      }
     },
     {
       "id": "l30",
       "date": "2026-04-13",
       "name": "Dramatic pause",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "DJ Record scratch Library Podcasts Northbound train Eastenders doofs Lift cabin Sunrise Ellipsis Pause Equals Two Teapot Dirtbag Suspense Dramatic",
+        "categories": "Spotify features Things that go up Two parallel lines Start with 'gossip' synonyms",
+        "answer": "Dramatic pause",
+        "decoyDescriptions": ""
+      }
     },
     {
       "id": "l31",
       "date": "2026-04-12",
       "name": "PlayStation buttons",
       "phase2TileCount": 3,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Shrewd Astute Cross Sharp Station Triangle Caste Class Buttons Coal Colon Square Fair Circle Play Under",
+        "categories": "Perceptive Social status Things used as eyes ___ Ground",
+        "answer": "PlayStation buttons",
+        "decoyDescriptions": ""
+      }
     },
     {
       "id": "l29",
       "date": "2026-04-11",
       "name": "Precious metals",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "This Iodine Amethyst Platinum Precious Silver Birthday present The One Ring Palladium Halogens Noble gases Metals Gold Aircraft Sheep Fish",
+        "categories": "Purple things Sauron's Ring Sets of the periodic table Identical singular and plural forms",
+        "answer": "Precious metals",
+        "decoyDescriptions": "Precious metals - makes you think the row is about valuable metals not Saurons Ring"
+      }
     },
     {
       "id": "l28",
       "date": "2026-04-10",
       "name": "Nicknames for English Monarchs",
       "phase2TileCount": 3,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Monarchs Red admirals Swallowtail Lionheart Confessor English Bravo Storm Corn Pea Elder & Sour Robert Conqueror Unready Nicknames",
+        "categories": "Species of butterfly Fictional Johnnys Sweet _ _ _ Start with types of theft",
+        "answer": "Nicknames for English Monarchs",
+        "decoyDescriptions": "William the Conqueror is a monarch nickname - player may pick Conqueror instead of Unready"
+      }
     },
     {
       "id": "l17",
       "date": "2026-04-09",
       "name": "Generations",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Omega Ultimate Silent Finale Gene Heirloom Alpha Tradition Sting Z X Gamma Delta Greatest Rations Equality",
+        "categories": "The end Passed down _ _ _ Ray Start with maths terms",
+        "answer": "Generations",
+        "decoyDescriptions": "Greek letters - one per row creates a full false vertical answer. Only Alpha is the real impostor Gen X fits the Generations impostor theme - player may pick X instead of Z as impostor in row 3"
+      }
     },
     {
       "id": "l26",
       "date": "2026-04-08",
       "name": "Renewable energy",
       "phase2TileCount": 4,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Re HEP Signature CC Solar Energy Mass Speed of light Wind Out Over New Eave Tidal Able Cane",
+        "categories": "Parts of an email E = mc² _ _ _ Look Homophones of biblical characters",
+        "answer": "Renewable energy",
+        "decoyDescriptions": ""
+      }
     },
     {
       "id": "l23",
       "date": "2026-04-07",
       "name": "Strings section",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Violas Strings Head Bridge Belt Harp Vibrato Falsetto Movement Section Violin Solo Double bass Semi quaver Crotchet Clef",
+        "categories": "Guitar parts Vocal techniques Passages of music Musical notation",
+        "answer": "Strings section",
+        "decoyDescriptions": "String instrument parts - makes you think the row is orchestral and Head is the impostor Orchestral performance - makes you think the row is about orchestra and Section is the impostor Musical terms - all four are musical making it hard to spot that only 3 are notation"
+      }
     },
     {
       "id": "l18",
       "date": "2026-04-06",
       "name": "Video game mascots",
       "phase2TileCount": 3,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Game Link Magnetism Charm Shotgun Crash Boom USB Queen Psycho Sonic Video The Chain Mascots Banjo Besties",
+        "categories": "Charisma Types of microphone Musical killers Ending in neckwear",
+        "answer": "Video game mascots",
+        "decoyDescriptions": "Loud noises/explosions - makes you think the row is about loud sounds and USB is the impostor"
+      }
     },
     {
       "id": "l15",
       "date": "2026-04-05",
       "name": "Collective animals nouns",
       "phase2TileCount": 3,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Yarn Flock Thread Tale Gonzo Crash Animal Beaker Biotics Mote School Nouns Collective Prankster Coldblooded Murder",
+        "categories": "Long-winded stories The Muppets Pro ___ Start with types of call",
+        "answer": "Collective animals nouns",
+        "decoyDescriptions": "Textiles/wool - makes you think the row is about fabric and Tale is the impostor Crime/killing - makes you think the row is about crime"
+      }
     },
     {
       "id": "l20",
       "date": "2026-04-04",
       "name": "Cleaning products",
       "phase2TileCount": 3,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Ing Barclays Chase Polish Dove Violet Beauregarde Smurfs Na'vi Onion Clean Mop Roll Products Babies Wipes Bananas",
+        "categories": "Banks Blue people Spring _ _ _ Results of multiplication",
+        "answer": "Cleaning products",
+        "decoyDescriptions": "Cleaning - makes you think the row is about cleaning not Spring ___ Baby products - makes you think the row is about baby care and Bananas is the impostor"
+      }
     },
     {
       "id": "l12",
       "date": "2026-04-03",
       "name": "End in imperial units",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Imperial Polo Humbug Courtyard English Breakfast Coke Chamomile Red Bull Companies Platoons Compounds Units Litre Colour Grey Renounce",
+        "categories": "Mints Caffeinated drinks Military group organisation Different spellings in UK and US English",
+        "answer": "End in imperial units",
+        "decoyDescriptions": "Types of tea - makes you think the row is teas and Coke/Red Bull is the impostor All sound military - hard to spot that Compounds is not a group/unit structure"
+      }
     },
     {
       "id": "l25",
       "date": "2026-04-02",
       "name": "Royal flush",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Two Seven Ten Eleven Flush Ramble Jack Laugh Mock King Queen King Duck King Snack King Ace of Spades Royal Aquatic mammal Approval",
+        "categories": "Prime numbers Reactions to being embarrassed Split words ending 'king' Seals",
+        "answer": "Royal flush",
+        "decoyDescriptions": "Poker terms - makes you think the row is about poker not reactions to embarrassment Cards/poker - makes you think the row is about cards not seals"
+      }
     },
     {
       "id": "l2",
       "date": "2026-04-01",
       "name": "London Underground stations",
       "phase2TileCount": 3,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Stations Bank Jail Utilities London Millennium Tower Monument Sole Temple John Dory Snapper Underground Postal Angel Going, gone",
+        "categories": "Types of Monopoly square Bridges of London Species of fish Going ____",
+        "answer": "London Underground stations",
+        "decoyDescriptions": "London landmarks - makes you think the row is London landmarks and London is the impostor All also tube station names - makes you think tube stations is the row theme Tower Hill is also a tube station - player may pick Tower as impostor instead of Monument"
+      }
     },
     {
       "id": "l11",
       "date": "2026-03-31",
       "name": "Newspaper sections",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Science News English French Newspaper Trees Cricket bat Money Neither Tomato Potato Health Columns Parts Sections Chapters",
+        "categories": "School subjects Made of wood Pronunciations in 'Let's Call The Whole Thing Off' Structure of a parliamentary act",
+        "answer": "Newspaper sections",
+        "decoyDescriptions": "Newspaper layout terms - makes you think newspaper structure and Chapters is the impostor Science is a newspaper section - fits the impostor theme, player may pick Science instead of News"
+      }
+    },
+    {
+      "id": "l41",
+      "date": "",
+      "name": "Tracks on Fleetwood Mac's Rumours",
+      "phase2TileCount": 2,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Songbird York Delhi Castle Bow Dreams Nappy Love Go Your Own Way Leader Tracks Yellow Brick Road Table The Chain Rumours Trousers",
+        "categories": "New___ cities Associated with Cupid Things you follow They can have legs",
+        "answer": "",
+        "decoyDescriptions": "All sound like taking a path, whereas Leader is a person."
+      }
+    },
+    {
+      "id": "l42",
+      "date": "",
+      "name": "Types of squash",
+      "phase2TileCount": 1,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Tennis Courgette Squash Badminton Inception Titanic Fairytale Romeo + Juliet Cinderella Elsa  Buttercup Vanellope Wavelength Yellow Half-life L",
+        "categories": "Racket sports Leonardo DiCaprio films Disney princesses Meanings for the Lambda (λ)",
+        "answer": "",
+        "decoyDescriptions": "Princess Buttercup is a fictional princess in the Princess Bride, but not a Disney Princess."
+      }
+    },
+    {
+      "id": "l43",
+      "date": "",
+      "name": "Films about aliens",
+      "phase2TileCount": 2,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Fleet Battleship Convoy Train Pixels Lenses Films Flashes Aliens ET Judgement Day Fire and Ash Spectacles Patsy Photo Contact",
+        "categories": "Groups of vehicles Analogue camera components in plural James Cameron sequels They are framed",
+        "answer": "",
+        "decoyDescriptions": "ET is also a movie about Aliens so it could get confusing. The whole row could also confuse someone when trying to solve vertically. All things to do with vision correcting. All military terms - whereas train is civilian infrastructure. All appear to be camera/visuals related."
+      }
     },
     {
       "id": "l6",
       "date": "",
       "name": "Dictionaries",
       "phase2TileCount": 1,
-      "pdlComplete": true
-    },
-    {
-      "id": "l16",
-      "date": "",
-      "name": "To con",
-      "phase2TileCount": 1,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "May Mercury Collins Taylor Cambridge Mario's hat Postbox Coca-Cola Rummy Go Fish Poker Scrabble Paleo Dictionaries Tropic of Cancer Urban",
+        "categories": "Queen members Red things Card games End in zodiac signs",
+        "answer": "Dictionaries",
+        "decoyDescriptions": "All are games - player needs to notice the category is specifically card games to spot Scrabble"
+      }
     },
     {
       "id": "l10",
       "date": "",
       "name": "Taylor Swift records",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Records Clean Log Index Lover Tango Romeo Juliett Usain Bolt Taylor Swift Geoffrey Rush Elizabeth Taylor Few More Fifteen Fistful Zero",
+        "categories": "Filed documents Nato phonetic alphabet Fast celebrity names Dollars in 'Man with No Name' trilogy titles",
+        "answer": "Taylor Swift records",
+        "decoyDescriptions": "Romance/Shakespeare - makes you think the row is romance and Tango is the impostor Famous Taylors - makes you think the row groups people named Taylor"
+      }
     },
     {
       "id": "l7",
       "date": "",
       "name": "Comes in second",
       "phase2TileCount": 1,
-      "pdlComplete": true
-    },
-    {
-      "id": "l37",
-      "date": "",
-      "name": "Chocolate bars",
-      "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Omega Beta Dalek Master Back Understudy Second Hired Clip Farm Silver Ladyfinger Other Pyramid Left Field Right hand",
+        "categories": "Doctor Who villains ____ hand End in body parts Glastonbury stages",
+        "answer": "Comes in second",
+        "decoyDescriptions": "Greek letters - makes you think the row is Greek letters and Dalek/Master is the impostor"
+      }
     },
     {
       "id": "l36",
       "date": "",
       "name": "Batman rogues gallery",
       "phase2TileCount": 4,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Crook Rogues Scoundrels Scarecrow Bat Bane Pitch Strike Penguin Stag Man Gander Gallery Joker Stanker Snail",
+        "categories": "Cheaters Baseball terminology Male of the species Types of boat plus a letter",
+        "answer": "Batman rogues gallery",
+        "decoyDescriptions": ""
+      }
+    },
+    {
+      "id": "l37",
+      "date": "",
+      "name": "Chocolate bars",
+      "phase2TileCount": 2,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Pink Lady The Beatles' label Mars Mac Kinder Watermelon seeds Bars Tacks Bounty Mustardy Leave behind Chocolate Galaxy Church Star Thatch",
+        "categories": "Apples Things you spit Ending in words for unpunctuality First syllable of UK Prime Ministers' surnames",
+        "answer": "Chocolate bars",
+        "decoyDescriptions": "Starbar is a chocolate bar - fits the impostor theme, player may pick Star instead of Galaxy"
+      }
     },
     {
       "id": "l21",
       "date": "",
       "name": "Spaceships",
       "phase2TileCount": 2,
-      "pdlComplete": true
-    },
-    {
-      "id": "l14",
-      "date": "",
-      "name": "Associated with volcanic eruptions",
-      "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Serenity Magnum Rocket Fab Windows Enterprise Space Control Ships Sloo Soyuz Sash Tie Curiosity Cat Lost",
+        "categories": "Ice lollies Bottom row of a Windows keyboard Potato dishes with first letter changed to 's' What happens to your tongue in idioms",
+        "answer": "Spaceships",
+        "decoyDescriptions": "Business/corporate - makes you think the row is corporate terms and Space is the impostor Curiosity killed the cat - famous saying links these tiles Rocket is a spaceship - fits the impostor Spaceships theme, player may pick Rocket instead of Serenity"
+      }
     },
     {
       "id": "l22",
       "date": "",
       "name": "Named after US Presidents",
       "phase2TileCount": 4,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Presidents States Chairs Chiefs Us Nope Dam Get Out Named Memorial Sensational Slams Fortune-telling ball Snowman Teddy bear After",
+        "categories": "Leadership roles Jordan Peele filmography Headline lingo Associated with '8'",
+        "answer": "Named after US Presidents",
+        "decoyDescriptions": "US government - makes you think the row is about government and Chairs is the impostor"
+      }
     },
     {
-      "id": "l19",
+      "id": "l14",
       "date": "",
-      "name": "Estate planning",
-      "phase2TileCount": 1,
-      "pdlComplete": true
-    },
-    {
-      "id": "l3",
-      "date": "",
-      "name": "Daily ____",
-      "phase2TileCount": 1,
-      "pdlComplete": true
+      "name": "Associated with volcanic eruptions",
+      "phase2TileCount": 2,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Yellow Chicken Sulphur Craven Mercury George Ash Rose Volcanic Pompeii Spain Bananas Hotel California Ring of Fire Eruption Freebird",
+        "categories": "Synonyms for 'cowardly' 80s frontmen The Canary Islands Famous guitar solos",
+        "answer": "Associated with volcanic eruptions",
+        "decoyDescriptions": "Yellow things - makes you think the row is about yellow Volcanic destruction - makes you think the row is about volcanoes not Canary Islands Fire/volcanic - makes you think the row is about volcanoes not famous guitar solos"
+      }
     },
     {
       "id": "l34",
       "date": "",
       "name": "21ˢᵗ Century Popes",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Stone Prisoner Prince Francis Leo Luca Up Coco KC Popes John Paul Chick fil Silver Benedict 21ˢᵗ Century Sly",
+        "categories": "Subjects of Harry Potter titles Pixar movies Chicken shops minus a letter ___ Fox",
+        "answer": "21ˢᵗ Century Popes",
+        "decoyDescriptions": ""
+      }
     },
     {
-      "id": "l35",
+      "id": "l19",
       "date": "",
-      "name": "Friends characters",
-      "phase2TileCount": 3,
-      "pdlComplete": true
+      "name": "Estate planning",
+      "phase2TileCount": 1,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Will Secret News Estate Work Mouse Trust Trip Death Taxes Smoke Null Grouters Planning Testament Midwifing",
+        "categories": "Agents Field _ _ _ First halves of 'X & Y' sayings Hidden networks",
+        "answer": "Estate planning",
+        "decoyDescriptions": "Estate planning/legal - makes you think the row is about wills and estates Death and Taxes - famous saying makes these two tiles feel linked Death duties = estate planning - fits the impostor theme, player may pick Death instead of Taxes"
+      }
     },
     {
       "id": "l38",
       "date": "",
       "name": "Songbirds",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Knight King Swallow Castle Robin Goldfinch Watson Chewbacca Swift Song Tune Number Island Birds Rook Actually",
+        "categories": "Chess pieces Sidekicks Musical compositions Love ___",
+        "answer": "Songbirds",
+        "decoyDescriptions": "Monty Python Holy Grail - all four evoke the film making it hard to spot Swallow as impostor Birds - Robin is more obviously a bird name, player picks Robin instead of Goldfinch Birds - makes you think the row is about birds not Love ___ Birds - one per row creates a full false vertical. Robin is not the impostor in R2 (Goldfinch is) Robin is a bird/songbird - fits the impostor theme, player picks Robin instead of Goldfinch"
+      }
     },
     {
-      "id": "l32",
+      "id": "l3",
       "date": "",
-      "name": "This puzzle is hard",
-      "phase2TileCount": 4,
-      "pdlComplete": true
-    },
-    {
-      "id": "l4",
-      "date": "",
-      "name": "Squid",
+      "name": "Daily ____",
       "phase2TileCount": 1,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Star Mail Sun Globe Kane Rice Bread Stones Dire Straits Genesis Queen Grind Daily Homes Bored man Planner",
+        "categories": "Celestial newspaper names England footballers 70s rock bands Homophones of Team GB Olympians",
+        "answer": "Daily ____",
+        "decoyDescriptions": "All are newspapers - hard to spot which does not fit celestial newspaper names Star is also Daily Star - fits the impostor relink theme Daily ___"
+      }
     },
     {
-      "id": "l8",
+      "id": "l35",
       "date": "",
-      "name": "____graph",
-      "phase2TileCount": 1,
-      "pdlComplete": true
+      "name": "Friends characters",
+      "phase2TileCount": 3,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Ross Tues Thurs Fri Chick Turf Ends Hood Joey Foals Rachel Gosling Characters Ashley Cinderella Gunther",
+        "categories": "Days of the week Territory Baby animals Start with the result of fire",
+        "answer": "Friends characters",
+        "decoyDescriptions": "Friends characters - both are main Friends characters making you think the row is about Friends Joey is a Friends character - fits the impostor theme, player may pick Joey instead of Rachel"
+      }
     },
     {
       "id": "l39",
       "date": "",
       "name": "Evergreen trees",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Orchard Cedar Trees Bushel Spruce Freeze Halt Hands up Evergreen Pine Immortal Eternal Nail Knuckle Palm Tip",
+        "categories": "Where apples are found Stop! In the name of the law! Undying Finger anatomy",
+        "answer": "Evergreen trees",
+        "decoyDescriptions": "Trees - makes you think the row is about trees not undying"
+      }
+    },
+    {
+      "id": "l32",
+      "date": "",
+      "name": "This puzzle is hard",
+      "phase2TileCount": 4,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "This puzzle Outta Prime Hard This Ushers Nails Flours This puzzle Facebook Diamond Fourth wall Puzzle Booze Is Liquor",
+        "categories": "___ Time End in possessive pronouns Meta things Contain a 'z' sound",
+        "answer": "This puzzle is hard",
+        "decoyDescriptions": "Hard booze fits the relink connection - player may pick Booze instead of Liquor as impostor"
+      }
+    },
+    {
+      "id": "l4",
+      "date": "",
+      "name": "Squid",
+      "phase2TileCount": 1,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Paintbrush Ink Pen Pencil Pork Beef Calamari Venison Colossal Finite Visible Divisible Squid Bucky Tentacle Cloonie",
+        "categories": "Art tools Meat from land mammals Add 'in' to get its antonym Currency nicknames plus a letter",
+        "answer": "Squid",
+        "decoyDescriptions": "All are types of meat - player must notice land mammals qualifier to spot Calamari Sea creatures - makes you think the row theme is marine life"
+      }
+    },
+    {
+      "id": "l8",
+      "date": "",
+      "name": "____graph",
+      "phase2TileCount": 1,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Auto Graph Less Ness Tower Arc Poly Cathedral Finger Frame Accuse Photo Heel Share Tele Drat",
+        "categories": "Suffixes Paris landmarks To blame Animals with an added letter",
+        "answer": "____graph",
+        "decoyDescriptions": "Word affixes - Auto is a prefix not suffix but all are affixes making Graph look like the impostor Photography - photo frame makes you think the row is about photography"
+      }
     },
     {
       "id": "l13",
       "date": "",
       "name": "Start with shades of blue",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Zoo Aquarium Savanna Reserve Blue Downcast Ice cold Gloomy Finish Dead Touch Seal Heliosphere Apollo 11 Cyanogen Shades",
+        "categories": "Where a lion might live Dollars in 'Man with No Name' trilogy titles ____ Line Contain Greek gods",
+        "answer": "Start with shades of blue",
+        "decoyDescriptions": "Places with animals - hides that lions specifically would not live in an aquarium"
+      }
     },
     {
       "id": "l9",
       "date": "",
       "name": "Silent letter",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Crumb Mast Letter A Silent Amass Dough Black Sabbath Cocoa Salmon Scales Eggs Knead Flours Suites Wring",
+        "categories": "____head Ending in Christian traditions Used in baking Homophones for Valentine's gifts",
+        "answer": "Silent letter",
+        "decoyDescriptions": "Fish - Salmon + Scales + Eggs all relate to fish, making Cocoa look like the impostor Baking - makes you think the row is baking not homophones for Valentine gifts Wring has a silent W - fits the silent letter impostor theme, player may pick Wring instead of Knead"
+      }
     },
     {
       "id": "l5",
       "date": "",
       "name": "Monopoly",
       "phase2TileCount": 1,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Palace Villa Hotel City Castle House Keep Citadel Walrus Her Majesty Jude Dog Battleship Monopoly Bassetts Planters",
+        "categories": "Second words of Premier League football teams Fortifications Subjects of Beatles songs Top-hatted mascots",
+        "answer": "Monopoly",
+        "decoyDescriptions": "All are types of building - hides that the real category is PL team second words Board games - makes you think the row is board games not top-hatted mascots"
+      }
     },
     {
       "id": "l33",
       "date": "",
       "name": "The Beatles members",
       "phase2TileCount": 2,
-      "pdlComplete": true
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "John Pledge Members Comrade Paul Alex Aslan Cowardly Benedict George Francis Leo Bep Wast Beatles Ringo",
+        "categories": "Part of the club Lions 21ˢᵗ Century Popes Insects with a letter changed",
+        "answer": "The Beatles members",
+        "decoyDescriptions": ""
+      }
+    },
+    {
+      "id": "l16",
+      "date": "",
+      "name": "To con",
+      "phase2TileCount": 1,
+      "pdlComplete": true,
+      "searchFields": {
+        "tiles": "Dime Cheaper Eggs Milk Con Disaster Cheat Tattoo Meal ticket Stitch up Silver platter Coattails Computer Fleece Soaker Man",
+        "categories": "Dozen Kinds of artist Unearned' idioms Super _ _ _",
+        "answer": "To con",
+        "decoyDescriptions": "Dairy/breakfast items - makes you think the row is about food Deception - makes you think the row is about cheating/fraud"
+      }
     }
   ]
 }

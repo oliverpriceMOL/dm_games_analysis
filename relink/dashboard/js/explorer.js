@@ -6,15 +6,17 @@
  */
 
 import { COLORS, hsl, hsla, nearestInteraction, horizontalInteraction } from './charts.js';
+import { renderSolveOrderMiniBar } from './crosstabs.js';
 
-// Base colors by wrong count
+// Wrong-count palette (project standard). Order: 0 → 4 → no_attempt.
+// orange → green → blue → purple → lighter red → darker red.
 const BASE_COLORS = {
-    '0': '#e74c3c',   // red — first try
-    '1': '#f39c12',   // orange — 1 wrong
-    '2': '#27ae60',   // green — 2 wrong
-    '3': '#2980b9',   // blue — 3 wrong
-    '4': '#8e44ad',   // purple — 4 wrong (sim only, positional wrongs)
-    'no_attempt': '#c0392b', // dark red — never attempted
+    '0': '#f39c12',
+    '1': '#27ae60',
+    '2': '#2980b9',
+    '3': '#8e44ad',
+    '4': '#e74c3c',
+    'no_attempt': '#641e16',
 };
 
 // Compound keys for the split wrong_dist (actual data)
@@ -421,7 +423,7 @@ function updateContent() {
     html += '<div style="overflow-x:auto;"><table><thead><tr>';
     html += '<th>Puzzle</th><th>Row</th><th>Category</th><th>Manipulation</th><th>Abstraction</th>';
     html += '<th>Knowledge</th><th>Domain</th><th>Impostor</th><th>1st Try</th>';
-    html += '<th>Avg Wrong</th><th>Diff.</th><th>Top Wrong</th>';
+    html += '<th>Avg Wrong</th><th>Diff.</th><th>Solve Order</th><th>Top Wrong</th>';
     html += '</tr></thead><tbody>';
     for (const { puzzle: p, isDated } of selected) {
         const rowSpan = isDated ? 5 : 4;
@@ -448,6 +450,7 @@ function updateContent() {
                 // Row difficulty score
                 const rs = p.difficulty?.row_scores?.[String(rp)];
                 html += `<td>${rs ? rs.rating + '/5' : '—'}</td>`;
+                html += `<td style="min-width:100px;">${renderSolveOrderMiniBar(r.solve_order_dist)}</td>`;
                 html += `<td style="font-size:12px;">${topWrong}</td>`;
             } else if (r.first_try_pct != null) {
                 // Predicted row stats from simulator
@@ -455,9 +458,9 @@ function updateContent() {
                 html += `<td>~${r.avg_wrong.toFixed(2)}</td>`;
                 const rs = p.difficulty?.row_scores?.[String(rp)];
                 html += `<td>${rs ? rs.rating + '/5' : '—'}</td>`;
-                html += '<td>—</td>';
+                html += '<td>—</td><td>—</td>';
             } else {
-                html += '<td>—</td><td>—</td><td>—</td><td>—</td>';
+                html += '<td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>';
             }
             html += '</tr>';
         }
@@ -469,7 +472,7 @@ function updateContent() {
             html += '<td>—</td>';
             html += `<td>${badge((rl.first_try_pct * 100).toFixed(0) + '%')}</td>`;
             html += `<td>${rl.avg_attempts.toFixed(2)}</td>`;
-            html += '<td>—</td><td>—</td>';
+            html += '<td>—</td><td>—</td><td>—</td>';
             html += '</tr>';
         }
     }

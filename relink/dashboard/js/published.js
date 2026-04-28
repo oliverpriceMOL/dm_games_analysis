@@ -15,6 +15,7 @@ import {
     badge, stars, tierClass, dimBar,
     renderPhiMatrix,
 } from './utils.js';
+import { SOLVE_ORDER_BUCKETS, SOLVE_ORDER_COLORS, SOLVE_ORDER_LABELS } from './crosstabs.js';
 
 /* ── State ──────────────────────────────────────────────────────── */
 
@@ -230,6 +231,16 @@ function renderDetail(key) {
     html += legendHtml();
     html += `<div class="chart-container" style="height:280px;margin-top:8px;"><canvas id="detail-wd"></canvas></div>`;
 
+    // ── Solve-order distribution by row ──
+    html += `<h4 style="margin-top:20px;">Solve Order by Row</h4>`;
+    html += `<p style="color:var(--muted);font-size:13px;">For each row, the position at which players resolved it during the puzzle (1st / 2nd / 3rd / 4th of the four imposters rows). The Relink phase is always position 5 (since it follows all four imposters) or 'never' if the player lost or abandoned. Each bar is a 100% stack across all engaged players.</p>`;
+    html += `<div class="chart-container" style="height:280px;"><canvas id="detail-so"></canvas></div>`;
+
+    // ── Ever-solved binary by row ──
+    html += `<h4 style="margin-top:20px;">Ever Solved by Row</h4>`;
+    html += `<p style="color:var(--muted);font-size:13px;">Share of engaged players who eventually resolved each row (regardless of how many wrong guesses they took). The Relink bar is the share who completed the puzzle.</p>`;
+    html += `<div class="chart-container" style="height:240px;"><canvas id="detail-ever"></canvas></div>`;
+
     // ── Total mistakes distribution ──
     html += `<h4 style="margin-top:20px;">Total Mistakes per Player</h4>`;
     const n = includeAbandons ? p.players : p.wins + p.losses;
@@ -263,6 +274,8 @@ function renderDetail(key) {
         createRadarChart('detail-radar', dims, dimLabels, diff.profile, { large: true, showValues: true });
     }
     renderWrongDistChart('detail-wd', p);
+    renderSolveOrderChart('detail-so', p);
+    renderEverSolvedChart('detail-ever', p);
     renderMistakeDistChart('detail-md', p);
     if (p.timing) {
         renderDualCurveChart('detail-curve', p);
@@ -355,6 +368,123 @@ function renderWrongDistChart(canvasId, puzzle) {
             plugins: { legend: { display: false }, tooltip: { callbacks: {
                 label(ctx) { return showPercent ? `${ctx.dataset.label}: ${ctx.raw.toFixed(1)}%` : `${ctx.dataset.label}: ${ctx.raw}`; }
             } } },
+        }
+    });
+    chartInstances.push(chart);
+}
+
+/* ── Solve-order distribution by row ───────────────────────────── */
+
+function renderSolveOrderChart(canvasId, puzzle) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    const labels = [];
+    const perRowDist = [];
+    for (let rp = 0; rp < 4; rp++) {
+        const r = puzzle.rows?.[String(rp)];
+        if (!r) continue;
+        labels.push(`Row ${rp}: ${r.category || ''}`.trim().replace(/:\s*$/, ''));
+        perRowDist.push(r.solve_order_dist || {});
+    }
+    if (puzzle.relink?.solve_order_dist) {
+        labels.push('Relink');
+        perRowDist.push(puzzle.relink.solve_order_dist);
+    }
+
+    const datasets = SOLVE_ORDER_BUCKETS.map(b => ({
+        label: SOLVE_ORDER_LABELS[b],
+        data: perRowDist.map(d => d[b] || 0),
+        backgroundColor: SOLVE_ORDER_COLORS[b],
+        borderWidth: 0,
+        stack: 'so',
+    }));
+
+    const chart = new Chart(canvas.getContext('2d'), {
+        type: 'bar',
+        data: { labels, datasets },
+        options: {
+            indexAxis: 'y',
+            interaction: horizontalInteraction,
+            scales: {
+                x: { stacked: true, max: 100, beginAtZero: true,
+                      title: { display: true, text: 'Share of attempts (%)' } },
+                y: { stacked: true },
+            },
+            plugins: {
+                legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+                tooltip: {
+                    callbacks: {
+                        label: (ctx) => `${ctx.dataset.label}: ${ctx.raw.toFixed(1)}%`,
+                    }
+                },
+            },
+        }
+    });
+    chartInstances.push(chart);
+}
+
+/* ── Ever-solved binary by row ─────────────────────────────────── */
+
+function renderEverSolvedChart(canvasId, puzzle) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    const labels = [];
+    const everPct = [];
+    const everColors = [];
+
+    const everFromDist = (sod) => {
+        if (!sod) return null;
+        return SOLVE_ORDER_BUCKETS
+            .filter(b => b !== 'never')
+            .reduce((s, b) => s + (sod[b] || 0), 0);
+    };
+
+    for (let rp = 0; rp < 4; rp++) {
+        const r = puzzle.rows?.[String(rp)];
+        if (!r) continue;
+        const ev = everFromDist(r.solve_order_dist);
+        if (ev == null) continue;
+        labels.push(`Row ${rp}: ${r.category || ''}`.trim().replace(/:\s*$/, ''));
+        everPct.push(+ev.toFixed(1));
+        everColors.push(SOLVE_ORDER_COLORS['1st']);
+    }
+    if (puzzle.relink?.solve_order_dist) {
+        const ev = everFromDist(puzzle.relink.solve_order_dist);
+        if (ev != null) {
+            labels.push('Relink');
+            everPct.push(+ev.toFixed(1));
+            everColors.push(SOLVE_ORDER_COLORS['5th']);
+        }
+    }
+
+    const chart = new Chart(canvas.getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{
+                label: '% ever solved',
+                data: everPct,
+                backgroundColor: everColors,
+                borderWidth: 0,
+            }],
+        },
+        options: {
+            indexAxis: 'y',
+            interaction: horizontalInteraction,
+            scales: {
+                x: { beginAtZero: true, max: 100,
+                      title: { display: true, text: '% of engaged players' } },
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: (ctx) => `${ctx.raw.toFixed(1)}% ever solved`,
+                    }
+                },
+            },
         }
     });
     chartInstances.push(chart);

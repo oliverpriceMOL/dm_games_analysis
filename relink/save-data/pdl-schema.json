@@ -1,0 +1,56 @@
+{
+  "knowledgeLevels": [
+    "None",
+    "General vocabulary",
+    "Common cultural",
+    "Specialist cultural"
+  ],
+  "manipulationTypes": [
+    "None",
+    "Compound",
+    "Hidden word",
+    "Letter add-delete",
+    "Homophone",
+    "Anagram",
+    "Reversal",
+    "Word split",
+    "Plural add-delete"
+  ],
+  "abstractionLevels": [
+    "Direct membership",
+    "Shared property",
+    "Association",
+    "Loose thematic",
+    "Multi-sense"
+  ],
+  "knowledgeDomains": [
+    "Sport",
+    "Music",
+    "Language",
+    "Geography",
+    "Science",
+    "Technology",
+    "Food",
+    "History",
+    "Film-TV",
+    "Literature",
+    "Religion",
+    "Maths",
+    "General",
+    "Other"
+  ],
+  "connectionIdManipulationTypes": [
+    "None",
+    "Hidden word",
+    "Compound",
+    "Letter add-delete",
+    "Homophone"
+  ],
+  "answerConstructionManipulationTypes": [
+    "None",
+    "Compound",
+    "Word split",
+    "Hidden word",
+    "Phrase"
+  ]
+}

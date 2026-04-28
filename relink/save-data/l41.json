@@ -1,35 +1,87 @@
 {
   "schemaVersion": 2,
-  "id": "l5",
+  "id": "l41",
   "date": "",
-  "name": "Monopoly",
+  "name": "Tracks on Fleetwood Mac's Rumours",
   "rows": [
     {
-      "id": "row-l5-17",
+      "id": "row-1776955170878-7",
       "position": 0,
-      "category": "Second words of Premier League football teams",
+      "category": "New___ cities",
       "tiles": [
         {
-          "id": "tile-l5-65",
-          "text": "Palace",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-66",
-          "text": "Villa",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-67",
-          "text": "Hotel",
+          "id": "tile-1776955170878-8",
+          "text": "Songbird",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l5-68",
-          "text": "City",
+          "id": "tile-1776955170878-9",
+          "text": "York",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1776955170878-10",
+          "text": "Delhi",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1776955170878-11",
+          "text": "Castle",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Shared property"
+          ],
+          "knowledgeDomain": [
+            "Geography"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Music"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1776955170878-12",
+      "position": 1,
+      "category": "Associated with Cupid",
+      "tiles": [
+        {
+          "id": "tile-1776955170878-13",
+          "text": "Bow",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1776955170878-14",
+          "text": "Dreams",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1776955170878-15",
+          "text": "Nappy",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1776955170878-16",
+          "text": "Love",
           "isImpostor": false,
           "isRelink": false
         }
@@ -43,149 +95,46 @@
             "None"
           ],
           "abstraction": [
-            "Direct membership"
+            "Association"
           ],
           "knowledgeDomain": [
-            "Sport"
+            "History",
+            "Religion"
           ]
         },
         "impostor": {
           "realIdentityDomain": [
-            "General"
-          ]
-        }
-      }
-    },
-    {
-      "id": "row-l5-18",
-      "position": 1,
-      "category": "Fortifications",
-      "tiles": [
-        {
-          "id": "tile-l5-69",
-          "text": "Castle",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-70",
-          "text": "House",
-          "isImpostor": true,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-71",
-          "text": "Keep",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-72",
-          "text": "Citadel",
-          "isImpostor": false,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "General vocabulary"
-          ],
-          "manipulation": [
-            "None"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
-            "General"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "General"
-          ]
-        }
-      }
-    },
-    {
-      "id": "row-l5-19",
-      "position": 2,
-      "category": "Subjects of Beatles songs",
-      "tiles": [
-        {
-          "id": "tile-l5-73",
-          "text": "Walrus",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-74",
-          "text": "Her Majesty",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-75",
-          "text": "Jude",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-76",
-          "text": "Dog",
-          "isImpostor": true,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "Specialist cultural"
-          ],
-          "manipulation": [
-            "None"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
             "Music"
           ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "General"
-          ]
         }
       }
     },
     {
-      "id": "row-l5-20",
-      "position": 3,
-      "category": "Top-hatted mascots",
+      "id": "row-1776955170878-2",
+      "position": 2,
+      "category": "Things you follow",
       "tiles": [
         {
-          "id": "tile-l5-77",
-          "text": "Battleship",
+          "id": "tile-1776955170878-3",
+          "text": "Go Your Own Way",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l5-78",
-          "text": "Monopoly",
+          "id": "tile-1776955170878-4",
+          "text": "Leader",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1776955170878-5",
+          "text": "Tracks",
           "isImpostor": false,
           "isRelink": true
         },
         {
-          "id": "tile-l5-79",
-          "text": "Bassetts",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-80",
-          "text": "Planters",
+          "id": "tile-1776955170878-6",
+          "text": "Yellow Brick Road",
           "isImpostor": false,
           "isRelink": false
         }
@@ -193,13 +142,67 @@
       "pdl": {
         "group": {
           "knowledge": [
-            "Specialist cultural"
+            "None"
           ],
           "manipulation": [
             "None"
           ],
           "abstraction": [
-            "Direct membership"
+            "Loose thematic",
+            "Multi-sense"
+          ],
+          "knowledgeDomain": [
+            "Language",
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Music"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1776955170878-17",
+      "position": 3,
+      "category": "They can have legs",
+      "tiles": [
+        {
+          "id": "tile-1776955170878-18",
+          "text": "Table",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1776955170878-19",
+          "text": "The Chain",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1776955170878-20",
+          "text": "Rumours",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-1776955170878-21",
+          "text": "Trousers",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "None"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Multi-sense"
           ],
           "knowledgeDomain": [
             "General"
@@ -207,7 +210,7 @@
         },
         "impostor": {
           "realIdentityDomain": [
-            "General"
+            "Music"
           ]
         }
       }
@@ -216,29 +219,38 @@
   "relink": {
     "tiles": [
       {
-        "text": "Monopoly",
+        "text": "Tracks",
         "source": "grid",
-        "sourceRowId": "row-l5-20"
+        "sourceRowId": "row-1776955170878-2"
       },
       {
-        "text": "pieces",
+        "text": "from",
+        "source": "fodder"
+      },
+      {
+        "text": "Rumours",
+        "source": "grid",
+        "sourceRowId": "row-1776955170878-17"
+      },
+      {
+        "text": "by Fleetwood Mac",
         "source": "fodder"
       }
     ],
-    "answer": "Monopoly",
+    "answer": "",
     "pdl": {
       "connectionIdentification": {
+        "knowledge": [
+          "Specialist cultural"
+        ],
         "manipulation": [
           "None"
         ],
-        "knowledge": [
-          "Common cultural"
-        ],
         "abstraction": [
-          "Association"
+          "Direct membership"
         ],
         "knowledgeDomain": [
-          "General"
+          "Music"
         ]
       },
       "answerConstruction": {
@@ -246,19 +258,18 @@
           "None"
         ],
         "knowledge": [
-          "None"
+          "Specialist cultural"
         ]
       }
     }
   },
   "decoys": [
     {
-      "id": "decoy-1776089211-54",
+      "id": "decoy-1777020669170-1",
       "tileIds": [
-        "tile-l5-67",
-        "tile-l5-65",
-        "tile-l5-66",
-        "tile-l5-68"
+        "tile-1776955170878-3",
+        "tile-1776955170878-5",
+        "tile-1776955170878-6"
       ],
       "pdl": {
         "knowledge": [
@@ -268,35 +279,19 @@
           "None"
         ],
         "abstraction": [
-          "Association"
+          "Loose thematic",
+          "Multi-sense"
         ],
-        "description": "All are types of building - hides that the real category is PL team second words"
-      }
-    },
-    {
-      "id": "decoy-1776089211-55",
-      "tileIds": [
-        "tile-l5-77",
-        "tile-l5-78"
-      ],
-      "pdl": {
-        "knowledge": [
-          "Common cultural"
-        ],
-        "manipulation": [
-          "None"
-        ],
-        "abstraction": [
-          "Direct membership"
-        ],
-        "description": "Board games - makes you think the row is board games not top-hatted mascots"
+        "completeness": null,
+        "groupsSpanned": "",
+        "description": "All sound like taking a path, whereas Leader is a person."
       }
     }
   ],
   "board": {
-    "specialistGroupCount": 2,
+    "specialistGroupCount": 0,
     "decoyCount": 0,
-    "phase2TileCount": 1,
+    "phase2TileCount": 0,
     "isThemed": false,
     "themeDomain": null
   }

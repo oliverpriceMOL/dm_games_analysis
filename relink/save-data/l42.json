@@ -1,35 +1,35 @@
 {
   "schemaVersion": 2,
-  "id": "l5",
+  "id": "l42",
   "date": "",
-  "name": "Monopoly",
+  "name": "Types of squash",
   "rows": [
     {
-      "id": "row-l5-17",
+      "id": "row-1776949517097-23",
       "position": 0,
-      "category": "Second words of Premier League football teams",
+      "category": "Racket sports",
       "tiles": [
         {
-          "id": "tile-l5-65",
-          "text": "Palace",
+          "id": "tile-1776949517097-24",
+          "text": "Tennis",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l5-66",
-          "text": "Villa",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-67",
-          "text": "Hotel",
+          "id": "tile-1776949517097-25",
+          "text": "Courgette",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l5-68",
-          "text": "City",
+          "id": "tile-1776949517097-26",
+          "text": "Squash",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-1776949517097-27",
+          "text": "Badminton",
           "isImpostor": false,
           "isRelink": false
         }
@@ -51,37 +51,37 @@
         },
         "impostor": {
           "realIdentityDomain": [
-            "General"
+            "Food"
           ]
         }
       }
     },
     {
-      "id": "row-l5-18",
+      "id": "row-1776949517097-28",
       "position": 1,
-      "category": "Fortifications",
+      "category": "Leonardo DiCaprio films",
       "tiles": [
         {
-          "id": "tile-l5-69",
-          "text": "Castle",
+          "id": "tile-1776949517097-29",
+          "text": "Inception",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l5-70",
-          "text": "House",
+          "id": "tile-1776949517097-30",
+          "text": "Titanic",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1776949517097-31",
+          "text": "Fairytale",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l5-71",
-          "text": "Keep",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-72",
-          "text": "Citadel",
+          "id": "tile-1776949517097-32",
+          "text": "Romeo + Juliet",
           "isImpostor": false,
           "isRelink": false
         }
@@ -89,7 +89,7 @@
       "pdl": {
         "group": {
           "knowledge": [
-            "General vocabulary"
+            "Specialist cultural"
           ],
           "manipulation": [
             "None"
@@ -98,50 +98,51 @@
             "Direct membership"
           ],
           "knowledgeDomain": [
-            "General"
+            "Film-TV"
           ]
         },
         "impostor": {
           "realIdentityDomain": [
-            "General"
+            "Food",
+            "Film-TV"
           ]
         }
       }
     },
     {
-      "id": "row-l5-19",
+      "id": "row-1776949517097-33",
       "position": 2,
-      "category": "Subjects of Beatles songs",
+      "category": "Disney princesses",
       "tiles": [
         {
-          "id": "tile-l5-73",
-          "text": "Walrus",
+          "id": "tile-1776949517097-34",
+          "text": "Cinderella",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l5-74",
-          "text": "Her Majesty",
+          "id": "tile-1776949517097-35",
+          "text": "Elsa",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l5-75",
-          "text": "Jude",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-76",
-          "text": "Dog",
+          "id": "tile-1776949517097-36",
+          "text": " Buttercup",
           "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1776949517097-37",
+          "text": "Vanellope",
+          "isImpostor": false,
           "isRelink": false
         }
       ],
       "pdl": {
         "group": {
           "knowledge": [
-            "Specialist cultural"
+            "Common cultural"
           ],
           "manipulation": [
             "None"
@@ -150,42 +151,43 @@
             "Direct membership"
           ],
           "knowledgeDomain": [
-            "Music"
+            "Film-TV"
           ]
         },
         "impostor": {
           "realIdentityDomain": [
-            "General"
+            "Food",
+            "Film-TV"
           ]
         }
       }
     },
     {
-      "id": "row-l5-20",
+      "id": "row-1776949517097-38",
       "position": 3,
-      "category": "Top-hatted mascots",
+      "category": "Meanings for the Lambda (λ)",
       "tiles": [
         {
-          "id": "tile-l5-77",
-          "text": "Battleship",
+          "id": "tile-1776949517097-39",
+          "text": "Wavelength",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1776949517097-40",
+          "text": "Yellow",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l5-78",
-          "text": "Monopoly",
-          "isImpostor": false,
-          "isRelink": true
-        },
-        {
-          "id": "tile-l5-79",
-          "text": "Bassetts",
+          "id": "tile-1776949517097-41",
+          "text": "Half-life",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l5-80",
-          "text": "Planters",
+          "id": "tile-1776949517097-42",
+          "text": "L",
           "isImpostor": false,
           "isRelink": false
         }
@@ -199,15 +201,16 @@
             "None"
           ],
           "abstraction": [
-            "Direct membership"
+            "Association"
           ],
           "knowledgeDomain": [
-            "General"
+            "Language",
+            "Science"
           ]
         },
         "impostor": {
           "realIdentityDomain": [
-            "General"
+            "Food"
           ]
         }
       }
@@ -216,51 +219,18 @@
   "relink": {
     "tiles": [
       {
-        "text": "Monopoly",
-        "source": "grid",
-        "sourceRowId": "row-l5-20"
+        "text": "Types of",
+        "source": "fodder"
       },
       {
-        "text": "pieces",
-        "source": "fodder"
+        "text": "Squash",
+        "source": "grid",
+        "sourceRowId": "row-1776949517097-23"
       }
     ],
-    "answer": "Monopoly",
+    "answer": "",
     "pdl": {
       "connectionIdentification": {
-        "manipulation": [
-          "None"
-        ],
-        "knowledge": [
-          "Common cultural"
-        ],
-        "abstraction": [
-          "Association"
-        ],
-        "knowledgeDomain": [
-          "General"
-        ]
-      },
-      "answerConstruction": {
-        "manipulation": [
-          "None"
-        ],
-        "knowledge": [
-          "None"
-        ]
-      }
-    }
-  },
-  "decoys": [
-    {
-      "id": "decoy-1776089211-54",
-      "tileIds": [
-        "tile-l5-67",
-        "tile-l5-65",
-        "tile-l5-66",
-        "tile-l5-68"
-      ],
-      "pdl": {
         "knowledge": [
           "General vocabulary"
         ],
@@ -268,35 +238,51 @@
           "None"
         ],
         "abstraction": [
-          "Association"
+          "Direct membership"
         ],
-        "description": "All are types of building - hides that the real category is PL team second words"
+        "knowledgeDomain": [
+          "Food"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "General vocabulary"
+        ]
       }
-    },
+    }
+  },
+  "decoys": [
     {
-      "id": "decoy-1776089211-55",
+      "id": "decoy-1776962098675-1",
       "tileIds": [
-        "tile-l5-77",
-        "tile-l5-78"
+        "tile-1776949517097-34",
+        "tile-1776949517097-35",
+        "tile-1776949517097-36",
+        "tile-1776949517097-37"
       ],
       "pdl": {
         "knowledge": [
-          "Common cultural"
+          "Specialist cultural"
         ],
         "manipulation": [
           "None"
         ],
         "abstraction": [
-          "Direct membership"
+          "Shared property"
         ],
-        "description": "Board games - makes you think the row is board games not top-hatted mascots"
+        "completeness": null,
+        "groupsSpanned": "",
+        "description": "Princess Buttercup is a fictional princess in the Princess Bride, but not a Disney Princess."
       }
     }
   ],
   "board": {
-    "specialistGroupCount": 2,
+    "specialistGroupCount": 0,
     "decoyCount": 0,
-    "phase2TileCount": 1,
+    "phase2TileCount": 0,
     "isThemed": false,
     "themeDomain": null
   }

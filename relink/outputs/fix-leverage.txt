@@ -1,0 +1,91 @@
+RELINK FIX-LEVERAGE PUNCH LIST  (threshold: < 60.0% solve rate)
+Generated: 2026-04-27 11:12:01
+Pipeline outputs read from outputs/data/
+
+════════════════════════════════════════════════════════════════════════
+SECTION 1 — DATED PUZZLES (real player data)
+════════════════════════════════════════════════════════════════════════
+
+Single-row fix lifts puzzle to ≥ 60.0%:
+
+  Apr 4  Cleaning products                         25% →   86%   row 3 "Results of multiplication" (imp: Wipes)
+                                                 17 deaths · FT 24% · top wrong: Babies(28), Bananas(12)
+  Apr 5  Collective animals nouns                  35% →   60%   row 3 "Start with types of call" (imp: Murder)
+                                                 5 deaths · FT 29% · top wrong: Collective(18), Prankster(10)
+  Apr 2  Royal flush                               39% →   68%   row 1 "Reactions to being embarrassed" (imp: Jack)
+                                                 17 deaths · FT 48% · top wrong: Laugh(39), Flush(25)
+  Apr 6  Video game mascots                        48% →   78%   row 1 "Types of microphone" (imp: Crash)
+                                                 8 deaths · FT 24% · top wrong: USB(37), Shotgun(12)
+  Apr 1  London Underground stations               54% →   74%   row 3 "Going ____" (imp: Angel)
+                                                 11 deaths · FT 55% · top wrong: Going, gone(47), Underground(14)
+  Apr 8  Renewable energy                          60% →   77%   row 2 "_ _ _ Look" (imp: Wind)
+                                                 9 deaths · FT 63% · top wrong: New(38), Over(11)
+
+Need 2-row fix to reach ≥ 60.0%:
+
+  Apr 9  Generations                               21% →   62%   rows 3+0 ("Start with maths terms" + "The end")
+                                                 27 deaths combined
+  Apr 15 Something old, new, borrowed and blue     26% →   72%   rows 3+2 ("Contain watersports" + "UK _____port cities")
+                                                 22 deaths combined
+  Apr 13 Dramatic pause                            29% →   63%   rows 3+0 ("Start with 'gossip' synonyms" + "Spotify features")
+                                                 14 deaths combined
+
+════════════════════════════════════════════════════════════════════════
+SECTION 2 — UNDATED PUZZLES (simulator-predicted)
+════════════════════════════════════════════════════════════════════════
+
+Worst predicted solve rates with bottleneck-row identification (pred SR < 60.0%):
+
+  l4   Squid                                predSR    7%   bottleneck: row 3 "Currency nicknames plus a letter"
+                                            mean wrongs 2.77 (puzzle avg 1.47, 1.9× burden)
+                                            PDL: Letter add-delete / Shared property / Common cultural / General · same_domain=True · imp=Tentacle
+
+  l21  Spaceships                           predSR   35%   bottleneck: row 3 "Potato dishes with first letter changed to 's'"
+                                            mean wrongs 2.04 (puzzle avg 1.00, 2.0× burden)
+                                            PDL: None / Shared property / General vocabulary / Language · same_domain=True · imp=Curiosity
+
+  l33  The Beatles members                  predSR   38%   bottleneck: row 3 "Insects with a letter changed"
+                                            mean wrongs 2.58 (puzzle avg 1.01, 2.6× burden)
+                                            PDL: Letter add-delete / Shared property / General vocabulary / Language · same_domain=False · imp=Ringo
+
+  l36  Batman rogues gallery                predSR   40%   bottleneck: row 3 "Types of boat plus a letter"
+                                            mean wrongs 2.58 (puzzle avg 1.00, 2.6× burden)
+                                            PDL: Letter add-delete / Shared property / General vocabulary / General · same_domain=False · imp=Joker
+
+  l32  This puzzle is hard                  predSR   41%   bottleneck: row 3 "Meta things"
+                                            mean wrongs 1.58 (puzzle avg 1.02, 1.6× burden)
+                                            PDL: None / Shared property / General vocabulary / Language · same_domain=False · imp=Liquor
+
+  l6   Dictionaries                         predSR   42%   bottleneck: row 3 "Red things"
+                                            mean wrongs 1.72 (puzzle avg 0.97, 1.8× burden)
+                                            PDL: Hidden word / Shared property / Common cultural / General · same_domain=True · imp=Urban
+
+  l45  The Four Seasons                     predSR   44%   bottleneck: row 3 "What falls can refer to"
+                                            mean wrongs 1.69 (puzzle avg 0.87, 1.9× burden)
+                                            PDL: None / Shared property / Specialist cultural / Religion · same_domain=False · imp=Quarters
+
+  l8   ____graph                            predSR   45%   bottleneck: row 3 "Animals with an added letter"
+                                            mean wrongs 2.58 (puzzle avg 0.94, 2.7× burden)
+                                            PDL: Letter add-delete / Shared property / General vocabulary / Language · same_domain=False · imp=Tele
+
+  l41  Tracks on Fleetwood Mac's Rumours    predSR   48%   bottleneck: row 3 "They can have legs"
+                                            mean wrongs 1.75 (puzzle avg 0.89, 2.0× burden)
+                                            PDL: None / Multi-sense / None / General · same_domain=False · imp=The Chain
+
+  l37  Chocolate bars                       predSR   48%   bottleneck: row 3 "First syllable of UK Prime Ministers' surnames"
+                                            mean wrongs 1.62 (puzzle avg 0.89, 1.8× burden)
+                                            PDL: Hidden word / Shared property / Common cultural / History · same_domain=False · imp=Galaxy
+
+  l34  21ˢᵗ Century Popes                   predSR   49%   bottleneck: row 3 "Chicken shops minus a letter"
+                                            mean wrongs 2.04 (puzzle avg 0.88, 2.3× burden)
+                                            PDL: Compound / Direct membership / General vocabulary / Language · same_domain=False · imp=Benedict
+
+  l35  Friends characters                   predSR   52%   bottleneck: row 3 "Start with the result of fire"
+                                            mean wrongs 1.37 (puzzle avg 0.83, 1.6× burden)
+                                            PDL: Hidden word / Shared property / General vocabulary / Language · same_domain=False · imp=Gunther
+
+  l13  Start with shades of blue            predSR   59%   bottleneck: row 3 "Dollars in 'Man with No Name' trilogy titles"
+                                            mean wrongs 1.58 (puzzle avg 0.72, 2.2× burden)
+                                            PDL: Hidden word / Shared property / Specialist cultural / Science · same_domain=True · imp=Cyanogen
+
+Counts: 9 dated, 13 undated below threshold.

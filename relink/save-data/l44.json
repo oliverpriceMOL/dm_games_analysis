@@ -1,35 +1,35 @@
 {
   "schemaVersion": 2,
-  "id": "l5",
-  "date": "",
-  "name": "Monopoly",
+  "id": "l44",
+  "date": "2026-04-24",
+  "name": "Google products",
   "rows": [
     {
-      "id": "row-l5-17",
+      "id": "row-1777025510876-11",
       "position": 0,
-      "category": "Second words of Premier League football teams",
+      "category": "Silicon Valley firms",
       "tiles": [
         {
-          "id": "tile-l5-65",
-          "text": "Palace",
+          "id": "tile-1777025510876-12",
+          "text": "Google",
           "isImpostor": false,
-          "isRelink": false
+          "isRelink": true
         },
         {
-          "id": "tile-l5-66",
-          "text": "Villa",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-67",
-          "text": "Hotel",
+          "id": "tile-1777025510876-13",
+          "text": "Pixel",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l5-68",
-          "text": "City",
+          "id": "tile-1777025510876-14",
+          "text": "Apple",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777025510876-15",
+          "text": "Tesla",
           "isImpostor": false,
           "isRelink": false
         }
@@ -37,51 +37,103 @@
       "pdl": {
         "group": {
           "knowledge": [
-            "Common cultural"
+            "Specialist cultural"
           ],
           "manipulation": [
-            "None"
+            "Homophone"
           ],
           "abstraction": [
             "Direct membership"
           ],
           "knowledgeDomain": [
-            "Sport"
+            "Technology"
           ]
         },
         "impostor": {
           "realIdentityDomain": [
-            "General"
+            "Technology"
           ]
         }
       }
     },
     {
-      "id": "row-l5-18",
+      "id": "row-1777025510876-16",
       "position": 1,
-      "category": "Fortifications",
+      "category": "Things you wax",
       "tiles": [
         {
-          "id": "tile-l5-69",
-          "text": "Castle",
+          "id": "tile-1777025510876-17",
+          "text": "Chrome",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l5-70",
-          "text": "House",
+          "id": "tile-1777025510876-18",
+          "text": "Surfboard",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777025510876-19",
+          "text": "Legs",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777025510876-20",
+          "text": "Search",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Technology"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1777025510876-6",
+      "position": 2,
+      "category": "Verbs requiring thumbs",
+      "tiles": [
+        {
+          "id": "tile-1777025510876-7",
+          "text": "Snap",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777025510876-8",
+          "text": "Tie",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777025510876-9",
+          "text": "Drive",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l5-71",
-          "text": "Keep",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-72",
-          "text": "Citadel",
+          "id": "tile-1777025510876-10",
+          "text": "Hitchhike",
           "isImpostor": false,
           "isRelink": false
         }
@@ -95,119 +147,67 @@
             "None"
           ],
           "abstraction": [
-            "Direct membership"
+            "Loose thematic"
           ],
           "knowledgeDomain": [
-            "General"
+            "Language"
           ]
         },
         "impostor": {
           "realIdentityDomain": [
-            "General"
+            "Technology"
           ]
         }
       }
     },
     {
-      "id": "row-l5-19",
-      "position": 2,
-      "category": "Subjects of Beatles songs",
-      "tiles": [
-        {
-          "id": "tile-l5-73",
-          "text": "Walrus",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-74",
-          "text": "Her Majesty",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-75",
-          "text": "Jude",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-76",
-          "text": "Dog",
-          "isImpostor": true,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "Specialist cultural"
-          ],
-          "manipulation": [
-            "None"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
-            "Music"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "General"
-          ]
-        }
-      }
-    },
-    {
-      "id": "row-l5-20",
+      "id": "row-1777025510875-1",
       "position": 3,
-      "category": "Top-hatted mascots",
+      "category": "Ending in types of tube",
       "tiles": [
         {
-          "id": "tile-l5-77",
-          "text": "Battleship",
+          "id": "tile-1777025510875-2",
+          "text": "Solvent",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777025510875-3",
+          "text": "Home",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l5-78",
-          "text": "Monopoly",
+          "id": "tile-1777025510875-4",
+          "text": "Half-pipes",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777025510875-5",
+          "text": "Products",
           "isImpostor": false,
           "isRelink": true
-        },
-        {
-          "id": "tile-l5-79",
-          "text": "Bassetts",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l5-80",
-          "text": "Planters",
-          "isImpostor": false,
-          "isRelink": false
         }
       ],
       "pdl": {
         "group": {
           "knowledge": [
-            "Specialist cultural"
+            "General vocabulary"
           ],
           "manipulation": [
-            "None"
+            "Hidden word"
           ],
           "abstraction": [
             "Direct membership"
           ],
           "knowledgeDomain": [
-            "General"
+            "Language"
           ]
         },
         "impostor": {
           "realIdentityDomain": [
-            "General"
+            "Technology"
           ]
         }
       }
@@ -216,70 +216,19 @@
   "relink": {
     "tiles": [
       {
-        "text": "Monopoly",
+        "text": "Google",
         "source": "grid",
-        "sourceRowId": "row-l5-20"
+        "sourceRowId": "row-1777025510876-11"
       },
       {
-        "text": "pieces",
-        "source": "fodder"
+        "text": "Products",
+        "source": "grid",
+        "sourceRowId": "row-1777025510875-1"
       }
     ],
-    "answer": "Monopoly",
+    "answer": "",
     "pdl": {
       "connectionIdentification": {
-        "manipulation": [
-          "None"
-        ],
-        "knowledge": [
-          "Common cultural"
-        ],
-        "abstraction": [
-          "Association"
-        ],
-        "knowledgeDomain": [
-          "General"
-        ]
-      },
-      "answerConstruction": {
-        "manipulation": [
-          "None"
-        ],
-        "knowledge": [
-          "None"
-        ]
-      }
-    }
-  },
-  "decoys": [
-    {
-      "id": "decoy-1776089211-54",
-      "tileIds": [
-        "tile-l5-67",
-        "tile-l5-65",
-        "tile-l5-66",
-        "tile-l5-68"
-      ],
-      "pdl": {
-        "knowledge": [
-          "General vocabulary"
-        ],
-        "manipulation": [
-          "None"
-        ],
-        "abstraction": [
-          "Association"
-        ],
-        "description": "All are types of building - hides that the real category is PL team second words"
-      }
-    },
-    {
-      "id": "decoy-1776089211-55",
-      "tileIds": [
-        "tile-l5-77",
-        "tile-l5-78"
-      ],
-      "pdl": {
         "knowledge": [
           "Common cultural"
         ],
@@ -289,14 +238,47 @@
         "abstraction": [
           "Direct membership"
         ],
-        "description": "Board games - makes you think the row is board games not top-hatted mascots"
+        "knowledgeDomain": [
+          "Technology"
+        ]
+      },
+      "answerConstruction": {
+        "manipulation": [
+          "None"
+        ],
+        "knowledge": [
+          "Common cultural"
+        ]
+      }
+    }
+  },
+  "decoys": [
+    {
+      "id": "decoy-1777029415059-1",
+      "tileIds": [
+        "tile-1777025510876-17"
+      ],
+      "pdl": {
+        "knowledge": [
+          "Common cultural"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership",
+          "Shared property"
+        ],
+        "completeness": null,
+        "groupsSpanned": "",
+        "description": "You can wax chrome but chrome is also a Google product, so can interfere with vertical inference."
       }
     }
   ],
   "board": {
-    "specialistGroupCount": 2,
+    "specialistGroupCount": 0,
     "decoyCount": 0,
-    "phase2TileCount": 1,
+    "phase2TileCount": 0,
     "isThemed": false,
     "themeDomain": null
   }
