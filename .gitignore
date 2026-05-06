@@ -4,3 +4,4 @@ raw/
 # OS files
 .DS_Store
 __pycache__/
+.claude/
