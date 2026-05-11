@@ -919,6 +919,8 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
                 'attempt_order_dist': {str(k): v for k, v in sorted(attempt_order_dist.items())},
                 'solve_order_counts': dict(rm.get('solve_order_counts', {})),
                 'solve_order_dist': _solve_order_dist_from_counts(rm.get('solve_order_counts', {})),
+                'solve_order_counts_completed': dict(rm.get('solve_order_counts_completed', {})),
+                'solve_order_dist_completed': _solve_order_dist_from_counts(rm.get('solve_order_counts_completed', {})),
             }
 
         # --- Relink wrong-guess distribution ---
@@ -929,6 +931,7 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
         relink_incomplete_dist = Counter()  # Abandoned at relink
         relink_no_attempt_lost = 0
         relink_no_attempt_incomplete = 0
+        relink_no_attempt_won = 0
         relink_total = 0
         relink_total_completed = 0
 
@@ -949,7 +952,9 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
             else:
                 # No relink trajectory — WON players with missing events
                 # are a data gap, not 0-wrong evidence; skip them.
-                if p['outcome'] == 'LOST':
+                if p['outcome'] == 'WON':
+                    relink_no_attempt_won += 1
+                elif p['outcome'] == 'LOST':
                     relink_no_attempt_lost += 1
                 elif p['outcome'] == 'INCOMPLETE':
                     relink_no_attempt_incomplete += 1
@@ -969,6 +974,16 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
             '5th': relink_5th,
             'never': relink_never,
         })
+        # Completed-only: use wins/losses directly. The "all players" version
+        # undercounts due to cross-contaminated sessions losing their relink
+        # trajectory (lives goes negative from merged event streams). For
+        # completed-only, the relink bar should match the headline solve rate.
+        relink_5th_completed = ds['wins']
+        relink_never_completed = ds['losses']
+        relink_solve_order_dist_completed = _solve_order_dist_from_counts({
+            '5th': relink_5th_completed,
+            'never': relink_never_completed,
+        })
 
         relink_data = {
             'first_try_pct': round(ds['relink_first_try_pct'], 3),
@@ -976,6 +991,8 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
             'total': relink_total,
             'solve_order_counts': {'5th': relink_5th, 'never': relink_never},
             'solve_order_dist': relink_solve_order_dist,
+            'solve_order_counts_completed': {'5th': relink_5th_completed, 'never': relink_never_completed},
+            'solve_order_dist_completed': relink_solve_order_dist_completed,
             'wrong_dist': {
                 '0_solved': relink_solved_dist.get(0, 0),
                 '0_lost': relink_lost_dist.get(0, 0),

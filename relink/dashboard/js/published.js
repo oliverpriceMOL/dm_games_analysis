@@ -379,17 +379,18 @@ function renderSolveOrderChart(canvasId, puzzle) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
 
+    const distField = includeAbandons ? 'solve_order_dist' : 'solve_order_dist_completed';
     const labels = [];
     const perRowDist = [];
     for (let rp = 0; rp < 4; rp++) {
         const r = puzzle.rows?.[String(rp)];
         if (!r) continue;
         labels.push(`Row ${rp}: ${r.category || ''}`.trim().replace(/:\s*$/, ''));
-        perRowDist.push(r.solve_order_dist || {});
+        perRowDist.push(r[distField] || r.solve_order_dist || {});
     }
     if (puzzle.relink?.solve_order_dist) {
         labels.push('Relink');
-        perRowDist.push(puzzle.relink.solve_order_dist);
+        perRowDist.push(puzzle.relink[distField] || puzzle.relink.solve_order_dist);
     }
 
     const datasets = SOLVE_ORDER_BUCKETS.map(b => ({
@@ -430,6 +431,7 @@ function renderEverSolvedChart(canvasId, puzzle) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
 
+    const distField = includeAbandons ? 'solve_order_dist' : 'solve_order_dist_completed';
     const labels = [];
     const everPct = [];
     const everColors = [];
@@ -444,14 +446,14 @@ function renderEverSolvedChart(canvasId, puzzle) {
     for (let rp = 0; rp < 4; rp++) {
         const r = puzzle.rows?.[String(rp)];
         if (!r) continue;
-        const ev = everFromDist(r.solve_order_dist);
+        const ev = everFromDist(r[distField] || r.solve_order_dist);
         if (ev == null) continue;
         labels.push(`Row ${rp}: ${r.category || ''}`.trim().replace(/:\s*$/, ''));
         everPct.push(+ev.toFixed(1));
         everColors.push(SOLVE_ORDER_COLORS['1st']);
     }
     if (puzzle.relink?.solve_order_dist) {
-        const ev = everFromDist(puzzle.relink.solve_order_dist);
+        const ev = everFromDist(puzzle.relink[distField] || puzzle.relink.solve_order_dist);
         if (ev != null) {
             labels.push('Relink');
             everPct.push(+ev.toFixed(1));

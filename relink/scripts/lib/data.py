@@ -591,6 +591,7 @@ def build_date_summaries(overlap_dates, players_by_date, date_to_level, pdl_puzz
             # in for the puzzle, or was it never resolved? Players who never
             # reached this row contribute to 'never'.
             solve_order_counts = Counter()
+            solve_order_counts_completed = Counter()
             for p in engaged_players:
                 solve_pos = None
                 for t in p['trajectory']:
@@ -599,8 +600,12 @@ def build_date_summaries(overlap_dates, players_by_date, date_to_level, pdl_puzz
                         break
                 if solve_pos is None:
                     solve_order_counts['never'] += 1
+                    if p['outcome'] in ('WON', 'LOST'):
+                        solve_order_counts_completed['never'] += 1
                 else:
                     solve_order_counts[_ORDINAL_LABELS[solve_pos]] += 1
+                    if p['outcome'] in ('WON', 'LOST'):
+                        solve_order_counts_completed[_ORDINAL_LABELS[solve_pos]] += 1
 
             row_metrics[row_pos] = {
                 'attempts': attempts,
@@ -614,6 +619,7 @@ def build_date_summaries(overlap_dates, players_by_date, date_to_level, pdl_puzz
                 'attempt_positions': attempt_positions,
                 'first_try_by_position': dict(first_try_by_position),
                 'solve_order_counts': dict(solve_order_counts),
+                'solve_order_counts_completed': dict(solve_order_counts_completed),
             }
 
         relink_attempts_list = []
