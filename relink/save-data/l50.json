@@ -1,87 +1,35 @@
 {
   "schemaVersion": 2,
-  "id": "l19",
-  "date": "",
-  "name": "Estate planning",
+  "id": "l50",
+  "date": "2026-05-08",
+  "name": "(Two of each) Dungeons & Dragons",
   "rows": [
     {
-      "id": "row-l19-73",
+      "id": "row-1778236671873-11",
       "position": 0,
-      "category": "Agents",
+      "category": "00s hits by female singer-songwriters",
       "tiles": [
         {
-          "id": "tile-l19-289",
-          "text": "Will",
+          "id": "tile-1778236671873-12",
+          "text": "Bastille",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l19-290",
-          "text": "Secret",
+          "id": "tile-1778236671873-13",
+          "text": "Unwritten",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l19-291",
-          "text": "News",
+          "id": "tile-1778236671873-14",
+          "text": "Love Song",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l19-292",
-          "text": "Estate",
-          "isImpostor": false,
-          "isRelink": true
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "General vocabulary"
-          ],
-          "manipulation": [
-            "None"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
-            "General"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "General"
-          ]
-        }
-      }
-    },
-    {
-      "id": "row-l19-74",
-      "position": 1,
-      "category": "Field _ _ _",
-      "tiles": [
-        {
-          "id": "tile-l19-293",
-          "text": "Work",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l19-294",
-          "text": "Mouse",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l19-295",
-          "text": "Trust",
-          "isImpostor": true,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l19-296",
-          "text": "Trip",
+          "id": "tile-1778236671873-15",
+          "text": "Mercy",
           "isImpostor": false,
           "isRelink": false
         }
@@ -89,59 +37,7 @@
       "pdl": {
         "group": {
           "knowledge": [
-            "General vocabulary"
-          ],
-          "manipulation": [
-            "Compound"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
-            "Language"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "General"
-          ]
-        }
-      }
-    },
-    {
-      "id": "row-l19-75",
-      "position": 2,
-      "category": "First half of 'X & Y' sayings",
-      "tiles": [
-        {
-          "id": "tile-l19-297",
-          "text": "Death",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l19-298",
-          "text": "Taxes",
-          "isImpostor": true,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l19-299",
-          "text": "Smoke",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l19-300",
-          "text": "Null",
-          "isImpostor": false,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "General vocabulary"
+            "Specialist cultural"
           ],
           "manipulation": [
             "None"
@@ -150,42 +46,151 @@
             "Association"
           ],
           "knowledgeDomain": [
-            "Language"
+            "Music"
           ]
         },
         "impostor": {
           "realIdentityDomain": [
-            "General"
+            "Geography",
+            "History"
           ]
         }
       }
     },
     {
-      "id": "row-l19-76",
-      "position": 3,
-      "category": "Containing network technology",
+      "id": "row-1778236671873-1",
+      "position": 1,
+      "category": "Fantasy heroes",
       "tiles": [
         {
-          "id": "tile-l19-301",
-          "text": "Grouters",
+          "id": "tile-1778236671873-2",
+          "text": "Smaug",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1778236671873-3",
+          "text": "Bilbo Baggins",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l19-302",
-          "text": "Planning",
+          "id": "tile-1778236671873-4",
+          "text": "Harry Potter",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1778236671873-5",
+          "text": "Lucy Pevensie",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Film-TV",
+            "Literature"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV",
+            "Literature"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1778236671873-6",
+      "position": 2,
+      "category": "Parties",
+      "tiles": [
+        {
+          "id": "tile-1778236671873-7",
+          "text": "Political",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1778236671873-8",
+          "text": "Toothless",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1778236671873-9",
+          "text": "Birthday",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1778236671873-10",
+          "text": "Dungeons & Dragons",
           "isImpostor": false,
           "isRelink": true
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Multi-sense"
+          ],
+          "knowledgeDomain": [
+            "Language",
+            "General"
+          ]
         },
+        "impostor": {
+          "realIdentityDomain": [
+            "Film-TV",
+            "Literature"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1778236671873-16",
+      "position": 3,
+      "category": "Ending in kitchen fixtures",
+      "tiles": [
         {
-          "id": "tile-l19-303",
-          "text": "Testament",
+          "id": "tile-1778236671873-17",
+          "text": "Interwoven",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l19-304",
-          "text": "Midwifing",
+          "id": "tile-1778236671873-18",
+          "text": "Prime Minister's Cabinet",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1778236671873-19",
+          "text": "This is Spinal Tap",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1778236671873-20",
+          "text": "Black Hole of Calcutta",
           "isImpostor": true,
           "isRelink": false
         }
@@ -199,7 +204,7 @@
             "Hidden word"
           ],
           "abstraction": [
-            "Shared property"
+            "Direct membership"
           ],
           "knowledgeDomain": [
             "General"
@@ -207,7 +212,7 @@
         },
         "impostor": {
           "realIdentityDomain": [
-            "General"
+            "History"
           ]
         }
       }
@@ -216,32 +221,34 @@
   "relink": {
     "tiles": [
       {
-        "text": "Estate",
+        "text": "Dungeons & Dragons",
         "source": "grid",
-        "sourceRowId": "row-l19-73",
-        "sourceTileId": "tile-l19-292"
+        "sourceRowId": "row-1778236671873-6",
+        "sourceTileId": "tile-1778236671873-10"
       },
       {
-        "text": "Planning",
-        "source": "grid",
-        "sourceRowId": "row-l19-76",
-        "sourceTileId": "tile-l19-302"
+        "text": "(two of each)",
+        "source": "fodder"
       }
     ],
-    "answer": "Estate planning",
+    "answer": "",
     "pdl": {
       "connectionIdentification": {
+        "knowledge": [
+          "Common cultural",
+          "Specialist cultural"
+        ],
         "manipulation": [
           "None"
         ],
-        "knowledge": [
-          "General vocabulary"
-        ],
         "abstraction": [
-          "Direct membership"
+          "Multi-sense"
         ],
         "knowledgeDomain": [
-          "General"
+          "Geography",
+          "History",
+          "Film-TV",
+          "Literature"
         ]
       },
       "answerConstruction": {
@@ -249,36 +256,41 @@
           "None"
         ],
         "knowledge": [
-          "None"
+          "Common cultural",
+          "Specialist cultural"
         ]
       }
     }
   },
   "decoys": [
     {
-      "id": "decoy-1776089211-18",
+      "id": "decoy-1778244038126-21",
       "tileIds": [
-        "tile-l19-289",
-        "tile-l19-292"
+        "tile-1778236671873-2",
+        "tile-1778236671873-3"
       ],
       "pdl": {
         "knowledge": [
-          "General vocabulary"
+          "Specialist cultural"
         ],
         "manipulation": [
           "None"
         ],
         "abstraction": [
-          "Association"
+          "Direct membership"
         ],
-        "description": "Estate planning/legal - makes you think the row is about wills and estates"
+        "completeness": null,
+        "groupsSpanned": "",
+        "description": "Bilbo and Smaug are both from The Hobbit."
       }
     },
     {
-      "id": "decoy-1776089211-19",
+      "id": "decoy-1778244063806-22",
       "tileIds": [
-        "tile-l19-298",
-        "tile-l19-297"
+        "tile-1778236671873-2",
+        "tile-1778236671873-4",
+        "tile-1778236671873-3",
+        "tile-1778236671873-5"
       ],
       "pdl": {
         "knowledge": [
@@ -288,19 +300,24 @@
           "None"
         ],
         "abstraction": [
-          "Association"
+          "Direct membership"
         ],
-        "description": "Death and Taxes - famous saying makes these two tiles feel linked"
+        "completeness": null,
+        "groupsSpanned": "",
+        "description": "These are all fantasy characters."
       }
     },
     {
-      "id": "decoy-1776089211-20",
+      "id": "decoy-1778244133682-23",
       "tileIds": [
-        "tile-l19-297"
+        "tile-1778236671873-12",
+        "tile-1778236671873-15",
+        "tile-1778236671873-14",
+        "tile-1778236671873-13"
       ],
       "pdl": {
         "knowledge": [
-          "General vocabulary"
+          "Specialist cultural"
         ],
         "manipulation": [
           "None"
@@ -308,14 +325,16 @@
         "abstraction": [
           "Association"
         ],
-        "description": "Death duties = estate planning - fits the impostor theme, player may pick Death instead of Taxes"
+        "completeness": null,
+        "groupsSpanned": "",
+        "description": "Bastille are a pop rock band, and the others are pop songs."
       }
     }
   ],
   "board": {
     "specialistGroupCount": 0,
     "decoyCount": 0,
-    "phase2TileCount": 1,
+    "phase2TileCount": 0,
     "isThemed": false,
     "themeDomain": null
   }

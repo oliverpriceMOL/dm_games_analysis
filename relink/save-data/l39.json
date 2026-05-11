@@ -1,64 +1,12 @@
 {
   "schemaVersion": 2,
   "id": "l39",
-  "date": "",
+  "date": "2026-05-16",
   "name": "Evergreen trees",
   "rows": [
     {
-      "id": "row-l39-153",
-      "position": 0,
-      "category": "Where apples are found",
-      "tiles": [
-        {
-          "id": "tile-l39-609",
-          "text": "Orchard",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l39-610",
-          "text": "Cedar",
-          "isImpostor": true,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l39-611",
-          "text": "Trees",
-          "isImpostor": false,
-          "isRelink": true
-        },
-        {
-          "id": "tile-l39-612",
-          "text": "Bushel",
-          "isImpostor": false,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "General vocabulary"
-          ],
-          "manipulation": [
-            "None"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
-            "General"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "General"
-          ]
-        }
-      }
-    },
-    {
       "id": "row-l39-154",
-      "position": 1,
+      "position": 0,
       "category": "Stop! In the name of the law!",
       "tiles": [
         {
@@ -110,7 +58,7 @@
     },
     {
       "id": "row-l39-155",
-      "position": 2,
+      "position": 1,
       "category": "Undying",
       "tiles": [
         {
@@ -162,7 +110,7 @@
     },
     {
       "id": "row-l39-156",
-      "position": 3,
+      "position": 2,
       "category": "Finger anatomy",
       "tiles": [
         {
@@ -186,6 +134,58 @@
         {
           "id": "tile-l39-624",
           "text": "Tip",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l39-153",
+      "position": 3,
+      "category": "Where apples are found",
+      "tiles": [
+        {
+          "id": "tile-l39-609",
+          "text": "Orchard",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l39-610",
+          "text": "Cedar",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l39-611",
+          "text": "Trees",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l39-612",
+          "text": "Bushel",
           "isImpostor": false,
           "isRelink": false
         }

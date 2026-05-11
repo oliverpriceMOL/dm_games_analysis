@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "l24",
-  "date": "2026-04-16",
+  "date": "2026-05-12",
   "name": "Preparing for battle",
   "rows": [
     {
@@ -59,7 +59,7 @@
     {
       "id": "row-l24-94",
       "position": 1,
-      "category": "Represented by a magnifying glass",
+      "category": "Magnifying glass representations",
       "tiles": [
         {
           "id": "tile-l24-373",
@@ -167,19 +167,19 @@
       "tiles": [
         {
           "id": "tile-l24-381",
-          "text": "Preparing for battle",
+          "text": "Prepare for battle",
           "isImpostor": false,
           "isRelink": true
         },
         {
           "id": "tile-l24-382",
-          "text": "Thinking",
+          "text": "Think",
           "isImpostor": false,
           "isRelink": false
         },
         {
           "id": "tile-l24-383",
-          "text": "Reading The Art of War",
+          "text": "Read The Art of War",
           "isImpostor": true,
           "isRelink": false
         },
@@ -216,9 +216,10 @@
   "relink": {
     "tiles": [
       {
-        "text": "Preparing for battle",
+        "text": "Prepare for battle",
         "source": "grid",
-        "sourceRowId": "row-l24-96"
+        "sourceRowId": "row-l24-96",
+        "sourceTileId": "tile-l24-381"
       }
     ],
     "answer": "Preparing for battle",

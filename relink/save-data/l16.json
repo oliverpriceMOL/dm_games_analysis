@@ -1,13 +1,14 @@
 {
   "schemaVersion": 2,
   "id": "l16",
-  "date": "",
-  "name": "To con",
+  "date": "2026-05-11",
+  "canonicalId": "movlkbgw-2f0j14r",
+  "name": "(To) con",
   "rows": [
     {
       "id": "row-l16-61",
       "position": 0,
-      "category": "Dozen",
+      "category": "Goes with 'dozen'",
       "tiles": [
         {
           "id": "tile-l16-241",
@@ -111,7 +112,7 @@
     {
       "id": "row-l16-63",
       "position": 2,
-      "category": "Unearned' idioms",
+      "category": "'Unearned' idioms",
       "tiles": [
         {
           "id": "tile-l16-249",
@@ -215,6 +216,10 @@
   ],
   "relink": {
     "tiles": [
+      {
+        "text": "(To)",
+        "source": "fodder"
+      },
       {
         "text": "Con",
         "source": "grid",

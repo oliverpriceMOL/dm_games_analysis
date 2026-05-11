@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "l23",
-  "date": "2026-04-07",
+  "date": "2026-05-13",
   "name": "Strings section",
   "rows": [
     {
@@ -57,60 +57,8 @@
       }
     },
     {
-      "id": "row-l23-90",
-      "position": 1,
-      "category": "Vocal techniques",
-      "tiles": [
-        {
-          "id": "tile-l23-357",
-          "text": "Belt",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l23-358",
-          "text": "Harp",
-          "isImpostor": true,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l23-359",
-          "text": "Vibrato",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l23-360",
-          "text": "Falsetto",
-          "isImpostor": false,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "Common cultural"
-          ],
-          "manipulation": [
-            "None"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
-            "Music"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "Music"
-          ]
-        }
-      }
-    },
-    {
       "id": "row-l23-91",
-      "position": 2,
+      "position": 1,
       "category": "Passages of music",
       "tiles": [
         {
@@ -142,6 +90,58 @@
         "group": {
           "knowledge": [
             "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Music"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l23-90",
+      "position": 2,
+      "category": "Vocal techniques",
+      "tiles": [
+        {
+          "id": "tile-l23-357",
+          "text": "Belt",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-358",
+          "text": "Harp",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-359",
+          "text": "Vibrato",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l23-360",
+          "text": "Falsetto",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
           ],
           "manipulation": [
             "None"

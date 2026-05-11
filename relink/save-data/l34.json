@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "id": "l34",
   "date": "",
-  "name": "21ˢᵗ Century Popes",
+  "name": "21\u02e2\u1d57 Century Popes",
   "rows": [
     {
       "id": "row-l34-133",
@@ -109,9 +109,61 @@
       }
     },
     {
-      "id": "row-l34-135",
+      "id": "row-l34-136",
       "position": 2,
-      "category": "Chicken shops minus a letter",
+      "category": "___ Fox",
+      "tiles": [
+        {
+          "id": "tile-l34-541",
+          "text": "Silver",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l34-542",
+          "text": "Benedict",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l34-543",
+          "text": "21\u02e2\u1d57 Century",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l34-544",
+          "text": "Sly",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Religion"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l34-135",
+      "position": 3,
+      "category": "Chicken chains minus a letter",
       "tiles": [
         {
           "id": "tile-l34-537",
@@ -159,64 +211,12 @@
           ]
         }
       }
-    },
-    {
-      "id": "row-l34-136",
-      "position": 3,
-      "category": "___ Fox",
-      "tiles": [
-        {
-          "id": "tile-l34-541",
-          "text": "Silver",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l34-542",
-          "text": "Benedict",
-          "isImpostor": true,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l34-543",
-          "text": "21ˢᵗ Century",
-          "isImpostor": false,
-          "isRelink": true
-        },
-        {
-          "id": "tile-l34-544",
-          "text": "Sly",
-          "isImpostor": false,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "General vocabulary"
-          ],
-          "manipulation": [
-            "Compound"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
-            "Language"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "Religion"
-          ]
-        }
-      }
     }
   ],
   "relink": {
     "tiles": [
       {
-        "text": "21ˢᵗ Century",
+        "text": "21\u02e2\u1d57 Century",
         "source": "grid",
         "sourceRowId": "row-l34-136"
       },
@@ -226,7 +226,7 @@
         "sourceRowId": "row-l34-135"
       }
     ],
-    "answer": "21ˢᵗ Century Popes",
+    "answer": "21\u02e2\u1d57 Century Popes",
     "pdl": {
       "connectionIdentification": {
         "manipulation": [

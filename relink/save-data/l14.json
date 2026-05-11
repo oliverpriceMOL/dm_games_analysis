@@ -7,7 +7,7 @@
     {
       "id": "row-l14-53",
       "position": 0,
-      "category": "Synonyms for 'cowardly'",
+      "category": "Cowardly",
       "tiles": [
         {
           "id": "tile-l14-209",
@@ -109,60 +109,8 @@
       }
     },
     {
-      "id": "row-l14-55",
-      "position": 2,
-      "category": "The Canary Islands",
-      "tiles": [
-        {
-          "id": "tile-l14-217",
-          "text": "Volcanic",
-          "isImpostor": false,
-          "isRelink": true
-        },
-        {
-          "id": "tile-l14-218",
-          "text": "Pompeii",
-          "isImpostor": true,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l14-219",
-          "text": "Spain",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l14-220",
-          "text": "Bananas",
-          "isImpostor": false,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "Common cultural"
-          ],
-          "manipulation": [
-            "None"
-          ],
-          "abstraction": [
-            "Association"
-          ],
-          "knowledgeDomain": [
-            "Geography"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "Geography"
-          ]
-        }
-      }
-    },
-    {
       "id": "row-l14-56",
-      "position": 3,
+      "position": 2,
       "category": "Famous guitar solos",
       "tiles": [
         {
@@ -199,7 +147,7 @@
             "None"
           ],
           "abstraction": [
-            "Direct membership"
+            "Shared property"
           ],
           "knowledgeDomain": [
             "Music"
@@ -211,19 +159,81 @@
           ]
         }
       }
+    },
+    {
+      "id": "row-l14-55",
+      "position": 3,
+      "category": "Associated with the Canary Islands",
+      "tiles": [
+        {
+          "id": "tile-l14-217",
+          "text": "Volcanic",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-l14-218",
+          "text": "Pompeii",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l14-219",
+          "text": "Spain",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l14-220",
+          "text": "Small yellow birds",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Association"
+          ],
+          "knowledgeDomain": [
+            "Geography"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Geography"
+          ]
+        }
+      }
     }
   ],
   "relink": {
     "tiles": [
       {
+        "text": "Associated with",
+        "source": "fodder"
+      },
+      {
         "text": "Volcanic",
         "source": "grid",
-        "sourceRowId": "row-l14-55"
+        "sourceRowId": "row-l14-55",
+        "sourceTileId": "tile-l14-217"
       },
       {
         "text": "Eruption",
         "source": "grid",
-        "sourceRowId": "row-l14-56"
+        "sourceRowId": "row-l14-56",
+        "sourceTileId": "tile-l14-223"
+      },
+      {
+        "text": "s",
+        "source": "fodder"
       }
     ],
     "answer": "Associated with volcanic eruptions",

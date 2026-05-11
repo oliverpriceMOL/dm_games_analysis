@@ -1,7 +1,8 @@
 {
   "schemaVersion": 2,
   "id": "l27",
-  "date": "2026-04-14",
+  "date": "2026-05-08",
+  "canonicalId": "mowd440u-lz5ol6z",
   "name": "Types of bean",
   "rows": [
     {
@@ -163,7 +164,7 @@
     {
       "id": "row-l27-108",
       "position": 3,
-      "category": "Rowan Atkinson roles",
+      "category": "Rowan Atkinson character surnames",
       "tiles": [
         {
           "id": "tile-l27-429",
@@ -215,6 +216,10 @@
   ],
   "relink": {
     "tiles": [
+      {
+        "text": "Types of",
+        "source": "fodder"
+      },
       {
         "text": "Bean",
         "source": "grid",

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "l26",
-  "date": "2026-04-08",
+  "date": "",
   "name": "Renewable energy",
   "rows": [
     {
@@ -59,7 +59,7 @@
     {
       "id": "row-l26-102",
       "position": 1,
-      "category": "E = mc²",
+      "category": "E = mc\u00b2",
       "tiles": [
         {
           "id": "tile-l26-405",

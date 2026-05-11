@@ -1,7 +1,8 @@
 {
   "schemaVersion": 2,
   "id": "l44",
-  "date": "2026-04-24",
+  "date": "2026-05-09",
+  "canonicalId": "mouaw3d1-g9ugg95",
   "name": "Google products",
   "rows": [
     {
@@ -17,7 +18,7 @@
         },
         {
           "id": "tile-1777025510876-13",
-          "text": "Pixel",
+          "text": "Drive",
           "isImpostor": true,
           "isRelink": false
         },
@@ -63,13 +64,13 @@
       "tiles": [
         {
           "id": "tile-1777025510876-17",
-          "text": "Chrome",
+          "text": "Car",
           "isImpostor": false,
           "isRelink": false
         },
         {
           "id": "tile-1777025510876-18",
-          "text": "Surfboard",
+          "text": "Shoes",
           "isImpostor": false,
           "isRelink": false
         },
@@ -111,29 +112,29 @@
     {
       "id": "row-1777025510876-6",
       "position": 2,
-      "category": "Verbs requiring thumbs",
+      "category": "You need a licence for it",
       "tiles": [
         {
           "id": "tile-1777025510876-7",
-          "text": "Snap",
+          "text": "Fishing",
           "isImpostor": false,
           "isRelink": false
         },
         {
           "id": "tile-1777025510876-8",
-          "text": "Tie",
+          "text": "To kill",
           "isImpostor": false,
           "isRelink": false
         },
         {
           "id": "tile-1777025510876-9",
-          "text": "Drive",
+          "text": "Pixel",
           "isImpostor": true,
           "isRelink": false
         },
         {
           "id": "tile-1777025510876-10",
-          "text": "Hitchhike",
+          "text": "TV",
           "isImpostor": false,
           "isRelink": false
         }
@@ -150,7 +151,9 @@
             "Loose thematic"
           ],
           "knowledgeDomain": [
-            "Language"
+            "Language",
+            "Technology",
+            "Film-TV"
           ]
         },
         "impostor": {
@@ -218,12 +221,14 @@
       {
         "text": "Google",
         "source": "grid",
-        "sourceRowId": "row-1777025510876-11"
+        "sourceRowId": "row-1777025510876-11",
+        "sourceTileId": "tile-1777025510876-12"
       },
       {
         "text": "Products",
         "source": "grid",
-        "sourceRowId": "row-1777025510875-1"
+        "sourceRowId": "row-1777025510875-1",
+        "sourceTileId": "tile-1777025510875-5"
       }
     ],
     "answer": "",
@@ -256,7 +261,8 @@
     {
       "id": "decoy-1777029415059-1",
       "tileIds": [
-        "tile-1777025510876-17"
+        "tile-1777025510876-17",
+        "tile-1777025510876-15"
       ],
       "pdl": {
         "knowledge": [
@@ -266,12 +272,11 @@
           "None"
         ],
         "abstraction": [
-          "Direct membership",
-          "Shared property"
+          "Loose thematic"
         ],
         "completeness": null,
         "groupsSpanned": "",
-        "description": "You can wax chrome but chrome is also a Google product, so can interfere with vertical inference."
+        "description": "Car themed things"
       }
     }
   ],

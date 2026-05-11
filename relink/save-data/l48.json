@@ -1,141 +1,37 @@
 {
   "schemaVersion": 2,
-  "id": "l18",
+  "id": "l48",
   "date": "",
-  "name": "Video game mascots",
+  "name": "Time Out",
   "rows": [
     {
-      "id": "row-l18-69",
+      "id": "row-1777295773026-86",
       "position": 0,
-      "category": "Charisma",
+      "category": "IKEA furniture",
       "tiles": [
         {
-          "id": "tile-l18-273",
-          "text": "Game",
-          "isImpostor": false,
-          "isRelink": true
-        },
-        {
-          "id": "tile-l18-274",
-          "text": "Link",
+          "id": "tile-1777295773026-87",
+          "text": "Bench",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l18-275",
-          "text": "Magnetism",
+          "id": "tile-1777295773026-88",
+          "text": "Billy",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l18-276",
-          "text": "Charm",
-          "isImpostor": false,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "General vocabulary"
-          ],
-          "manipulation": [
-            "None"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
-            "Language"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "General"
-          ]
-        }
-      }
-    },
-    {
-      "id": "row-l18-70",
-      "position": 1,
-      "category": "Types of microphone",
-      "tiles": [
-        {
-          "id": "tile-l18-277",
-          "text": "Shotgun",
+          "id": "tile-1777295773026-89",
+          "text": "Malm",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l18-278",
-          "text": "Crash",
-          "isImpostor": true,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l18-279",
-          "text": "Boom",
+          "id": "tile-1777295773026-90",
+          "text": "Kallax",
           "isImpostor": false,
           "isRelink": false
-        },
-        {
-          "id": "tile-l18-280",
-          "text": "USB",
-          "isImpostor": false,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "General vocabulary"
-          ],
-          "manipulation": [
-            "None"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
-            "Technology"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "General"
-          ]
-        }
-      }
-    },
-    {
-      "id": "row-l18-71",
-      "position": 2,
-      "category": "Musical killers",
-      "tiles": [
-        {
-          "id": "tile-l18-281",
-          "text": "Queen",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l18-282",
-          "text": "Psycho",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l18-283",
-          "text": "Sonic",
-          "isImpostor": true,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l18-284",
-          "text": "Video",
-          "isImpostor": false,
-          "isRelink": true
         }
       ],
       "pdl": {
@@ -147,7 +43,111 @@
             "None"
           ],
           "abstraction": [
-            "Shared property"
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "Other"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1777295773026-91",
+      "position": 1,
+      "category": "First word of NYC attractions",
+      "tiles": [
+        {
+          "id": "tile-1777295773026-92",
+          "text": "Time",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-1777295773026-93",
+          "text": "Madison",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777295773026-94",
+          "text": "Empire",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777295773026-95",
+          "text": "Whistle",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "Compound"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Geography"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1777295773026-96",
+      "position": 2,
+      "category": "Arctic Monkeys songs",
+      "tiles": [
+        {
+          "id": "tile-1777295773026-97",
+          "text": "Teddy Picker",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777295773026-98",
+          "text": "Arabella",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777295773026-99",
+          "text": "504",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777295773026-100",
+          "text": "505",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
           ],
           "knowledgeDomain": [
             "Music"
@@ -161,31 +161,31 @@
       }
     },
     {
-      "id": "row-l18-72",
+      "id": "row-1777295773026-81",
       "position": 3,
-      "category": "Ending in neckwear",
+      "category": "'Hokey Cokey' dance moves",
       "tiles": [
         {
-          "id": "tile-l18-285",
-          "text": "The Chain",
+          "id": "tile-1777295773026-82",
+          "text": "Stretch",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l18-286",
-          "text": "Mascots",
+          "id": "tile-1777295773026-83",
+          "text": "Out",
           "isImpostor": false,
           "isRelink": true
         },
         {
-          "id": "tile-l18-287",
-          "text": "Banjo",
+          "id": "tile-1777295773026-84",
+          "text": "Ground",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l18-288",
-          "text": "Besties",
+          "id": "tile-1777295773026-85",
+          "text": "Turn around",
           "isImpostor": false,
           "isRelink": false
         }
@@ -193,16 +193,16 @@
       "pdl": {
         "group": {
           "knowledge": [
-            "General vocabulary"
+            "Common cultural"
           ],
           "manipulation": [
-            "Hidden word"
+            "None"
           ],
           "abstraction": [
-            "Shared property"
+            "Direct membership"
           ],
           "knowledgeDomain": [
-            "Language"
+            "Music"
           ]
         },
         "impostor": {
@@ -216,73 +216,49 @@
   "relink": {
     "tiles": [
       {
-        "text": "Video",
+        "text": "Time",
         "source": "grid",
-        "sourceRowId": "row-l18-71"
+        "sourceRowId": "row-1777295773026-91",
+        "sourceTileId": "tile-1777295773026-92"
       },
       {
-        "text": "Game",
+        "text": "Out",
         "source": "grid",
-        "sourceRowId": "row-l18-69"
-      },
-      {
-        "text": "Mascots",
-        "source": "grid",
-        "sourceRowId": "row-l18-72"
+        "sourceRowId": "row-1777295773026-81",
+        "sourceTileId": "tile-1777295773026-83"
       }
     ],
-    "answer": "Video game mascots",
+    "answer": "",
     "pdl": {
       "connectionIdentification": {
-        "manipulation": [
-          "None"
-        ],
         "knowledge": [
           "Common cultural"
         ],
+        "manipulation": [
+          "None"
+        ],
         "abstraction": [
-          "Direct membership"
+          "Shared property"
         ],
         "knowledgeDomain": [
-          "Technology"
+          "General"
         ]
       },
       "answerConstruction": {
         "manipulation": [
-          "None"
+          "Compound"
         ],
         "knowledge": [
-          "None"
+          "General vocabulary"
         ]
       }
     }
   },
-  "decoys": [
-    {
-      "id": "decoy-1776089211-17",
-      "tileIds": [
-        "tile-l18-278",
-        "tile-l18-277",
-        "tile-l18-279"
-      ],
-      "pdl": {
-        "knowledge": [
-          "General vocabulary"
-        ],
-        "manipulation": [
-          "None"
-        ],
-        "abstraction": [
-          "Association"
-        ],
-        "description": "Loud noises/explosions - makes you think the row is about loud sounds and USB is the impostor"
-      }
-    }
-  ],
+  "decoys": [],
   "board": {
-    "specialistGroupCount": 0,
+    "specialistGroupCount": 1,
     "decoyCount": 0,
-    "phase2TileCount": 3,
+    "phase2TileCount": 2,
     "isThemed": false,
     "themeDomain": null
   }

@@ -1,7 +1,8 @@
 {
   "schemaVersion": 2,
   "id": "l11",
-  "date": "2026-03-31",
+  "date": "2026-05-07",
+  "canonicalId": "mov6vke9-yv61qq8",
   "name": "Newspaper sections",
   "rows": [
     {
@@ -57,8 +58,60 @@
       }
     },
     {
-      "id": "row-l11-42",
+      "id": "row-l11-43",
       "position": 1,
+      "category": "'You say' pronunciations",
+      "tiles": [
+        {
+          "id": "tile-l11-169",
+          "text": "Neither",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-170",
+          "text": "Tomato",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-171",
+          "text": "Potato",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l11-172",
+          "text": "Health",
+          "isImpostor": true,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Specialist cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "Music"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l11-42",
+      "position": 2,
       "category": "Made of wood",
       "tiles": [
         {
@@ -99,58 +152,6 @@
           ],
           "knowledgeDomain": [
             "General"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "General"
-          ]
-        }
-      }
-    },
-    {
-      "id": "row-l11-43",
-      "position": 2,
-      "category": "Pronunciations in 'Let's Call The Whole Thing Off'",
-      "tiles": [
-        {
-          "id": "tile-l11-169",
-          "text": "Neither",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l11-170",
-          "text": "Tomato",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l11-171",
-          "text": "Potato",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l11-172",
-          "text": "Health",
-          "isImpostor": true,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "Specialist cultural"
-          ],
-          "manipulation": [
-            "None"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
-            "Music"
           ]
         },
         "impostor": {

@@ -5,60 +5,8 @@
   "name": "Chocolate bars",
   "rows": [
     {
-      "id": "row-l37-145",
-      "position": 0,
-      "category": "Apples",
-      "tiles": [
-        {
-          "id": "tile-l37-577",
-          "text": "Pink Lady",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l37-578",
-          "text": "The Beatles' label",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l37-579",
-          "text": "Mars",
-          "isImpostor": true,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l37-580",
-          "text": "Mac",
-          "isImpostor": false,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "Common cultural"
-          ],
-          "manipulation": [
-            "None"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
-            "Food"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "General"
-          ]
-        }
-      }
-    },
-    {
       "id": "row-l37-146",
-      "position": 1,
+      "position": 0,
       "category": "Things you spit",
       "tiles": [
         {
@@ -104,6 +52,60 @@
         "impostor": {
           "realIdentityDomain": [
             "Food"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-l37-145",
+      "position": 1,
+      "category": "Apples",
+      "tiles": [
+        {
+          "id": "tile-l37-577",
+          "text": "Pink Lady",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-578",
+          "text": "The Beatles' label",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-579",
+          "text": "Mars",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-l37-580",
+          "text": "Mac",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "Common cultural"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Multi-sense"
+          ],
+          "knowledgeDomain": [
+            "Music",
+            "Technology",
+            "Food"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
           ]
         }
       }
@@ -163,7 +165,7 @@
     {
       "id": "row-l37-148",
       "position": 3,
-      "category": "First syllable of UK Prime Ministers' surnames",
+      "category": "First syllable of UK PM surnames",
       "tiles": [
         {
           "id": "tile-l37-589",

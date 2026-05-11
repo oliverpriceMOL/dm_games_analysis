@@ -121,7 +121,7 @@
         },
         {
           "id": "tile-l21-330",
-          "text": "Sloo",
+          "text": "Saked",
           "isImpostor": false,
           "isRelink": false
         },
@@ -219,12 +219,14 @@
       {
         "text": "Space",
         "source": "grid",
-        "sourceRowId": "row-l21-82"
+        "sourceRowId": "row-l21-82",
+        "sourceTileId": "tile-l21-327"
       },
       {
         "text": "Ships",
         "source": "grid",
-        "sourceRowId": "row-l21-83"
+        "sourceRowId": "row-l21-83",
+        "sourceTileId": "tile-l21-329"
       }
     ],
     "answer": "Spaceships",

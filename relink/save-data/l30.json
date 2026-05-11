@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "l30",
-  "date": "2026-04-13",
+  "date": "",
   "name": "Dramatic pause",
   "rows": [
     {
@@ -163,7 +163,7 @@
     {
       "id": "row-l30-120",
       "position": 3,
-      "category": "Start with 'gossip' synonyms",
+      "category": "Start with slang for gossip",
       "tiles": [
         {
           "id": "tile-l30-477",
@@ -216,9 +216,17 @@
   "relink": {
     "tiles": [
       {
+        "text": "A",
+        "source": "fodder"
+      },
+      {
         "text": "Dramatic",
         "source": "grid",
         "sourceRowId": "row-l30-120"
+      },
+      {
+        "text": "(wait for it)",
+        "source": "fodder"
       },
       {
         "text": "Pause",

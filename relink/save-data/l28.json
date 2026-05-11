@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "l28",
-  "date": "2026-04-10",
+  "date": "2026-05-14",
   "name": "Nicknames for English Monarchs",
   "rows": [
     {
@@ -164,7 +164,7 @@
     {
       "id": "row-l28-112",
       "position": 3,
-      "category": "Start with types of theft",
+      "category": "Beginning with types of theft",
       "tiles": [
         {
           "id": "tile-l28-445",
@@ -220,6 +220,10 @@
         "text": "Nicknames",
         "source": "grid",
         "sourceRowId": "row-l28-112"
+      },
+      {
+        "text": "for",
+        "source": "fodder"
       },
       {
         "text": "English",

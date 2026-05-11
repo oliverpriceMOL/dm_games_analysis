@@ -5,6 +5,7 @@ import ast
 import os
 import json
 import glob
+from bisect import bisect_left, bisect_right
 from datetime import datetime, timedelta
 from collections import defaultdict, Counter
 
@@ -56,7 +57,7 @@ def date_label(d):
 
 def load_pdl(save_dir):
     """Load puzzle PDL data from save-data/.
-    Returns (pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date, date_to_level).
+    Returns (pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date, date_to_level, canonical_ids).
     """
     with open(os.path.join(save_dir, 'puzzles-index.json')) as f:
         puzzles_index = json.load(f)
@@ -64,6 +65,7 @@ def load_pdl(save_dir):
     pdl_puzzles = {}
     level_to_date = {}
     date_to_level = {}
+    canonical_ids = {}  # date -> canonicalId (for puzzles that have one)
 
     for entry in puzzles_index['puzzles']:
         lid = entry['id']
@@ -80,6 +82,9 @@ def load_pdl(save_dir):
         if date:
             level_to_date[lid] = date
             date_to_level[date] = lid
+        canon = pdata.get('canonicalId', '')
+        if canon and date:
+            canonical_ids[date] = canon
 
     pdl_rows = []
     pdl_puzzle_features = {}
@@ -100,7 +105,7 @@ def load_pdl(save_dir):
             manip = rpdl.get('manipulation', ['None'])[0] if rpdl.get('manipulation') else 'None'
             abstr = rpdl.get('abstraction', ['Direct membership'])[0] if rpdl.get('abstraction') else 'Direct membership'
             know = rpdl.get('knowledge', ['General vocabulary'])[0] if rpdl.get('knowledge') else 'General vocabulary'
-            kdoms = rpdl.get('knowledgeDomain', ['General'])
+            kdoms = rpdl.get('knowledgeDomain', ['General']) or ['General']
             if manip != 'None':
                 manip_count += 1
             if abstr != 'Direct membership':
@@ -200,51 +205,94 @@ def load_pdl(save_dir):
                 'tile_ids': [t['id'] for t in row.get('tiles', [])],
             })
 
-    return pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date, date_to_level
+    return pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date, date_to_level, canonical_ids
 
 
 # ── Behaviour loading ──
 
-def load_behaviour(raw_dir):
+def _extract_level_id(raw_props):
+    """Extract level_id from raw properties string without full parsing."""
+    for marker in ("'level_id':'", "'level_id': '"):
+        idx = raw_props.find(marker)
+        if idx != -1:
+            start = idx + len(marker)
+            end = raw_props.find("'", start)
+            return raw_props[start:end] if end != -1 else ''
+    return ''
+
+
+def load_behaviour(raw_dir, target_dates=None):
     """Load sessions and events from CSVs.
+    target_dates: optional set of date strings to restrict loading to.
     Returns (sessions_by_date, events_by_date, ALL_DATES).
     """
     session_files = sorted(glob.glob(os.path.join(raw_dir, 'daily-mail-sessions*.csv')))
     event_files = sorted(glob.glob(os.path.join(raw_dir, 'daily-mail-events*.csv')))
 
-    raw_sessions = {}
-    for sf in session_files:
-        with open(sf) as f:
-            for row in csv.DictReader(_strip_nuls(f)):
-                raw_sessions[row['id']] = row
-
-    sessions_by_date = defaultdict(dict)
-    for sid, row in raw_sessions.items():
-        dur = int(row['duration'])
-        country = row['country']
-        city = row.get('city', '')
-        is_bot = (country in ('NL', 'IE') and dur <= 10) or dur <= 2
-        is_dev = city == 'Västerås' and country == 'SE'
-        if is_bot or is_dev:
-            continue
-        d = row['created_at'][:10]
-        sessions_by_date[d][sid] = row
-
-    raw_events = {}
+    # Load events — triple-gated: date, 'relink' substring, game_id string check
+    events_by_date = defaultdict(list)
+    seen_event_ids = set()
+    _ev_total = 0
+    _ev_skipped_date = 0
     for ef in event_files:
         with open(ef) as f:
             for row in csv.DictReader(_strip_nuls(f)):
-                raw_events[row['id']] = row
+                _ev_total += 1
+                # Gate 1: date filter (cheapest — string slice + set lookup)
+                d = row['created_at'][:10]
+                if target_dates and d not in target_dates:
+                    _ev_skipped_date += 1
+                    continue
+                # Gate 2: relink substring check
+                raw_props = row.get('properties', '')
+                if 'relink' not in raw_props:
+                    continue
+                # Gate 3: game_id string check (avoids ast.literal_eval)
+                if "'game_id':'relink'" not in raw_props and "'game_id': 'relink'" not in raw_props:
+                    continue
+                eid = row['id']
+                if eid in seen_event_ids:
+                    continue
+                seen_event_ids.add(eid)
+                # Deferred parsing — only store raw props + extracted fields
+                row['_ts'] = _parse_ts(row['created_at'])
+                row['_raw_props'] = raw_props
+                row['_level_id'] = _extract_level_id(raw_props)
+                events_by_date[d].append(row)
 
-    events_by_date = defaultdict(list)
-    for row in raw_events.values():
-        props = _parse_props(row.get('properties', '{}'))
-        if props.get('game_id') != 'relink':
-            continue
-        row['_ts'] = _parse_ts(row['created_at'])
-        row['_props'] = props
-        d = row['created_at'][:10]
-        events_by_date[d].append(row)
+    ev_kept = sum(len(v) for v in events_by_date.values())
+    print(f"  Events: {ev_kept:,} relink events across {len(events_by_date)} dates "
+          f"(scanned {_ev_total:,} rows, {_ev_skipped_date:,} skipped by date filter)")
+
+    # Load sessions for dates that have relink events
+    dates_with_events = set(events_by_date.keys())
+    sessions_by_date = defaultdict(dict)
+    _sess_total = 0
+    for sf in session_files:
+        with open(sf) as f:
+            for row in csv.DictReader(_strip_nuls(f)):
+                _sess_total += 1
+                d = row['created_at'][:10]
+                if d not in dates_with_events:
+                    continue
+                if 'relink' not in row.get('properties', ''):
+                    continue
+                sid = row['id']
+                try:
+                    dur = int(row['duration'])
+                except (ValueError, TypeError):
+                    continue
+                country = row['country']
+                city = row.get('city', '')
+                is_bot = (country in ('NL', 'IE') and dur <= 10) or dur <= 2
+                is_dev = city == 'Västerås' and country == 'SE'
+                if is_bot or is_dev:
+                    continue
+                sessions_by_date[d][sid] = row
+
+    sess_kept = sum(len(v) for v in sessions_by_date.values())
+    print(f"  Sessions: {sess_kept:,} relink sessions across {len(sessions_by_date)} dates "
+          f"(scanned {_sess_total:,} rows)")
 
     ALL_DATES = sorted(sessions_by_date.keys() | events_by_date.keys())
     for d in ALL_DATES:
@@ -256,21 +304,40 @@ def load_behaviour(raw_dir):
 # ── Event–session matching ──
 
 def match_events(sessions, events):
-    """Match events to sessions by country + time window."""
+    """Match events to sessions by country + time window (binary search)."""
+    if not events:
+        return {}
+    # Group events by country, sort by timestamp for binary search
     events_by_country = defaultdict(list)
     for ev in events:
-        events_by_country[ev['country']].append(ev)
+        if ev['_ts']:
+            events_by_country[ev['country']].append(ev)
+    # Sort each country bucket and build parallel timestamp list for bisect
+    ts_by_country = {}
+    for country, bucket in events_by_country.items():
+        bucket.sort(key=lambda e: e['_ts'])
+        ts_by_country[country] = [e['_ts'] for e in bucket]
+
+    countries_with_events = set(events_by_country.keys())
+    margin = timedelta(milliseconds=200)
     result = {}
     for sid, sess in sessions.items():
+        country = sess['country']
+        if country not in countries_with_events:
+            continue
         s_start = _parse_ts(sess['created_at'])
         s_end = _parse_ts(sess['ended_at'])
         if not s_start or not s_end:
             continue
-        margin = timedelta(milliseconds=200)
-        bucket = events_by_country.get(sess['country'], [])
-        matched = [ev for ev in bucket
-                   if ev['_ts'] and (s_start - margin) <= ev['_ts'] <= (s_end + margin)
-                   and (ev['city'] == sess['city'] or not ev['city'] or not sess['city'])]
+        ts_list = ts_by_country[country]
+        bucket = events_by_country[country]
+        lo = bisect_left(ts_list, s_start - margin)
+        hi = bisect_right(ts_list, s_end + margin)
+        if lo >= hi:
+            continue
+        sess_city = sess.get('city', '')
+        matched = [bucket[i] for i in range(lo, hi)
+                   if bucket[i]['city'] == sess_city or not bucket[i]['city'] or not sess_city]
         if matched:
             result[sid] = matched
     return result
@@ -287,6 +354,10 @@ def build_players(sessions, event_sessions):
         relink_guesses = []
 
         sorted_events = sorted(events, key=lambda e: e['created_at'])
+        # Lazy-parse properties (deferred from loading for performance)
+        for ev in sorted_events:
+            if '_props' not in ev:
+                ev['_props'] = _parse_props(ev.get('_raw_props', ev.get('properties', '{}')))
         for ev in sorted_events:
             ep = ev['_props']
             if ev['name'] == 'relink_guess_submitted':
@@ -426,9 +497,18 @@ def build_players(sessions, event_sessions):
                 'tile_count': tile_count,
             }
 
+        # Extract level_id from events (first non-empty)
+        level_id = ''
+        for ev in sorted_events:
+            lid_val = ev.get('_level_id', '')
+            if lid_val:
+                level_id = lid_val
+                break
+
         players.append({
             'sid': sid,
             'outcome': outcome,
+            'level_id': level_id,
             'puzzle_date': puzzle_date or '',
             'real_guesses': real_guesses,
             'relink_guesses': relink_guesses,
@@ -639,18 +719,30 @@ def build_aggregate_timing(date_summaries):
 def load_all(save_dir, raw_dir):
     """Load and join all data. Returns a dict with all computed data structures."""
     print("Loading PDL data from save-data/...")
-    pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date, date_to_level = load_pdl(save_dir)
+    pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date, date_to_level, canonical_ids = load_pdl(save_dir)
     print(f"  Loaded {len(pdl_puzzles)} puzzle PDL files")
     print(f"  Dated puzzles: {len(level_to_date)}")
+    if canonical_ids:
+        print(f"  Canonical IDs: {len(canonical_ids)} puzzles")
 
     print("Loading behaviour data from CSVs...")
-    sessions_by_date, events_by_date, ALL_DATES = load_behaviour(raw_dir)
+    sessions_by_date, events_by_date, ALL_DATES = load_behaviour(raw_dir, set(date_to_level.keys()))
 
     players_by_date = {}
-    for d in ALL_DATES:
-        es = match_events(sessions_by_date.get(d, {}), events_by_date.get(d, []))
+    event_dates = sorted(d for d in ALL_DATES if events_by_date.get(d))
+    for d in event_dates:
+        es = match_events(sessions_by_date.get(d, {}), events_by_date[d])
         players_by_date[d] = build_players(sessions_by_date.get(d, {}), es)
-    print("  Loaded behaviour data")
+    print(f"  Loaded behaviour data ({len(event_dates)} dates with events)")
+
+    # Filter players by canonical ID where available
+    for d, canon in canonical_ids.items():
+        if d in players_by_date:
+            before = len(players_by_date[d])
+            players_by_date[d] = [p for p in players_by_date[d] if p['level_id'] == canon]
+            after = len(players_by_date[d])
+            if before != after:
+                print(f"  Canonical filter {d}: {before} -> {after} players ({before - after} removed)")
 
     overlap_dates = sorted(set(date_to_level.keys()) & set(d for d in ALL_DATES if players_by_date.get(d)))
     print(f"  Overlapping dates (PDL + behaviour): {len(overlap_dates)}")

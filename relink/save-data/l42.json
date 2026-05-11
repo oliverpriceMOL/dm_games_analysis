@@ -7,7 +7,7 @@
     {
       "id": "row-1776949517097-23",
       "position": 0,
-      "category": "Racket sports",
+      "category": "Racquet sports",
       "tiles": [
         {
           "id": "tile-1776949517097-24",
@@ -75,7 +75,7 @@
         },
         {
           "id": "tile-1776949517097-31",
-          "text": "Fairytale",
+          "text": "Crown Prince",
           "isImpostor": true,
           "isRelink": false
         },
@@ -128,7 +128,7 @@
         },
         {
           "id": "tile-1776949517097-36",
-          "text": " Buttercup",
+          "text": " Butternut",
           "isImpostor": true,
           "isRelink": false
         },
@@ -165,7 +165,7 @@
     {
       "id": "row-1776949517097-38",
       "position": 3,
-      "category": "Meanings for the Lambda (λ)",
+      "category": "What Lambda can mean",
       "tiles": [
         {
           "id": "tile-1776949517097-39",
@@ -175,7 +175,7 @@
         },
         {
           "id": "tile-1776949517097-40",
-          "text": "Yellow",
+          "text": "Pumpkin",
           "isImpostor": true,
           "isRelink": false
         },
@@ -187,7 +187,7 @@
         },
         {
           "id": "tile-1776949517097-42",
-          "text": "L",
+          "text": "L sound",
           "isImpostor": false,
           "isRelink": false
         }
@@ -225,7 +225,8 @@
       {
         "text": "Squash",
         "source": "grid",
-        "sourceRowId": "row-1776949517097-23"
+        "sourceRowId": "row-1776949517097-23",
+        "sourceTileId": "tile-1776949517097-26"
       }
     ],
     "answer": "",
@@ -275,7 +276,28 @@
         ],
         "completeness": null,
         "groupsSpanned": "",
-        "description": "Princess Buttercup is a fictional princess in the Princess Bride, but not a Disney Princess."
+        "description": "Buttercup kind of sounds like a princess."
+      }
+    },
+    {
+      "id": "decoy-1777536075567-1",
+      "tileIds": [
+        "tile-1776949517097-25",
+        "tile-1776949517097-26"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Direct membership"
+        ],
+        "completeness": null,
+        "groupsSpanned": "",
+        "description": "A courgette is a kind of squash"
       }
     }
   ],

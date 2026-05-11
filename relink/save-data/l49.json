@@ -1,36 +1,36 @@
 {
   "schemaVersion": 2,
-  "id": "l18",
+  "id": "l49",
   "date": "",
-  "name": "Video game mascots",
+  "name": "Types of neck tie",
   "rows": [
     {
-      "id": "row-l18-69",
+      "id": "row-1777306610604-126",
       "position": 0,
-      "category": "Charisma",
+      "category": "To drink quickly",
       "tiles": [
         {
-          "id": "tile-l18-273",
-          "text": "Game",
+          "id": "tile-1777306610604-127",
+          "text": "Chug",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777306610604-128",
+          "text": "Neck",
           "isImpostor": false,
           "isRelink": true
         },
         {
-          "id": "tile-l18-274",
-          "text": "Link",
+          "id": "tile-1777306610604-129",
+          "text": "Down",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777306610604-130",
+          "text": "Cravat",
           "isImpostor": true,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l18-275",
-          "text": "Magnetism",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l18-276",
-          "text": "Charm",
-          "isImpostor": false,
           "isRelink": false
         }
       ],
@@ -57,85 +57,33 @@
       }
     },
     {
-      "id": "row-l18-70",
+      "id": "row-1777306610604-121",
       "position": 1,
-      "category": "Types of microphone",
+      "category": "Mr Miyagi's Karate Kid lessons",
       "tiles": [
         {
-          "id": "tile-l18-277",
-          "text": "Shotgun",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l18-278",
-          "text": "Crash",
+          "id": "tile-1777306610604-122",
+          "text": "Clip on",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l18-279",
-          "text": "Boom",
+          "id": "tile-1777306610604-123",
+          "text": "Wax on",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l18-280",
-          "text": "USB",
-          "isImpostor": false,
-          "isRelink": false
-        }
-      ],
-      "pdl": {
-        "group": {
-          "knowledge": [
-            "General vocabulary"
-          ],
-          "manipulation": [
-            "None"
-          ],
-          "abstraction": [
-            "Direct membership"
-          ],
-          "knowledgeDomain": [
-            "Technology"
-          ]
-        },
-        "impostor": {
-          "realIdentityDomain": [
-            "General"
-          ]
-        }
-      }
-    },
-    {
-      "id": "row-l18-71",
-      "position": 2,
-      "category": "Musical killers",
-      "tiles": [
-        {
-          "id": "tile-l18-281",
-          "text": "Queen",
+          "id": "tile-1777306610604-124",
+          "text": "Wax off",
           "isImpostor": false,
           "isRelink": false
         },
         {
-          "id": "tile-l18-282",
-          "text": "Psycho",
+          "id": "tile-1777306610604-125",
+          "text": "Paint fence",
           "isImpostor": false,
           "isRelink": false
-        },
-        {
-          "id": "tile-l18-283",
-          "text": "Sonic",
-          "isImpostor": true,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l18-284",
-          "text": "Video",
-          "isImpostor": false,
-          "isRelink": true
         }
       ],
       "pdl": {
@@ -147,10 +95,10 @@
             "None"
           ],
           "abstraction": [
-            "Shared property"
+            "Direct membership"
           ],
           "knowledgeDomain": [
-            "Music"
+            "Film-TV"
           ]
         },
         "impostor": {
@@ -161,31 +109,31 @@
       }
     },
     {
-      "id": "row-l18-72",
-      "position": 3,
-      "category": "Ending in neckwear",
+      "id": "row-1777306610604-136",
+      "position": 2,
+      "category": "Referring to the back",
       "tiles": [
         {
-          "id": "tile-l18-285",
-          "text": "The Chain",
-          "isImpostor": false,
-          "isRelink": false
-        },
-        {
-          "id": "tile-l18-286",
-          "text": "Mascots",
-          "isImpostor": false,
-          "isRelink": true
-        },
-        {
-          "id": "tile-l18-287",
-          "text": "Banjo",
+          "id": "tile-1777306610604-137",
+          "text": "Bow",
           "isImpostor": true,
           "isRelink": false
         },
         {
-          "id": "tile-l18-288",
-          "text": "Besties",
+          "id": "tile-1777306610604-138",
+          "text": "Stern",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777306610604-139",
+          "text": "Behind",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777306610604-140",
+          "text": "Rear",
           "isImpostor": false,
           "isRelink": false
         }
@@ -196,13 +144,65 @@
             "General vocabulary"
           ],
           "manipulation": [
-            "Hidden word"
+            "None"
           ],
           "abstraction": [
-            "Shared property"
+            "Direct membership"
           ],
           "knowledgeDomain": [
             "Language"
+          ]
+        },
+        "impostor": {
+          "realIdentityDomain": [
+            "General"
+          ]
+        }
+      }
+    },
+    {
+      "id": "row-1777306610604-131",
+      "position": 3,
+      "category": "Verbs requiring thumbs",
+      "tiles": [
+        {
+          "id": "tile-1777306610604-132",
+          "text": "Tie",
+          "isImpostor": false,
+          "isRelink": true
+        },
+        {
+          "id": "tile-1777306610604-133",
+          "text": "Snap",
+          "isImpostor": false,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777306610604-134",
+          "text": "Bolo",
+          "isImpostor": true,
+          "isRelink": false
+        },
+        {
+          "id": "tile-1777306610604-135",
+          "text": "Hitchhike",
+          "isImpostor": false,
+          "isRelink": false
+        }
+      ],
+      "pdl": {
+        "group": {
+          "knowledge": [
+            "General vocabulary"
+          ],
+          "manipulation": [
+            "None"
+          ],
+          "abstraction": [
+            "Direct membership"
+          ],
+          "knowledgeDomain": [
+            "General"
           ]
         },
         "impostor": {
@@ -216,73 +216,53 @@
   "relink": {
     "tiles": [
       {
-        "text": "Video",
-        "source": "grid",
-        "sourceRowId": "row-l18-71"
+        "text": "Types of",
+        "source": "fodder"
       },
       {
-        "text": "Game",
+        "text": "Neck",
         "source": "grid",
-        "sourceRowId": "row-l18-69"
+        "sourceRowId": "row-1777306610604-126",
+        "sourceTileId": "tile-1777306610604-128"
       },
       {
-        "text": "Mascots",
+        "text": "Tie",
         "source": "grid",
-        "sourceRowId": "row-l18-72"
+        "sourceRowId": "row-1777306610604-131",
+        "sourceTileId": "tile-1777306610604-132"
       }
     ],
-    "answer": "Video game mascots",
+    "answer": "",
     "pdl": {
       "connectionIdentification": {
-        "manipulation": [
-          "None"
-        ],
         "knowledge": [
           "Common cultural"
+        ],
+        "manipulation": [
+          "None"
         ],
         "abstraction": [
           "Direct membership"
         ],
         "knowledgeDomain": [
-          "Technology"
+          "General"
         ]
       },
       "answerConstruction": {
         "manipulation": [
-          "None"
+          "Phrase"
         ],
         "knowledge": [
-          "None"
+          "General vocabulary"
         ]
       }
     }
   },
-  "decoys": [
-    {
-      "id": "decoy-1776089211-17",
-      "tileIds": [
-        "tile-l18-278",
-        "tile-l18-277",
-        "tile-l18-279"
-      ],
-      "pdl": {
-        "knowledge": [
-          "General vocabulary"
-        ],
-        "manipulation": [
-          "None"
-        ],
-        "abstraction": [
-          "Association"
-        ],
-        "description": "Loud noises/explosions - makes you think the row is about loud sounds and USB is the impostor"
-      }
-    }
-  ],
+  "decoys": [],
   "board": {
     "specialistGroupCount": 0,
     "decoyCount": 0,
-    "phase2TileCount": 3,
+    "phase2TileCount": 2,
     "isThemed": false,
     "themeDomain": null
   }
