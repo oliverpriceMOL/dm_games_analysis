@@ -20,7 +20,8 @@ import { SOLVE_ORDER_BUCKETS, SOLVE_ORDER_COLORS, SOLVE_ORDER_LABELS } from './c
 /* ── State ──────────────────────────────────────────────────────── */
 
 let puzzles = [];        // [{key, p, diff}] — sorted
-let chartInstances = []; // all Chart.js instances for cleanup
+let chartInstances = []; // table radar Chart.js instances
+let detailChartInstances = []; // modal detail Chart.js instances
 let expandedKey = null;  // currently expanded puzzle key
 let showPercent = true;
 let includeAbandons = true;
@@ -124,7 +125,8 @@ function buildTable() {
 
     // Sort click handler
     container.querySelectorAll('.sortable-th').forEach(th => {
-        th.addEventListener('click', () => {
+        th.addEventListener('click', (e) => {
+            e.stopPropagation();
             const col = th.dataset.col;
             if (col === sortCol) { sortDir *= -1; }
             else { sortCol = col; sortDir = 1; }
@@ -132,25 +134,14 @@ function buildTable() {
         });
     });
 
-    // Row click → expand detail
+    // Row click → open modal
     container.querySelectorAll('.catalogue-row').forEach(row => {
         row.addEventListener('click', () => {
             const key = row.dataset.key;
-            if (expandedKey === key) {
-                expandedKey = null;
-                document.getElementById('published-detail').innerHTML = '';
-                row.classList.remove('expanded');
-            } else {
-                container.querySelectorAll('.catalogue-row').forEach(r => r.classList.remove('expanded'));
-                row.classList.add('expanded');
-                expandedKey = key;
-                renderDetail(key);
-            }
+            expandedKey = key;
+            renderDetail(key);
         });
     });
-
-    // Re-expand if was open
-    if (expandedKey) renderDetail(expandedKey);
 }
 
 /* ── Detail panel ───────────────────────────────────────────────── */
@@ -161,10 +152,17 @@ function renderDetail(key) {
     if (!entry) return;
     const { p, diff, dims, dimLabels } = entry;
 
-    const detail = document.getElementById('published-detail');
-    if (!detail) return;
+    // Remove any existing modal
+    const existing = document.querySelector('.puzzle-modal-overlay');
+    if (existing) existing.remove();
 
-    let html = '<div class="expand-detail card" style="margin-top:12px;">';
+    // Build modal
+    const overlay = document.createElement('div');
+    overlay.className = 'puzzle-modal-overlay';
+    const modal = document.createElement('div');
+    modal.className = 'puzzle-modal';
+
+    let html = '<button class="puzzle-modal-close">&times;</button>';
     html += `<div style="display:flex;justify-content:space-between;align-items:center;">`;
     html += `<h3 style="margin:0;">${p.label}: ${p.name}</h3>`;
     html += `<span style="color:var(--muted);font-size:13px;">${p.wins}W / ${p.losses}L / ${p.incomplete}I · ${p.players} players</span>`;
@@ -266,8 +264,23 @@ function renderDetail(key) {
         html += renderPhiMatrix(fc);
     }
 
-    html += `</div>`; // close .expand-detail
-    detail.innerHTML = html;
+    modal.innerHTML = html;
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Close handlers
+    const closeModal = () => {
+        destroyDetailCharts();
+        overlay.remove();
+        expandedKey = null;
+    };
+    modal.querySelector('.puzzle-modal-close').addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal();
+    });
+    document.addEventListener('keydown', function onEsc(e) {
+        if (e.key === 'Escape') { closeModal(); document.removeEventListener('keydown', onEsc); }
+    });
 
     // ── Render charts ──
     if (diff.profile) {
@@ -290,9 +303,6 @@ function renderDetail(key) {
         includeAbandons = mode === 'all';
         rebuildDetailCharts(p);
     });
-
-    // Scroll detail into view
-    detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 /* ── Legend for wrong-dist fill styles ─────────────────────────── */
@@ -370,7 +380,7 @@ function renderWrongDistChart(canvasId, puzzle) {
             } } },
         }
     });
-    chartInstances.push(chart);
+    detailChartInstances.push(chart);
 }
 
 /* ── Solve-order distribution by row ───────────────────────────── */
@@ -422,7 +432,7 @@ function renderSolveOrderChart(canvasId, puzzle) {
             },
         }
     });
-    chartInstances.push(chart);
+    detailChartInstances.push(chart);
 }
 
 /* ── Ever-solved binary by row ─────────────────────────────────── */
@@ -489,7 +499,7 @@ function renderEverSolvedChart(canvasId, puzzle) {
             },
         }
     });
-    chartInstances.push(chart);
+    detailChartInstances.push(chart);
 }
 
 /* ── Whole-puzzle mistake distribution ─────────────────────────── */
@@ -527,7 +537,7 @@ function renderMistakeDistChart(canvasId, puzzle) {
             } } },
         }
     });
-    chartInstances.push(chart);
+    detailChartInstances.push(chart);
 }
 
 /* ── Dual-axis timing + error curve ───────────────────────────── */
@@ -573,7 +583,7 @@ function renderDualCurveChart(canvasId, puzzle) {
             plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
         }
     });
-    chartInstances.push(chart);
+    detailChartInstances.push(chart);
 }
 
 /* ── Chart cleanup ────────────────────────────────────────────── */
@@ -584,11 +594,8 @@ function destroyCharts() {
 }
 
 function destroyDetailCharts() {
-    // Destroy only the detail charts (keep table radars)
-    // Detail charts are those created after the table radars, so we tag them
-    // For simplicity, rebuild destroys everything
-    chartInstances.forEach(c => c.destroy());
-    chartInstances = [];
+    detailChartInstances.forEach(c => c.destroy());
+    detailChartInstances = [];
 }
 
 function rebuildDetailCharts(puzzle) {

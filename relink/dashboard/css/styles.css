@@ -158,6 +158,17 @@ th { background: #f8f9fa; font-weight: 600; position: sticky; top: 0; }
 .radar-card h4 { font-size: 13px; margin-bottom: 4px; color: var(--accent); }
 .radar-card .radar-meta { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
 .radar-canvas-wrap { width: 100%; max-width: 220px; margin: 0 auto; }
+
+/* Puzzle detail modal */
+.puzzle-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+    display: flex; align-items: flex-start; justify-content: center; z-index: 1000;
+    overflow-y: auto; padding: 40px 16px; }
+.puzzle-modal { background: #fff; border-radius: 12px; padding: 28px 32px; max-width: 960px;
+    width: 100%; position: relative; box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
+.puzzle-modal-close { position: absolute; top: 12px; right: 16px; background: none;
+    border: none; font-size: 28px; cursor: pointer; color: var(--muted); line-height: 1; }
+.puzzle-modal-close:hover { color: var(--text); }
+
 .rating-tier-1 { border-left: 3px solid #27ae60; }
 .rating-tier-2 { border-left: 3px solid #2ecc71; }
 .rating-tier-3 { border-left: 3px solid #f39c12; }

@@ -116,7 +116,8 @@ function buildTable() {
 
     // Sort click handler
     container.querySelectorAll('.sortable-th').forEach(th => {
-        th.addEventListener('click', () => {
+        th.addEventListener('click', (e) => {
+            e.stopPropagation();
             const col = th.dataset.col;
             if (col === sortCol) { sortDir *= -1; }
             else { sortCol = col; sortDir = 1; }
@@ -124,24 +125,14 @@ function buildTable() {
         });
     });
 
-    // Row click → expand
+    // Row click → open modal
     container.querySelectorAll('.catalogue-row').forEach(row => {
         row.addEventListener('click', () => {
             const key = row.dataset.key;
-            if (expandedKey === key) {
-                expandedKey = null;
-                document.getElementById('upcoming-detail').innerHTML = '';
-                row.classList.remove('expanded');
-            } else {
-                container.querySelectorAll('.catalogue-row').forEach(r => r.classList.remove('expanded'));
-                row.classList.add('expanded');
-                expandedKey = key;
-                renderDetail(key);
-            }
+            expandedKey = key;
+            renderDetail(key);
         });
     });
-
-    if (expandedKey) renderDetail(expandedKey);
 }
 
 /* ── Detail panel ───────────────────────────────────────────────── */
@@ -150,10 +141,18 @@ function renderDetail(key) {
     const entry = puzzles.find(e => e.key === key);
     if (!entry) return;
     const { p, diff, dims, dimLabels } = entry;
-    const detail = document.getElementById('upcoming-detail');
-    if (!detail) return;
 
-    let html = '<div class="expand-detail card" style="margin-top:12px;">';
+    // Remove any existing modal
+    const existing = document.querySelector('.puzzle-modal-overlay');
+    if (existing) existing.remove();
+
+    // Build modal
+    const overlay = document.createElement('div');
+    overlay.className = 'puzzle-modal-overlay';
+    const modal = document.createElement('div');
+    modal.className = 'puzzle-modal';
+
+    let html = '<button class="puzzle-modal-close">&times;</button>';
     html += `<h3 style="margin:0;">${p.name} <span class="badge badge-predicted">Predicted</span></h3>`;
 
     // ── Top row: radar + design features ──
@@ -205,17 +204,28 @@ function renderDetail(key) {
     }
     html += `</tbody></table></div>`;
 
-    html += `</div>`;
-    detail.innerHTML = html;
+    modal.innerHTML = html;
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Close handlers
+    const closeModal = () => {
+        overlay.remove();
+        expandedKey = null;
+    };
+    modal.querySelector('.puzzle-modal-close').addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal();
+    });
+    document.addEventListener('keydown', function onEsc(e) {
+        if (e.key === 'Escape') { closeModal(); document.removeEventListener('keydown', onEsc); }
+    });
 
     // Render detail radar
-    // Destroy any previous detail chart
     const detailCanvas = document.getElementById('up-detail-radar');
     if (diff.profile && detailCanvas) {
         createRadarChart('up-detail-radar', dims, dimLabels, diff.profile, { large: true, showValues: true });
     }
-
-    detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 /* ── Cleanup ──────────────────────────────────────────────────── */
