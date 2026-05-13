@@ -42,6 +42,8 @@ players_by_date = data['players_by_date']
 overlap_dates = data['overlap_dates']
 date_summaries = data['date_summaries']
 aggregate_timing = data['aggregate_timing']
+completions_all = data['completions_all']
+canonical_ids = data['canonical_ids']
 
 # ── Join rows with behaviour ──
 row_joined = []
@@ -252,7 +254,8 @@ print(f"  Simulator (undated/no-data): {len(sim_undated)} puzzles simulated")
 # 9. Overview (after sim_undated so the SR distribution can include predicted puzzles)
 overview_data = metrics.compute_overview(
     date_summaries, pdl_puzzle_features, pdl_puzzles, overlap_dates,
-    aggregate_timing, sim_undated=sim_undated)
+    aggregate_timing, sim_undated=sim_undated,
+    completions_all=completions_all, canonical_ids=canonical_ids)
 
 # 15. Puzzle Explorer
 explorer_data = metrics.compute_puzzle_explorer(
@@ -266,7 +269,9 @@ explorer_data = metrics.compute_puzzle_explorer(
     pdl_puzzles=pdl_puzzles,
     level_to_date=level_to_date,
     date_to_level=date_to_level,
-    row_joined=row_joined)
+    row_joined=row_joined,
+    completions_all=completions_all,
+    canonical_ids=canonical_ids)
 print(f"  Puzzle Explorer: {len(explorer_data['puzzles'])} dated, "
       f"{len(explorer_data.get('undated_puzzles', {}))} undated")
 

@@ -764,14 +764,37 @@ def compute_clustering(pdl_puzzles, pdl_rows, pdl_puzzle_features, level_to_date
 # ══════════════════════════════════════════════════════════════════════
 
 def compute_overview(date_summaries, pdl_puzzle_features, pdl_puzzles, overlap_dates,
-                     aggregate_timing, sim_undated=None):
-    """Compute overview/summary data for the Key Findings section."""
-    actual_dist = [{
-        'lid': date_summaries[d]['lid'],
-        'name': date_summaries[d]['name'],
-        'label': date_summaries[d]['label'],
-        'solve_rate': round(date_summaries[d]['solve_rate'] * 100, 1),
-    } for d in overlap_dates]
+                     aggregate_timing, sim_undated=None,
+                     completions_all=None, canonical_ids=None):
+    """Compute overview/summary data for the Key Findings section.
+
+    When completions_all is provided, headline stats (total_completions,
+    per-date wins/losses/players/solve_rate) use full-population numbers.
+    Per-row trajectory analysis still uses device_id-only data.
+    """
+    # Helper: get all-user stats for a date from completions_all
+    def _broad_stats(d):
+        if completions_all and canonical_ids:
+            canon = canonical_ids.get(d)
+            if canon and d in completions_all and canon in completions_all[d]:
+                c = completions_all[d][canon]
+                wins = c['wins']
+                losses = c['losses']
+                total = wins + losses
+                return {'wins': wins, 'losses': losses, 'completions': total,
+                        'solve_rate': wins / total if total else 0, 'players': total}
+        return None
+
+    actual_dist = []
+    for d in overlap_dates:
+        broad = _broad_stats(d)
+        sr = broad['solve_rate'] if broad else date_summaries[d]['solve_rate']
+        actual_dist.append({
+            'lid': date_summaries[d]['lid'],
+            'name': date_summaries[d]['name'],
+            'label': date_summaries[d]['label'],
+            'solve_rate': round(sr * 100, 1),
+        })
     predicted_dist = []
     if sim_undated:
         for lid, r in sim_undated.items():
@@ -781,21 +804,41 @@ def compute_overview(date_summaries, pdl_puzzle_features, pdl_puzzles, overlap_d
                 'solve_rate': round(r['solve_rate'] * 100, 1),
             })
 
+    # Build per-date stats, preferring broad numbers where available
+    dates_arr = []
+    for d in overlap_dates:
+        ds = date_summaries[d]
+        broad = _broad_stats(d)
+        if broad:
+            dates_arr.append({
+                'date': ds['date'],
+                'label': ds['label'],
+                'name': ds['name'],
+                'players': broad['players'],
+                'wins': broad['wins'],
+                'losses': broad['losses'],
+                'completions': broad['completions'],
+                'solve_rate': round(broad['solve_rate'] * 100, 1),
+                'median_time': round(ds['median_time'], 1),
+            })
+        else:
+            dates_arr.append({
+                'date': ds['date'],
+                'label': ds['label'],
+                'name': ds['name'],
+                'players': ds['players'],
+                'wins': ds['wins'],
+                'losses': ds['losses'],
+                'completions': ds['completions'],
+                'solve_rate': round(ds['solve_rate'] * 100, 1),
+                'median_time': round(ds['median_time'], 1),
+            })
+
     return {
         'n_puzzles': len(pdl_puzzles),
         'n_dated': len(overlap_dates),
-        'total_completions': sum(ds['completions'] for ds in date_summaries.values()),
-        'dates': [{
-            'date': ds['date'],
-            'label': ds['label'],
-            'name': ds['name'],
-            'players': ds['players'],
-            'wins': ds['wins'],
-            'losses': ds['losses'],
-            'completions': ds['completions'],
-            'solve_rate': round(ds['solve_rate'] * 100, 1),
-            'median_time': round(ds['median_time'], 1),
-        } for ds in (date_summaries[d] for d in overlap_dates)],
+        'total_completions': sum(d['completions'] for d in dates_arr),
+        'dates': dates_arr,
         'aggregate_timing': aggregate_timing,
         'solve_rate_distribution': {
             'actual': actual_dist,
@@ -814,7 +857,8 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
                             feat_sim_results=None, sim_undated=None,
                             transition_data=None, relink_feature_dists=None,
                             pdl_puzzles=None, level_to_date=None,
-                            date_to_level=None, row_joined=None):
+                            date_to_level=None, row_joined=None,
+                            completions_all=None, canonical_ids=None):
     """Build per-puzzle deep-dive data for the Puzzle Explorer page.
 
     Returns dict with:
@@ -1096,16 +1140,30 @@ def compute_puzzle_explorer(overlap_dates, date_summaries, players_by_date,
             'actual_solve_rate': round(ds['solve_rate'] * 100, 1),
         }
 
+        # Use broad (all-user) stats for headline numbers if available
+        broad_wins = ds['wins']
+        broad_losses = ds['losses']
+        broad_players = ds['players']
+        broad_sr = ds['solve_rate']
+        if completions_all and canonical_ids:
+            _canon = canonical_ids.get(d)
+            if _canon and d in completions_all and _canon in completions_all[d]:
+                _bc = completions_all[d][_canon]
+                broad_wins = _bc['wins']
+                broad_losses = _bc['losses']
+                broad_players = broad_wins + broad_losses
+                broad_sr = broad_wins / broad_players if broad_players else 0
+
         puzzles[d] = {
             'name': ds['name'],
             'label': ds['label'],
             'date': d,
             'lid': lid,
-            'players': ds['players'],
-            'wins': ds['wins'],
-            'losses': ds['losses'],
+            'players': broad_players,
+            'wins': broad_wins,
+            'losses': broad_losses,
             'incomplete': ds['incomplete'],
-            'solve_rate': round(ds['solve_rate'], 3),
+            'solve_rate': round(broad_sr, 3),
             'median_time': round(ds['median_time'], 1),
             'has_player_data': True,
             'pdl': {

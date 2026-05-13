@@ -8,22 +8,23 @@ This project analyses player behaviour data from internal tests of Daily Mail pu
 
 ### Raw CSVs
 
-- `raw/daily-mail-sessions*.csv` — Session-level data. Columns: id, created_at, ended_at, is_bounce, duration, screen_view_count, event_count, entry_path, exit_path, referrer, country, city, region, device, browser, browser_version, os, os_version, utm fields, properties.
-- `raw/daily-mail-events*.csv` — Event-level data. Columns: id, name, created_at, country, city, region, properties.
-- The `properties` column in both files contains stringified Python dicts (single quotes, **no spaces around colons** e.g. `'game_id':'relink'`). Parse with `ast.literal_eval()` but only after filtering — prefer string-based checks for pre-filtering.
+- `raw/daily-mail-events*.csv` — Event-level data. Columns: id, device_id, name, created_at, country, city, region, properties.
+- `raw/daily-mail-sessions*.csv` — Session-level data (legacy, not used by current pipeline).
+- The `properties` column contains stringified Python dicts (single quotes, **no spaces around colons** e.g. `'game_id':'relink'`). Parse with `ast.literal_eval()` but only after filtering — prefer string-based checks for pre-filtering.
 - **Multi-file loading**: Scripts use `glob.glob()` to discover all matching CSVs, load them in sorted order (alphabetical), and deduplicate by row ID (last file wins). This ensures full date coverage without duplicates.
-- **File sizes**: Event CSVs can be 900MB+ (4M rows) and session CSVs 170MB+ (300K rows). Performance-critical code must avoid full `ast.literal_eval()` during scanning.
+- **File sizes**: Event CSVs can be 900MB+ (5M rows). Performance-critical code must avoid full `ast.literal_eval()` during scanning.
+- **Player grouping**: Players are identified by `device_id` column (not sessions). Events without a device_id are used for broad completion counts but excluded from trajectory analysis.
 
 ### PDL Save-Data (Relink only)
 
 - `relink/save-data/puzzles-index.json` — Lists all 49 puzzles with `id`, `date`, `phase2TileCount`, `pdlComplete`, and a `searchFields` block for explorer search.
 - `relink/save-data/pdl-schema.json` — Enum vocabulary for the PDL fields (knowledge levels, manipulation types, abstraction levels, knowledge domains, plus the smaller relink-specific manipulation enums).
 - `relink/save-data/l{id}.json` — Per-puzzle design file. Schema **v2** (top-level `schemaVersion: 2`). Contains `canonicalId` (the level_id string used in analytics events to identify this puzzle), 4 rows (each with tiles, impostor flags, and a nested `pdl.group.{manipulation, abstraction, knowledge, knowledgeDomain}` block plus `pdl.impostor.realIdentityDomain` — every PDL leaf is now an array, multi-valued allowed). Relink phase has split PDL (`connectionIdentification` with manipulation/knowledge/abstraction/knowledgeDomain + `answerConstruction` with manipulation/knowledge), decoy groupings (with `pdl.knowledge/manipulation/abstraction` arrays plus reserved `completeness` and `groupsSpanned` fields — currently unpopulated on all puzzles), and board metadata (`phase2TileCount`, `specialistGroupCount`, `isThemed`, `themeDomain`).
-- 5 of the 49 puzzles have both dates and matching player behaviour data (May 7–11); a further 5 are dated in the future (May 12–16); the remaining 39 are undated design-only puzzles.
+- 7 of the 49 puzzles have both dates and matching player behaviour data (May 7–13); a further 3 are dated in the future (May 14–16); the remaining 39 are undated design-only puzzles.
 
 **PDL schema v2 notes**: Loader (`lib/data.py`) reads the full arrays and exposes both scalar (`manipulation`, `knowledgeDomain`, …) and list (`manipulations`, `knowledgeDomains`, `realIdentityDomains`, …) keys on each `pdl_rows` entry. The `same_domain` flag is computed via set intersection between the row's `knowledgeDomain` and the impostor's `realIdentityDomain` (any overlap = same), and an explicit `cross_domain_impostor` boolean is emitted alongside. `decoys[].pdl.completeness`, `decoys[].pdl.groupsSpanned`, and `board.themeDomain` are reserved schema-v2 fields with no analytical signal yet — analyses that rely on them should warn rather than silently treat empties as zero.
 
-**Canonical ID system**: Each puzzle JSON has a `"canonicalId"` field (e.g. `"mov6vke9-yv61qq8"`) matching the `level_id` property in analytics events. After building player trajectories, `load_all()` filters out players whose `level_id` doesn't match the canonical for their date. This removes glitch data (e.g. wrong puzzle served during server switches).
+**Canonical ID system**: Each puzzle JSON has a `"canonicalId"` field (e.g. `"mov6vke9-yv61qq8"`) matching the `level_id` property in analytics events. All 7 dated puzzles with player data have canonical IDs. After building player trajectories, `load_all()` filters out players whose `level_id` doesn't match the canonical for their date. This removes glitch data (e.g. wrong puzzle served during server switches).
 
 ## Games
 
@@ -50,7 +51,7 @@ A word puzzle played on a 4×4 grid with two phases:
 - `relink_guess_submitted` (imposters phase): `row_index`, `selected_word`, `is_correct`, `attempts_remaining`, `phase: 'imposters'`, `level_id`
 - `relink_guess_submitted` (relink phase): `selected_tile_ids` (e.g. `r3w0,r0w1`), `is_correct`, `phase: 'relink'`, `level_id`
 - `level_completed`: `is_won`, `puzzle_date`, `level_id`
-- Data covers May 7–11, 2026 (5 puzzle dates with player data, post-launch). ~5K–15K players per day.
+- Data covers May 7–13, 2026 (7 puzzle dates with player data, post-launch). ~8K–17.5K completions per day (all users).
 
 ### Trace (`game_id: 'word-flow'`)
 - A word-tracing puzzle. No guess-level events — only `level_started`, `level_completed`, `tutorial_started/completed/skipped`, `level_result_shared`, `final_board_viewed`, `session_started`.
@@ -172,12 +173,24 @@ Plus a 16th JSON `fix-leverage.json` produced by the standalone `fix_leverage.py
 | `simulator.json` | Monte Carlo | Simulated solve rates; undated puzzle predictions |
 | `difficulty.json` | Difficulty ratings | 5-axis profiles, composites, star ratings, validation |
 
+### Two-Tier Analysis
+
+The pipeline uses two levels of data:
+
+1. **All-user completions (`completions_all`)**: Every `level_completed` event regardless of whether the player has a `device_id`. Used for headline stats in the Overview page and Published Puzzles table (solve rate, player count, wins/losses). ~98K total completions across 7 dates.
+
+2. **Device-ID trajectories (`players_by_date`)**: Only players with a `device_id` whose full guess sequence can be reconstructed. Used for per-row analysis, wrong-guess distributions, timing curves, simulator training, and all detailed behavioural modelling. ~65K trajectories across 7 dates.
+
+The two levels agree within ~1pp on solve rate (no selection bias from device_id availability).
+
 ### Key Derived Structures (from lib/data.py)
 
-- **`players_by_date`**: Per-player trajectory (position, lives_before, row, wrong_count, survived), guess events, relink trajectory, outcome.
+- **`completions_all`**: `{date: {level_id: {'wins': int, 'losses': int}}}` — broad completion counts from ALL events.
+- **`players_by_date`**: Per-player trajectory (position, lives_before, row, wrong_count, survived), guess events, relink trajectory, outcome. Device-ID grouped.
 - **`pdl_puzzle_features`**: Computed board-level features (manipulationComplexity, abstractionComplexity, knowledgeBreadth, phase2TileCount, decoyCount, etc.).
 - **`pdl_rows`**: Row-level PDL joined across all puzzles (manipulation, abstraction, knowledge, domain, same_domain flag, plus relink split PDL fields).
-- **`date_summaries`**: Per-date aggregated stats, row metrics, timing curves.
+- **`date_summaries`**: Per-date aggregated stats from trajectory data — row metrics, timing curves.
+- **`canonical_ids`**: `{date: canonicalId}` — maps dates to their puzzle's canonical level_id.
 
 ### Running
 
@@ -200,10 +213,9 @@ python3 -m http.server 8000 -d relink
 - Show raw figures alongside percentages (e.g. `28/34 (82%)`).
 - Separate analysis by puzzle date where applicable.
 - Dates and labels are derived dynamically from the data — no hardcoded date lists.
-- Event-session matching uses **binary search** (`bisect_left`/`bisect_right`) on timestamp-sorted country buckets for O(n·log(m)) performance.
 - Dashboard uses Chart.js v4 via CDN (non-module global) and ES modules for all JS renderers.
 
 ## Key Findings
 
-- **Relink**: Solve rates vary across 5 launch puzzles (May 7–11). ~5K–15K players per day post-launch. The full-feature Monte Carlo simulator uses a ratio-shift model stacking adjustments for manipulation, abstraction, knowledge, same_domain, position (imposters phase) and identification manipulation, construction knowledge, tile count (relink phase). Empirical mode: r=0.964, MAE=9.4pp. Predicts solve rates for 44 puzzles without player data. A 5-axis difficulty rating system (manipulation 10%, abstraction 30%, domain mismatch 10%, knowledge 10%, relink challenge 40%) produces 1–5 star ratings with severity-based scoring (avg_wrong/3) and a vertical inference discount.
+- **Relink**: Solve rates vary across 7 puzzles (May 7–13, 22–68%). ~98K total completions (all users), ~65K device-ID trajectories. The full-feature Monte Carlo simulator uses a ratio-shift model stacking adjustments for manipulation, abstraction, knowledge, same_domain, position (imposters phase) and identification manipulation, construction knowledge, tile count (relink phase). Empirical mode: r=0.993, MAE=8.2pp. Predicts solve rates for 42 puzzles without player data. A 5-axis difficulty rating system (manipulation 10%, abstraction 30%, domain mismatch 10%, knowledge 10%, relink challenge 40%) produces 1–5 star ratings with severity-based scoring (avg_wrong/3) and a vertical inference discount.
 - **Trace**: Puzzle difficulty varies hugely — median solve times range from 18s to 164s. 7-letter words take ~3× longer than 5-letter words but completion rates are similar (~80% vs ~88%). Sharing rate is flat at 1%. Hard puzzles reduce next-day retention by ~12pp.

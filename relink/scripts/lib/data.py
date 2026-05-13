@@ -5,8 +5,7 @@ import ast
 import os
 import json
 import glob
-from bisect import bisect_left, bisect_right
-from datetime import datetime, timedelta
+from datetime import datetime
 from collections import defaultdict, Counter
 
 from .stats import safe_mean, safe_median
@@ -222,18 +221,22 @@ def _extract_level_id(raw_props):
 
 
 def load_behaviour(raw_dir, target_dates=None):
-    """Load sessions and events from CSVs.
+    """Load events from CSVs, grouped by (device_id, date).
+    Trajectory events require non-empty device_id and client_id:'dailymail'.
+    Also collects broad completion stats from ALL level_completed events (no device_id needed).
     target_dates: optional set of date strings to restrict loading to.
-    Returns (sessions_by_date, events_by_date, ALL_DATES).
+    Returns (events_by_device_date, ALL_DATES, completions_all).
+      events_by_device_date: {date: {device_id: [events]}}
+      completions_all: {date: {level_id: {'wins': int, 'losses': int}}}
     """
-    session_files = sorted(glob.glob(os.path.join(raw_dir, 'daily-mail-sessions*.csv')))
     event_files = sorted(glob.glob(os.path.join(raw_dir, 'daily-mail-events*.csv')))
 
-    # Load events — triple-gated: date, 'relink' substring, game_id string check
-    events_by_date = defaultdict(list)
+    events_by_device_date = defaultdict(lambda: defaultdict(list))
+    completions_all = defaultdict(lambda: defaultdict(lambda: {'wins': 0, 'losses': 0}))
     seen_event_ids = set()
     _ev_total = 0
     _ev_skipped_date = 0
+    _ev_no_device = 0
     for ef in event_files:
         with open(ef) as f:
             for row in csv.DictReader(_strip_nuls(f)):
@@ -254,102 +257,56 @@ def load_behaviour(raw_dir, target_dates=None):
                 if eid in seen_event_ids:
                     continue
                 seen_event_ids.add(eid)
+
+                # Broad completion stats — ALL level_completed events (no device_id needed)
+                if row['name'] == 'level_completed':
+                    lid = _extract_level_id(raw_props)
+                    if "'is_won':'true'" in raw_props or "'is_won': 'true'" in raw_props:
+                        completions_all[d][lid]['wins'] += 1
+                    elif "'is_won':'false'" in raw_props or "'is_won': 'false'" in raw_props:
+                        completions_all[d][lid]['losses'] += 1
+
+                # Gate 4: device_id must be non-empty (for trajectory grouping)
+                device_id = row.get('device_id', '').strip()
+                if not device_id:
+                    _ev_no_device += 1
+                    continue
+                # Gate 5: client_id:'dailymail' verification
+                if "'client_id':'dailymail'" not in raw_props and "'client_id': 'dailymail'" not in raw_props:
+                    continue
                 # Deferred parsing — only store raw props + extracted fields
                 row['_ts'] = _parse_ts(row['created_at'])
                 row['_raw_props'] = raw_props
                 row['_level_id'] = _extract_level_id(raw_props)
-                events_by_date[d].append(row)
+                row['_device_id'] = device_id
+                events_by_device_date[d][device_id].append(row)
 
-    ev_kept = sum(len(v) for v in events_by_date.values())
-    print(f"  Events: {ev_kept:,} relink events across {len(events_by_date)} dates "
-          f"(scanned {_ev_total:,} rows, {_ev_skipped_date:,} skipped by date filter)")
+    ev_kept = sum(len(evs) for devs in events_by_device_date.values() for evs in devs.values())
+    n_devices = sum(len(devs) for devs in events_by_device_date.values())
+    n_completions = sum(v['wins'] + v['losses'] for dd in completions_all.values() for v in dd.values())
+    print(f"  Events: {ev_kept:,} relink events across {len(events_by_device_date)} dates, "
+          f"{n_devices:,} unique device+date pairs "
+          f"(scanned {_ev_total:,} rows, {_ev_skipped_date:,} skipped by date, "
+          f"{_ev_no_device:,} skipped no device_id)")
+    print(f"  Broad completions (all users): {n_completions:,} across {len(completions_all)} dates")
 
-    # Load sessions for dates that have relink events
-    dates_with_events = set(events_by_date.keys())
-    sessions_by_date = defaultdict(dict)
-    _sess_total = 0
-    for sf in session_files:
-        with open(sf) as f:
-            for row in csv.DictReader(_strip_nuls(f)):
-                _sess_total += 1
-                d = row['created_at'][:10]
-                if d not in dates_with_events:
-                    continue
-                if 'relink' not in row.get('properties', ''):
-                    continue
-                sid = row['id']
-                try:
-                    dur = int(row['duration'])
-                except (ValueError, TypeError):
-                    continue
-                country = row['country']
-                city = row.get('city', '')
-                is_bot = (country in ('NL', 'IE') and dur <= 10) or dur <= 2
-                is_dev = city == 'Västerås' and country == 'SE'
-                if is_bot or is_dev:
-                    continue
-                sessions_by_date[d][sid] = row
+    ALL_DATES = sorted(events_by_device_date.keys() | completions_all.keys())
+    # Sort events within each device group by timestamp
+    for d in events_by_device_date:
+        for dev_events in events_by_device_date[d].values():
+            dev_events.sort(key=lambda e: e['created_at'])
 
-    sess_kept = sum(len(v) for v in sessions_by_date.values())
-    print(f"  Sessions: {sess_kept:,} relink sessions across {len(sessions_by_date)} dates "
-          f"(scanned {_sess_total:,} rows)")
-
-    ALL_DATES = sorted(sessions_by_date.keys() | events_by_date.keys())
-    for d in ALL_DATES:
-        events_by_date[d].sort(key=lambda e: e['created_at'])
-
-    return dict(sessions_by_date), dict(events_by_date), ALL_DATES
-
-
-# ── Event–session matching ──
-
-def match_events(sessions, events):
-    """Match events to sessions by country + time window (binary search)."""
-    if not events:
-        return {}
-    # Group events by country, sort by timestamp for binary search
-    events_by_country = defaultdict(list)
-    for ev in events:
-        if ev['_ts']:
-            events_by_country[ev['country']].append(ev)
-    # Sort each country bucket and build parallel timestamp list for bisect
-    ts_by_country = {}
-    for country, bucket in events_by_country.items():
-        bucket.sort(key=lambda e: e['_ts'])
-        ts_by_country[country] = [e['_ts'] for e in bucket]
-
-    countries_with_events = set(events_by_country.keys())
-    margin = timedelta(milliseconds=200)
-    result = {}
-    for sid, sess in sessions.items():
-        country = sess['country']
-        if country not in countries_with_events:
-            continue
-        s_start = _parse_ts(sess['created_at'])
-        s_end = _parse_ts(sess['ended_at'])
-        if not s_start or not s_end:
-            continue
-        ts_list = ts_by_country[country]
-        bucket = events_by_country[country]
-        lo = bisect_left(ts_list, s_start - margin)
-        hi = bisect_right(ts_list, s_end + margin)
-        if lo >= hi:
-            continue
-        sess_city = sess.get('city', '')
-        matched = [bucket[i] for i in range(lo, hi)
-                   if bucket[i]['city'] == sess_city or not bucket[i]['city'] or not sess_city]
-        if matched:
-            result[sid] = matched
-    return result
+    return dict(events_by_device_date), ALL_DATES, dict(completions_all)
 
 
 # ── Build player dicts ──
 
-def build_players(sessions, event_sessions):
-    """Build one dict per player from matched events."""
+def build_players(device_events):
+    """Build one dict per player from device-grouped events.
+    device_events: {device_id: [events]}
+    """
     players = []
-    for sid, events in event_sessions.items():
-        sess = sessions[sid]
+    for device_id, events in device_events.items():
         real_guesses = []
         relink_guesses = []
 
@@ -506,7 +463,7 @@ def build_players(sessions, event_sessions):
                 break
 
         players.append({
-            'sid': sid,
+            'sid': device_id,
             'outcome': outcome,
             'level_id': level_id,
             'puzzle_date': puzzle_date or '',
@@ -732,13 +689,12 @@ def load_all(save_dir, raw_dir):
         print(f"  Canonical IDs: {len(canonical_ids)} puzzles")
 
     print("Loading behaviour data from CSVs...")
-    sessions_by_date, events_by_date, ALL_DATES = load_behaviour(raw_dir, set(date_to_level.keys()))
+    events_by_device_date, ALL_DATES, completions_all = load_behaviour(raw_dir, set(date_to_level.keys()))
 
     players_by_date = {}
-    event_dates = sorted(d for d in ALL_DATES if events_by_date.get(d))
+    event_dates = sorted(d for d in ALL_DATES if events_by_device_date.get(d))
     for d in event_dates:
-        es = match_events(sessions_by_date.get(d, {}), events_by_date[d])
-        players_by_date[d] = build_players(sessions_by_date.get(d, {}), es)
+        players_by_date[d] = build_players(events_by_device_date[d])
     print(f"  Loaded behaviour data ({len(event_dates)} dates with events)")
 
     # Filter players by canonical ID where available
@@ -768,4 +724,6 @@ def load_all(save_dir, raw_dir):
         'overlap_dates': overlap_dates,
         'date_summaries': date_summaries,
         'aggregate_timing': aggregate_timing,
+        'completions_all': completions_all,
+        'canonical_ids': canonical_ids,
     }
