@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
   "id": "l3",
-  "date": "",
-  "name": "Daily ____",
+  "date": "2026-05-18",
+  "name": "Daily ___",
   "rows": [
     {
       "id": "row-l3-9",
@@ -163,7 +163,7 @@
     {
       "id": "row-l3-12",
       "position": 3,
-      "category": "Homophones of Team GB Olympians",
+      "category": "Homophones of GB Olympians' surnames",
       "tiles": [
         {
           "id": "tile-l3-45",
@@ -219,6 +219,10 @@
         "text": "Daily",
         "source": "grid",
         "sourceRowId": "row-l3-12"
+      },
+      {
+        "text": "___",
+        "source": "fodder"
       }
     ],
     "answer": "Daily ____",
