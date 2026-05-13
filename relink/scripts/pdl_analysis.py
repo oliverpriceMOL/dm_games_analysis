@@ -229,6 +229,10 @@ sim_undated = {}
 for lid, pdata in pdl_puzzles.items():
     if lid not in pdl_puzzle_features:
         continue
+    # Skip puzzles with incomplete construction or PDL tagging
+    idx_entry = pdata.get('_index', {})
+    if not idx_entry.get('pdlComplete', False):
+        continue
     pf = pdl_puzzle_features[lid]
     d = level_to_date.get(lid)
     if d and d in overlap_dates:

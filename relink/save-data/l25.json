@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
   "id": "l25",
-  "date": "",
-  "name": "Royal flush",
+  "date": "2026-05-17",
+  "name": "A royal flush in spades",
   "rows": [
     {
       "id": "row-l25-97",
@@ -59,7 +59,7 @@
     {
       "id": "row-l25-98",
       "position": 1,
-      "category": "Reactions to being embarrassed",
+      "category": "Features of a toilet",
       "tiles": [
         {
           "id": "tile-l25-389",
@@ -69,7 +69,7 @@
         },
         {
           "id": "tile-l25-390",
-          "text": "Ramble",
+          "text": "Lid",
           "isImpostor": false,
           "isRelink": false
         },
@@ -81,7 +81,7 @@
         },
         {
           "id": "tile-l25-392",
-          "text": "Laugh",
+          "text": "Cistern",
           "isImpostor": false,
           "isRelink": false
         }
@@ -163,7 +163,7 @@
     {
       "id": "row-l25-100",
       "position": 3,
-      "category": "Seals",
+      "category": "What a seal might be",
       "tiles": [
         {
           "id": "tile-l25-397",
@@ -216,14 +216,24 @@
   "relink": {
     "tiles": [
       {
+        "text": "A",
+        "source": "fodder"
+      },
+      {
         "text": "Royal",
         "source": "grid",
-        "sourceRowId": "row-l25-100"
+        "sourceRowId": "row-l25-100",
+        "sourceTileId": "tile-l25-398"
       },
       {
         "text": "Flush",
         "source": "grid",
-        "sourceRowId": "row-l25-98"
+        "sourceRowId": "row-l25-98",
+        "sourceTileId": "tile-l25-389"
+      },
+      {
+        "text": "in spades",
+        "source": "fodder"
       }
     ],
     "answer": "Royal flush",
@@ -289,6 +299,29 @@
           "Association"
         ],
         "description": "Cards/poker - makes you think the row is about cards not seals"
+      }
+    },
+    {
+      "id": "decoy-1778586287934-1",
+      "tileIds": [
+        "tile-l25-391",
+        "tile-l25-392",
+        "tile-l25-390",
+        "tile-l25-389"
+      ],
+      "pdl": {
+        "knowledge": [
+          "General vocabulary"
+        ],
+        "manipulation": [
+          "None"
+        ],
+        "abstraction": [
+          "Association"
+        ],
+        "completeness": null,
+        "groupsSpanned": "",
+        "description": "Toilets can be called 'the jacks'"
       }
     }
   ],
