@@ -37,14 +37,12 @@ The dashboard uses hash-based routing with lazy JSON loading. Each page only fet
 
 ```javascript
 const PAGE_CONFIG = {
-    overview:   { files: ['overview', 'regression', 'simulator'], ... },
-    difficulty: { files: ['crosstabs', 'heatmap', 'impostor-domain', 'correlations', 'regression'], ... },
-    behaviour:  { files: ['vertical', 'decoys'], ... },
+    overview:   { files: ['overview'], ... },
+    published:  { files: ['puzzle-explorer', 'difficulty'], ... },
+    upcoming:   { files: ['puzzle-explorer', 'difficulty', 'simulator'], ... },
+    difficulty: { files: ['crosstabs', 'heatmap', 'impostor-domain', 'correlations', 'regression', 'vertical', 'decoys'], ... },
     relink:     { files: ['relink'], ... },
-    model:      { files: ['transitions', 'failures'], ... },
-    simulator:  { files: ['simulator'], ... },
-    clustering: { files: ['clustering'], ... },
-    explorer:   { files: ['puzzle-explorer'], ... },
+    validation: { files: ['simulator', 'transitions', 'failures', 'clustering'], ... },
     glossary:   { files: [], ... }
 };
 ```
@@ -53,152 +51,66 @@ File names are normalised to camelCase keys (e.g. `impostor-domain` → `imposto
 
 ---
 
-## The 16 Sections
+## The 7 Pages
 
-Each section corresponds to one or more JSON files and is rendered by a dedicated JS module. Sections are grouped into 9 pages accessible via hash-based navigation.
+Each page is rendered by one or more dedicated JS modules and groups related analyses together.
 
-### 1. Key Findings (`overview.js`)
-**Canvas/Elements:** `#stats-grid`, `#subtitle`
-**Data:** `overview.json`, `regression.json`, `simulator.json`
+### 1. Overview (`overview.js`)
+**Page:** `#overview`
+**Data:** `overview.json`
 
-Renders a grid of headline stat cards:
-- Total puzzles, dated puzzles, total completions
-- Overall solve rate range (min–max)
-- Simulator validation metrics (r, MAE)
-- OLS R² from regression
-- Per-date table with sparkline solve rates
+Renders headline stat cards (total puzzles, completions, solve rate range) and a per-date summary table with solve rates. This is the landing page.
 
-### 2. PDL Cross-tabs (`crosstabs.js`)
-**Canvas IDs:** `#chart-manip`, `#chart-abstr`, `#chart-know`, `#chart-domain`
-**Data:** `crosstabs.json`
+### 2. Published Puzzles (`published.js`)
+**Page:** `#published`
+**Data:** `puzzle-explorer.json`, `difficulty.json`
 
-Four horizontal bar charts, one per PDL axis. Each bar shows mean first-try % with sample size labels. Bars are sorted by difficulty.
+A sortable table of all dated (published) puzzles showing:
+- Date, name, player count, solve rate, difficulty stars
+- Row-click opens a modal detail panel with per-row wrong-guess distributions (compound key bars: solved/lost split), timing curves, PDL feature summary, and simulator predictions
+- Toggle between Actual and Predicted (simulator) distributions
 
-### 3. Difficulty Heatmap (`heatmap.js` — `renderHeatmap`)
-**Element:** `#heatmap-container`
-**Data:** `heatmap.json`
+### 3. Upcoming Puzzles (`upcoming.js`)
+**Page:** `#upcoming`
+**Data:** `puzzle-explorer.json`, `difficulty.json`, `simulator.json`
 
-A HTML table styled as a heatmap — manipulation on x-axis, abstraction on y-axis. Cell colour goes from green (easy) to red (hard). Each cell shows percentage and sample size.
+A sortable table of undated (unpublished) puzzles showing:
+- Name, publish date, predicted solve rate, difficulty stars
+- Row-click opens the same modal detail panel as Published (but only predicted distributions available)
 
-### 4. Impostor Domain (`heatmap.js` — `renderImpostorDomain`)
-**Canvas IDs:** `#chart-domain-dist`, `#chart-imp-domain`
-**Data:** `impostor-domain.json`
+### 4. Difficulty Drivers (`difficulty-drivers.js`)
+**Page:** `#difficulty`
+**Data:** `crosstabs.json`, `heatmap.json`, `impostor-domain.json`, `correlations.json`, `regression.json`, `vertical.json`, `decoys.json`
 
-Two charts:
-- Grouped bar comparing same-domain vs different-domain impostor performance
-- Bar chart breaking down by specific impostor domain
+Multi-section page combining all difficulty-related analyses:
+- **Cross-tabs:** Four horizontal bar charts (one per PDL axis) showing first-try % by category
+- **Heatmap:** Manipulation × abstraction 2D grid (green=easy, red=hard)
+- **Impostor Domain:** Same vs different domain comparison
+- **Correlations:** Six scatter plots (feature vs solve rate with Pearson r)
+- **Regression:** OLS coefficient tables + forest plot
+- **Vertical Inference:** Position timing/error curves showing learning within a game
+- **Decoys:** Decoy presence effect on solve rate
 
-### 5. Puzzle Correlations (`correlations.js`)
-**Container:** `#scatter-container`
-**Data:** `correlations.json`
-
-Six scatter plots (one per feature), each showing puzzle feature value on x-axis and solve rate on y-axis. Includes Pearson r annotation. Each point represents one dated puzzle.
-
-### 6. Regression Models (`regression.js`)
-**Elements:** `#regression-tables`, `#regression-pos`, `#chart-forest`
-**Data:** `regression.json`
-
-- Coefficient tables for puzzle-level and row-level OLS models
-- Position-controlled model comparison
-- Forest plot: horizontal bar chart of row-level coefficients with 0-line reference
-- R² and LOO MAE annotations
-
-### 7. Vertical Inference (`vertical.js`)
-**Elements:** `#vi-summary`, `#vi-curve-charts`, `#vi-puzzle-table`
-**Data:** `vertical.json`
-
-- Summary statistics (mean CoM, proportion that speed up/get more accurate)
-- Per-feature crosstab charts: pairs of line charts (timing curve + error curve) for each PDL feature category
-- Per-puzzle detail table with inline curve sparklines
-
-### 8. Decoy Analysis (`decoys.js`)
-**Canvas IDs:** `#chart-decoy-compare`, `#chart-decoy-hits`
-**Data:** `decoys.json`
-
-- Grouped bar: puzzles with decoys vs without (solve rate and avg wrong)
-- Per-puzzle decoy hit rate bars with tooltip descriptions
-
-### 9. Relink Phase (`relink.js`)
-**Canvas IDs:** `#chart-relink-id-manip`, `#chart-relink-con-manip`, `#chart-relink-tiles`
+### 5. Relink Phase (`relink.js`)
+**Page:** `#relink`
 **Data:** `relink.json`
 
-Three bar charts:
-- Relink first-try % by connection identification manipulation
-- Relink first-try % by answer construction manipulation
-- Relink first-try % and solve rate by phase 2 tile count
+Three bar charts analysing Phase 2 (the relink phase):
+- First-try % by connection identification manipulation
+- First-try % by answer construction manipulation
+- First-try % and solve rate by phase 2 tile count
 
-### 10. Clustering (`clustering.js`)
-**Canvas IDs:** `#chart-puzzle-cluster`, `#chart-row-cluster`
-**Elements:** `#cluster-members`
-**Data:** `clustering.json`
+### 6. Validation (`validation.js`)
+**Page:** `#validation`
+**Data:** `simulator.json`, `transitions.json`, `failures.json`, `clustering.json`
 
-- Puzzle archetype bar chart (k=3) showing mean solve rate per cluster
-- Cluster member lists
-- Row archetype bar chart (k=4) showing mean first-try %
+Multi-section page combining model validation analyses:
+- **Simulator:** Scatter plot (simulated vs actual), stacked bar distributions, undated predictions table
+- **Transitions:** Position × Lives heatmap, per-PDL-axis IPW-weighted distributions
+- **Correlated Failures:** Mean phi by feature similarity, per-puzzle phi matrices
+- **Clustering:** Puzzle archetypes (k=3) and row archetypes (k=4)
 
-### 11. Transition Model (`transitions.js`)
-**Elements:** `#pos-lives-grid`, `#trans-pdl-charts`, `#trans-chart-decoy`, `#trans-n`
-**Data:** `transitions.json`
-
-- Position × Lives heatmap grid (HTML table with colour-coded cells)
-- Per-PDL-axis bar charts showing IPW-weighted first-try rates
-- Decoy effect comparison chart
-- Observation count annotation
-
-### 12. Correlated Failures (`failures.js`)
-**Elements:** `#failure-aggregate`, `#failure-puzzles`, `#failures-n`
-**Data:** `failures.json`
-
-- Aggregate table: mean phi by feature similarity (same/different manipulation, abstraction, domain)
-- Per-puzzle phi matrices displayed as small 4×4 coloured grids
-- Row category labels and failure rates
-
-### 13. Game Simulator (`simulator.js`)
-**Canvas IDs:** `#chart-sim-scatter`, `#chart-sim-dist`
-**Elements:** `#sim-table`, `#sim-undated`, `#sim-validation`
-**Data:** `simulator.json`
-
-- Scatter plot: simulated vs actual solve rate (with y=x reference line)
-- Stacked bar chart: simulated row completion distribution per puzzle
-- Per-puzzle comparison table with deltas
-- Undated puzzle predictions table (sorted by predicted difficulty)
-- Validation metrics (r, MAE) for both empirical and feature-only modes
-
-### 14. Puzzle Explorer (`explorer.js`)
-**Page:** `#explorer`
-**Data:** `puzzle-explorer.json`
-
-Per-puzzle deep-dive with:
-- Dropdown selector for any dated puzzle
-- PDL feature summary table
-- Wrong-guess distribution chart using **compound keys** that split by row outcome:
-  - Filled bars = row was solved with N wrongs
-  - Striped bars = row was unsolved and player lost the game
-  - Hollow bars = row was unsolved and player abandoned (incomplete)
-- Toggle between Actual data, Predicted (simulator) data, or Both overlaid
-- Include/exclude abandoned players toggle
-- Timing curve charts (impostor phase + relink phase)
-- Simulator prediction badge with predicted solve rate
-
-The compound key format (`0_solved`, `1_lost`, `2_incomplete`, `no_attempt_lost`, etc.) is shared between actual data from `lib/metrics.py` and predicted data from the Monte Carlo simulator in `lib/model.py`.
-
-### 15. Difficulty Ratings (`ratings.js`)
-**Page:** `#ratings`
-**Data:** `difficulty.json`
-
-A 5-axis difficulty rating system with:
-- **Actual/Predicted toggle** — for dated puzzles, switch between profiles derived from real player data vs simulator predictions
-- **Validation stat cards** — Spearman ρ, Pearson r, and puzzle counts for the active profile mode
-- **Scatter chart** — composite difficulty vs actual solve rate, colour-coded by star rating tier
-- **Sortable table** — all 39 puzzles with star ratings, solve rates, composites, and inline mini radar charts showing the 5-dimension profile
-- **Radar modal** — click any mini radar to expand it into a full-size modal with per-dimension labels and values
-- **Per-dimension rankings** — top 10 puzzles for each dimension, with coloured score bars
-
-The five dimensions (manipulation, abstraction, domain mismatch, knowledge, relink challenge) each have a distinct colour drawn from `DIM_COLORS`. Radar chart fills use a conic gradient that sweeps through the dimension colours.
-
-Undated puzzles appear in the table with an italic style and "PRED" tag. Their profiles are always predicted (no actual data available).
-
-### 16. Glossary (`glossary.js`)
+### 7. Glossary (`glossary.js`)
 **Page:** `#glossary`
 **Data:** None (static content)
 
@@ -216,17 +128,13 @@ Defines key terms used throughout the dashboard (PDL axes, game mechanics, stati
 │  Fixed   │   Shows one page at a time (hash routing) │
 │  sidebar │                                           │
 │          │   Pages:                                  │
-│  Links   │   #overview   — Key Findings              │
-│  to 9    │   #difficulty — Cross-tabs, Heatmap,      │
-│  pages   │                 Correlations, Regression   │
-│          │   #behaviour  — Vertical, Decoys          │
+│  Links   │   #overview   — Headline Stats            │
+│  to 7    │   #published  — Published Puzzles table   │
+│  pages   │   #upcoming   — Upcoming Puzzles table    │
+│          │   #difficulty — Difficulty Drivers         │
 │          │   #relink     — Relink Phase              │
-│          │   #model      — Transitions, Failures     │
-│          │   #simulator  — Monte Carlo               │
-│          │   #clustering — k-means                   │
-│          │   #explorer   — Puzzle Explorer            │
-│          │   #ratings    — Difficulty Ratings          │
-│          │   #glossary   — Glossary                   │
+│          │   #validation — Model Validation          │
+│          │   #glossary   — Glossary                  │
 │          │                                           │
 └──────────┴───────────────────────────────────────────┘
 ```
@@ -282,27 +190,24 @@ Files are served from the `relink/` directory, so the dashboard is at `http://lo
 
 ```
 relink/dashboard/
-├── index.html          ← Page structure + Canvas elements
+├── index.html              ← Page structure + Canvas elements
 ├── css/
-│   └── styles.css      ← Layout, cards, heatmap colours
+│   └── styles.css          ← Layout, cards, heatmap colours, modals
 └── js/
-    ├── main.js          ← Entry point: hash routing, lazy data loading
-    ├── charts.js        ← Shared Chart.js config / colours
-    ├── overview.js      ← Section 1: Key Findings
-    ├── crosstabs.js     ← Section 2: PDL Cross-tabs
-    ├── heatmap.js       ← Sections 3+4: Heatmap + Impostor Domain
-    ├── correlations.js  ← Section 5: Scatter plots
-    ├── regression.js    ← Section 6: OLS models + forest plot
-    ├── vertical.js      ← Section 7: VI curves
-    ├── decoys.js        ← Section 8: Decoy comparison
-    ├── relink.js        ← Section 9: Relink phase charts
-    ├── clustering.js    ← Section 10: k-means archetypes
-    ├── transitions.js   ← Section 11: Transition model
-    ├── failures.js      ← Section 12: Phi matrices
-    ├── simulator.js     ← Section 13: Monte Carlo results
-    ├── explorer.js      ← Section 14: Puzzle Explorer
-    ├── ratings.js       ← Section 15: Difficulty Ratings
-    └── glossary.js      ← Section 16: Glossary
+    ├── main.js              ← Entry point: hash routing, lazy data loading
+    ├── charts.js            ← Shared Chart.js config / colours
+    ├── overview.js          ← Page 1: Headline Stats
+    ├── published.js         ← Page 2: Published Puzzles table + modal
+    ├── upcoming.js          ← Page 3: Upcoming Puzzles table + modal
+    ├── difficulty-drivers.js← Page 4: Cross-tabs, Heatmap, Correlations, etc.
+    ├── crosstabs.js         ← Sub-renderer: PDL cross-tabs charts
+    ├── correlations.js      ← Sub-renderer: Scatter plots
+    ├── relink.js            ← Page 5: Relink phase charts
+    ├── validation.js        ← Page 6: Simulator, Transitions, Failures, Clustering
+    ├── clustering.js        ← Sub-renderer: k-means archetypes
+    ├── failures.js          ← Sub-renderer: Phi matrices
+    ├── explorer.js          ← Shared puzzle detail modal renderer
+    └── glossary.js          ← Page 7: Glossary
 ```
 
 Each `.js` renderer module follows the same pattern:

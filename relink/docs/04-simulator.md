@@ -12,8 +12,8 @@ There are two modes:
 
 | Mode | When Used | Data Source | Accuracy |
 |------|-----------|-------------|----------|
-| **Empirical** | 17 puzzles with player data | Per-puzzle observed distributions + pooled fallback | r = 0.929, MAE = 11.1pp |
-| **Feature-only** | 22 puzzles without player data | PDL feature-based distributions only | Used for predictions |
+| **Empirical** | 7 puzzles with player data | Per-puzzle observed distributions + pooled fallback | r = 0.993, MAE = 8.1pp |
+| **Feature-only** | 41 puzzles without player data | PDL feature-based distributions only | Used for predictions |
 
 ---
 
@@ -328,9 +328,9 @@ and a random draw r = 0.73:
 ## Simulator Validation
 
 ### Empirical Mode (dated puzzles)
-Each of the 17 dated puzzles is simulated using its own observed distributions, with the feature model as fallback. Comparing simulated vs actual solve rate:
-- **Pearson r = 0.929** — very strong correlation
-- **MAE = 11.1 percentage points** — average prediction error
+Each of the 7 dated puzzles is simulated using its own observed distributions, with the feature model as fallback. Comparing simulated vs actual solve rate:
+- **Pearson r = 0.993** — near-perfect correlation
+- **MAE = 8.1 percentage points** — average prediction error
 
 ### Feature-Only Mode (cross-validation on dated puzzles)
 Each dated puzzle is simulated using ONLY the feature model (no per-puzzle observations). This tests how well the model generalises.
@@ -348,11 +348,11 @@ Each dated puzzle is simulated using ONLY the feature model (no per-puzzle obser
 ```json
 {
   "puzzles": {
-    "2026-03-31": {
-      "solve_rate": 0.7892,
-      "actual_solve_rate": 82.4,
+    "2026-05-07": {
+      "solve_rate": 0.5180,
+      "actual_solve_rate": 51.8,
       "name": "Newspaper sections",
-      "date": "2026-03-31",
+      "date": "2026-05-07",
       "won": 7892,
       "lost": 2108,
       "relink_reached": 8450,
@@ -376,7 +376,7 @@ Each dated puzzle is simulated using ONLY the feature model (no per-puzzle obser
     "l1": { ... same structure but actual_solve_rate: null ... },
     ...
   },
-  "validation": { "r": 0.929, "mae": 11.1 },
+  "validation": { "r": 0.993, "mae": 8.1 },
   "feature_validation": { "r": 0.655, "mae": 15.1 }
 }
 ```

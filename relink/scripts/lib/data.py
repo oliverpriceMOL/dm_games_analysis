@@ -124,11 +124,15 @@ def load_pdl(save_dir):
         relink_con_manipulation = ans_con.get('manipulation', ['None'])[0] if ans_con.get('manipulation') else 'None'
         relink_con_knowledge = ans_con.get('knowledge', ['None'])[0] if ans_con.get('knowledge') else 'None'
 
+        # phase2TileCount = number of grid-sourced tiles in relink (what players select)
+        relink_tiles = relink.get('tiles', [])
+        p2_tile_count = sum(1 for t in relink_tiles if t.get('source') == 'grid')
+
         pf = {
             'lid': lid,
             'date': date,
             'name': pdata.get('name', lid),
-            'phase2TileCount': board.get('phase2TileCount', 1),
+            'phase2TileCount': p2_tile_count,
             'decoyCount': len(decoys),
             'specialistGroupCount': board.get('specialistGroupCount', 0),
             'isThemed': board.get('isThemed', False),

@@ -209,14 +209,14 @@ export function createRadarChart(canvasId, dims, dimLabels, profile, options = {
             scales: {
                 r: {
                     min: 0, max: 1, beginAtZero: true,
-                    ticks: { display: false, ...(options.large ? { stepSize: 0.25 } : {}) },
+                    ticks: { display: false, stepSize: options.large ? 0.1 : 0.2 },
                     pointLabels: {
                         display: true,
                         font: { size: options.large ? 12 : 9, weight: options.large ? 'bold' : undefined },
                         color: ptColors,
                     },
-                    grid: { color: options.large ? '#dfe6e940' : '#dfe6e920' },
-                    angleLines: { display: !!options.large, color: '#dfe6e940' },
+                    grid: { color: options.large ? '#b2bec3' : '#b2bec399' },
+                    angleLines: { display: true, color: options.large ? '#b2bec3' : '#b2bec399' },
                 }
             },
             plugins: {

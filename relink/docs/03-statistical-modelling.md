@@ -38,11 +38,11 @@ In Relink, players who lose all 4 lives are eliminated. This means later positio
 If we naively count error rates at position 3, we'd underestimate the true difficulty because we're only seeing the survivors' performance.
 
 ```
-Position 0: All ~50 players attempt this   → unbiased
-Position 1: ~45 players survived to here   → slightly biased
-Position 2: ~38 players survived           → moderately biased
-Position 3: ~30 players survived           → heavily biased
-Relink:     ~25 players survived           → most biased
+Position 0: All ~9,000 players attempt this  → unbiased
+Position 1: ~8,300 players survived to here  → slightly biased
+Position 2: ~7,200 players survived          → moderately biased
+Position 3: ~6,100 players survived          → heavily biased
+Relink:     ~5,200 players survived          → most biased
 ```
 
 ### The Solution: IPW
@@ -74,20 +74,20 @@ For each player's trajectory:
 
 **Safety cap:** Weights are capped at 20× to prevent extreme observations (players who barely survived through many unlikely states) from dominating the estimates.
 
-**Pooling:** IPW is computed by pooling trajectories across all 17 dated puzzles. This gives stable survival estimates even for rare states (e.g., position 3 with 1 life).
+**Pooling:** IPW is computed by pooling trajectories across all 7 dated puzzles (~65K total). This gives stable survival estimates even for rare states (e.g., position 3 with 1 life).
 
 ### Output
 
 ```python
 ipw_data = {
     'survival_table': {
-        '0,4': {'count': 496, 'survived': 456, 'rate': 0.919},
-        '1,4': {'count': 312, 'survived': 289, 'rate': 0.926},
-        '1,3': {'count': 144, 'survived': 118, 'rate': 0.819},
+        '0,4': {'count': 64892, 'survived': 59718, 'rate': 0.920},
+        '1,4': {'count': 41230, 'survived': 38102, 'rate': 0.924},
+        '1,3': {'count': 18488, 'survived': 15140, 'rate': 0.819},
         ...
     },
     'player_weights': {
-        ('2026-03-31', 'session_abc'): [
+        ('2026-05-07', 'device_abc'): [
             {'position': 0, 'lives_before': 4, 'weight': 1.0},
             {'position': 1, 'lives_before': 3, 'weight': 1.09},
             ...
@@ -95,9 +95,9 @@ ipw_data = {
         ...
     },
     'diagnostics': {
-        'n_trajectories': 496,
-        'mean_weight': 1.23,
-        'p95_weight': 2.44,
+        'n_trajectories': 71712,
+        'mean_weight': 1.193,
+        'p95_weight': 1.963,
         'n_capped': 0,
     }
 }
@@ -128,9 +128,9 @@ Then aggregate into tables at multiple granularities.
 
 **1. `by_position_lives`** — Empirical wrong-guess distributions for each (position, lives) state:
 ```
-Position 0, Lives 4:  {0: 0.65, 1: 0.20, 2: 0.10, 3: 0.05}  (n=496)
-Position 1, Lives 3:  {0: 0.58, 1: 0.24, 2: 0.12, 3: 0.06}  (n=144)
-Position 2, Lives 2:  {0: 0.52, 1: 0.28, 2: 0.15, 3: 0.05}  (n=89)
+Position 0, Lives 4:  {0: 0.65, 1: 0.20, 2: 0.10, 3: 0.05}  (n=64892)
+Position 1, Lives 3:  {0: 0.58, 1: 0.24, 2: 0.12, 3: 0.06}  (n=18488)
+Position 2, Lives 2:  {0: 0.52, 1: 0.28, 2: 0.15, 3: 0.05}  (n=8920)
 ...
 ```
 Each distribution is IPW-weighted (using the weights from Component 1).
@@ -138,9 +138,9 @@ Each distribution is IPW-weighted (using the weights from Component 1).
 **2. `by_pdl_feature`** — Wrong-guess distributions grouped by each PDL axis:
 ```
 manipulation:
-  None:          {0: 0.72, 1: 0.18, 2: 0.07, 3: 0.03}  (n=380)
-  Hidden word:   {0: 0.48, 1: 0.28, 2: 0.16, 3: 0.08}  (n=95)
-  Compound:      {0: 0.61, 1: 0.22, 2: 0.12, 3: 0.05}  (n=120)
+  None:          {0: 0.72, 1: 0.18, 2: 0.07, 3: 0.03}  (n=38K)
+  Hidden word:   {0: 0.48, 1: 0.28, 2: 0.16, 3: 0.08}  (n=9.5K)
+  Compound:      {0: 0.61, 1: 0.22, 2: 0.12, 3: 0.05}  (n=12K)
 
 abstraction:
   Direct membership: {0: 0.70, 1: 0.19, 2: 0.08, 3: 0.03}
@@ -157,8 +157,8 @@ same_domain:
 
 **3. `by_feature_combo`** — Distributions for (manipulation, has_decoy) combinations:
 ```
-None|False:        {0: 0.74, ...}  (n=280)  ← easiest
-Hidden word|True:  {0: 0.42, ...}  (n=35)   ← hardest
+None|False:        {0: 0.74, ...}  (n=28K)  ← easiest
+Hidden word|True:  {0: 0.42, ...}  (n=3.5K) ← hardest
 ```
 This table powers the simulator's *base distribution* for each row.
 
@@ -221,10 +221,10 @@ To understand *why* rows might correlate, the phi values are grouped by PDL simi
 ```python
 failure_data = {
     'per_puzzle': {
-        '2026-03-31': {
+        '2026-05-07': {
             'name': 'Newspaper sections',
             'phi_matrix': {'0-1': 0.15, '0-2': 0.08, ...},
-            'n_players': 34,
+            'n_players': 5884,
             'row_failure_rates': {'0': 0.088, '1': 0.242, ...},
             'row_categories': {'0': 'Newspaper sections', ...},
         },
@@ -238,7 +238,7 @@ failure_data = {
         'same_abstraction': { ... },
         'same_domain': { ... },
     },
-    'n_pairs': 102,  # 17 puzzles × 6 pairs
+    'n_pairs': 42,  # 7 puzzles × 6 pairs
 }
 ```
 

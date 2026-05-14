@@ -2,11 +2,11 @@
 
 > **File:** `relink/scripts/lib/metrics.py`
 > **Called by:** `pdl_analysis.py` as steps 1–10
-> **Output:** 9 JSON data files consumed by the dashboard
+> **Output:** 10 JSON data files consumed by the dashboard
 
 ## What Happens
 
-After data loading produces joined structures (PDL features + player behaviour), the pipeline runs 9 independent analyses. Each takes a slice of the joined data and produces a JSON file that answers a specific question about puzzle difficulty.
+After data loading produces joined structures (PDL features + player behaviour), the pipeline runs 10 independent analyses. Each takes a slice of the joined data and produces a JSON file that answers a specific question about puzzle difficulty.
 
 ```
                         Joined Data
@@ -15,7 +15,7 @@ After data loading produces joined structures (PDL features + player behaviour),
             │               │               │
     ┌───────┴────┐  ┌───────┴───────┐  ┌────┴────────┐
     │ row_joined │  │ puzzle_data   │  │ players_by  │
-    │ ~68 rows   │  │ 17 puzzles    │  │ _date       │
+    │ 28 rows    │  │ 7 puzzles     │  │ _date       │
     │ (row PDL   │  │ (puzzle PDL   │  │ (raw player │
     │ + row      │  │ + puzzle-     │  │ trajectories│
     │ behaviour) │  │  level stats) │  │ per date)   │
@@ -40,7 +40,7 @@ After data loading produces joined structures (PDL features + player behaviour),
 
 **Question:** How does each PDL tag relate to row difficulty?
 
-**Method:** Groups the ~56 row observations by each of 4 PDL axes — manipulation, abstraction, knowledge, knowledge domain — and computes mean first-try %, mean wrong guesses, and mean "never correct" % for each category.
+**Method:** Groups the 28 row observations by each of 4 PDL axes — manipulation, abstraction, knowledge, knowledge domain — and computes mean first-try %, mean wrong guesses, and mean "never correct" % for each category.
 
 **Example result:**
 ```
@@ -105,7 +105,7 @@ This tells you that rows with no word manipulation are easiest (82% of players g
 
 **Question:** Which board-level features predict overall puzzle solve rate?
 
-**Method:** For each of 6 computed puzzle features, calculates both Pearson (linear) and Spearman (rank) correlation with solve rate across the 14 dated puzzles.
+**Method:** For each of 6 computed puzzle features, calculates both Pearson (linear) and Spearman (rank) correlation with solve rate across the 7 dated puzzles.
 
 **The 6 features tested:**
 
@@ -114,12 +114,12 @@ This tells you that rows with no word manipulation are easiest (82% of players g
 | `manipulationComplexity` | Rows with manipulation ≠ 'None' |
 | `abstractionComplexity` | Rows with abstraction ≠ 'Direct membership' |
 | `knowledgeBreadth` | Distinct knowledge domains across rows |
-| `phase2TileCount` | Tiles needed for the relink answer |
+| `phase2TileCount` | Grid-sourced tiles needed for the relink answer |
 | `decoyCount` | Number of designed decoy groupings |
 | `specialistGroupCount` | Rows requiring specialist cultural knowledge |
 
 **How it works:**
-1. Extract feature values for all 14 dated puzzles
+1. Extract feature values for all 7 dated puzzles
 2. Extract corresponding solve rates
 3. Compute Pearson r (assumes linear relationship) and Spearman ρ (rank-based, handles non-linear)
 4. Package as scatter plot data: x-values, y-values, labels, correlation coefficients
@@ -139,7 +139,7 @@ This tells you that rows with no word manipulation are easiest (82% of players g
 solve_rate = β₀ + β₁·manipulationComplexity + β₂·abstractionComplexity
            + β₃·phase2TileCount + β₄·playerCount
 ```
-- 14 observations (one per dated puzzle)
+- 7 observations (one per dated puzzle)
 - Player count included as a covariate (controls for growing player base)
 - Reports R², coefficients, and LOO MAE
 
@@ -148,7 +148,7 @@ solve_rate = β₀ + β₁·manipulationComplexity + β₂·abstractionComplexit
 first_try_pct = β₀ + Σ(manipulation one-hot) + Σ(abstraction one-hot)
               + Σ(knowledge one-hot) + β·same_domain
 ```
-- ~56 observations (one per row)
+- 28 observations (one per row across 7 puzzles)
 - Uses one-hot encoding for categorical PDL tags (drops first category as baseline)
 
 ### Position-Controlled Row Model
@@ -181,7 +181,7 @@ Two curves per puzzle:
 
 **Per-feature breakdown:** Groups puzzles by each PDL axis (manipulation complexity, abstraction complexity, etc.) and averages the error and timing curves. This shows whether, say, high-manipulation puzzles have steeper or flatter learning curves.
 
-**Aggregate finding:** Across all 14 puzzles, mean wrong guesses increase from ~0.45 at position 0 to ~0.65 at position 3. This is counterintuitive — players get *worse* as they solve more rows. The reason: later positions have fewer lives, so there's more pressure, and the easiest rows tend to be solved first.
+**Aggregate finding:** Across all 7 puzzles, mean wrong guesses increase from ~0.45 at position 0 to ~0.65 at position 3. This is counterintuitive — players get *worse* as they solve more rows. The reason: later positions have fewer lives, so there's more pressure, and the easiest rows tend to be solved first.
 
 ---
 
@@ -194,7 +194,7 @@ Two curves per puzzle:
 **Two sub-analyses:**
 
 ### Comparison: Decoy vs No-Decoy Puzzles
-Splits the 14 dated puzzles into those with decoys and those without. Compares mean solve rate and mean wrong guesses.
+Splits the 7 dated puzzles into those with decoys and those without. Compares mean solve rate and mean wrong guesses.
 
 ### Hit-Rate Analysis
 For puzzles with decoys, traces individual wrong guesses to see if the wrongly-selected tile was in a decoy grouping. The "hit rate" = what fraction of wrong guesses fell on decoy tiles.
@@ -253,11 +253,11 @@ Creates a one-hot feature vector per row (manipulation, abstraction, knowledge, 
 
 | Dimension | Weight | What It Measures |
 |-----------|--------|------------------|
-| Manipulation | 10% | How the connection is encoded (e.g., hidden word, compound) |
+| Manipulation | 40% | How the connection is encoded (e.g., hidden word, compound) |
 | Abstraction | 30% | How abstract the grouping is (e.g., shared property vs direct membership) |
 | Domain Mismatch | 10% | Whether the impostor comes from a different knowledge domain (harder to spot same-domain impostors) |
 | Knowledge | 10% | What knowledge is required (e.g., specialist cultural vs general vocabulary) |
-| Relink Challenge | 40% | How hard the relink phase is (connection identification + answer construction + tile count) |
+| Relink Challenge | 10% | How hard the relink phase is (connection identification + answer construction + tile count) |
 
 **Scoring approach:** Each dimension uses a severity-based score: `avg_wrong / 3` (the expected wrongs out of the maximum 3, not a binary first-try rate). This captures *how many lives* a feature costs on average, not just whether players get it right first try.
 
@@ -274,7 +274,7 @@ For each dimension:
 - Undated puzzles get only a predicted profile
 - The dashboard includes an Actual/Predicted toggle to switch between views
 
-**Validation:** Against actual solve rates, the difficulty composite achieves Spearman ρ = −0.782 (negative because higher difficulty = lower solve rate).
+**Validation:** Against actual solve rates, the difficulty composite achieves Spearman ρ = −0.893 (negative because higher difficulty = lower solve rate).
 
 ---
 

@@ -1424,14 +1424,14 @@ _RELINK_CON_SCORE = {
     'Hidden word':  0.8,
 }
 
-# Dimension weights — grid-search-derived on 14 dated puzzles with 10% floor.
-# Optimised for |Pearson r| with solve rate.  LOO-stable across 12/14 folds.
+# Dimension weights — grid-search-derived on 7 dated puzzles with 10% floor.
+# Optimised for |Pearson r| with solve rate.
 _DIM_WEIGHTS = {
-    'manipulation':      0.10,   # LOO range: 10%-45%  (floor in 12/14 folds)
-    'abstraction':       0.30,   # LOO range: 25%-35%
-    'domain_mismatch':   0.10,   # LOO range: 10%      (always at floor)
-    'knowledge':         0.10,   # LOO range: 10%      (always at floor)
-    'relink_challenge':  0.40,   # LOO range: 35%-45%
+    'manipulation':      0.40,
+    'abstraction':       0.30,
+    'domain_mismatch':   0.10,
+    'knowledge':         0.10,
+    'relink_challenge':  0.10,
 }
 
 # Rating thresholds: composite → 1-5 stars

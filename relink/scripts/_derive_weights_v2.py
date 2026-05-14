@@ -81,20 +81,21 @@ print(f"\n  Pearson r  = {pearson(cs, srs):.3f}")
 print(f"  Spearman ρ = {spearman(cs, srs):.3f}\n")
 
 # ── 3. Grid search (5% increments) ──
-print("── Grid Search (5% increments, Σw=1) ──\n")
+print("── Grid Search (5% increments, Σw=1, 10% floor) ──\n")
 
 STEP = 5
+FLOOR = 10
 best_r = 0
 best_w = None
 count = 0
 
-# Generate all 5-tuples that sum to 100, in steps of STEP, min 0 each
-for a in range(0, 101, STEP):
-    for b in range(0, 101 - a, STEP):
-        for c in range(0, 101 - a - b, STEP):
-            for d_val in range(0, 101 - a - b - c, STEP):
+# Generate all 5-tuples that sum to 100, in steps of STEP, min FLOOR each
+for a in range(FLOOR, 101, STEP):
+    for b in range(FLOOR, 101 - a, STEP):
+        for c in range(FLOOR, 101 - a - b, STEP):
+            for d_val in range(FLOOR, 101 - a - b - c, STEP):
                 e = 100 - a - b - c - d_val
-                if e < 0:
+                if e < FLOOR:
                     continue
                 count += 1
                 w = {DIMS[0]: a/100, DIMS[1]: b/100, DIMS[2]: c/100,
@@ -117,17 +118,17 @@ cs_best = [composite(p['profile'], best_w) for p in puzzles]
 print(f"\n  Spearman ρ = {spearman(cs_best, srs):.3f}")
 
 # ── 4. Also optimise on predicted profiles ──
-print("\n── Grid Search on Predicted Profiles ──\n")
+print("\n── Grid Search on Predicted Profiles (10% floor) ──\n")
 
 best_r_pred = 0
 best_w_pred = None
 
-for a in range(0, 101, STEP):
-    for b in range(0, 101 - a, STEP):
-        for c in range(0, 101 - a - b, STEP):
-            for d_val in range(0, 101 - a - b - c, STEP):
+for a in range(FLOOR, 101, STEP):
+    for b in range(FLOOR, 101 - a, STEP):
+        for c in range(FLOOR, 101 - a - b, STEP):
+            for d_val in range(FLOOR, 101 - a - b - c, STEP):
                 e = 100 - a - b - c - d_val
-                if e < 0:
+                if e < FLOOR:
                     continue
                 w = {DIMS[0]: a/100, DIMS[1]: b/100, DIMS[2]: c/100,
                      DIMS[3]: d_val/100, DIMS[4]: e/100}
@@ -157,12 +158,12 @@ for leave_out in range(n):
 
     best_loo_r = 0
     best_loo_w = None
-    for a in range(0, 101, STEP):
-        for b in range(0, 101 - a, STEP):
-            for c in range(0, 101 - a - b, STEP):
-                for d_val in range(0, 101 - a - b - c, STEP):
+    for a in range(FLOOR, 101, STEP):
+        for b in range(FLOOR, 101 - a, STEP):
+            for c in range(FLOOR, 101 - a - b, STEP):
+                for d_val in range(FLOOR, 101 - a - b - c, STEP):
                     e = 100 - a - b - c - d_val
-                    if e < 0:
+                    if e < FLOOR:
                         continue
                     w = {DIMS[0]: a/100, DIMS[1]: b/100, DIMS[2]: c/100,
                          DIMS[3]: d_val/100, DIMS[4]: e/100}

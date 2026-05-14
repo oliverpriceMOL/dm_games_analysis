@@ -49,6 +49,7 @@ function sortPuzzles() {
         let av, bv;
         switch (sortCol) {
             case 'name':      return sortDir * a.p.name.localeCompare(b.p.name);
+            case 'date':      return sortDir * (a.p.date || '').localeCompare(b.p.date || '');
             case 'rating':    av = a.diff.rating || 0; bv = b.diff.rating || 0; break;
             case 'solve':     av = a.p.predicted_solve_rate || 0; bv = b.p.predicted_solve_rate || 0; break;
             case 'p2tiles':   av = a.p.pdl?.phase2TileCount || 0; bv = b.p.pdl?.phase2TileCount || 0; break;
@@ -84,6 +85,7 @@ function buildTable() {
     let html = `<p class="radar-legend">${legendParts.join(' · ')}</p>`;
     html += `<table id="upcoming-table"><thead><tr>`;
     html += `<th class="sortable-th" data-col="name">Puzzle${arrow('name')}</th>`;
+    html += `<th class="sortable-th" data-col="date">Publish Date${arrow('date')}</th>`;
     html += `<th class="sortable-th" data-col="rating">Predicted Difficulty${arrow('rating')}</th>`;
     html += `<th class="sortable-th" data-col="solve">Predicted Solve Rate${arrow('solve')}</th>`;
     html += `<th class="sortable-th" data-col="p2tiles">P2 Tiles${arrow('p2tiles')}</th>`;
@@ -96,7 +98,10 @@ function buildTable() {
         const predSr = p.predicted_solve_rate != null ? p.predicted_solve_rate.toFixed(0) + '%' : '—';
         const isExpanded = key === expandedKey;
         html += `<tr class="catalogue-row ${tierClass(rating)}${isExpanded ? ' expanded' : ''}" data-key="${key}">`;
+        const pubDate = p.date || '';
+        const pubDateFmt = pubDate ? new Date(pubDate + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
         html += `<td><strong>${p.name}</strong> <span class="badge badge-predicted">Predicted</span></td>`;
+        html += `<td>${pubDateFmt}</td>`;
         html += `<td>${stars(rating)}</td>`;
         html += `<td>${predSr !== '—' ? badge(predSr) : '—'}</td>`;
         html += `<td>${p.pdl?.phase2TileCount || '—'}</td>`;

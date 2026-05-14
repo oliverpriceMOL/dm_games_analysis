@@ -2,7 +2,7 @@
 
 > **File:** `relink/scripts/lib/data.py`
 > **Called by:** `pdl_analysis.py` as the first step
-> **Time:** ~1–2 minutes (CSV I/O dominates; parsing is deferred)
+> **Time:** ~60–75 seconds (CSV I/O dominates; parsing is deferred)
 
 ## What Happens
 
@@ -11,8 +11,8 @@ Data loading takes raw files (puzzle designs + player logs) and produces clean, 
 ```
 ┌──────────────┐     ┌──────────────────────────────────────────────┐
 │  save-data/  │     │  raw/                                        │
-│  49 JSON     │     │  CSV files (sessions + events, 933MB+174MB)  │
-│  puzzle      │     │                                              │
+│  49 JSON     │     │  Event CSVs (glob-loaded, 900MB+, 5M rows)    │
+│  puzzle      │     │  Deduplicated by event ID (last file wins)    │
 │  designs     │     │                                              │
 └──────┬───────┘     └────────────────────┬────────────────────────┘
        │                                  │
@@ -20,16 +20,17 @@ Data loading takes raw files (puzzle designs + player logs) and produces clean, 
   load_pdl()                    load_behaviour(target_dates)
        │                                  │
        │  ┌───────────────────────────────┘
-       │  │  3-gate filter:                   
-       │  │    1. Date slice ∈ target_dates   
-       │  │    2. 'relink' substring check    
-       │  │    3. "'game_id':'relink'" check   
-       │  │  Deferred: ast.literal_eval        
-       │  │  Extracted: _ts, _level_id (string)
-       │  │                                  
-       │  ├── match_events()  [binary search]
-       │  ├── build_players() [lazy parse here]
-       │  ├── canonical ID filter             
+       │  │  5-gate filter:
+       │  │    1. Date slice ∈ target_dates
+       │  │    2. 'relink' substring check
+       │  │    3. "'game_id':'relink'" check
+       │  │    4. device_id non-empty (for trajectories)
+       │  │    5. "'client_id':'dailymail'" check
+       │  │  Deferred: ast.literal_eval
+       │  │  Also: broad completions from ALL level_completed events
+       │  │
+       │  ├── build_players() [per device_id group]
+       │  ├── canonical ID filter
        │  ├── build_date_summaries()
        │  └── build_aggregate_timing()
        │                      │
@@ -49,8 +50,8 @@ Data loading takes raw files (puzzle designs + player logs) and produces clean, 
 
 ### Source Files
 
-- `save-data/puzzles-index.json` — master list of all 39 puzzles with `id`, `date`, `name`
-- `save-data/l{id}.json` — one file per puzzle with the full design
+- `save-data/puzzles-index.json` — master list of all 49 puzzles with `id`, `date`, `name`, `phase2TileCount`, `pdlComplete`
+- `save-data/l{id}.json` — one file per puzzle with the full design (schema v2)
 
 ### What `load_pdl()` Produces
 
@@ -102,7 +103,7 @@ These are **computed** from the row-level tags — they summarise the whole puzz
 | `manipulationComplexity` | Count of rows where manipulation ≠ 'None' | 2 (two rows have word tricks) |
 | `abstractionComplexity` | Count of rows where abstraction ≠ 'Direct membership' | 1 (one row uses shared property) |
 | `knowledgeBreadth` | Count of distinct knowledge domains across all rows | 3 (Language, Science, Entertainment) |
-| `phase2TileCount` | From puzzle's `board.phase2TileCount` | 2 (relink answer needs 2 tiles) |
+| `phase2TileCount` | Count of grid-sourced tiles in the relink phase (tiles players select) | 2 (relink answer needs 2 tiles) |
 | `decoyCount` | Number of designed decoy groupings | 1 |
 | `specialistGroupCount` | From puzzle's `board.specialistGroupCount` | 0 |
 | `hasSpecialist` | Is 'Specialist cultural' present in any row? | False |
@@ -134,81 +135,58 @@ The relink (phase 2) has its own PDL tags, split into two concerns:
 
 ### Source Files
 
-Three pairs of CSVs (original + three subsequent exports covering overlapping date ranges):
+Event CSVs discovered via `glob.glob('raw/daily-mail-events*.csv')`. Multiple files are loaded in sorted order and deduplicated by event ID (last file wins). This ensures full date coverage without duplicates when new exports overlap.
 
-- `daily-mail-sessions.csv`, `-2.csv`, `-3.csv`, `-4.csv` — session-level data
-- `daily-mail-events.csv`, `-2.csv`, `-3.csv`, `-4.csv` — event-level data
+### Two-Tier Data Model
+
+The pipeline produces two levels of behaviour data:
+
+1. **Broad completions (`completions_all`)** — Every `level_completed` event regardless of whether the player has a `device_id`. Used for headline solve rates and the Published Puzzles table. Structure: `{date: {level_id: {'wins': int, 'losses': int}}}`. ~102K total completions.
+
+2. **Device-ID trajectories (`players_by_date`)** — Only players with a `device_id` whose full guess sequence can be reconstructed. Used for per-row analysis, wrong-guess distributions, timing curves, and simulator training. ~65K trajectories across 7 dates.
+
+The two levels agree within ~1pp on solve rate (no selection bias from device_id availability).
 
 ### Performance-Optimised Loading
 
-The raw CSVs can be very large (933MB events, 174MB sessions, 4M+ rows total). Loading uses a three-gate filter pipeline that avoids expensive `ast.literal_eval()` parsing during the scan:
+The raw CSVs are 900MB+ (5M rows). Loading uses a five-gate filter pipeline that avoids expensive `ast.literal_eval()` parsing during the scan:
 
 ```
-For events:
-  1. glob.glob() finds all matching CSV files
-  2. For each row (via csv.DictReader):
-     Gate 1: row['created_at'][:10] ∈ target_dates?     ← string slice + set lookup
-     Gate 2: 'relink' in row['properties']?             ← substring check
-     Gate 3: "'game_id':'relink'" in row['properties']? ← exact string match
-  3. If all gates pass: extract _ts (timestamp) and _level_id (string slicing)
-  4. Store raw properties string — NO ast.literal_eval() yet
-  5. Deduplicate by event ID (last file wins)
+For each event CSV (via glob, sorted):
+  For each row (via csv.DictReader):
+    Gate 1: row['created_at'][:10] ∈ target_dates?      ← string slice + set lookup
+    Gate 2: 'relink' in row['properties']?              ← substring check
+    Gate 3: "'game_id':'relink'" in row['properties']?  ← exact string match
 
-For sessions:
-  1. Only scan dates that had relink events (from step above)
-  2. Same 'relink' substring gate on properties
-  3. Apply bot/dev filters on duration and city
+    → If level_completed: update completions_all (no device_id needed)
+
+    Gate 4: device_id is non-empty?                     ← required for trajectories
+    Gate 5: "'client_id':'dailymail'" in properties?    ← dailymail client only
+
+    → Store in events_by_device_date[date][device_id]
+    → Deferred: ast.literal_eval (NOT called during scan)
+    → Deduplicate by event ID (last file wins)
 ```
 
-**Key insight — deferred parsing:** The expensive `ast.literal_eval()` call is deferred to `build_players()` and only runs on the subset of events that were successfully matched to sessions (~thousands, not millions). The `_level_id` field is extracted via string find + slice on the raw properties string, avoiding full parsing.
+**Key insight — deferred parsing:** The expensive `ast.literal_eval()` call is deferred to `build_players()` and only runs on the subset of events that pass all gates (~1.3M events, not all 5M rows). The `_level_id` field is extracted via string find + slice on the raw properties string during loading.
 
-**`target_dates` parameter:** Passed from `load_all()` as `set(date_to_level.keys())` — the set of all dated puzzle dates from save-data. This excludes pre-launch test data and non-puzzle dates, typically eliminating 50-60% of rows at Gate 1.
+**`target_dates` parameter:** Passed from `load_all()` as `set(date_to_level.keys())` — the set of all dated puzzle dates from save-data. Typically eliminates ~40% of rows at Gate 1.
 
 ### Filtering
 
-Four filters remove non-player traffic:
-
-```
-Raw events
-    │
-    ├── Bot filter: (country in NL/IE and duration ≤ 10s) or duration ≤ 2s
-    ├── Dev filter: sessions from Västerås, SE
-    ├── Tutorial filter: attempts_remaining > 4 (tutorial gives 999 lives)
-    └── Tester filter: INCOMPLETE outcomes with 0 wrong guesses
-    │
-    ▼
-Clean events (~900+ completions across 17 dated puzzles)
-```
-
-### Event-Session Matching (`match_events`)
-
-Events and sessions are separate tables. Matching links each event to its session:
-
-```
-Problem: events have (country, timestamp) but no session_id
-         sessions have (country, created_at, ended_at)
-
-Solution (binary search):
-  1. Group events by country, sort each bucket by timestamp
-  2. Build parallel timestamp list per country (for bisect)
-  3. For each session:
-     a. bisect_left(ts_list, session_start - 200ms) → lo
-     b. bisect_right(ts_list, session_end + 200ms) → hi
-     c. Only check city match on events[lo:hi]
-  4. Complexity: O(sessions × log(events_per_country) + matches)
-     vs. previous O(sessions × events_per_country)
-```
-
-With 59K sessions and 1.3M events across 5 dates, binary search reduces matching from minutes to seconds.
+Events that pass the five gates are clean by construction:
+- Bot/tester traffic excluded by requiring `device_id` + `client_id:'dailymail'`
+- Tutorial events filtered during `build_players()` via `attempts_remaining > 4` (tutorials have 999 lives)
+- Glitch data filtered by canonical ID matching after trajectory building
 
 ### Building Player Trajectories (`build_players`)
 
-This is the most complex step. For each puzzle date, it constructs a per-player game state history.
+For each puzzle date, constructs a per-player game state history from device-grouped events.
 
-**Lazy property parsing:** At the start of processing each player's events, `ast.literal_eval()` is called on any events that still have raw (unparsed) properties. This deferred approach means only matched events (~thousands) get the expensive parse, not all 1.3M loaded events.
+**Lazy property parsing:** `ast.literal_eval()` is called during player building on the stored raw properties. This deferred approach means only filtered events get the expensive parse.
 
 ```
-For each player (identified by session ID):
+For each player (identified by device_id):
   1. Lazy-parse event properties (deferred from loading)
   2. Collect all their guess events, sorted by timestamp
   3. Walk through guesses chronologically:
@@ -245,14 +223,14 @@ For each puzzle date, aggregates player-level data into puzzle-level statistics:
 
 ```
 {
-  'date': '2026-03-31',
-  'label': 'Mar 31',
+  'date': '2026-05-07',
+  'label': 'May 7',
   'name': 'Newspaper sections',
   'lid': 'l11',
-  'n_players': 34,
-  'n_won': 28,
-  'n_lost': 6,
-  'solve_rate': 0.824,
+  'n_players': 5884,
+  'n_won': 3048,
+  'n_lost': 2836,
+  'solve_rate': 0.518,
   'row_stats': {
     '0': {'first_try_pct': 0.912, 'avg_wrong': 0.088, 'n': 34, ...},
     '1': {'first_try_pct': 0.758, 'avg_wrong': 0.242, 'n': 33, ...},
@@ -298,7 +276,7 @@ for each pdl_row that has a matching date in date_summaries:
     row_joined.append(row_data)
 ```
 
-Result: ~56 rows (14 dated puzzles × 4 rows) with both PDL tags and player metrics.
+Result: 28 rows (7 dated puzzles × 4 rows) with both PDL tags and player metrics.
 
 ### Puzzle-Level Data (`puzzle_data`)
 
@@ -325,20 +303,18 @@ The `level_id` is extracted from event properties during loading (via string sli
 The data loading step transforms:
 
 - **49 JSON puzzle files** → 196 rows with PDL tags + 49 puzzle feature vectors + canonical IDs
-- **CSV files (933MB+174MB, 4M+ rows)** → ~50K filtered player sessions → per-player trajectories → per-puzzle summaries
+- **Event CSVs (900MB+, 5M rows)** → ~102K broad completions + ~65K device-ID trajectories → per-puzzle summaries
 - **Join** → rows and puzzles with both design features and observed difficulty metrics
 
 ### Performance
 
 | Phase | Time | What Dominates |
 |-------|------|----------------|
-| CSV scan (events) | ~30s | Raw I/O of 933MB, string comparisons |
-| CSV scan (sessions) | ~5s | Smaller file, date+relink gates |
-| Event-session matching | ~10s | Binary search per session |
-| build_players (incl. lazy parse) | ~15s | ast.literal_eval on matched events |
-| Analysis phases | ~15s | Simulator Monte Carlo |
+| CSV scan (5-gate filter) | ~50s | Raw I/O of 900MB+, string comparisons |
+| build_players (incl. lazy parse) | ~15s | ast.literal_eval on filtered events |
+| Analysis phases | ~10s | Simulator Monte Carlo |
 | **Total** | **~75s** | |
 
-The three-gate filter eliminates ~97% of event rows before any expensive processing. The date gate alone skips ~50% by string slice, the 'relink' gate skips ~65% of the remainder, and deferred parsing means `ast.literal_eval` only runs on ~0.1% of original rows.
+The five-gate filter eliminates ~97% of event rows before any expensive processing. The date gate alone skips ~40%, the relink/client gates skip most of the remainder, and deferred parsing means `ast.literal_eval` only runs on the subset that passes all gates.
 
 Everything downstream — the 15 analyses, the statistical models, and the simulator — operates on these joined structures.

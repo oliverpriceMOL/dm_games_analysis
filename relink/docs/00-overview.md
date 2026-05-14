@@ -16,7 +16,7 @@ The pipeline cross-references these two sources to answer: *which design feature
 │                     INPUT DATA                              │
 │                                                             │
 │  save-data/           raw/                                  │
-│  39 puzzle PDL files  4 session CSVs + 4 event CSVs         │
+│  49 puzzle PDL files  Event CSVs (900MB+, 5M rows)          │
 │  (design tags)        (player behaviour logs)               │
 └──────────┬─────────────────────────┬────────────────────────┘
            │                         │
@@ -25,17 +25,19 @@ The pipeline cross-references these two sources to answer: *which design feature
 │                    DATA LOADING                             │
 │                    lib/data.py                              │
 │                                                             │
-│  • Parse 39 puzzle design files → PDL features              │
+│  • Parse 49 puzzle design files → PDL features              │
 │  • Parse CSV logs → filter bots/devs/tutorials              │
-│  • Match events to sessions                                 │
+│  • Parse CSV logs → filter by date/game/device_id           │
+│  • Group events by (device_id, date) — no sessions needed   │
 │  • Build per-player game trajectories                       │
+│  • Collect broad completion stats (all users)               │
 │  • Compute per-puzzle summary statistics                    │
 │  • Join PDL features with behaviour metrics                 │
 └──────────┬─────────────────────────┬────────────────────────┘
            │                         │
      PDL features            Player trajectories
-     156 rows                + date summaries
-     39 puzzles              for 17 dated puzzles
+     196 rows                + date summaries
+     49 puzzles              for 7 dated puzzles
            │                         │
            ▼                         ▼
 ┌─────────────────────────────────────────────────────────────┐
@@ -67,8 +69,8 @@ The pipeline cross-references these two sources to answer: *which design feature
 │                    DASHBOARD                                │
 │                    dashboard/                               │
 │                                                             │
-│  15 JSON files loaded in parallel                           │
-│  → 16 interactive chart sections                            │
+│  15 JSON files loaded lazily per page                       │
+│  → 7 navigable pages with interactive charts                │
 │  → Served as static HTML at localhost:8000                  │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -76,7 +78,7 @@ The pipeline cross-references these two sources to answer: *which design feature
 ## How To Run
 
 ```bash
-# Generate all data files (~5-8 minutes, CSV parsing dominates):
+# Generate all data files (~75s with optimized loading):
 python3 relink/scripts/pdl_analysis.py
 
 # Serve the dashboard:
@@ -92,8 +94,8 @@ The pipeline reads from `save-data/` and `raw/` (never modifies them) and writes
 
 | Document | What It Covers |
 |----------|---------------|
-| [01-data-loading.md](01-data-loading.md) | How raw data is parsed, filtered, matched, and shaped into analysis-ready structures |
-| [02-analysis-phases.md](02-analysis-phases.md) | The 9 feature analyses (crosstabs through difficulty ratings) — what each measures and why |
+| [01-data-loading.md](01-data-loading.md) | How raw data is parsed, filtered, grouped by device_id, and shaped into analysis-ready structures |
+| [02-analysis-phases.md](02-analysis-phases.md) | The 10 feature analyses (overview through difficulty ratings) — what each measures and why |
 | [03-statistical-modelling.md](03-statistical-modelling.md) | IPW correction, transition probabilities, correlated failures |
 | [04-simulator.md](04-simulator.md) | The Monte Carlo game simulator — how it predicts puzzle difficulty |
 | [05-dashboard.md](05-dashboard.md) | How the interactive dashboard works and what each section shows |
@@ -102,9 +104,10 @@ The pipeline reads from `save-data/` and `raw/` (never modifies them) and writes
 
 | Metric | Value |
 |--------|-------|
-| Puzzles with design data | 39 |
-| Puzzles with player data | 17 |
-| Puzzles without player data | 22 |
-| Total player completions analysed | ~900+ |
-| Simulator accuracy (with player data) | r = 0.929, MAE = 11.1pp |
-| Difficulty rating correlation | Spearman ρ = −0.782 |
+| Puzzles with design data | 49 |
+| Puzzles with player data | 7 |
+| Puzzles without player data (predicted) | 41 |
+| Total completions (all users) | ~102K |
+| Total device-ID trajectories | ~65K |
+| Simulator accuracy (empirical mode) | r = 0.993, MAE = 8.1pp |
+| Difficulty rating correlation | Spearman ρ = −0.893 |
